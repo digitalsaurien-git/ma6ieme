@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#1a1a2e">
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
+<title>Melwan - Mes Cours</title>
+<style>
+:root {
+  --bg: #1a1a2e;
+  --bg2: #16213e;
+  --card: #0f3460;
+  --accent: #e94560;
+  --green: #00b894;
+  --blue: #0984e3;
+  --purple: #6c5ce7;
+  --orange: #e17055;
+  --yellow: #fdcb6e;
+  --teal: #00cec9;
+  --text: #f0f0f0;
+  --text2: #b0b0c0;
+  --correct: #00b894;
+  --wrong: #e94560;
+  --radius: 16px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+/* ─── HEADER ─── */
+.header {
+  background: linear-gradient(135deg, var(--bg2), var(--card));
+  padding: 16px 16px 14px;
+  text-align: center;
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 2px solid rgba(233,69,96,0.3);
+}
+.header h1 { font-size: 22px; font-weight: 800; }
+.header h1 span { color: var(--accent); }
+.header .sub { font-size: 13px; color: var(--text2); margin-top: 3px; }
+.back-btn {
+  position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,0.1); border: none; color: var(--text);
+  width: 40px; height: 40px; border-radius: 50%; font-size: 20px;
+  cursor: pointer; display: none; align-items: center; justify-content: center;
+}
+.back-btn:active { background: rgba(255,255,255,0.2); }
+
+/* ─── SCREENS ─── */
+.screen { display: none; padding: 16px; padding-bottom: 80px; }
+.screen.active { display: block; }
+
+/* ─── KOALA MASCOT ─── */
+.koala-hero {
+  text-align: center;
+  padding: 12px 0 4px;
+}
+.koala-hero svg { width: 90px; height: 90px; }
+.koala-hello {
+  font-size: 15px; color: var(--text2);
+  margin-top: 6px; margin-bottom: 2px;
+}
+.koala-hello span { color: var(--yellow); font-weight: 700; }
+
+/* ─── DEVOIRS BANNER ─── */
+.devoirs-banner {
+  max-width: 500px;
+  margin: 14px auto 0;
+  background: linear-gradient(135deg, rgba(108,92,231,0.3), rgba(15,52,96,0.8));
+  border: 1.5px solid rgba(108,92,231,0.5);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.devoirs-banner:active { opacity: 0.85; }
+.devoirs-banner .db-icon { font-size: 28px; }
+.devoirs-banner .db-text h3 { font-size: 15px; font-weight: 700; }
+.devoirs-banner .db-text p { font-size: 12px; color: var(--text2); margin-top: 2px; }
+.devoirs-badge {
+  margin-left: auto;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px; font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* ─── SECTION HEADER ─── */
+.section-header {
+  display: flex; align-items: center; gap: 8px;
+  max-width: 500px; margin: 18px auto 10px;
+}
+.section-header h2 { font-size: 16px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; }
+.section-header hr { flex: 1; border: none; border-top: 1px solid rgba(255,255,255,0.1); }
+
+/* ─── SUBJECT GRID ─── */
+.subject-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.subject-card {
+  background: linear-gradient(135deg, var(--card), var(--bg2));
+  border-radius: var(--radius);
+  padding: 24px 16px;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.15s, border-color 0.15s;
+  -webkit-user-select: none; user-select: none;
+}
+.subject-card:active { transform: scale(0.96); }
+.subject-card .emoji { font-size: 42px; display: block; margin-bottom: 10px; }
+.subject-card .name { font-size: 16px; font-weight: 700; }
+.subject-card .count { font-size: 12px; color: var(--text2); margin-top: 4px; }
+.subject-card[data-color="blue"] { border-color: var(--blue); }
+.subject-card[data-color="purple"] { border-color: var(--purple); }
+.subject-card[data-color="green"] { border-color: var(--green); }
+.subject-card[data-color="orange"] { border-color: var(--orange); }
+.subject-card[data-color="teal"] { border-color: var(--teal); }
+
+/* ─── CHAPTER LIST ─── */
+.chapter-list { max-width: 500px; margin: 16px auto; }
+.chapter-item {
+  background: linear-gradient(135deg, var(--card), var(--bg2));
+  border-radius: var(--radius);
+  padding: 18px 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  border-left: 4px solid var(--accent);
+  transition: transform 0.12s;
+}
+.chapter-item:active { transform: scale(0.98); }
+.chapter-item .ch-title { font-size: 16px; font-weight: 700; }
+.chapter-item .ch-desc { font-size: 13px; color: var(--text2); margin-top: 4px; }
+
+/* ─── PHOTO MEMO (chapter memos) ─── */
+.chapter-photos {
+  max-width: 500px; margin: 0 auto 16px;
+}
+.photo-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 10px;
+}
+.photo-header h3 { font-size: 14px; color: var(--text2); font-weight: 600; }
+.photo-add-btn {
+  background: var(--purple);
+  color: #fff; border: none;
+  padding: 8px 14px; border-radius: 10px;
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+}
+.photo-add-btn:active { opacity: 0.8; }
+.photos-scroll {
+  display: flex; gap: 10px; overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 6px;
+}
+.photo-thumb {
+  flex-shrink: 0;
+  width: 90px; height: 90px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid rgba(108,92,231,0.4);
+  cursor: pointer;
+}
+.photo-thumb-empty {
+  flex-shrink: 0;
+  width: 90px; height: 90px;
+  border-radius: 10px;
+  border: 2px dashed rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--text2); text-align: center; padding: 8px;
+}
+
+/* ─── ACTIVITY BUTTONS ─── */
+.activity-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  max-width: 500px;
+  margin: 20px auto;
+}
+.activity-btn {
+  background: linear-gradient(135deg, var(--card), var(--bg2));
+  border-radius: var(--radius);
+  padding: 28px 16px;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.1);
+  transition: transform 0.15s;
+}
+.activity-btn:active { transform: scale(0.96); }
+.activity-btn .emoji { font-size: 36px; display: block; margin-bottom: 8px; }
+.activity-btn .label { font-size: 15px; font-weight: 700; }
+
+/* ─── QUIZ ─── */
+.quiz-container { max-width: 500px; margin: 0 auto; }
+.quiz-progress {
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px; height: 8px;
+  margin-bottom: 20px; overflow: hidden;
+}
+.quiz-progress-bar {
+  height: 100%; background: var(--accent);
+  border-radius: 20px; transition: width 0.3s;
+}
+.quiz-question-num { font-size: 13px; color: var(--text2); margin-bottom: 8px; }
+.quiz-question {
+  font-size: 18px; font-weight: 700;
+  margin-bottom: 20px; line-height: 1.4;
+}
+.quiz-option {
+  background: rgba(255,255,255,0.08);
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1.4;
+  transition: background 0.15s, border-color 0.15s;
+}
+.quiz-option:active { background: rgba(255,255,255,0.15); }
+.quiz-option.correct {
+  background: rgba(0,184,148,0.2);
+  border-color: var(--correct);
+}
+.quiz-option.wrong {
+  background: rgba(233,69,96,0.2);
+  border-color: var(--wrong);
+}
+.quiz-option.disabled { pointer-events: none; opacity: 0.6; }
+.quiz-explanation {
+  background: rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 14px;
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text2);
+  display: none;
+}
+.quiz-next {
+  display: none;
+  width: 100%;
+  padding: 16px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 12px;
+}
+.quiz-next:active { opacity: 0.85; }
+.quiz-score {
+  text-align: center;
+  padding: 40px 20px;
+}
+.quiz-score .big { font-size: 64px; font-weight: 800; }
+.quiz-score .msg { font-size: 18px; margin-top: 12px; color: var(--text2); }
+.quiz-restart {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 24px;
+}
+
+/* ─── FLASHCARDS ─── */
+.flashcard-container { max-width: 500px; margin: 0 auto; text-align: center; }
+.flashcard-counter { font-size: 13px; color: var(--text2); margin-bottom: 16px; }
+.flashcard {
+  background: linear-gradient(135deg, var(--card), var(--bg2));
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 40px 24px;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+.flashcard .face {
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+}
+.flashcard .front { font-weight: 700; }
+.flashcard .back { display: none; color: var(--yellow); }
+.flashcard.flipped .front { display: none; }
+.flashcard.flipped .back { display: block; }
+.flashcard-hint { font-size: 12px; color: var(--text2); margin-top: 12px; }
+
+/* ─── SWIPE BUTTONS (Bao-style) ─── */
+.flashcard-judge {
+  display: flex; gap: 12px; margin-top: 16px; max-width: 500px; margin-left: auto; margin-right: auto;
+}
+.btn-review {
+  flex: 1; padding: 14px;
+  background: rgba(233,69,96,0.15);
+  border: 2px solid var(--wrong);
+  color: var(--wrong);
+  border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer;
+}
+.btn-review:active { background: rgba(233,69,96,0.3); }
+.btn-mastered {
+  flex: 1; padding: 14px;
+  background: rgba(0,184,148,0.15);
+  border: 2px solid var(--correct);
+  color: var(--correct);
+  border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer;
+}
+.btn-mastered:active { background: rgba(0,184,148,0.3); }
+
+/* ─── SUMMARY ─── */
+.summary-container {
+  max-width: 500px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, var(--card), var(--bg2));
+  border-radius: var(--radius);
+  padding: 20px;
+  line-height: 1.7;
+  font-size: 15px;
+}
+.summary-container h2 { font-size: 20px; margin-bottom: 14px; color: var(--yellow); }
+.summary-container h3 { font-size: 16px; margin: 16px 0 8px; color: var(--teal); }
+.summary-container ul { padding-left: 20px; margin: 8px 0; }
+.summary-container li { margin-bottom: 6px; color: var(--text2); }
+.summary-container strong { color: var(--text); }
+.summary-container .key-term {
+  display: inline-block;
+  background: rgba(253,203,110,0.15);
+  color: var(--yellow);
+  padding: 2px 8px; border-radius: 6px; font-weight: 600;
+}
+
+/* ─── ENCOURAGEMENT POPUP ─── */
+.encourage-toast {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  padding: 20px 32px;
+  border-radius: 20px;
+  font-size: 22px; font-weight: 800;
+  text-align: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.encourage-toast.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.encourage-toast .toast-emoji { font-size: 48px; display: block; margin-bottom: 8px; }
+
+/* ─── STREAK COUNTER ─── */
+.streak-bar {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; margin-bottom: 16px;
+  font-size: 14px; color: var(--yellow); font-weight: 600;
+}
+.streak-bar .streak-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  transition: background 0.3s, transform 0.3s;
+}
+.streak-bar .streak-dot.lit { background: var(--correct); transform: scale(1.2); }
+.streak-bar .streak-dot.miss { background: var(--wrong); opacity: 0.5; }
+
+/* ─── MIND MAP ─── */
+.mindmap-container { max-width: 500px; margin: 0 auto; text-align: center; }
+.mindmap-zoom {
+  display: flex; gap: 10px; justify-content: center; margin-bottom: 12px;
+}
+.mindmap-zoom button {
+  padding: 8px 18px;
+  background: rgba(255,255,255,0.1);
+  color: var(--text); border: none; border-radius: 10px;
+  font-size: 18px; cursor: pointer; font-weight: 700;
+}
+.mindmap-zoom button:active { background: rgba(255,255,255,0.2); }
+.mindmap-scroll {
+  overflow: auto; -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.03);
+  padding: 8px;
+}
+.mindmap-scroll svg { display: block; transition: width 0.2s; min-width: 100%; }
+.mm-text { font-family: -apple-system, sans-serif; fill: #fff; font-size: 11px; text-anchor: middle; dominant-baseline: central; }
+.mm-text-sm { font-family: -apple-system, sans-serif; fill: #ddd; font-size: 9px; text-anchor: middle; dominant-baseline: central; }
+
+/* ─── SECTION TITLE ─── */
+.section-title { text-align: center; margin: 16px 0; }
+.section-title .emoji { font-size: 32px; }
+.section-title h2 { font-size: 20px; font-weight: 800; margin-top: 6px; }
+.section-title .sub { font-size: 13px; color: var(--text2); margin-top: 4px; }
+
+/* ─── DEVOIRS SCREEN ─── */
+.devoirs-container { max-width: 500px; margin: 0 auto; }
+
+.devoir-add-form {
+  background: linear-gradient(135deg, var(--card), var(--bg2));
+  border-radius: var(--radius); padding: 18px; margin-bottom: 20px;
+}
+.devoir-add-form h3 { font-size: 15px; font-weight: 700; margin-bottom: 14px; color: var(--yellow); }
+.form-row { margin-bottom: 12px; }
+.form-row label { display: block; font-size: 12px; color: var(--text2); margin-bottom: 5px; }
+.form-row input, .form-row select, .form-row textarea {
+  width: 100%; padding: 12px;
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: 10px; color: var(--text);
+  font-size: 15px; font-family: inherit;
+}
+.form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+  outline: none; border-color: var(--purple);
+}
+.form-row select option { background: #1a1a2e; }
+.form-row textarea { resize: none; height: 70px; }
+.btn-add-devoir {
+  width: 100%; padding: 14px;
+  background: var(--purple);
+  color: #fff; border: none; border-radius: 12px;
+  font-size: 15px; font-weight: 700; cursor: pointer;
+}
+.btn-add-devoir:active { opacity: 0.85; }
+
+.devoirs-list { margin-top: 8px; }
+.devoir-card {
+  background: linear-gradient(135deg, var(--card), var(--bg2));
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 12px;
+  border-left: 4px solid var(--purple);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.devoir-card.urgent { border-left-color: var(--accent); }
+.devoir-card.done-card { opacity: 0.5; border-left-color: var(--green); }
+.devoir-countdown {
+  flex-shrink: 0;
+  text-align: center;
+  background: rgba(108,92,231,0.2);
+  border-radius: 10px;
+  padding: 10px 12px;
+  min-width: 64px;
+}
+.devoir-card.urgent .devoir-countdown { background: rgba(233,69,96,0.2); }
+.devoir-card.done-card .devoir-countdown { background: rgba(0,184,148,0.2); }
+.devoir-countdown .days-num { font-size: 26px; font-weight: 800; color: var(--purple); display: block; }
+.devoir-card.urgent .devoir-countdown .days-num { color: var(--accent); }
+.devoir-card.done-card .devoir-countdown .days-num { color: var(--green); font-size: 18px; }
+.devoir-countdown .days-label { font-size: 10px; color: var(--text2); }
+.devoir-info { flex: 1; }
+.devoir-info .di-subject { font-size: 11px; color: var(--text2); margin-bottom: 3px; text-transform: uppercase; }
+.devoir-info .di-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.devoir-info .di-note { font-size: 12px; color: var(--text2); }
+.devoir-info .di-date { font-size: 11px; color: var(--text2); margin-top: 6px; }
+.devoir-actions { display: flex; gap: 6px; margin-top: 8px; }
+.btn-devoir-done {
+  padding: 5px 10px;
+  background: rgba(0,184,148,0.15);
+  border: 1px solid var(--green); color: var(--green);
+  border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;
+}
+.btn-devoir-delete {
+  padding: 5px 10px;
+  background: rgba(233,69,96,0.1);
+  border: 1px solid rgba(233,69,96,0.3); color: var(--accent);
+  border-radius: 8px; font-size: 12px; cursor: pointer;
+}
+
+.empty-devoirs {
+  text-align: center; padding: 40px 20px;
+  color: var(--text2); font-size: 15px;
+}
+.empty-devoirs .big { font-size: 48px; margin-bottom: 12px; }
+
+/* ─── PHOTO VIEWER OVERLAY ─── */
+.photo-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.92);
+  display: none; align-items: center; justify-content: center;
+  flex-direction: column;
+}
+.photo-overlay.show { display: flex; }
+.photo-overlay img {
+  max-width: 95vw; max-height: 80vh;
+  border-radius: 12px; object-fit: contain;
+}
+.photo-overlay-close {
+  position: absolute; top: 16px; right: 16px;
+  background: rgba(255,255,255,0.15);
+  border: none; color: #fff;
+  width: 44px; height: 44px; border-radius: 50%;
+  font-size: 22px; cursor: pointer;
+}
+.photo-overlay-del {
+  margin-top: 16px;
+  background: rgba(233,69,96,0.2);
+  border: 1.5px solid var(--accent); color: var(--accent);
+  padding: 10px 24px; border-radius: 10px; font-size: 14px;
+  cursor: pointer; font-weight: 700;
+}
+
+/* ─── KOALA in quiz ─── */
+.quiz-koala {
+  text-align: center; margin-bottom: 12px;
+}
+.quiz-koala svg { width: 52px; height: 52px; }
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<div class="header">
+  <button class="back-btn" id="backBtn" onclick="goBack()">&#8592;</button>
+  <h1>Mes <span>Cours</span></h1>
+  <div class="sub" id="headerSub">Choisis ta matière !</div>
+</div>
+
+<!-- ═══ SCREEN: SUBJECTS ═══ -->
+<div class="screen active" id="screen-subjects">
+
+  <!-- Koala hero -->
+  <div class="koala-hero">
+    <div id="koalaHero"></div>
+    <div class="koala-hello">Salut <span>Melwan</span> 👋 Prêt à tout déchirer ?</div>
+  </div>
+
+  <!-- Devoirs banner -->
+  <div class="devoirs-banner" onclick="openDevoirs()">
+    <span class="db-icon">📅</span>
+    <div class="db-text">
+      <h3>Mes contrôles &amp; devoirs</h3>
+      <p>Compte à rebours, fiches de révision</p>
+    </div>
+    <span class="devoirs-badge" id="devoirsBadge">0 à venir</span>
+  </div>
+
+  <div class="section-header">
+    <h2>Mes matières</h2>
+    <hr>
+  </div>
+
+  <div class="subject-grid">
+    <div class="subject-card" data-color="blue" onclick="openSubject('histoire')">
+      <span class="emoji">🏛️</span>
+      <div class="name">Histoire</div>
+      <div class="count">1 chapitre</div>
+    </div>
+    <div class="subject-card" data-color="purple" onclick="openSubject('francais')">
+      <span class="emoji">📖</span>
+      <div class="name">Français</div>
+      <div class="count">2 chapitres</div>
+    </div>
+    <div class="subject-card" data-color="green" onclick="openSubject('maths')">
+      <span class="emoji">🔢</span>
+      <div class="name">Maths</div>
+      <div class="count">1 chapitre</div>
+    </div>
+    <div class="subject-card" data-color="orange" onclick="openSubject('arts')">
+      <span class="emoji">🎨</span>
+      <div class="name">Arts</div>
+      <div class="count">1 chapitre</div>
+    </div>
+    <div class="subject-card" data-color="teal" onclick="openSubject('sciences')">
+      <span class="emoji">🔬</span>
+      <div class="name">Sciences</div>
+      <div class="count">2 chapitres</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SCREEN: CHAPTERS ═══ -->
+<div class="screen" id="screen-chapters">
+  <div class="section-title" id="chapterTitle"></div>
+  <div class="chapter-list" id="chapterList"></div>
+</div>
+
+<!-- ═══ SCREEN: ACTIVITIES ═══ -->
+<div class="screen" id="screen-activities">
+  <div class="section-title" id="activityTitle"></div>
+
+  <!-- Photo memos for this chapter -->
+  <div class="chapter-photos" id="chapterPhotos"></div>
+
+  <div class="activity-grid">
+    <div class="activity-btn" onclick="startActivity('quiz')">
+      <span class="emoji">❓</span>
+      <div class="label">Quiz</div>
+    </div>
+    <div class="activity-btn" onclick="startActivity('flashcards')">
+      <span class="emoji">🃏</span>
+      <div class="label">Flashcards</div>
+    </div>
+    <div class="activity-btn" onclick="startActivity('summary')">
+      <span class="emoji">📝</span>
+      <div class="label">Résumé</div>
+    </div>
+    <div class="activity-btn" onclick="startActivity('mindmap')">
+      <span class="emoji">🧠</span>
+      <div class="label">Carte mentale</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SCREEN: QUIZ ═══ -->
+<div class="screen" id="screen-quiz">
+  <div class="quiz-container" id="quizContainer"></div>
+</div>
+
+<!-- ═══ SCREEN: FLASHCARDS ═══ -->
+<div class="screen" id="screen-flashcards">
+  <div class="flashcard-container" id="flashcardContainer"></div>
+  <div class="flashcard-judge" id="flashJudge" style="display:none">
+    <button class="btn-review" onclick="judgeCard(false)">🔄 À revoir</button>
+    <button class="btn-mastered" onclick="judgeCard(true)">✅ Je maîtrise</button>
+  </div>
+</div>
+
+<!-- ═══ SCREEN: SUMMARY ═══ -->
+<div class="screen" id="screen-summary">
+  <div class="summary-container" id="summaryContainer"></div>
+</div>
+
+<!-- ═══ SCREEN: MINDMAP ═══ -->
+<div class="screen" id="screen-mindmap">
+  <div class="mindmap-container" id="mindmapContainer"></div>
+</div>
+
+<!-- ═══ SCREEN: DEVOIRS ═══ -->
+<div class="screen" id="screen-devoirs">
+  <div class="devoirs-container">
+    <div class="section-title">
+      <span class="emoji">📅</span>
+      <h2>Contrôles &amp; Devoirs</h2>
+      <div class="sub">Prépare-toi à l'avance !</div>
+    </div>
+
+    <div class="devoir-add-form">
+      <h3>➕ Ajouter un contrôle ou devoir</h3>
+      <div class="form-row">
+        <label>Matière</label>
+        <select id="dSubject">
+          <option value="Histoire">🏛️ Histoire</option>
+          <option value="Français">📖 Français</option>
+          <option value="Maths">🔢 Maths</option>
+          <option value="Arts">🎨 Arts</option>
+          <option value="Sciences">🔬 Sciences</option>
+          <option value="Autre">📚 Autre</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Titre (ex: Contrôle d'histoire chapitre 1)</label>
+        <input type="text" id="dTitle" placeholder="Contrôle sur la Préhistoire...">
+      </div>
+      <div class="form-row">
+        <label>Date du contrôle</label>
+        <input type="date" id="dDate">
+      </div>
+      <div class="form-row">
+        <label>Note / rappel (optionnel)</label>
+        <textarea id="dNote" placeholder="Revoir les outils préhistoriques, les espèces humaines..."></textarea>
+      </div>
+      <button class="btn-add-devoir" onclick="addDevoir()">Ajouter 📌</button>
+    </div>
+
+    <div class="devoirs-list" id="devoirsList"></div>
+  </div>
+</div>
+
+<!-- ─── PHOTO OVERLAY ─── -->
+<div class="photo-overlay" id="photoOverlay" onclick="closePhotoOverlay(event)">
+  <button class="photo-overlay-close" onclick="closePhotoOverlay()">✕</button>
+  <img id="photoOverlayImg" src="" alt="Photo de révision">
+  <button class="photo-overlay-del" id="photoOverlayDel" onclick="deletePhoto()">🗑️ Supprimer cette photo</button>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════
+//  KOALA SVG MASCOT
+// ══════════════════════════════════════════════════
+function getKoalaSVG(size, mood) {
+  // mood: 'normal' | 'happy' | 'star'
+  const s = size || 90;
+  const starBurst = mood === 'star' ? `
+    <circle cx="68" cy="18" r="10" fill="#fdcb6e" opacity="0.8"/>
+    <text x="68" y="22" text-anchor="middle" font-size="12">⭐</text>` : '';
+  const happyMouth = mood === 'happy' || mood === 'star' ? `
+    <path d="M38 60 Q45 68 52 60" stroke="#4a4a4a" stroke-width="2" fill="none" stroke-linecap="round"/>` : `
+    <path d="M38 60 Q45 65 52 60" stroke="#4a4a4a" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+  return `<svg width="${s}" height="${s}" viewBox="0 0 90 95" xmlns="http://www.w3.org/2000/svg">
+    <!-- Body -->
+    <ellipse cx="45" cy="72" rx="26" ry="20" fill="#8a9bb3"/>
+    <!-- Left ear -->
+    <ellipse cx="17" cy="30" rx="13" ry="13" fill="#7a8fa8"/>
+    <ellipse cx="17" cy="30" rx="8" ry="8" fill="#c9b8d4"/>
+    <!-- Right ear -->
+    <ellipse cx="73" cy="30" rx="13" ry="13" fill="#7a8fa8"/>
+    <ellipse cx="73" cy="30" rx="8" ry="8" fill="#c9b8d4"/>
+    <!-- Head -->
+    <ellipse cx="45" cy="45" rx="26" ry="25" fill="#9aafc4"/>
+    <!-- Eyes -->
+    <circle cx="36" cy="42" r="6" fill="white"/>
+    <circle cx="54" cy="42" r="6" fill="white"/>
+    <circle cx="37" cy="43" r="3.5" fill="#2d2d2d"/>
+    <circle cx="55" cy="43" r="3.5" fill="#2d2d2d"/>
+    <!-- Eye shine -->
+    <circle cx="38.5" cy="41.5" r="1.2" fill="white"/>
+    <circle cx="56.5" cy="41.5" r="1.2" fill="white"/>
+    <!-- Nose -->
+    <ellipse cx="45" cy="53" rx="7" ry="5" fill="#5a4a7c"/>
+    <ellipse cx="45" cy="52" rx="5" ry="3" fill="#7a6a9c"/>
+    <!-- Mouth -->
+    ${happyMouth}
+    <!-- Belly -->
+    <ellipse cx="45" cy="78" rx="14" ry="10" fill="#b8c9d8"/>
+    ${starBurst}
+  </svg>`;
+}
+
+// Draw koala on home screen
+document.getElementById('koalaHero').innerHTML = getKoalaSVG(80, 'normal');
+
+// ══════════════════════════════════════════════════
+//  DATA — All course content
+// ══════════════════════════════════════════════════
+const DATA = {
+  histoire: {
+    emoji: "🏛️",
+    name: "Histoire",
+    color: "#0984e3",
+    chapters: [
+      {
+        id: "debuts-humanite",
+        title: "Les débuts de l'humanité",
+        desc: "Préhistoire, évolution, premiers outils, le feu, l'art et les migrations",
+        quiz: [
+          {
+            q: "Où sont apparus les premiers humains ?",
+            options: ["En Europe", "En Afrique", "En Asie", "En Amérique"],
+            correct: 1,
+            explanation: "Les premiers humains (les Hominidés) sont apparus en Afrique de l'Est, il y a environ 2,8 millions d'années. On dit que l'Afrique est le « berceau de l'humanité »."
+          },
+          {
+            q: "Quel est le premier outil fabriqué par les humains ?",
+            options: ["Le biface", "Le galet aménagé (chopper)", "La flèche", "La hache en métal"],
+            correct: 1,
+            explanation: "Le galet aménagé (ou chopper) est le premier outil : un simple caillou taillé sur un côté. Les plus anciens datent de 3,3 millions d'années ! Le biface arrive beaucoup plus tard."
+          },
+          {
+            q: "Qui est Homo habilis ?",
+            options: ["L'homme qui marche debout", "L'homme habile, le premier à fabriquer des outils", "L'homme qui sait parler", "L'homme moderne"],
+            correct: 1,
+            explanation: "Homo habilis signifie « homme habile ». Il est le premier à fabriquer des outils en pierre, il y a environ 2,8 millions d'années en Afrique."
+          },
+          {
+            q: "Qu'est-ce qui différencie Homo erectus d'Homo habilis ?",
+            options: ["Il est plus petit", "Il marche complètement debout et maîtrise le feu", "Il sait écrire", "Il vit dans des villes"],
+            correct: 1,
+            explanation: "Homo erectus (« homme dressé ») se tient complètement debout. Il est le premier à maîtriser le feu et à quitter l'Afrique pour migrer vers l'Europe et l'Asie."
+          },
+          {
+            q: "À quoi servait le feu pour les humains préhistoriques ?",
+            options: ["Uniquement à cuisiner", "Se chauffer, cuire les aliments, s'éclairer et se protéger des animaux", "Faire des signaux de fumée", "Fabriquer des outils"],
+            correct: 1,
+            explanation: "Le feu avait de multiples usages : chauffage, cuisson des aliments (meilleure digestion), éclairage des grottes, et protection contre les prédateurs."
+          },
+          {
+            q: "Que sont les peintures de la grotte de Lascaux ?",
+            options: ["Des graffitis modernes", "Des peintures rupestres préhistoriques représentant des animaux", "Des dessins d'enfants", "Des cartes géographiques"],
+            correct: 1,
+            explanation: "La grotte de Lascaux (environ 17 000 ans) contient des peintures rupestres magnifiques : chevaux, taureaux, cerfs… Les préhistoriques utilisaient des pigments naturels (ocre, charbon)."
+          },
+          {
+            q: "Comment Homo sapiens a-t-il peuplé toute la Terre ?",
+            options: ["En bateau à moteur", "Par des migrations progressives depuis l'Afrique sur des milliers d'années", "Il est apparu partout en même temps", "Grâce aux avions"],
+            correct: 1,
+            explanation: "Homo sapiens est parti d'Afrique il y a environ 70 000 ans et a migré progressivement vers l'Europe, l'Asie, l'Océanie puis l'Amérique."
+          },
+          {
+            q: "Qu'est-ce qu'un biface ?",
+            options: ["Un outil taillé sur les deux faces", "Un animal préhistorique", "Une grotte à deux entrées", "Un type de peinture rupestre"],
+            correct: 0,
+            explanation: "Le biface est un outil en pierre taillé sur les deux faces, en forme d'amande. Plus perfectionné que le chopper, il servait à couper, gratter et creuser."
+          },
+          {
+            q: "Quel est le nom de l'espèce humaine actuelle ?",
+            options: ["Homo habilis", "Homo erectus", "Homo neanderthalensis", "Homo sapiens"],
+            correct: 3,
+            explanation: "Homo sapiens signifie « homme sage ». C'est notre espèce, apparue en Afrique il y a environ 300 000 ans. Nous sommes les seuls Homo encore vivants aujourd'hui."
+          },
+          {
+            q: "Pendant quelle grande période les premiers humains vivaient-ils ?",
+            options: ["L'Antiquité", "Le Moyen Âge", "La Préhistoire", "Les Temps modernes"],
+            correct: 2,
+            explanation: "La Préhistoire est la très longue période avant l'invention de l'écriture (vers -3300). Elle dure des millions d'années et couvre toute l'évolution des premiers humains."
+          }
+        ],
+        flashcards: [
+          { front: "Hominidé", back: "Grande famille qui regroupe les humains et leurs ancêtres proches. Apparus en Afrique." },
+          { front: "Homo habilis", back: "Premier humain à fabriquer des outils (-2,8 millions d'années). Son nom signifie « homme habile »." },
+          { front: "Homo erectus", back: "Premier humain à se tenir complètement debout, à maîtriser le feu et à quitter l'Afrique." },
+          { front: "Homo sapiens", back: "Notre espèce ! « Homme sage », apparu en Afrique il y a ~300 000 ans." },
+          { front: "Néandertal", back: "Espèce humaine qui vivait en Europe. A cohabité avec Sapiens puis a disparu il y a ~30 000 ans." },
+          { front: "Chopper (galet aménagé)", back: "Premier outil de l'humanité : un galet taillé sur un seul côté pour couper." },
+          { front: "Biface", back: "Outil taillé sur les deux faces, en forme d'amande. Plus avancé que le chopper." },
+          { front: "Peintures rupestres", back: "Dessins et peintures réalisés sur les parois des grottes (ex : Lascaux, -17 000 ans)." },
+          { front: "Nomade", back: "Qui se déplace pour trouver de la nourriture (chasse, cueillette). Mode de vie des préhistoriques." },
+          { front: "Sédentaire", back: "Qui vit au même endroit. Les humains deviennent sédentaires avec l'agriculture (~-10 000 ans)." },
+          { front: "Préhistoire", back: "Période avant l'écriture (-3300). Dure des millions d'années." },
+          { front: "Migration", back: "Déplacement de populations d'une région à une autre. Homo sapiens a migré depuis l'Afrique vers tous les continents." }
+        ],
+        summary: `<h2>🏛️ Les débuts de l'humanité</h2>
+<h3>L'Afrique, berceau de l'humanité</h3>
+<ul>
+<li>Les premiers humains (<strong>Hominidés</strong>) apparaissent en <strong>Afrique de l'Est</strong></li>
+<li>La <strong>Préhistoire</strong> est la période avant l'invention de l'écriture (vers -3300)</li>
+</ul>
+<h3>Les grandes espèces humaines</h3>
+<ul>
+<li><span class="key-term">Homo habilis</span> (-2,8 Ma) : le premier à fabriquer des outils (galets aménagés)</li>
+<li><span class="key-term">Homo erectus</span> (-1,8 Ma) : marche debout, maîtrise le feu, quitte l'Afrique</li>
+<li><span class="key-term">Homo neandertalensis</span> : vit en Europe, enterre ses morts</li>
+<li><span class="key-term">Homo sapiens</span> (-300 000 ans) : notre espèce, la seule encore vivante</li>
+</ul>
+<h3>Les grands progrès</h3>
+<ul>
+<li><strong>Les outils</strong> : du simple galet taillé (chopper) au biface perfectionné</li>
+<li><strong>Le feu</strong> : chauffage, cuisson, éclairage, protection contre les animaux</li>
+<li><strong>L'art</strong> : peintures rupestres dans les grottes (Lascaux ~17 000 ans), sculptures, parures</li>
+</ul>
+<h3>Les migrations</h3>
+<ul>
+<li>Homo sapiens quitte l'Afrique il y a ~70 000 ans</li>
+<li>Il peuple progressivement l'Europe, l'Asie, l'Océanie, puis l'Amérique</li>
+<li>Les humains sont d'abord <strong>nomades</strong> (chasseurs-cueilleurs) puis deviennent <strong>sédentaires</strong> avec l'agriculture</li>
+</ul>`,
+        mindmap: {
+          center: "Les débuts de l'humanité",
+          branches: [
+            { label: "Espèces", color: "#e94560", children: ["Homo habilis", "Homo erectus", "Néandertal", "Homo sapiens"] },
+            { label: "Outils", color: "#0984e3", children: ["Chopper", "Biface", "Propulseur"] },
+            { label: "Progrès", color: "#00b894", children: ["Feu", "Art rupestre", "Sépultures"] },
+            { label: "Mode de vie", color: "#fdcb6e", children: ["Nomades", "Chasseurs", "Cueilleurs"] },
+            { label: "Migrations", color: "#6c5ce7", children: ["Afrique → Europe", "Afrique → Asie", "→ Amérique"] }
+          ]
+        }
+      }
+    ]
+  },
+
+  francais: {
+    emoji: "📖",
+    name: "Français",
+    color: "#6c5ce7",
+    chapters: [
+      {
+        id: "baba-yaga",
+        title: "Baba Yaga (conte)",
+        desc: "Un conte russe traditionnel : la méchante sorcière Baba Yaga",
+        quiz: [
+          {
+            q: "Qui est Baba Yaga ?",
+            options: ["Une princesse", "Une sorcière qui vit dans une maison sur pattes de poule", "Une fée gentille", "Une reine"],
+            correct: 1,
+            explanation: "Baba Yaga est une sorcière du folklore russe. Sa maison se dresse sur des pattes de poule et est entourée d'une palissade d'os humains !"
+          },
+          {
+            q: "Pourquoi l'héroïne va-t-elle chez Baba Yaga ?",
+            options: ["Pour jouer", "Sa marâtre l'envoie chercher du fil et une aiguille", "Pour lui voler un trésor", "Pour devenir sorcière"],
+            correct: 1,
+            explanation: "La marâtre (belle-mère) envoie la fillette chez sa sœur Baba Yaga sous prétexte de chercher du fil et une aiguille, mais c'est un piège pour se débarrasser d'elle."
+          },
+          {
+            q: "Qui aide l'héroïne à s'échapper ?",
+            options: ["Le roi", "La servante, le chat et les objets magiques", "Un chevalier", "Personne, elle s'échappe seule"],
+            correct: 1,
+            explanation: "La servante de Baba Yaga, le chat, le chien et même le portail aident la fillette parce qu'elle a été gentille avec eux. C'est la morale : la bonté est récompensée."
+          },
+          {
+            q: "Qu'est-ce qu'un conte ?",
+            options: ["Un article de journal", "Un récit imaginaire souvent avec une morale", "Un document scientifique", "Un poème"],
+            correct: 1,
+            explanation: "Un conte est un récit imaginaire, souvent merveilleux, transmis d'abord à l'oral. Il comporte généralement une morale (leçon) et des personnages types (héros, méchant, adjuvant)."
+          },
+          {
+            q: "Quelle est la morale de Baba Yaga ?",
+            options: ["L'argent fait le bonheur", "La bonté et la générosité sont récompensées", "Il faut être le plus fort", "Il ne faut faire confiance à personne"],
+            correct: 1,
+            explanation: "La fillette est gentille avec tous ceux qu'elle rencontre (elle donne à manger au chat, elle est polie avec la servante), et en retour ils l'aident à échapper à Baba Yaga."
+          }
+        ],
+        flashcards: [
+          { front: "Conte", back: "Récit imaginaire, souvent merveilleux, avec une morale. Transmis d'abord à l'oral." },
+          { front: "Baba Yaga", back: "Sorcière du folklore russe. Vit dans une maison sur pattes de poule." },
+          { front: "Marâtre", back: "Belle-mère méchante. Personnage fréquent dans les contes." },
+          { front: "Morale", back: "Leçon de vie à la fin d'un conte. Ex : la bonté est récompensée." },
+          { front: "Adjuvant", back: "Personnage qui aide le héros dans un conte (ex : le chat, la servante)." },
+          { front: "Opposant", back: "Personnage qui s'oppose au héros (ex : Baba Yaga, la marâtre)." },
+          { front: "Situation initiale", back: "Début du conte : on présente les personnages et la situation de départ." },
+          { front: "Épreuve / péripéties", back: "Les aventures et difficultés que le héros doit traverser." }
+        ],
+        summary: `<h2>📖 Baba Yaga — conte russe</h2>
+<h3>L'histoire</h3>
+<ul>
+<li>Une fillette vit avec son père et sa <strong>marâtre</strong> (belle-mère méchante)</li>
+<li>La marâtre l'envoie chez sa sœur <span class="key-term">Baba Yaga</span> pour chercher fil et aiguille — c'est un piège</li>
+<li>Avant de partir, la fillette va voir sa <strong>vraie tante</strong> qui lui donne des conseils et des objets</li>
+<li>Chez Baba Yaga, la fillette est gentille avec la servante, le chat et le chien</li>
+<li>Ils l'aident à s'enfuir grâce à des <strong>objets magiques</strong> (serviette → rivière, peigne → forêt)</li>
+</ul>
+<h3>Les personnages</h3>
+<ul>
+<li><strong>La fillette</strong> (héroïne) : gentille, courageuse, généreuse</li>
+<li><strong>Baba Yaga</strong> (opposante) : sorcière cruelle, maison sur pattes de poule</li>
+<li><strong>La marâtre</strong> (opposante) : belle-mère méchante</li>
+<li><strong>La servante, le chat, le chien</strong> (adjuvants) : aident la fillette</li>
+</ul>
+<h3>La morale</h3>
+<ul>
+<li>La <strong>bonté</strong> et la <strong>générosité</strong> sont toujours récompensées</li>
+<li>Être gentil avec les autres, même les plus humbles, finit par payer</li>
+</ul>`,
+        mindmap: {
+          center: "Baba Yaga",
+          branches: [
+            { label: "Personnages", color: "#e94560", children: ["Fillette (héroïne)", "Baba Yaga", "Marâtre", "Chat / Servante"] },
+            { label: "Structure", color: "#0984e3", children: ["Situation initiale", "Épreuve", "Résolution", "Morale"] },
+            { label: "Lieux", color: "#00b894", children: ["Maison familiale", "Forêt", "Isba sur pattes"] },
+            { label: "Thèmes", color: "#fdcb6e", children: ["Bonté", "Ruse", "Courage"] }
+          ]
+        }
+      },
+      {
+        id: "vocabulaire-contes",
+        title: "Vocabulaire des contes",
+        desc: "Les mots importants pour comprendre et raconter un conte",
+        quiz: [
+          {
+            q: "Comment commence souvent un conte ?",
+            options: ["Aujourd'hui,", "Il était une fois…", "Chers lecteurs,", "En résumé,"],
+            correct: 1,
+            explanation: "« Il était une fois » est la formule d'ouverture classique des contes. Elle montre qu'on entre dans un monde imaginaire, hors du temps."
+          },
+          {
+            q: "Qu'est-ce qu'un personnage « adjuvant » ?",
+            options: ["Le méchant", "Celui qui aide le héros", "Le héros lui-même", "Le narrateur"],
+            correct: 1,
+            explanation: "L'adjuvant est le personnage qui aide le héros dans sa quête. Ex : la bonne fée dans Cendrillon, le chat dans Baba Yaga."
+          },
+          {
+            q: "Que signifie « merveilleux » dans un conte ?",
+            options: ["Très beau", "Qui contient de la magie et du surnaturel", "Très long", "Très ancien"],
+            correct: 1,
+            explanation: "Le merveilleux désigne tout ce qui est magique ou surnaturel dans un conte : fées, sortilèges, objets magiques, transformations…"
+          },
+          {
+            q: "Qu'est-ce qu'une « quête » dans un conte ?",
+            options: ["Une question posée au lecteur", "La mission que le héros doit accomplir", "La fin de l'histoire", "Le titre du conte"],
+            correct: 1,
+            explanation: "La quête est la mission, l'objectif du héros. Ex : retrouver un objet magique, sauver quelqu'un, échapper à un danger."
+          },
+          {
+            q: "Quelle formule termine souvent un conte ?",
+            options: ["À suivre…", "Ils vécurent heureux et eurent beaucoup d'enfants", "THE END", "Signé : l'auteur"],
+            correct: 1,
+            explanation: "C'est la formule de clôture classique des contes. Elle indique une fin heureuse et montre qu'on quitte le monde imaginaire."
+          }
+        ],
+        flashcards: [
+          { front: "Il était une fois", back: "Formule d'ouverture d'un conte. Introduit le monde imaginaire." },
+          { front: "Quête", back: "La mission que le héros doit accomplir dans le conte." },
+          { front: "Merveilleux", back: "Ce qui est magique ou surnaturel dans un conte (fées, sortilèges…)." },
+          { front: "Héros / Héroïne", back: "Personnage principal du conte. Il accomplit la quête." },
+          { front: "Adjuvant", back: "Personnage qui aide le héros (fée, animal magique, ami…)." },
+          { front: "Opposant", back: "Personnage qui empêche le héros de réussir (sorcière, ogre…)." },
+          { front: "Épreuve", back: "Difficulté que le héros doit surmonter pour avancer dans sa quête." },
+          { front: "Dénouement", back: "La fin de l'histoire, quand le problème est résolu." },
+          { front: "Morale", back: "La leçon de vie que le conte veut transmettre." },
+          { front: "Formule de clôture", back: "« Ils vécurent heureux… » — phrase qui termine le conte." }
+        ],
+        summary: `<h2>📖 Vocabulaire des contes</h2>
+<h3>Structure d'un conte</h3>
+<ul>
+<li><span class="key-term">Situation initiale</span> : on présente les personnages, le lieu, l'époque (« Il était une fois… »)</li>
+<li><span class="key-term">Élément perturbateur</span> : un événement vient bouleverser la situation</li>
+<li><span class="key-term">Péripéties / épreuves</span> : les aventures du héros</li>
+<li><span class="key-term">Dénouement</span> : le problème est résolu</li>
+<li><span class="key-term">Situation finale</span> : fin de l'histoire + morale</li>
+</ul>
+<h3>Les personnages types</h3>
+<ul>
+<li><strong>Le héros / l'héroïne</strong> : personnage principal, accomplit la quête</li>
+<li><strong>L'adjuvant</strong> : aide le héros (fée, animal magique…)</li>
+<li><strong>L'opposant</strong> : empêche le héros (sorcière, ogre, marâtre…)</li>
+<li><strong>Le destinateur</strong> : celui qui envoie le héros en mission</li>
+</ul>
+<h3>Les mots clés</h3>
+<ul>
+<li><span class="key-term">Merveilleux</span> = magie, surnaturel</li>
+<li><span class="key-term">Quête</span> = mission du héros</li>
+<li><span class="key-term">Morale</span> = leçon de vie du conte</li>
+<li><span class="key-term">Formule d'ouverture</span> = « Il était une fois… »</li>
+<li><span class="key-term">Formule de clôture</span> = « Ils vécurent heureux… »</li>
+</ul>`,
+        mindmap: {
+          center: "Le conte",
+          branches: [
+            { label: "Structure", color: "#6c5ce7", children: ["Situation initiale", "Perturbation", "Péripéties", "Dénouement"] },
+            { label: "Personnages", color: "#e94560", children: ["Héros", "Adjuvant", "Opposant"] },
+            { label: "Éléments", color: "#00b894", children: ["Merveilleux", "Quête", "Épreuve", "Morale"] },
+            { label: "Formules", color: "#fdcb6e", children: ["Il était une fois", "Ils vécurent heureux"] }
+          ]
+        }
+      }
+    ]
+  },
+
+  maths: {
+    emoji: "🔢",
+    name: "Maths",
+    color: "#00b894",
+    chapters: [
+      {
+        id: "nombres-entiers-decimaux",
+        title: "Nombres entiers et décimaux",
+        desc: "Lire, écrire et comparer les nombres entiers et décimaux",
+        quiz: [
+          {
+            q: "Dans le nombre 3 456, quel est le chiffre des centaines ?",
+            options: ["3", "4", "5", "6"],
+            correct: 1,
+            explanation: "Dans 3 456 : 3 = milliers, 4 = centaines, 5 = dizaines, 6 = unités. Le chiffre des centaines est 4."
+          },
+          {
+            q: "Comment s'écrit « deux mille trois cent sept » en chiffres ?",
+            options: ["2 370", "2 307", "23 007", "2 037"],
+            correct: 1,
+            explanation: "Deux mille (2 000) + trois cent (300) + sept (7) = 2 307. Attention au piège : il n'y a pas de dizaines !"
+          },
+          {
+            q: "Quel nombre est le plus grand : 12,8 ou 12,53 ?",
+            options: ["12,53 car il a plus de chiffres", "12,8 car 8 dixièmes > 5 dixièmes", "Ils sont égaux", "On ne peut pas comparer"],
+            correct: 1,
+            explanation: "On compare d'abord les parties entières (12 = 12), puis les dixièmes : 8 dixièmes > 5 dixièmes, donc 12,8 > 12,53."
+          },
+          {
+            q: "Dans 45,73, que représente le chiffre 7 ?",
+            options: ["7 unités", "7 dizaines", "7 dixièmes", "7 centièmes"],
+            correct: 2,
+            explanation: "Après la virgule : le 1er chiffre = dixièmes, le 2e = centièmes. Donc 7 est le chiffre des dixièmes (7/10)."
+          },
+          {
+            q: "Comment décomposer 5 032 ?",
+            options: ["5 + 0 + 3 + 2", "5 000 + 30 + 2", "5 000 + 300 + 2", "50 + 32"],
+            correct: 1,
+            explanation: "5 032 = 5 milliers + 0 centaines + 3 dizaines + 2 unités = 5 000 + 30 + 2."
+          },
+          {
+            q: "Quel nombre vient juste après 9 999 ?",
+            options: ["9 998", "10 000", "99 999", "10 001"],
+            correct: 1,
+            explanation: "9 999 + 1 = 10 000. C'est le passage des quatre chiffres à cinq chiffres !"
+          },
+          {
+            q: "0,5 et 0,50, est-ce la même chose ?",
+            options: ["Non, 0,50 est plus grand", "Oui, c'est exactement le même nombre", "Non, 0,5 est plus grand", "Ça dépend du contexte"],
+            correct: 1,
+            explanation: "Oui ! 0,5 = 5 dixièmes = 50 centièmes = 0,50. Ajouter un zéro après le dernier chiffre décimal ne change pas la valeur."
+          },
+          {
+            q: "Quel est l'encadrement de 3 754 à la centaine près ?",
+            options: ["3 700 < 3 754 < 3 800", "3 750 < 3 754 < 3 760", "3 000 < 3 754 < 4 000", "3 754 < 3 755"],
+            correct: 0,
+            explanation: "À la centaine près : on cherche la centaine juste en dessous (3 700) et juste au-dessus (3 800). 3 700 < 3 754 < 3 800."
+          }
+        ],
+        flashcards: [
+          { front: "Chiffre vs Nombre", back: "Un chiffre = 0,1,2…9 (comme une lettre). Un nombre = composé de chiffres (comme un mot). Ex : 45 est un nombre de 2 chiffres." },
+          { front: "Unité, dizaine, centaine, millier", back: "Les rangs d'un nombre : unité = 1, dizaine = 10, centaine = 100, millier = 1 000." },
+          { front: "Partie entière / décimale", back: "Dans 12,75 : partie entière = 12 (avant la virgule), partie décimale = 75 (après la virgule)." },
+          { front: "Dixième", back: "1er chiffre après la virgule. 1 dixième = 0,1 = 1/10." },
+          { front: "Centième", back: "2e chiffre après la virgule. 1 centième = 0,01 = 1/100." },
+          { front: "Comparer des décimaux", back: "1) Comparer les parties entières. 2) Si égales, comparer les dixièmes. 3) Puis les centièmes…" },
+          { front: "Décomposer un nombre", back: "Écrire un nombre comme une somme. Ex : 3 405 = 3 000 + 400 + 5" },
+          { front: "Encadrement", back: "Trouver les deux nombres « ronds » qui entourent un nombre. Ex : à la dizaine : 340 < 347 < 350" }
+        ],
+        summary: `<h2>🔢 Nombres entiers et décimaux</h2>
+<h3>Les nombres entiers</h3>
+<ul>
+<li>Un <span class="key-term">chiffre</span> = 0 à 9 (comme une lettre)</li>
+<li>Un <span class="key-term">nombre</span> = composé de chiffres (comme un mot)</li>
+<li>Rangs : <strong>unités → dizaines → centaines → milliers</strong> (de droite à gauche)</li>
+<li>Ex : dans 5 832 → 5 milliers, 8 centaines, 3 dizaines, 2 unités</li>
+</ul>
+<h3>Les nombres décimaux</h3>
+<ul>
+<li>La <strong>virgule</strong> sépare la partie entière et la partie décimale</li>
+<li>Après la virgule : <span class="key-term">dixièmes</span> (0,1) puis <span class="key-term">centièmes</span> (0,01)</li>
+<li>Ex : 12,75 = 12 unités + 7 dixièmes + 5 centièmes</li>
+<li>0,5 = 0,50 = 0,500 (les zéros à droite ne changent rien)</li>
+</ul>
+<h3>Comparer des nombres</h3>
+<ul>
+<li>Entiers : le nombre avec le plus de chiffres est le plus grand</li>
+<li>Décimaux : comparer partie entière, puis dixièmes, puis centièmes</li>
+<li>Attention : 12,8 > 12,53 (8 dixièmes > 5 dixièmes)</li>
+</ul>
+<h3>Encadrer un nombre</h3>
+<ul>
+<li>Trouver les nombres « ronds » qui l'entourent</li>
+<li>À la dizaine : 340 < 347 < 350</li>
+<li>À la centaine : 3 700 < 3 754 < 3 800</li>
+</ul>`,
+        mindmap: {
+          center: "Nombres",
+          branches: [
+            { label: "Entiers", color: "#00b894", children: ["Unités", "Dizaines", "Centaines", "Milliers"] },
+            { label: "Décimaux", color: "#0984e3", children: ["Virgule", "Dixièmes", "Centièmes"] },
+            { label: "Comparer", color: "#e94560", children: ["Partie entière", "Puis dixièmes", "Puis centièmes"] },
+            { label: "Opérations", color: "#fdcb6e", children: ["Décomposer", "Encadrer", "Ranger"] }
+          ]
+        }
+      }
+    ]
+  },
+
+  arts: {
+    emoji: "🎨",
+    name: "Arts",
+    color: "#e17055",
+    chapters: [
+      {
+        id: "creature-hybride",
+        title: "La créature hybride",
+        desc: "Créer un être imaginaire en mélangeant différents animaux",
+        quiz: [
+          {
+            q: "Qu'est-ce qu'une créature hybride ?",
+            options: ["Un animal normal", "Un être composé de parties de différents animaux", "Un robot", "Un dessin abstrait"],
+            correct: 1,
+            explanation: "Une créature hybride est un être imaginaire qui mélange des éléments de différents animaux (ou d'humains et d'animaux). Ex : le Minotaure (homme + taureau)."
+          },
+          {
+            q: "Quel est un exemple célèbre de créature hybride dans la mythologie ?",
+            options: ["Le chien", "Le Sphinx (corps de lion, tête de femme, ailes d'aigle)", "Le cheval", "Le poisson rouge"],
+            correct: 1,
+            explanation: "Le Sphinx est une créature hybride de la mythologie égyptienne et grecque : corps de lion, tête humaine et ailes d'aigle. Le Minotaure, les sirènes, le griffon sont aussi des hybrides."
+          },
+          {
+            q: "Quelle technique peut-on utiliser pour créer une créature hybride en arts plastiques ?",
+            options: ["Uniquement le dessin au crayon", "Collage, dessin, peinture ou numérique", "Uniquement la sculpture", "Uniquement la photographie"],
+            correct: 1,
+            explanation: "On peut créer une créature hybride avec plein de techniques : collage de photos d'animaux, dessin, peinture, modelage… La créativité est la seule limite !"
+          },
+          {
+            q: "Pourquoi dit-on qu'une créature hybride est « imaginaire » ?",
+            options: ["Parce qu'elle est petite", "Parce qu'elle n'existe pas dans la nature", "Parce qu'elle est laide", "Parce qu'elle est ancienne"],
+            correct: 1,
+            explanation: "Une créature hybride n'existe pas dans la nature : c'est une création de l'imagination. On mélange des éléments réels pour inventer quelque chose de nouveau."
+          }
+        ],
+        flashcards: [
+          { front: "Hybride", back: "Qui est composé d'éléments différents mélangés ensemble." },
+          { front: "Créature hybride", back: "Être imaginaire fait de parties de différents animaux ou d'humain et d'animal." },
+          { front: "Minotaure", back: "Créature de la mythologie grecque : corps d'homme, tête de taureau." },
+          { front: "Sphinx", back: "Créature mythologique : corps de lion, tête humaine, ailes d'aigle." },
+          { front: "Sirène", back: "Créature mythologique : buste de femme, queue de poisson." },
+          { front: "Collage", back: "Technique artistique qui consiste à assembler des morceaux d'images découpés." }
+        ],
+        summary: `<h2>🎨 La créature hybride</h2>
+<h3>Définition</h3>
+<ul>
+<li>Une <span class="key-term">créature hybride</span> = un être imaginaire composé de parties de différents animaux</li>
+<li>On peut aussi mélanger humain + animal</li>
+<li>Ces créatures n'existent pas dans la nature, elles sont <strong>imaginaires</strong></li>
+</ul>
+<h3>Exemples célèbres</h3>
+<ul>
+<li><strong>Minotaure</strong> : corps d'homme + tête de taureau (mythologie grecque)</li>
+<li><strong>Sphinx</strong> : corps de lion + tête humaine + ailes d'aigle</li>
+<li><strong>Sirène</strong> : buste de femme + queue de poisson</li>
+<li><strong>Griffon</strong> : corps de lion + tête et ailes d'aigle</li>
+<li><strong>Centaure</strong> : buste d'homme + corps de cheval</li>
+</ul>
+<h3>Le projet</h3>
+<ul>
+<li>Créer sa propre créature hybride en mélangeant au moins <strong>2 animaux différents</strong></li>
+<li>Techniques possibles : <strong>collage</strong>, dessin, peinture</li>
+<li>Le résultat doit être cohérent : on doit pouvoir imaginer que cette créature vit quelque part</li>
+</ul>`,
+        mindmap: {
+          center: "Créature hybride",
+          branches: [
+            { label: "Exemples", color: "#e17055", children: ["Minotaure", "Sphinx", "Sirène", "Griffon"] },
+            { label: "Techniques", color: "#0984e3", children: ["Collage", "Dessin", "Peinture"] },
+            { label: "Principes", color: "#00b894", children: ["Mélange", "Imagination", "Cohérence"] },
+            { label: "Éléments", color: "#fdcb6e", children: ["Tête", "Corps", "Membres", "Ailes / Queue"] }
+          ]
+        }
+      }
+    ]
+  },
+
+  sciences: {
+    emoji: "🔬",
+    name: "Sciences",
+    color: "#00cec9",
+    chapters: [
+      {
+        id: "securite-labo",
+        title: "Sécurité au laboratoire",
+        desc: "Les règles de sécurité et les pictogrammes de danger en chimie",
+        quiz: [
+          {
+            q: "Que faut-il porter obligatoirement au laboratoire de chimie ?",
+            options: ["Un chapeau", "Des lunettes de protection et une blouse", "Des gants de boxe", "Des baskets"],
+            correct: 1,
+            explanation: "Au laboratoire, il faut porter une blouse (pour protéger les vêtements) et des lunettes de protection (pour les yeux). Les cheveux longs doivent être attachés."
+          },
+          {
+            q: "Que signifie le pictogramme avec une tête de mort ?",
+            options: ["Danger de piraterie", "Produit toxique : peut tuer ou rendre très malade", "Produit périmé", "Produit magique"],
+            correct: 1,
+            explanation: "La tête de mort signifie « toxique » ou « mortel ». Ce produit peut causer la mort ou des dommages graves à la santé en cas d'inhalation, ingestion ou contact avec la peau."
+          },
+          {
+            q: "Que signifie le pictogramme avec une flamme ?",
+            options: ["Produit qui sent bon", "Produit inflammable : peut prendre feu facilement", "Produit chaud", "Produit lumineux"],
+            correct: 1,
+            explanation: "La flamme signifie « inflammable ». Ce produit peut prendre feu facilement au contact d'une flamme, d'une étincelle ou de chaleur."
+          },
+          {
+            q: "Que fait-on en cas de projection d'un produit chimique dans les yeux ?",
+            options: ["On se frotte les yeux", "On rince abondamment à l'eau pendant 15 minutes", "On attend que ça passe", "On met des lunettes de soleil"],
+            correct: 1,
+            explanation: "En cas de projection dans les yeux, il faut rincer immédiatement à l'eau claire pendant au moins 15 minutes et prévenir le professeur."
+          },
+          {
+            q: "Combien de pictogrammes de danger existe-t-il ?",
+            options: ["3", "5", "9", "15"],
+            correct: 2,
+            explanation: "Il existe 9 pictogrammes de danger : explosif, inflammable, comburant, gaz sous pression, corrosif, toxique, nocif/irritant, danger pour la santé, dangereux pour l'environnement."
+          },
+          {
+            q: "Que signifie le pictogramme avec un produit rongeant une main et une surface ?",
+            options: ["Produit glissant", "Produit corrosif : brûle la peau et les matériaux", "Produit collant", "Produit mouillant"],
+            correct: 1,
+            explanation: "Ce pictogramme signifie « corrosif ». Le produit peut brûler gravement la peau, les yeux et détruire certains matériaux comme le métal."
+          },
+          {
+            q: "A-t-on le droit de goûter un produit chimique au laboratoire ?",
+            options: ["Oui, pour savoir ce que c'est", "Non, jamais !", "Oui, si le prof est d'accord", "Oui, juste avec le bout de la langue"],
+            correct: 1,
+            explanation: "On ne goûte JAMAIS un produit chimique ! On ne le sent pas non plus directement. Pour sentir, on évente (on agite la main au-dessus du flacon)."
+          }
+        ],
+        flashcards: [
+          { front: "Pictogramme de danger", back: "Symbole sur un produit chimique indiquant le type de danger (flamme = inflammable, tête de mort = toxique…)." },
+          { front: "Inflammable 🔥", back: "Produit qui peut prendre feu facilement. Éloigner des flammes et de la chaleur." },
+          { front: "Toxique ☠️", back: "Produit qui peut tuer ou rendre gravement malade. Ne pas toucher, inhaler ou avaler." },
+          { front: "Corrosif", back: "Produit qui brûle la peau, les yeux et ronge les matériaux." },
+          { front: "Comburant", back: "Produit qui facilite la combustion. Il fait brûler plus fort un feu existant." },
+          { front: "Nocif / Irritant", back: "Produit qui peut irriter la peau, les yeux ou les voies respiratoires." },
+          { front: "Blouse + lunettes", back: "Équipement obligatoire au laboratoire de chimie pour se protéger." },
+          { front: "En cas de projection", back: "Rincer immédiatement à l'eau pendant 15 minutes et prévenir le professeur." },
+          { front: "Éventer", back: "Technique pour sentir un produit chimique : agiter la main au-dessus du flacon pour amener les vapeurs vers le nez." }
+        ],
+        summary: `<h2>🔬 Sécurité au laboratoire</h2>
+<h3>Les règles de base</h3>
+<ul>
+<li>Porter une <strong>blouse</strong> et des <strong>lunettes de protection</strong></li>
+<li>Attacher les <strong>cheveux longs</strong></li>
+<li><strong>Ne jamais goûter</strong> ni sentir directement un produit chimique</li>
+<li>Pour sentir : <span class="key-term">éventer</span> (agiter la main au-dessus du flacon)</li>
+<li>Ne pas courir, ne pas s'amuser avec le matériel</li>
+</ul>
+<h3>Les 9 pictogrammes de danger</h3>
+<ul>
+<li>💥 <strong>Explosif</strong> : peut exploser</li>
+<li>🔥 <strong>Inflammable</strong> : prend feu facilement</li>
+<li>⭕ <strong>Comburant</strong> : active le feu</li>
+<li>🫧 <strong>Gaz sous pression</strong> : contenu sous pression</li>
+<li>🧪 <strong>Corrosif</strong> : brûle la peau et les matériaux</li>
+<li>☠️ <strong>Toxique</strong> : peut tuer ou rendre très malade</li>
+<li>⚠️ <strong>Nocif / Irritant</strong> : irrite la peau ou les yeux</li>
+<li>🏥 <strong>Danger pour la santé</strong> : risques graves sur le long terme</li>
+<li>🐟 <strong>Dangereux pour l'environnement</strong> : pollue l'eau, le sol, les animaux</li>
+</ul>
+<h3>En cas d'accident</h3>
+<ul>
+<li>Projection dans les yeux → rincer à l'eau 15 minutes</li>
+<li>Brûlure sur la peau → rincer à l'eau et prévenir le prof</li>
+<li>Toujours <strong>prévenir le professeur</strong></li>
+</ul>`,
+        mindmap: {
+          center: "Sécurité labo",
+          branches: [
+            { label: "Protection", color: "#0984e3", children: ["Blouse", "Lunettes", "Cheveux attachés"] },
+            { label: "Interdits", color: "#e94560", children: ["Ne pas goûter", "Ne pas courir", "Ne pas sentir direct"] },
+            { label: "Pictogrammes", color: "#fdcb6e", children: ["Inflammable", "Toxique", "Corrosif", "Explosif"] },
+            { label: "Urgence", color: "#00b894", children: ["Rincer à l'eau", "Prévenir le prof", "Rince-œil"] }
+          ]
+        }
+      },
+      {
+        id: "matiere-vivant",
+        title: "Vivant, minéral, technique",
+        desc: "Distinguer les êtres vivants, les minéraux et les objets techniques",
+        quiz: [
+          {
+            q: "Qu'est-ce qui caractérise un être vivant ?",
+            options: ["Il est grand", "Il naît, grandit, se reproduit et meurt", "Il bouge toujours", "Il est fait en carbone"],
+            correct: 1,
+            explanation: "Un être vivant passe par les étapes : naissance → croissance → reproduction → mort. Il se nourrit et réagit à son environnement."
+          },
+          {
+            q: "Un caillou est-il vivant ?",
+            options: ["Oui, il grandit lentement", "Non, c'est un minéral — il ne naît pas, ne grandit pas, ne meurt pas", "Oui, car il contient des minéraux", "Ça dépend de la taille"],
+            correct: 1,
+            explanation: "Un caillou est un minéral (matière minérale). Il ne naît pas, ne grandit pas, ne se reproduit pas et ne meurt pas. Ce n'est pas un être vivant."
+          },
+          {
+            q: "Qu'est-ce qu'un objet technique ?",
+            options: ["Un animal savant", "Un objet fabriqué par l'homme pour répondre à un besoin", "Un minerai rare", "Un être vivant artificiel"],
+            correct: 1,
+            explanation: "Un objet technique est fabriqué par l'être humain pour répondre à un besoin : un vélo (se déplacer), un stylo (écrire), un téléphone (communiquer)…"
+          },
+          {
+            q: "Dans quelle catégorie se trouve un arbre ?",
+            options: ["Minéral", "Objet technique", "Être vivant", "Aucune de ces catégories"],
+            correct: 2,
+            explanation: "Un arbre est un être vivant : il naît (graine), grandit, se reproduit (graines, fruits) et meurt. Même s'il ne bouge pas, il est vivant !"
+          },
+          {
+            q: "L'eau est-elle vivante ?",
+            options: ["Oui, car elle bouge", "Non, c'est de la matière minérale", "Oui, car les poissons vivent dedans", "Ça dépend de la température"],
+            correct: 1,
+            explanation: "L'eau est de la matière minérale. Elle peut bouger (couler, vagues) mais elle ne naît pas, ne grandit pas et ne se reproduit pas."
+          }
+        ],
+        flashcards: [
+          { front: "Être vivant", back: "Organisme qui naît, grandit, se nourrit, se reproduit et meurt. Ex : animal, plante, champignon." },
+          { front: "Matière minérale", back: "Matière non vivante d'origine naturelle. Ex : eau, roche, sable, sel, air." },
+          { front: "Objet technique", back: "Objet fabriqué par l'humain pour répondre à un besoin. Ex : vélo, téléphone, stylo." },
+          { front: "Les fonctions du vivant", back: "Se nourrir, grandir, se reproduire, réagir à l'environnement." },
+          { front: "Différence vivant / minéral", back: "Le vivant naît, grandit, se reproduit et meurt. Le minéral ne fait rien de tout cela." },
+          { front: "Matière organique", back: "Matière produite par les êtres vivants : bois, cuir, laine, coton…" }
+        ],
+        summary: `<h2>🔬 Vivant, minéral, technique</h2>
+<h3>Les êtres vivants</h3>
+<ul>
+<li>Un être vivant <strong>naît, grandit, se nourrit, se reproduit et meurt</strong></li>
+<li>Exemples : animaux, plantes, champignons, bactéries</li>
+<li>Même un arbre ou une bactérie sont des êtres vivants !</li>
+<li>Ils sont composés de <span class="key-term">matière organique</span> (produite par le vivant)</li>
+</ul>
+<h3>La matière minérale</h3>
+<ul>
+<li>Matière <strong>non vivante</strong> d'origine naturelle</li>
+<li>Ne naît pas, ne grandit pas, ne se reproduit pas</li>
+<li>Exemples : eau, roches, sable, sel, air, métaux</li>
+</ul>
+<h3>Les objets techniques</h3>
+<ul>
+<li>Fabriqués par <strong>l'être humain</strong> pour répondre à un <strong>besoin</strong></li>
+<li>Exemples : vélo, stylo, téléphone, maison</li>
+<li>Peuvent être faits de matière organique (bois) ou minérale (métal)</li>
+</ul>
+<h3>Attention aux pièges !</h3>
+<ul>
+<li>Un arbre ne bouge pas mais il est <strong>vivant</strong></li>
+<li>L'eau bouge mais elle n'est <strong>pas vivante</strong></li>
+<li>Le bois d'une table vient du vivant mais la table est un <strong>objet technique</strong></li>
+</ul>`,
+        mindmap: {
+          center: "Matière",
+          branches: [
+            { label: "Vivant", color: "#00b894", children: ["Naît", "Grandit", "Se reproduit", "Meurt"] },
+            { label: "Minéral", color: "#0984e3", children: ["Eau", "Roche", "Air", "Métaux"] },
+            { label: "Objet technique", color: "#e17055", children: ["Fabriqué", "Besoin", "Vélo, stylo…"] },
+            { label: "Matière", color: "#fdcb6e", children: ["Organique (vivant)", "Minérale (non vivant)"] }
+          ]
+        }
+      }
+    ]
+  }
+};
+
+// ══════════════════════════════════════════════════
+//  PHOTO STORAGE (localStorage)
+// ══════════════════════════════════════════════════
+let photoStore = {};
+let viewingPhoto = null; // { chapterKey, index }
+
+function photoKey(subjectId, chapterId) {
+  return 'photos__' + subjectId + '__' + chapterId;
+}
+
+function loadPhotos(subjectId, chapterId) {
+  try {
+    const raw = localStorage.getItem(photoKey(subjectId, chapterId));
+    return raw ? JSON.parse(raw) : [];
+  } catch(e) { return []; }
+}
+
+function savePhotos(subjectId, chapterId, arr) {
+  try { localStorage.setItem(photoKey(subjectId, chapterId), JSON.stringify(arr)); } catch(e) {}
+}
+
+// ══════════════════════════════════════════════════
+//  DEVOIRS STORAGE (localStorage)
+// ══════════════════════════════════════════════════
+function loadDevoirs() {
+  try {
+    const raw = localStorage.getItem('melwan_devoirs');
+    return raw ? JSON.parse(raw) : [];
+  } catch(e) { return []; }
+}
+
+function saveDevoirs(arr) {
+  try { localStorage.setItem('melwan_devoirs', JSON.stringify(arr)); } catch(e) {}
+}
+
+function getDaysUntil(dateStr) {
+  const now = new Date();
+  now.setHours(0,0,0,0);
+  const target = new Date(dateStr);
+  target.setHours(0,0,0,0);
+  return Math.round((target - now) / 86400000);
+}
+
+function updateDevoirsBadge() {
+  const devoirs = loadDevoirs().filter(d => !d.done);
+  const badge = document.getElementById('devoirsBadge');
+  if (badge) {
+    const upcoming = devoirs.filter(d => getDaysUntil(d.date) >= 0);
+    badge.textContent = upcoming.length + (upcoming.length === 1 ? ' à venir' : ' à venir');
+  }
+}
+
+function renderDevoirs() {
+  const list = document.getElementById('devoirsList');
+  if (!list) return;
+  const devoirs = loadDevoirs();
+
+  if (devoirs.length === 0) {
+    list.innerHTML = `<div class="empty-devoirs"><div class="big">📅</div>Aucun contrôle ajouté pour l'instant.<br><br>Ajoute tes prochains contrôles pour ne rien rater !</div>`;
+    return;
+  }
+
+  // Sort by date ascending
+  devoirs.sort((a,b) => new Date(a.date) - new Date(b.date));
+
+  list.innerHTML = devoirs.map((d, i) => {
+    const days = getDaysUntil(d.date);
+    let daysText, daysNum;
+    if (d.done) {
+      daysNum = '✓'; daysText = 'Fait !';
+    } else if (days < 0) {
+      daysNum = 'J+' + Math.abs(days); daysText = 'Passé';
+    } else if (days === 0) {
+      daysNum = '⚠️'; daysText = "Aujourd'hui !";
+    } else if (days === 1) {
+      daysNum = 'J-1'; daysText = 'Demain !';
+    } else {
+      daysNum = 'J-' + days; daysText = days + ' jours';
+    }
+    const urgent = !d.done && days >= 0 && days <= 2;
+    const doneClass = d.done ? ' done-card' : (urgent ? ' urgent' : '');
+    const dateObj = new Date(d.date);
+    const dateLabel = dateObj.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'long' });
+    return `
+    <div class="devoir-card${doneClass}">
+      <div class="devoir-countdown">
+        <span class="days-num">${daysNum}</span>
+        <span class="days-label">${daysText}</span>
+      </div>
+      <div class="devoir-info">
+        <div class="di-subject">${d.subject}</div>
+        <div class="di-title">${d.title}</div>
+        ${d.note ? `<div class="di-note">${d.note}</div>` : ''}
+        <div class="di-date">📅 ${dateLabel}</div>
+        <div class="devoir-actions">
+          ${!d.done ? `<button class="btn-devoir-done" onclick="markDone(${i})">✓ Fait !</button>` : ''}
+          <button class="btn-devoir-delete" onclick="deleteDevoir(${i})">✕ Supprimer</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function addDevoir() {
+  const subject = document.getElementById('dSubject').value;
+  const title = document.getElementById('dTitle').value.trim();
+  const date = document.getElementById('dDate').value;
+  const note = document.getElementById('dNote').value.trim();
+
+  if (!title) { alert('Ajoute un titre !'); return; }
+  if (!date) { alert('Choisis une date !'); return; }
+
+  const devoirs = loadDevoirs();
+  devoirs.push({ subject, title, date, note, done: false, id: Date.now() });
+  saveDevoirs(devoirs);
+
+  document.getElementById('dTitle').value = '';
+  document.getElementById('dDate').value = '';
+  document.getElementById('dNote').value = '';
+  renderDevoirs();
+  updateDevoirsBadge();
+}
+
+function markDone(index) {
+  const devoirs = loadDevoirs();
+  devoirs[index].done = true;
+  saveDevoirs(devoirs);
+  renderDevoirs();
+  updateDevoirsBadge();
+}
+
+function deleteDevoir(index) {
+  const devoirs = loadDevoirs();
+  devoirs.splice(index, 1);
+  saveDevoirs(devoirs);
+  renderDevoirs();
+  updateDevoirsBadge();
+}
+
+// ══════════════════════════════════════════════════
+//  NAVIGATION
+// ══════════════════════════════════════════════════
+let navStack = ['subjects'];
+let currentSubject = null;
+let currentChapter = null;
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  const backBtn = document.getElementById('backBtn');
+  backBtn.style.display = id === 'subjects' ? 'none' : 'flex';
+  window.scrollTo(0, 0);
+}
+
+function goBack() {
+  navStack.pop();
+  const prev = navStack[navStack.length - 1];
+  if (prev === 'subjects') {
+    document.getElementById('headerSub').textContent = 'Choisis ta matière !';
+    showScreen('subjects');
+  } else if (prev === 'chapters') {
+    openSubject(currentSubject, true);
+  } else if (prev === 'activities') {
+    openChapter(currentSubject, currentChapter, true);
+  } else if (prev === 'devoirs') {
+    openDevoirs(true);
+  }
+}
+
+function openSubject(subjectId, isBack) {
+  currentSubject = subjectId;
+  const subj = DATA[subjectId];
+  if (!isBack) navStack.push('chapters');
+
+  document.getElementById('chapterTitle').innerHTML =
+    `<span class="emoji">${subj.emoji}</span><h2>${subj.name}</h2><div class="sub">Choisis un chapitre</div>`;
+  document.getElementById('headerSub').textContent = subj.name;
+
+  const list = document.getElementById('chapterList');
+  list.innerHTML = '';
+  subj.chapters.forEach(ch => {
+    const div = document.createElement('div');
+    div.className = 'chapter-item';
+    div.style.borderLeftColor = subj.color;
+    div.innerHTML = `<div class="ch-title">${ch.title}</div><div class="ch-desc">${ch.desc}</div>`;
+    div.onclick = () => openChapter(subjectId, ch.id);
+    list.appendChild(div);
+  });
+  showScreen('chapters');
+}
+
+function openChapter(subjectId, chapterId, isBack) {
+  currentSubject = subjectId;
+  currentChapter = chapterId;
+  if (!isBack) navStack.push('activities');
+
+  const subj = DATA[subjectId];
+  const ch = subj.chapters.find(c => c.id === chapterId);
+  document.getElementById('activityTitle').innerHTML =
+    `<span class="emoji">${subj.emoji}</span><h2>${ch.title}</h2><div class="sub">Que veux-tu faire ?</div>`;
+  document.getElementById('headerSub').textContent = ch.title;
+
+  // Render photo memos for this chapter
+  renderChapterPhotos(subjectId, chapterId);
+
+  showScreen('activities');
+}
+
+function openDevoirs(isBack) {
+  if (!isBack) navStack.push('devoirs');
+  document.getElementById('headerSub').textContent = 'Contrôles & Devoirs';
+  renderDevoirs();
+  showScreen('devoirs');
+}
+
+// ══════════════════════════════════════════════════
+//  PHOTO CAPTURE
+// ══════════════════════════════════════════════════
+function renderChapterPhotos(subjectId, chapterId) {
+  const photos = loadPhotos(subjectId, chapterId);
+  const container = document.getElementById('chapterPhotos');
+
+  let html = `<div class="photo-header">
+    <h3>📸 Mes photos de révision</h3>
+    <label class="photo-add-btn">
+      📷 Ajouter
+      <input type="file" accept="image/*" capture="environment" style="display:none" onchange="handlePhotoCapture(event)">
+    </label>
+  </div>`;
+
+  if (photos.length === 0) {
+    html += `<div class="photos-scroll"><div class="photo-thumb-empty">Prends une photo de ton cours ou de tes devoirs !</div></div>`;
+  } else {
+    html += `<div class="photos-scroll">`;
+    photos.forEach((p, i) => {
+      html += `<img class="photo-thumb" src="${p.dataUrl}" alt="Photo ${i+1}" onclick="viewPhoto(${i})">`;
+    });
+    html += `</div>`;
+  }
+
+  container.innerHTML = html;
+}
+
+function handlePhotoCapture(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const photos = loadPhotos(currentSubject, currentChapter);
+    photos.push({ dataUrl: e.target.result, ts: Date.now() });
+    savePhotos(currentSubject, currentChapter, photos);
+    renderChapterPhotos(currentSubject, currentChapter);
+  };
+  reader.readAsDataURL(file);
+}
+
+function viewPhoto(index) {
+  const photos = loadPhotos(currentSubject, currentChapter);
+  if (!photos[index]) return;
+  viewingPhoto = { subjectId: currentSubject, chapterId: currentChapter, index };
+  document.getElementById('photoOverlayImg').src = photos[index].dataUrl;
+  document.getElementById('photoOverlay').classList.add('show');
+}
+
+function closePhotoOverlay(e) {
+  if (!e || e.target === document.getElementById('photoOverlay') || e.type === 'click') {
+    document.getElementById('photoOverlay').classList.remove('show');
+    viewingPhoto = null;
+  }
+}
+
+function deletePhoto() {
+  if (!viewingPhoto) return;
+  const { subjectId, chapterId, index } = viewingPhoto;
+  const photos = loadPhotos(subjectId, chapterId);
+  photos.splice(index, 1);
+  savePhotos(subjectId, chapterId, photos);
+  document.getElementById('photoOverlay').classList.remove('show');
+  viewingPhoto = null;
+  renderChapterPhotos(subjectId, chapterId);
+}
+
+// ══════════════════════════════════════════════════
+//  ACTIVITIES
+// ══════════════════════════════════════════════════
+function startActivity(type) {
+  navStack.push(type);
+  const subj = DATA[currentSubject];
+  const ch = subj.chapters.find(c => c.id === currentChapter);
+
+  if (type === 'quiz') startQuiz(ch);
+  else if (type === 'flashcards') startFlashcards(ch);
+  else if (type === 'summary') startSummary(ch);
+  else if (type === 'mindmap') startMindmap(ch);
+}
+
+// ─── QUIZ ───
+let quizState = {};
+
+const ENCOURAGE_CORRECT = [
+  { emoji: '🎉', text: 'Bravo !' },
+  { emoji: '⭐', text: 'Génial !' },
+  { emoji: '🔥', text: 'En feu !' },
+  { emoji: '💪', text: 'Trop fort !' },
+  { emoji: '🌟', text: 'Parfait !' },
+  { emoji: '🏅', text: 'Champion !' },
+  { emoji: '👏', text: 'Bien joué !' },
+  { emoji: '🚀', text: 'Tu gères !' },
+];
+const ENCOURAGE_WRONG = [
+  { emoji: '💡', text: "T'es pas loin !" },
+  { emoji: '📖', text: 'Bien essayé !' },
+  { emoji: '🧠', text: 'Tu vas retenir !' },
+  { emoji: '👍', text: "C'est comme ça qu'on apprend !" },
+  { emoji: '🌱', text: "La prochaine, c'est la bonne !" },
+  { emoji: '🎯', text: 'Presque !' },
+];
+
+function startQuiz(ch) {
+  const questions = [...ch.quiz].sort(() => Math.random() - 0.5);
+  quizState = { questions, current: 0, score: 0, results: [] };
+  showQuizQuestion();
+  showScreen('quiz');
+}
+
+function showQuizQuestion() {
+  const { questions, current, score } = quizState;
+  const container = document.getElementById('quizContainer');
+
+  if (current >= questions.length) {
+    const pct = Math.round((score / questions.length) * 100);
+    let emoji, msg, sub;
+    if (pct >= 90) {
+      emoji = '🏆'; msg = 'Champion !'; sub = 'Tu gères grave, bravo !';
+    } else if (pct >= 70) {
+      emoji = '🌟'; msg = 'Super boulot !'; sub = 'Tu connais bien ton cours, continue comme ça !';
+    } else if (pct >= 50) {
+      emoji = '💪'; msg = 'Bien joué !'; sub = "Tu progresses à chaque essai, c'est ça qui compte !";
+    } else if (pct >= 30) {
+      emoji = '🚀'; msg = "C'est un bon début !"; sub = 'À chaque quiz tu apprends quelque chose de nouveau !';
+    } else {
+      emoji = '📖'; msg = "T'inquiète pas !"; sub = 'Relis le résumé et réessaie, tu vas voir la différence !';
+    }
+    container.innerHTML = `
+      <div class="quiz-koala">${getKoalaSVG(60, pct >= 70 ? 'star' : 'happy')}</div>
+      <div class="quiz-score">
+        <div class="big">${emoji}</div>
+        <div class="big" style="color: var(--correct)">${score}/${questions.length}</div>
+        <div class="msg">${msg}</div>
+        <div style="font-size:14px;color:var(--text2);margin-top:8px">${sub}</div>
+        <button class="quiz-restart" onclick="startActivity('quiz')">Recommencer 🔄</button>
+      </div>`;
+    return;
+  }
+
+  const q = questions[current];
+  const progress = (current / questions.length) * 100;
+
+  const dots = questions.map((_, i) => {
+    let cls = 'streak-dot';
+    if (i < quizState.results.length) cls += quizState.results[i] ? ' lit' : ' miss';
+    return `<span class="${cls}"></span>`;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="quiz-progress"><div class="quiz-progress-bar" style="width:${progress}%"></div></div>
+    <div class="streak-bar">${dots}</div>
+    <div class="quiz-question-num">Question ${current + 1} / ${questions.length}</div>
+    <div class="quiz-question">${q.q}</div>
+    <div id="quizOptions"></div>
+    <div class="quiz-explanation" id="quizExplanation">💡 ${q.explanation}</div>
+    <button class="quiz-next" id="quizNext" onclick="nextQuizQuestion()">Suivant →</button>`;
+
+  const optDiv = document.getElementById('quizOptions');
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('div');
+    btn.className = 'quiz-option';
+    btn.textContent = opt;
+    btn.onclick = () => selectOption(i, q.correct);
+    optDiv.appendChild(btn);
+  });
+}
+
+function showEncouragement(isCorrect) {
+  const pool = isCorrect ? ENCOURAGE_CORRECT : ENCOURAGE_WRONG;
+  const pick = pool[Math.floor(Math.random() * pool.length)];
+  let toast = document.getElementById('encourageToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'encourageToast';
+    toast.className = 'encourage-toast';
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = `<span class="toast-emoji">${pick.emoji}</span>${pick.text}`;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 1200);
+}
+
+function selectOption(selected, correct) {
+  const options = document.querySelectorAll('.quiz-option');
+  options.forEach((opt, i) => {
+    opt.classList.add('disabled');
+    if (i === correct) opt.classList.add('correct');
+    if (i === selected && i !== correct) opt.classList.add('wrong');
+  });
+
+  const isCorrect = selected === correct;
+  if (isCorrect) quizState.score++;
+  showEncouragement(isCorrect);
+
+  if (quizState.results) quizState.results.push(isCorrect);
+  const dots = document.querySelectorAll('.streak-dot');
+  if (dots[quizState.current]) {
+    dots[quizState.current].classList.add(isCorrect ? 'lit' : 'miss');
+  }
+
+  document.getElementById('quizExplanation').style.display = 'block';
+  document.getElementById('quizNext').style.display = 'block';
+}
+
+function nextQuizQuestion() {
+  quizState.current++;
+  showQuizQuestion();
+}
+
+// ─── FLASHCARDS ───
+let flashState = {};
+
+function startFlashcards(ch) {
+  const cards = [...ch.flashcards].sort(() => Math.random() - 0.5);
+  flashState = { cards, current: 0, flipped: false, review: [], mastered: [] };
+  showFlashcard();
+  showScreen('flashcards');
+}
+
+function showFlashcard() {
+  const { cards, current } = flashState;
+
+  if (current >= cards.length) {
+    // End screen
+    const container = document.getElementById('flashcardContainer');
+    const judgeDiv = document.getElementById('flashJudge');
+    judgeDiv.style.display = 'none';
+    const m = flashState.mastered.length;
+    const r = flashState.review.length;
+    container.innerHTML = `
+      <div class="quiz-koala">${getKoalaSVG(60, m > r ? 'star' : 'happy')}</div>
+      <div class="quiz-score">
+        <div class="big">🃏</div>
+        <div style="font-size:22px;font-weight:800;margin:10px 0">Flashcards terminées !</div>
+        <div style="margin:8px 0"><span style="color:var(--correct);font-size:18px;font-weight:700">✅ ${m} maîtrisée${m>1?'s':''}</span></div>
+        <div style="margin:8px 0"><span style="color:var(--wrong);font-size:18px;font-weight:700">🔄 ${r} à revoir${r>1?'':''}</span></div>
+        ${r > 0 ? `<button class="quiz-restart" onclick="restartReview()">Revoir les ${r} carte${r>1?'s':''} 🔄</button>` : ''}
+        <button class="quiz-restart" style="background:var(--purple);margin-top:10px" onclick="startActivity('flashcards')">Tout recommencer</button>
+      </div>`;
+    return;
+  }
+
+  const card = cards[current];
+  flashState.flipped = false;
+  const container = document.getElementById('flashcardContainer');
+  const judgeDiv = document.getElementById('flashJudge');
+
+  container.innerHTML = `
+    <div class="flashcard-counter">${current + 1} / ${cards.length}</div>
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="face">
+        <div class="front">${card.front}</div>
+        <div class="back">${card.back}</div>
+      </div>
+    </div>
+    <div class="flashcard-hint">👆 Touche la carte pour la retourner</div>`;
+
+  judgeDiv.style.display = 'none';
+}
+
+function flipCard() {
+  const card = document.getElementById('flashcard');
+  if (!card) return;
+  card.classList.toggle('flipped');
+  flashState.flipped = !flashState.flipped;
+  document.getElementById('flashJudge').style.display = flashState.flipped ? 'flex' : 'none';
+}
+
+function judgeCard(mastered) {
+  const { cards, current } = flashState;
+  if (mastered) {
+    flashState.mastered.push(cards[current]);
+  } else {
+    flashState.review.push(cards[current]);
+  }
+  flashState.current++;
+  showFlashcard();
+}
+
+function restartReview() {
+  const review = [...flashState.review];
+  flashState = { cards: review, current: 0, flipped: false, review: [], mastered: [] };
+  showFlashcard();
+}
+
+// ─── SUMMARY ───
+function startSummary(ch) {
+  document.getElementById('summaryContainer').innerHTML = ch.summary;
+  showScreen('summary');
+}
+
+// ─── MINDMAP ───
+let mmZoom = 100;
+
+function startMindmap(ch) {
+  const mm = ch.mindmap;
+  const container = document.getElementById('mindmapContainer');
+  mmZoom = 100;
+  const cx = 350, cy = 200;
+  const branchR = 140, childR = 100;
+
+  let svg = `<svg id="mmSvg" viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg">`;
+  svg += `<rect x="${cx-75}" y="${cy-24}" width="150" height="48" rx="12" fill="#e94560"/>`;
+  svg += `<text class="mm-text" x="${cx}" y="${cy}" font-size="13" font-weight="bold">${mm.center}</text>`;
+
+  const n = mm.branches.length;
+  mm.branches.forEach((branch, i) => {
+    const angle = (i / n) * 2 * Math.PI - Math.PI / 2;
+    const bx = cx + Math.cos(angle) * branchR;
+    const by = cy + Math.sin(angle) * branchR;
+
+    svg += `<line x1="${cx}" y1="${cy}" x2="${bx}" y2="${by}" stroke="${branch.color}" stroke-width="2.5" opacity="0.5"/>`;
+    svg += `<rect x="${bx-55}" y="${by-18}" width="110" height="36" rx="8" fill="${branch.color}" opacity="0.9"/>`;
+    svg += `<text class="mm-text" x="${bx}" y="${by}" font-size="12">${branch.label}</text>`;
+
+    const nc = branch.children.length;
+    branch.children.forEach((child, j) => {
+      const spreadAngle = 0.55;
+      const startAngle = angle - spreadAngle * (nc - 1) / 2;
+      const childAngle = startAngle + j * spreadAngle;
+      const chx = bx + Math.cos(childAngle) * childR;
+      const chy = by + Math.sin(childAngle) * childR;
+
+      svg += `<line x1="${bx}" y1="${by}" x2="${chx}" y2="${chy}" stroke="${branch.color}" stroke-width="1.5" opacity="0.35"/>`;
+      svg += `<rect x="${chx-48}" y="${chy-14}" width="96" height="28" rx="6" fill="${branch.color}" opacity="0.25" stroke="${branch.color}" stroke-width="0.8"/>`;
+      svg += `<text class="mm-text-sm" x="${chx}" y="${chy}" font-size="10">${child}</text>`;
+    });
+  });
+
+  svg += `</svg>`;
+  container.innerHTML = `
+    <div class="mindmap-zoom">
+      <button onclick="zoomMindmap(-20)">−</button>
+      <button onclick="zoomMindmap(0)">↺</button>
+      <button onclick="zoomMindmap(20)">+</button>
+    </div>
+    <div class="mindmap-scroll" id="mmScroll">${svg}</div>
+    <div style="font-size:12px;color:var(--text2);margin-top:10px">Pince pour zoomer ou utilise les boutons</div>`;
+  showScreen('mindmap');
+}
+
+function zoomMindmap(delta) {
+  if (delta === 0) { mmZoom = 100; }
+  else { mmZoom = Math.max(80, Math.min(250, mmZoom + delta)); }
+  const svg = document.getElementById('mmSvg');
+  if (svg) svg.style.width = mmZoom + '%';
+}
+
+// ══════════════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════════════
+updateDevoirsBadge();
+</script>
+</body>
+</html>
