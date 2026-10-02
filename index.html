@@ -524,6 +524,185 @@ body {
   text-align: center; margin-bottom: 12px;
 }
 .quiz-koala svg { width: 52px; height: 52px; }
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE — TABLETTE ≥ 640px
+   Contenu plus large, grilles 3 col, panneau plus haut
+   ══════════════════════════════════════════════════ */
+@media (min-width: 640px) {
+  /* Limite de contenu élargie */
+  .section-header,
+  .subject-grid,
+  .chapter-list,
+  .activity-grid,
+  .quiz-container,
+  .flashcard-container,
+  .summary-container,
+  .mindmap-container {
+    max-width: 700px;
+  }
+
+  /* Grille matières : 3 colonnes */
+  .subject-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  /* Grille activités : 4 colonnes */
+  .activity-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Koala plus grand */
+  .koala-hero svg { width: 110px; height: 110px; }
+  .koala-hello { font-size: 17px; }
+
+  /* Header plus aéré */
+  .header { padding: 18px 20px 16px; }
+  .header h1 { font-size: 26px; }
+
+  /* Panneau ressources en modale centrée (pas en bottom sheet) */
+  .resources-overlay { align-items: center; }
+  .resources-panel {
+    border-radius: 20px;
+    max-width: 560px;
+    max-height: 85vh;
+  }
+
+  /* Cards matières : padding plus généreux */
+  .subject-card { padding: 28px 20px; }
+  .subject-card .emoji { font-size: 40px; }
+
+  /* Quiz / flashcards: plus d'espace */
+  .quiz-container, .flashcard-container { padding: 0 8px; }
+
+  /* Activité grid : icônes plus grandes */
+  .activity-btn .emoji { font-size: 42px; }
+  .activity-btn .label { font-size: 16px; }
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE — DESKTOP ≥ 1024px
+   Layout deux-colonnes : sidebar gauche + contenu droit
+   ══════════════════════════════════════════════════ */
+@media (min-width: 1024px) {
+  /* Wrapper global en flex row */
+  body {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  /* Header devient sidebar gauche fixe */
+  .header {
+    position: fixed;
+    top: 0; left: 0;
+    width: 260px;
+    height: 100vh;
+    border-bottom: none;
+    border-right: 2px solid rgba(233,69,96,0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 32px 20px;
+    text-align: center;
+    z-index: 100;
+  }
+
+  .header h1 { font-size: 22px; }
+  .header .sub { font-size: 13px; margin-top: 6px; }
+
+  /* Bouton retour repositionné dans la sidebar */
+  .back-btn {
+    position: absolute; top: 20px; left: 16px;
+    transform: none;
+  }
+
+  /* Roue crantée repositionnée */
+  .settings-btn {
+    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+    width: 48px; height: 48px; font-size: 22px;
+  }
+
+  /* Zone de contenu décalée à droite de la sidebar */
+  .screen {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    min-height: 100vh;
+    padding: 32px 40px 60px;
+  }
+
+  /* Limites de contenu élargies */
+  .section-header,
+  .subject-grid,
+  .chapter-list,
+  .activity-grid,
+  .quiz-container,
+  .flashcard-container,
+  .summary-container,
+  .mindmap-container {
+    max-width: 840px;
+  }
+
+  /* Grille matières : 4 colonnes sur grand écran */
+  .subject-grid { grid-template-columns: repeat(4, 1fr); gap: 18px; }
+
+  /* Grille activités : 4 colonnes */
+  .activity-grid { grid-template-columns: repeat(4, 1fr); gap: 18px; }
+
+  /* Panneau ressources : sidebar droite slide-in */
+  .resources-overlay { align-items: flex-start; justify-content: flex-end; }
+  .resources-panel {
+    border-radius: 0;
+    width: 400px;
+    max-width: 400px;
+    max-height: 100vh;
+    height: 100vh;
+    border-top: none;
+    border-left: 2px solid rgba(108,92,231,0.4);
+    margin-right: 0;
+  }
+
+  /* Flashcard plus grande */
+  .flashcard { min-height: 240px; font-size: 20px; }
+
+  /* Quiz : options en 2 colonnes */
+  .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* Summary : typo plus grande */
+  .summary-container { font-size: 16px; }
+  .summary-container h2 { font-size: 24px; }
+  .summary-container h3 { font-size: 18px; }
+
+  /* Koala dans la sidebar */
+  .koala-hero {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 0 0 16px;
+  }
+  .koala-hero svg { width: 80px; height: 80px; }
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE — GRAND DESKTOP ≥ 1400px
+   ══════════════════════════════════════════════════ */
+@media (min-width: 1400px) {
+  .header { width: 300px; }
+  .screen { margin-left: 300px; width: calc(100% - 300px); padding: 40px 60px 60px; }
+  .section-header,
+  .subject-grid,
+  .chapter-list,
+  .activity-grid,
+  .quiz-container,
+  .flashcard-container,
+  .summary-container,
+  .mindmap-container {
+    max-width: 960px;
+  }
+  .subject-grid { grid-template-columns: repeat(4, 1fr); }
+  .resources-panel { width: 460px; max-width: 460px; }
+}
 </style>
 </head>
 <body>
