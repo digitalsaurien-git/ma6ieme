@@ -419,6 +419,21 @@ body {
   line-height: 1.7;
   font-size: 15px;
 }
+.summary-audio-btn {
+  float: right;
+  background: rgba(9,132,227,0.2);
+  border: 1.5px solid rgba(9,132,227,0.4);
+  color: var(--blue);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-left: 10px;
+  margin-top: 2px;
+}
+.summary-audio-btn:active { transform: scale(0.95); }
+.summary-audio-btn.playing { background: rgba(233,69,96,0.2); border-color: rgba(233,69,96,0.4); color: var(--accent); }
 .summary-container h2 { font-size: 20px; margin-bottom: 14px; color: var(--yellow); }
 .summary-container h3 { font-size: 16px; margin: 16px 0 8px; color: var(--teal); }
 .summary-container ul { padding-left: 20px; margin: 8px 0; }
@@ -664,10 +679,15 @@ body {
       <div class="name">Arts</div>
       <div class="count">2 chapitres</div>
     </div>
-    <div class="subject-card" data-color="teal" onclick="openSubject('sciences')">
-      <span class="emoji">🔬</span>
-      <div class="name">Sciences</div>
-      <div class="count">2 chapitres</div>
+    <div class="subject-card" data-color="teal" onclick="openSubject('svt')">
+      <span class="emoji">🌿</span>
+      <div class="name">SVT</div>
+      <div class="count">1 chapitre</div>
+    </div>
+    <div class="subject-card" data-color="purple" onclick="openSubject('physchimie')">
+      <span class="emoji">⚗️</span>
+      <div class="name">Physique-Chimie</div>
+      <div class="count">1 chapitre</div>
     </div>
     <div class="subject-card" data-color="pink" onclick="openSubject('anglais')">
       <span class="emoji">🇬🇧</span>
@@ -752,7 +772,9 @@ body {
           <option value="Français">📖 Français</option>
           <option value="Maths">🔢 Maths</option>
           <option value="Arts">🎨 Arts</option>
-          <option value="Sciences">🔬 Sciences</option>
+          <option value="SVT">🌿 SVT</option>
+          <option value="Physique-Chimie">⚗️ Physique-Chimie</option>
+          <option value="Anglais">🇬🇧 Anglais</option>
           <option value="Autre">📚 Autre</option>
         </select>
       </div>
@@ -1933,10 +1955,111 @@ const DATA = {
     ]
   },
 
-  sciences: {
-    emoji: "🔬",
-    name: "Sciences",
-    color: "#00cec9",
+  svt: {
+    emoji: "🌿",
+    name: "SVT",
+    color: "#00b894",
+    chapters: [
+      {
+        id: "matiere-vivant",
+        title: "Vivant, minéral, technique",
+        desc: "Classer la matière : êtres vivants (végétaux, animaux), matière minérale, matière organique morte, objets techniques",
+        quiz: [
+          {
+            q: "Qu'est-ce qui caractérise un être vivant ?",
+            options: ["Il est grand", "Il naît, grandit, se reproduit et meurt", "Il bouge toujours", "Il est fait en carbone"],
+            correct: 1,
+            explanation: "Un être vivant passe par les étapes : naissance → croissance → reproduction → mort. Il se nourrit et réagit à son environnement."
+          },
+          {
+            q: "Un caillou est-il vivant ?",
+            options: ["Oui, il grandit lentement", "Non, c'est un minéral — il ne naît pas, ne grandit pas, ne meurt pas", "Oui, car il contient des minéraux", "Ça dépend de la taille"],
+            correct: 1,
+            explanation: "Un caillou est de la matière minérale. Il ne naît pas, ne grandit pas, ne se reproduit pas et ne meurt pas. Ce n'est pas un être vivant."
+          },
+          {
+            q: "Qu'est-ce qu'un objet technique ?",
+            options: ["Un animal savant", "Un objet fabriqué par l'homme pour répondre à un besoin", "Un minerai rare", "Un être vivant artificiel"],
+            correct: 1,
+            explanation: "Un objet technique est fabriqué par l'être humain pour répondre à un besoin : un vélo (se déplacer), un stylo (écrire), un téléphone (communiquer)…"
+          },
+          {
+            q: "Dans quelle catégorie se trouve un arbre ?",
+            options: ["Minéral", "Objet technique", "Être vivant — végétal", "Matière organique morte"],
+            correct: 2,
+            explanation: "Un arbre est un être vivant de type végétal : il naît (graine), grandit, se reproduit (graines, fruits) et meurt. Même s'il ne bouge pas, il est vivant !"
+          },
+          {
+            q: "L'eau est-elle vivante ?",
+            options: ["Oui, car elle bouge", "Non, c'est de la matière minérale", "Oui, car les poissons vivent dedans", "Ça dépend de la température"],
+            correct: 1,
+            explanation: "L'eau est de la matière minérale. Elle peut bouger (couler, vagues) mais elle ne naît pas, ne grandit pas et ne se reproduit pas."
+          },
+          {
+            q: "Dans quelle grande catégorie se trouvent les végétaux ET les animaux ?",
+            options: ["Matière minérale", "Êtres vivants", "Objets techniques", "Matière organique morte"],
+            correct: 1,
+            explanation: "Les végétaux (plantes, arbres, algues…) et les animaux (mammifères, insectes, poissons…) sont tous des êtres vivants : ils naissent, grandissent, se reproduisent et meurent."
+          },
+          {
+            q: "Qu'est-ce que la matière organique morte ?",
+            options: ["De la matière minérale ancienne", "De la matière produite par des êtres vivants, mais qui ne vit plus (feuilles mortes, bois mort…)", "Des êtres vivants microscopiques", "Des objets techniques en bois"],
+            correct: 1,
+            explanation: "La matière organique morte est produite par des êtres vivants mais ne vit plus elle-même : feuilles mortes, bois mort, humus (terre)… Elle joue un rôle dans la composition du sol."
+          }
+        ],
+        flashcards: [
+          { front: "Être vivant", back: "Organisme qui naît, grandit, se nourrit, se reproduit et meurt. Ex : animal, plante, champignon, bactérie." },
+          { front: "Végétaux", back: "Êtres vivants qui fabriquent leur nourriture grâce à la lumière (photosynthèse). Ex : herbe, arbre, algue." },
+          { front: "Animaux", back: "Êtres vivants qui se déplacent et consomment d'autres êtres vivants. Ex : chien, aigle, grenouille, insecte." },
+          { front: "Matière minérale", back: "Matière non vivante d'origine naturelle. Ex : eau, roche, sable, sel, air, métal." },
+          { front: "Matière organique morte", back: "Matière produite par des êtres vivants, mais plus vivante : feuilles mortes, bois mort, humus dans la terre." },
+          { front: "Objet technique", back: "Objet fabriqué par l'humain pour répondre à un besoin. Ex : vélo, téléphone, stylo." },
+          { front: "Les fonctions du vivant", back: "Se nourrir, grandir, se reproduire, réagir à l'environnement." },
+          { front: "Différence vivant / minéral", back: "Le vivant naît, grandit, se reproduit et meurt. Le minéral ne fait rien de tout cela." },
+          { front: "La composition de la terre", back: "La terre (sol) contient : matière minérale (sable, roche) + matière organique morte (humus, feuilles) + êtres vivants (vers, bactéries, racines)." }
+        ],
+        summary: `<h2>🌿 Vivant, minéral, technique</h2>
+<h3>Classification de la matière</h3>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin:8px 0">
+<tr style="background:rgba(0,184,148,0.3)"><th style="padding:5px;text-align:left">Catégorie</th><th style="padding:5px;text-align:left">Exemples</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>Végétaux</strong> 🌿</td><td style="padding:5px">Herbe, arbre, algue, mousse</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px"><strong>Animaux</strong> 🐾</td><td style="padding:5px">Chien, aigle, grenouille, insecte</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px" colspan="2">↳ Végétaux + Animaux = <span class="key-term">Êtres vivants</span></td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px"><strong>Matière organique morte</strong></td><td style="padding:5px">Feuilles mortes, bois mort, humus</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>Matière minérale</strong></td><td style="padding:5px">Eau, roche, sable, sel, air, métaux</td></tr>
+<tr><td style="padding:5px"><strong>Objet technique</strong> ⚙️</td><td style="padding:5px">Vélo, stylo, téléphone, maison</td></tr>
+</table>
+<h3>Les êtres vivants</h3>
+<ul>
+<li>Un être vivant <strong>naît, grandit, se nourrit, se reproduit et meurt</strong></li>
+<li>Il existe deux grands groupes : les <span class="key-term">végétaux</span> et les <span class="key-term">animaux</span></li>
+<li>Même un arbre ou une bactérie sont des êtres vivants !</li>
+</ul>
+<h3>Attention aux pièges !</h3>
+<ul>
+<li>Un arbre ne bouge pas mais il est <strong>vivant</strong> (végétal)</li>
+<li>L'eau bouge mais elle n'est <strong>pas vivante</strong> (minéral)</li>
+<li>Le bois mort d'une table vient du vivant mais c'est de la <strong>matière organique morte</strong></li>
+<li>La <strong>terre</strong> (sol) mélange : matière minérale + matière organique morte + êtres vivants</li>
+</ul>`,
+        mindmap: {
+          center: "Classer la matière",
+          branches: [
+            { label: "Êtres vivants", color: "#00b894", children: ["Végétaux (plantes…)", "Animaux (chien, aigle…)", "Naissent / meurent"] },
+            { label: "Matière minérale", color: "#0984e3", children: ["Eau", "Roche, sable", "Sel, métaux, air"] },
+            { label: "Matière org. morte", color: "#e17055", children: ["Feuilles mortes", "Bois mort", "Humus (terre)"] },
+            { label: "Objet technique", color: "#fdcb6e", children: ["Fabriqué par l'humain", "Répond à un besoin", "Vélo, stylo, téléphone"] }
+          ]
+        }
+      }
+    ]
+  },
+
+  physchimie: {
+    emoji: "⚗️",
+    name: "Physique-Chimie",
+    color: "#6c5ce7",
     chapters: [
       {
         id: "securite-labo",
@@ -2058,99 +2181,6 @@ const DATA = {
             { label: "Protection", color: "#00b894", children: ["Blouse 100% coton", "Lunettes", "Gants", "Cheveux attachés"] },
             { label: "Interdits", color: "#e94560", children: ["Ne pas goûter", "Ne pas improviser", "Pas de flamme sans autorisation"] },
             { label: "9 pictogrammes", color: "#fdcb6e", children: ["Explosif", "Inflammable", "Corrosif", "Toxique", "Nocif", "Comburant", "Gaz pression", "Danger santé", "Env. aquatique"] }
-          ]
-        }
-      },
-      {
-        id: "matiere-vivant",
-        title: "Vivant, minéral, technique",
-        desc: "Classer la matière : êtres vivants (végétaux, animaux), matière minérale, matière organique morte, objets techniques",
-        quiz: [
-          {
-            q: "Qu'est-ce qui caractérise un être vivant ?",
-            options: ["Il est grand", "Il naît, grandit, se reproduit et meurt", "Il bouge toujours", "Il est fait en carbone"],
-            correct: 1,
-            explanation: "Un être vivant passe par les étapes : naissance → croissance → reproduction → mort. Il se nourrit et réagit à son environnement."
-          },
-          {
-            q: "Un caillou est-il vivant ?",
-            options: ["Oui, il grandit lentement", "Non, c'est un minéral — il ne naît pas, ne grandit pas, ne meurt pas", "Oui, car il contient des minéraux", "Ça dépend de la taille"],
-            correct: 1,
-            explanation: "Un caillou est de la matière minérale. Il ne naît pas, ne grandit pas, ne se reproduit pas et ne meurt pas. Ce n'est pas un être vivant."
-          },
-          {
-            q: "Qu'est-ce qu'un objet technique ?",
-            options: ["Un animal savant", "Un objet fabriqué par l'homme pour répondre à un besoin", "Un minerai rare", "Un être vivant artificiel"],
-            correct: 1,
-            explanation: "Un objet technique est fabriqué par l'être humain pour répondre à un besoin : un vélo (se déplacer), un stylo (écrire), un téléphone (communiquer)…"
-          },
-          {
-            q: "Dans quelle catégorie se trouve un arbre ?",
-            options: ["Minéral", "Objet technique", "Être vivant — végétal", "Matière organique morte"],
-            correct: 2,
-            explanation: "Un arbre est un être vivant de type végétal : il naît (graine), grandit, se reproduit (graines, fruits) et meurt. Même s'il ne bouge pas, il est vivant !"
-          },
-          {
-            q: "L'eau est-elle vivante ?",
-            options: ["Oui, car elle bouge", "Non, c'est de la matière minérale", "Oui, car les poissons vivent dedans", "Ça dépend de la température"],
-            correct: 1,
-            explanation: "L'eau est de la matière minérale. Elle peut bouger (couler, vagues) mais elle ne naît pas, ne grandit pas et ne se reproduit pas."
-          },
-          {
-            q: "Dans quelle grande catégorie se trouvent les végétaux ET les animaux ?",
-            options: ["Matière minérale", "Êtres vivants", "Objets techniques", "Matière organique morte"],
-            correct: 1,
-            explanation: "Les végétaux (plantes, arbres, algues…) et les animaux (mammifères, insectes, poissons…) sont tous des êtres vivants : ils naissent, grandissent, se reproduisent et meurent."
-          },
-          {
-            q: "Qu'est-ce que la matière organique morte ?",
-            options: ["De la matière minérale ancienne", "De la matière produite par des êtres vivants, mais qui ne vit plus (feuilles mortes, bois mort…)", "Des êtres vivants microscopiques", "Des objets techniques en bois"],
-            correct: 1,
-            explanation: "La matière organique morte est produite par des êtres vivants mais ne vit plus elle-même : feuilles mortes, bois mort, humus (terre)… Elle joue un rôle dans la composition du sol."
-          }
-        ],
-        flashcards: [
-          { front: "Être vivant", back: "Organisme qui naît, grandit, se nourrit, se reproduit et meurt. Ex : animal, plante, champignon, bactérie." },
-          { front: "Végétaux", back: "Êtres vivants qui fabriquent leur nourriture grâce à la lumière (photosynthèse). Ex : herbe, arbre, algue." },
-          { front: "Animaux", back: "Êtres vivants qui se déplacent et consomment d'autres êtres vivants. Ex : chien, aigle, grenouille, insecte." },
-          { front: "Matière minérale", back: "Matière non vivante d'origine naturelle. Ex : eau, roche, sable, sel, air, métal." },
-          { front: "Matière organique morte", back: "Matière produite par des êtres vivants, mais plus vivante : feuilles mortes, bois mort, humus dans la terre." },
-          { front: "Objet technique", back: "Objet fabriqué par l'humain pour répondre à un besoin. Ex : vélo, téléphone, stylo." },
-          { front: "Les fonctions du vivant", back: "Se nourrir, grandir, se reproduire, réagir à l'environnement." },
-          { front: "Différence vivant / minéral", back: "Le vivant naît, grandit, se reproduit et meurt. Le minéral ne fait rien de tout cela." },
-          { front: "La composition de la terre", back: "La terre (sol) contient : matière minérale (sable, roche) + matière organique morte (humus, feuilles) + êtres vivants (vers, bactéries, racines)." }
-        ],
-        summary: `<h2>🔬 Vivant, minéral, technique</h2>
-<h3>Classification de la matière</h3>
-<table style="width:100%;border-collapse:collapse;font-size:13px;margin:8px 0">
-<tr style="background:rgba(0,184,148,0.3)"><th style="padding:5px;text-align:left">Catégorie</th><th style="padding:5px;text-align:left">Exemples</th></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>Végétaux</strong> 🌿</td><td style="padding:5px">Herbe, arbre, algue, mousse</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px"><strong>Animaux</strong> 🐾</td><td style="padding:5px">Chien, aigle, grenouille, insecte</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px" colspan="2">↳ Végétaux + Animaux = <span class="key-term">Êtres vivants</span></td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px"><strong>Matière organique morte</strong></td><td style="padding:5px">Feuilles mortes, bois mort, humus</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>Matière minérale</strong></td><td style="padding:5px">Eau, roche, sable, sel, air, métaux</td></tr>
-<tr><td style="padding:5px"><strong>Objet technique</strong> ⚙️</td><td style="padding:5px">Vélo, stylo, téléphone, maison</td></tr>
-</table>
-<h3>Les êtres vivants</h3>
-<ul>
-<li>Un être vivant <strong>naît, grandit, se nourrit, se reproduit et meurt</strong></li>
-<li>Il existe deux grands groupes : les <span class="key-term">végétaux</span> et les <span class="key-term">animaux</span></li>
-<li>Même un arbre ou une bactérie sont des êtres vivants !</li>
-</ul>
-<h3>Attention aux pièges !</h3>
-<ul>
-<li>Un arbre ne bouge pas mais il est <strong>vivant</strong> (végétal)</li>
-<li>L'eau bouge mais elle n'est <strong>pas vivante</strong> (minéral)</li>
-<li>Le bois mort d'une table vient du vivant mais c'est de la <strong>matière organique morte</strong></li>
-<li>La <strong>terre</strong> (sol) mélange : matière minérale + matière organique morte + êtres vivants</li>
-</ul>`,
-        mindmap: {
-          center: "Classer la matière",
-          branches: [
-            { label: "Êtres vivants", color: "#00b894", children: ["Végétaux (plantes…)", "Animaux (chien, aigle…)", "Naissent / meurent"] },
-            { label: "Matière minérale", color: "#0984e3", children: ["Eau", "Roche, sable", "Sel, métaux, air"] },
-            { label: "Matière org. morte", color: "#e17055", children: ["Feuilles mortes", "Bois mort", "Humus (terre)"] },
-            { label: "Objet technique", color: "#fdcb6e", children: ["Fabriqué par l'humain", "Répond à un besoin", "Vélo, stylo, téléphone"] }
           ]
         }
       }
@@ -2423,9 +2453,11 @@ function deleteDevoir(index) {
 // ══════════════════════════════════════════════════
 let navStack = ['subjects'];
 let currentSubject = null;
+let currentChapterData = null;
 let currentChapter = null;
 
 function showScreen(id) {
+  if (id !== 'summary') stopTTS();
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + id).classList.add('active');
   const backBtn = document.getElementById('backBtn');
@@ -2781,8 +2813,46 @@ function restartReview() {
 }
 
 // ─── SUMMARY ───
+let ttsUtterance = null;
+function stopTTS() {
+  if (window.speechSynthesis) {
+    window.speechSynthesis.cancel();
+    ttsUtterance = null;
+  }
+  const btn = document.getElementById('ttsBtn');
+  if (btn) { btn.textContent = '🔊 Écouter'; btn.classList.remove('playing'); }
+}
+function toggleTTS(summaryHtml) {
+  if (!window.speechSynthesis) {
+    alert("La lecture audio n'est pas disponible sur ce navigateur.");
+    return;
+  }
+  if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
+    stopTTS();
+    return;
+  }
+  const tmp = document.createElement('div');
+  tmp.innerHTML = summaryHtml;
+  const plain = (tmp.textContent || tmp.innerText || '').trim();
+  ttsUtterance = new SpeechSynthesisUtterance(plain);
+  ttsUtterance.lang = 'fr-FR';
+  ttsUtterance.rate = 0.88;
+  const btn = document.getElementById('ttsBtn');
+  ttsUtterance.onstart = () => { if (btn) { btn.textContent = '⏹ Arrêter'; btn.classList.add('playing'); } };
+  ttsUtterance.onend = () => { if (btn) { btn.textContent = '🔊 Écouter'; btn.classList.remove('playing'); } };
+  ttsUtterance.onerror = () => { if (btn) { btn.textContent = '🔊 Écouter'; btn.classList.remove('playing'); } };
+  window.speechSynthesis.speak(ttsUtterance);
+}
+
 function startSummary(ch) {
-  document.getElementById('summaryContainer').innerHTML = ch.summary;
+  stopTTS();
+  // Inject audio button after opening <h2> tag
+  const summaryWithBtn = ch.summary.replace(
+    /(<h2>[^<]*)/,
+    '$1<button class="summary-audio-btn" id="ttsBtn" onclick="toggleTTS(currentChapterData.summary)">🔊 Écouter</button>'
+  );
+  currentChapterData = ch;
+  document.getElementById('summaryContainer').innerHTML = summaryWithBtn;
   showScreen('summary');
 }
 
@@ -2928,34 +2998,36 @@ const RESOURCES = {
       note: "Collage, montage, composition, prélever, Hannah Höch 1919, Joan Fontcuberta 1982"
     }
   ],
-  sciences: [
+  svt: [
+    {
+      name: "Classification de la matière (tableau)",
+      type: "cours",
+      chapter: "Vivant, minéral, technique",
+      date: "oct. 2026",
+      note: "Végétaux + animaux = êtres vivants ; objet technique ; matière organique morte ; matière minérale ; composition de la terre"
+    }
+  ],
+  physchimie: [
+    {
+      name: "Cours - L'étiquetage des produits chimiques",
+      type: "pdf",
+      chapter: "Sécurité au laboratoire",
+      date: "oct. 2026",
+      note: "9 pictogrammes GHS avec dangers et mesures de prudence"
+    },
+    {
+      name: "Cours - Les règles de sécurité en chimie",
+      type: "pdf",
+      chapter: "Sécurité au laboratoire",
+      date: "oct. 2026",
+      note: "Protocole en 3 étapes : se préparer, réaliser la manipulation, quitter son poste"
+    },
     {
       name: "Cours - Sécurité et verrerie en chimie",
       type: "pdf",
       chapter: "Sécurité au laboratoire",
       date: "oct. 2026",
-      note: "9 pictogrammes GHS (explosif, inflammable, comburant, gaz sous pression, corrosif, toxique, nocif, danger santé, env. aquatique) — 3 étapes de la séance — étiquetage des produits chimiques"
-    },
-    {
-      name: "Classification de la matière (tableau de bord)",
-      type: "cours",
-      chapter: "Vivant, minéral, technique",
-      date: "oct. 2026",
-      note: "Végétaux + animaux = êtres vivants ; objet technique ; matière organique morte ; matière minérale ; composition de la terre"
-    },
-    {
-      name: "Cours - Le monde du vivant",
-      type: "pdf",
-      chapter: "Le monde du vivant",
-      date: "sept. 2026",
-      note: "Cellule, êtres vivants, classification"
-    },
-    {
-      name: "Cours - Les écosystèmes",
-      type: "pdf",
-      chapter: "Les écosystèmes",
-      date: "sept. 2026",
-      note: "Chaînes alimentaires, biodiversité, équilibre"
+      note: "Activité sur les étiquettes chimiques — comprendre les pictogrammes et les étiquettes de produits"
     }
   ],
   anglais: [
@@ -2970,12 +3042,13 @@ const RESOURCES = {
 };
 
 const RESOURCES_SUBJECT_LABELS = {
-  histoire:  { emoji: "🏛️", name: "Histoire" },
-  francais:  { emoji: "📖", name: "Français" },
-  maths:     { emoji: "🔢", name: "Maths" },
-  arts:      { emoji: "🎨", name: "Arts" },
-  sciences:  { emoji: "🔬", name: "Sciences" },
-  anglais:   { emoji: "🇬🇧", name: "Anglais" }
+  histoire:   { emoji: "🏛️", name: "Histoire" },
+  francais:   { emoji: "📖", name: "Français" },
+  maths:      { emoji: "🔢", name: "Maths" },
+  arts:       { emoji: "🎨", name: "Arts" },
+  svt:        { emoji: "🌿", name: "SVT" },
+  physchimie: { emoji: "⚗️", name: "Physique-Chimie" },
+  anglais:    { emoji: "🇬🇧", name: "Anglais" }
 };
 
 const FILE_ICONS = { pdf: "📄", image: "🖼️", doc: "📝" };
