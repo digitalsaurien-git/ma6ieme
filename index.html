@@ -761,7 +761,7 @@ body {
     <div class="subject-card" data-color="purple" onclick="openSubject('francais')">
       <span class="emoji">📖</span>
       <div class="name">Français</div>
-      <div class="count">4 chapitres</div>
+      <div class="count">7 chapitres</div>
     </div>
     <div class="subject-card" data-color="green" onclick="openSubject('maths')">
       <span class="emoji">🔢</span>
@@ -1576,6 +1576,290 @@ Découvert au <strong>Tchad</strong> en 2001, <span class="key-term">Toumaï</sp
             { label: "Invariables", color: "#e17055", children: ["Préposition", "Adverbe", "Conjonction"] },
             { label: "Expressifs", color: "#fdcb6e", children: ["Interjection (émotion)", "Onomatopée (bruit)"] },
             { label: "Astuces", color: "#00b894", children: ["Verbe → ne…pas", "Adj → très + adj", "Prép → impossible à suppr."] }
+          ]
+        }
+      },
+      {
+        id: "homophones-grammaticaux",
+        group: "Orthographe",
+        title: "Les homophones grammaticaux",
+        desc: "a/à, es/est/et/ai, ou/où, c'est/s'est/ces/ses, sont/son, ont/on, sa/ça, se/ce/ceux, leur/leurs, mais/mes/met",
+        quiz: [
+          {
+            q: "Comment distinguer 'a' (verbe avoir) de 'à' (préposition) ?",
+            options: ["On ne peut pas les distinguer", "On remplace par 'avait' : si ça marche c'est le verbe avoir", "On remplace par 'ici'", "On regarde juste l'accent"],
+            correct: 1,
+            explanation: "'A' = verbe avoir conjugué (il a → il avait ✓). 'À' = préposition, impossible à remplacer par avait. Ex : Il a faim → Il avait faim ✓. Il va à Paris → Il va avait Paris ✗."
+          },
+          {
+            q: "Dans 'Il est content', quel est le mot 'est' ?",
+            options: ["Conjonction de coordination", "Verbe être à la 3PS au présent (→ remplaçable par 'était')", "Adverbe de lieu", "Pronom"],
+            correct: 1,
+            explanation: "'Est' = verbe être à la 3ème personne du singulier. On peut le remplacer par 'était' : Il était content ✓. Ne pas confondre avec 'et' (conjonction) ou 'es' (2PS)."
+          },
+          {
+            q: "Laquelle de ces phrases utilise 'ou' correctement ?",
+            options: ["Je me demande ou il est parti", "Chocolat ou fraise ?", "Il est ou il va", "Ou est-il ?"],
+            correct: 1,
+            explanation: "'Ou' = conjonction de coordination → remplaçable par 'ou bien'. 'Où' = adverbe de lieu (indique un endroit). Ex : Chocolat ou bien fraise ? ✓. 'Où es-tu ?' (lieu, impossible de remplacer par 'ou bien')."
+          },
+          {
+            q: "Quelle astuce permet de distinguer 'c'est' de 'ces' ?",
+            options: ["Regarder le contexte seulement", "'Ces' → remplacer par 'cette' (féminin) ; 'c'est' → remplacer par 'cela est'", "'C'est' → toujours en début de phrase", "Il n'y a pas d'astuce"],
+            correct: 1,
+            explanation: "'Ces' = déterminant démonstratif pluriel → remplacer par 'cette' (sing. féminin). Ex : Ces voitures → cette voiture ✓. 'C'est' = cela est. Ex : C'est incroyable → cela est incroyable ✓."
+          },
+          {
+            q: "Comment distinguer 'sont' de 'son' ?",
+            options: ["'Son' est toujours avant un verbe", "'Sont' → remplacer par 'étaient' ; 'son' → remplacer par 'mon' ou 'ton'", "'Sont' prend toujours un 't'", "Selon la place dans la phrase"],
+            correct: 1,
+            explanation: "'Sont' = verbe être à la 3PP → remplaçable par 'étaient'. Ex : Ils sont impatients → ils étaient impatients ✓. 'Son' = déterminant possessif → remplaçable par 'mon/ton'. Ex : son travail → mon travail ✓."
+          },
+          {
+            q: "Dans 'Ils ont compris', comment reconnaît-on 'ont' ?",
+            options: ["On le remplace par 'il/elle'", "On le remplace par 'avaient' : ça marche", "On ne peut pas le remplacer", "On regarde s'il y a un accent"],
+            correct: 1,
+            explanation: "'Ont' = verbe avoir à la 3PP → remplaçable par 'avaient'. Ex : Ils ont compris → ils avaient compris ✓. 'On' = pronom personnel → remplaçable par 'il/elle'. Ex : On attend → il/elle attend ✓."
+          },
+          {
+            q: "Quelle est la différence entre 'sa' et 'ça' ?",
+            options: ["Ce sont les mêmes mots", "'Sa' = déterminant possessif (→ remplacer par ta/ma) ; 'ça' = pronom démonstratif (→ remplacer par cela)", "'Ça' va toujours avec un verbe", "'Sa' s'écrit toujours sans accent"],
+            correct: 1,
+            explanation: "'Sa' = déterminant possessif → remplaçable par 'ta' ou 'ma'. Ex : sa trousse → ta trousse ✓. 'Ça' = pronom démonstratif → remplaçable par 'cela'. Ex : J'ai vu ça → j'ai vu cela ✓."
+          },
+          {
+            q: "Dans 'Ceux qui ont terminé', quel est le mot 'ceux' ?",
+            options: ["Un déterminant", "Un pronom démonstratif (→ remplacer par 'celles' au féminin)", "Un adverbe", "Un verbe"],
+            correct: 1,
+            explanation: "'Ceux' = pronom démonstratif masculin pluriel → remplacer par 'celles' (féminin). Ex : Ceux qui ont terminé → celles qui ont terminé ✓. Ne pas confondre avec 'ce' (déterminant) ou 'ces'."
+          },
+          {
+            q: "Comment utiliser 'leur' vs 'leurs' devant un nom ?",
+            options: ["Toujours 'leurs' devant un nom", "'Leur' + nom singulier ; 'leurs' + nom pluriel", "'Leur' = toujours pronom", "Il n'y a pas de règle"],
+            correct: 1,
+            explanation: "Devant un nom : 'leur' + nom singulier (leur chat), 'leurs' + nom pluriel (leurs voisins). Devant un verbe : c'est toujours le pronom 'leur' (invariable). Ex : Je leur parle. Leurs affaires sont là."
+          },
+          {
+            q: "Quelle astuce pour 'mais' vs 'mes' vs 'met/mets' ?",
+            options: ["Regarder l'orthographe seulement", "'Mais' → remplacer par 'cependant' ; 'mes' → remplacer par 'tes/ses' ; 'met/mets' → changer le temps (mettait)", "Ils sont interchangeables", "Toujours 'mais' en début de phrase"],
+            correct: 1,
+            explanation: "'Mais' = conjonction → remplacer par 'cependant'. 'Mes' = déterminant possessif → remplacer par 'tes/ses'. 'Met/Mets' = verbe mettre conjugué → changer le temps : mettait/mettais. Ex : Il met ses chaussures → il mettait ses chaussures ✓."
+          }
+        ],
+        flashcards: [
+          { front: "A / À", back: "A = verbe avoir (→ avait). À = préposition (→ impossible à remplacer par avait). Ex : Il a faim. Il va à Paris." },
+          { front: "Es / Est / Et / Ai", back: "Es/est = verbe être (→ était/étais). Et = conjonction (→ puis). Ai = verbe avoir 1PS (→ avais). Ex : Il est là. Ton sac et ta trousse. J'ai confiance." },
+          { front: "Ou / Où", back: "Ou = conjonction (→ ou bien). Où = adverbe de lieu (indique un endroit, impossible à remplacer par 'ou bien'). Ex : Chocolat ou fraise ? / Je me demande où il est." },
+          { front: "C'est / S'est / Ces / Ses", back: "C'est → cela est. S'est → se sont. Ces → cette (féminin). Ses → mes/tes. Ex : C'est beau. Il s'est endormi. Ces voitures → cette voiture. Ses clés → mes clés." },
+          { front: "Sont / Son", back: "Sont = verbe être 3PP (→ étaient). Son = déterminant possessif (→ mon/ton). Ex : Ils sont impatients. Elle a fait son travail → mon travail." },
+          { front: "Ont / On", back: "Ont = verbe avoir 3PP (→ avaient). On = pronom (→ il/elle). Ex : Ils ont compris → avaient. On attend le film → il/elle attend." },
+          { front: "Sa / Ça", back: "Sa = déterminant possessif (→ ta/ma). Ça = pronom démonstratif (→ cela). Ex : Elle a sa trousse → ta trousse. J'ai vu ça → cela." },
+          { front: "Se / Ce / Ceux", back: "Se = pronom réfléchi (→ te/me). Ce = déterminant démonstratif (→ ces au pluriel). Ceux = pronom démonstratif masculin pluriel (→ celles). Ex : Il se réveille. Ce vélo → ces vélos. Ceux qui ont fini → celles." },
+          { front: "Leur / Leurs", back: "Devant un verbe : toujours 'leur' (pronom, invariable). Devant un nom : leur + singulier, leurs + pluriel. Ex : Je leur parle. Leur chat. Leurs voisins." },
+          { front: "Mais / Mes / Met-Mets", back: "Mais = conjonction (→ cependant). Mes = déterminant possessif (→ tes/ses). Met/Mets = verbe mettre (→ mettait/mettais). Ex : Il est joyeux mais il ne sourit pas. J'ai mes affaires. Il met des chaussures." }
+        ],
+        summary: `<h2>📖 Les homophones grammaticaux</h2>
+<p style="background:rgba(108,92,231,0.15);border-left:3px solid #6c5ce7;padding:8px 12px;border-radius:4px;margin:10px 0">
+Des mots qui se <strong>prononcent pareil</strong> mais qui ne s'écrivent pas pareil. Astuce : on utilise une <strong>méthode de remplacement</strong>.
+</p>
+<table style="width:100%;border-collapse:collapse;font-size:12px;margin:8px 0">
+<tr style="background:rgba(108,92,231,0.3)"><th style="padding:5px;text-align:left">Homophones</th><th style="padding:5px;text-align:left">Astuce de remplacement</th><th style="padding:5px;text-align:left">Exemple</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>a / à</strong></td><td style="padding:5px">a → avait ✓</td><td style="padding:5px">Il a faim / Il va à Paris</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px"><strong>es/est / et / ai</strong></td><td style="padding:5px">est → était ; et → puis ; ai → avais</td><td style="padding:5px">Il est là. Sac et trousse. J'ai confiance.</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>ou / où</strong></td><td style="padding:5px">ou → ou bien ; où = lieu (≠ ou bien)</td><td style="padding:5px">Chocolat ou fraise ? / Où est-il ?</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px"><strong>c'est/s'est / ces / ses</strong></td><td style="padding:5px">c'est → cela est ; ces → cette ; ses → mes</td><td style="padding:5px">C'est beau. Ces voitures. Ses clés.</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>sont / son</strong></td><td style="padding:5px">sont → étaient ; son → mon/ton</td><td style="padding:5px">Ils sont là. Son travail.</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px"><strong>ont / on</strong></td><td style="padding:5px">ont → avaient ; on → il/elle</td><td style="padding:5px">Ils ont compris. On attend.</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>sa / ça</strong></td><td style="padding:5px">sa → ta/ma ; ça → cela</td><td style="padding:5px">Sa trousse. J'ai vu ça.</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px"><strong>se / ce / ceux</strong></td><td style="padding:5px">se → te/me ; ce → ces ; ceux → celles</td><td style="padding:5px">Il se lève. Ce vélo. Ceux qui finissent.</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>leur / leurs</strong></td><td style="padding:5px">Avant verbe : leur (invariable) ; avant nom : leur+sing., leurs+plur.</td><td style="padding:5px">Je leur parle. Leur chat. Leurs voisins.</td></tr>
+<tr><td style="padding:5px"><strong>mais / mes / met-mets</strong></td><td style="padding:5px">mais → cependant ; mes → tes/ses ; met → mettait</td><td style="padding:5px">Joyeux mais triste. J'ai mes affaires. Il met son manteau.</td></tr>
+</table>`,
+        mindmap: {
+          center: "Homophones",
+          branches: [
+            { label: "Verbes", color: "#e94560", children: ["a → avait", "est/es → était", "ont → avaient", "sont → étaient"] },
+            { label: "Déterminants", color: "#6c5ce7", children: ["sa → ta/ma", "ses → mes", "ces → cette", "son → mon/ton"] },
+            { label: "Pronoms", color: "#0984e3", children: ["ça → cela", "ceux → celles", "se → te/me", "on → il/elle"] },
+            { label: "Invariables", color: "#00b894", children: ["à (prép.)", "où (lieu)", "mais → cependant", "et → puis"] }
+          ]
+        }
+      },
+      {
+        id: "reussir-dictee",
+        group: "Orthographe",
+        title: "Réussir sa dictée",
+        desc: "Méthode en 4 points : ponctuation, accords, verbes, homophones",
+        quiz: [
+          {
+            q: "Combien de points as-tu au départ à une dictée ?",
+            options: ["0", "10", "20", "Ça dépend"],
+            correct: 2,
+            explanation: "Tu pars de 20/20 et des points sont enlevés à chaque erreur. Il faut donc éviter les fautes plutôt que d'essayer d'en gagner !"
+          },
+          {
+            q: "Que signifie 'orthographier' ?",
+            options: ["Écrire vite", "Écrire droit, c'est-à-dire correctement (du grec graphein = écrire, et ortho = droit)", "Dicter", "Corriger"],
+            correct: 1,
+            explanation: "Ortho-graphier = écrire (graphein en grec) droit (ortho en grec). L'orthographe, c'est l'art d'écrire correctement les mots."
+          },
+          {
+            q: "Lors de la relecture, que vérifie-t-on pour la ponctuation ?",
+            options: ["Seulement les virgules", "Les majuscules, les virgules et les points", "Seulement les points", "Le nombre de mots"],
+            correct: 1,
+            explanation: "Pour la ponctuation : j'écoute bien pendant la dictée ET lors de la relecture. Je vérifie les majuscules (début de phrase, noms propres), les virgules et les points."
+          },
+          {
+            q: "Comment accorder correctement les groupes nominaux ?",
+            options: ["En copiant exactement ce qu'on entend", "J'accorde en genre ET en nombre le nom avec son déterminant, et l'adjectif avec le nom", "En mettant toujours le pluriel", "On ne les accorde pas"],
+            correct: 1,
+            explanation: "Deux règles pour les GN : 1) J'accorde le nom avec son déterminant (genre et nombre). 2) J'accorde l'adjectif avec le nom qu'il qualifie (même genre, même nombre)."
+          },
+          {
+            q: "Que faire pour bien conjuguer les verbes en dictée ?",
+            options: ["Mettre toujours le présent", "Trouver le sujet et identifier le temps de conjugaison", "Deviner à l'oreille", "Mettre le premier temps qui vient"],
+            correct: 1,
+            explanation: "Pour les verbes : je me demande QUEL EST LE SUJET et QUEL EST LE TEMPS. Ces deux informations me donnent la terminaison correcte."
+          },
+          {
+            q: "Astuce pour choisir entre 'é' et 'er' à la fin d'un verbe ?",
+            options: ["Mettre toujours 'er'", "Remplacer par un verbe du 3ème groupe : 'vendre'. Si 'vendu' → 'é', si 'vendre' → 'er'", "Mettre 'é' après un auxiliaire", "Choisir selon la sonorité"],
+            correct: 1,
+            explanation: "Astuce : remplacer par un verbe du 3ème groupe. Ex : Il va parler → Il va vendre ✓ → donc 'er'. Il a parlé → Il a vendu ✓ → donc 'é' (participe passé)."
+          },
+          {
+            q: "Que faire si on doute d'un homophone pendant la dictée ?",
+            options: ["Laisser un blanc", "Utiliser la méthode de remplacement apprise dans la fiche outil", "Écrire les deux orthographes", "Demander au professeur"],
+            correct: 1,
+            explanation: "Si j'ai un doute sur un homophone (a/à, son/sont…), j'utilise la méthode de remplacement apprise en cours. Par exemple : est-ce que je peux remplacer par 'avait' ? Si oui → 'a'."
+          },
+          {
+            q: "Dans quel ordre vérifier une dictée lors de la relecture ?",
+            options: ["Verbes d'abord", "Ponctuation → Accords GN → Verbes → Homophones", "Homophones d'abord", "N'importe quel ordre"],
+            correct: 1,
+            explanation: "La fiche méthode propose cet ordre : 1) Ponctuation (majuscules, virgules, points) 2) Accords dans les groupes nominaux 3) Verbes (sujet + temps) 4) Homophones grammaticaux."
+          }
+        ],
+        flashcards: [
+          { front: "Orthographier", back: "Écrire correctement. Du grec : ortho (= droit) + graphein (= écrire). On part de 20/20 et on perd des points à chaque erreur." },
+          { front: "Étape 1 — Ponctuation", back: "Écouter pendant la dictée. À la relecture : vérifier les majuscules, les virgules et les points." },
+          { front: "Étape 2 — Accords GN", back: "Accord du nom avec son déterminant (genre + nombre). Accord de l'adjectif avec le nom qu'il qualifie." },
+          { front: "Étape 3 — Verbes", back: "Se demander : quel est le sujet ? Quel est le temps de conjugaison ? Ces deux réponses donnent la terminaison." },
+          { front: "Astuce é / er", back: "Remplacer par un verbe du 3ème groupe. Aller vendre ✓ → 'er'. A vendu ✓ → 'é'. Ex : Il va parler → il va vendre ✓ donc 'er'. Il a parlé → il a vendu ✓ donc 'é'." },
+          { front: "Étape 4 — Homophones", back: "Si doute, utiliser la méthode de remplacement (fiche outil homophones). Ex : a/à → peut-on remplacer par 'avait' ?" }
+        ],
+        summary: `<h2>📖 Réussir sa dictée</h2>
+<p style="background:rgba(108,92,231,0.15);border-left:3px solid #6c5ce7;padding:8px 12px;border-radius:4px;margin:10px 0">
+<strong>ORTHOGRAPHIER</strong> = écrire droit (ortho) correctement (graphein). Tu pars de <strong>20/20</strong> et perds des points à chaque erreur.
+</p>
+<h3>✅ Les 4 vérifications à faire</h3>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin:8px 0">
+<tr style="background:rgba(108,92,231,0.3)"><th style="padding:5px;text-align:left">Étape</th><th style="padding:5px;text-align:left">Ce qu'il faut faire</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px">✅ <strong>Ponctuation</strong></td><td style="padding:5px">Majuscules, virgules, points — écouter bien pendant la dictée et la relecture</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px">✅ <strong>Accords GN</strong></td><td style="padding:5px">Nom accordé avec déterminant (genre + nombre). Adjectif accordé avec le nom qu'il qualifie.</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px">✅ <strong>Verbes</strong></td><td style="padding:5px">Trouver le sujet + identifier le temps → bonne terminaison. Astuce é/er : remplacer par vendre.</td></tr>
+<tr><td style="padding:5px">✅ <strong>Homophones</strong></td><td style="padding:5px">Utiliser la méthode de remplacement (fiche outil). Ex : a/à → avait ? son/sont → étaient ?</td></tr>
+</table>
+<p style="background:rgba(253,203,110,0.15);border-left:3px solid #fdcb6e;padding:8px 12px;border-radius:4px;margin:10px 0">
+⚠️ Astuce <strong>é / er</strong> : remplacer par un verbe du 3ème groupe. Il va <strong>vendre</strong> ✓ → er. Il a <strong>vendu</strong> ✓ → é.
+</p>`,
+        mindmap: {
+          center: "Dictée 20/20",
+          branches: [
+            { label: "Ponctuation", color: "#6c5ce7", children: ["Majuscules", "Virgules", "Points"] },
+            { label: "Accords GN", color: "#e17055", children: ["Déterminant + nom", "Adjectif + nom"] },
+            { label: "Verbes", color: "#0984e3", children: ["Trouver le sujet", "Identifier le temps", "é vs er (→ vendre)"] },
+            { label: "Homophones", color: "#00b894", children: ["Méthode remplacement", "Fiche outil"] }
+          ]
+        }
+      },
+      {
+        id: "utiliser-citation",
+        group: "Lecture & Écriture",
+        title: "Utiliser une citation",
+        desc: "4 étapes pour intégrer une citation du texte dans une réponse écrite",
+        quiz: [
+          {
+            q: "Qu'est-ce qu'une citation dans une réponse écrite ?",
+            options: ["Une liste de mots", "Un extrait du texte qu'on copie entre guillemets pour justifier sa réponse", "Un résumé du texte", "Une paraphrase"],
+            correct: 1,
+            explanation: "Une citation = on copie des mots EXACTS du texte entre guillemets (« … ») pour justifier ce qu'on dit. C'est la preuve tirée du texte."
+          },
+          {
+            q: "Quelle est la 1ère étape pour utiliser une citation ?",
+            options: ["Copier la première phrase du texte", "Lire la question et chercher dans le texte les mots/expressions qui permettent de répondre", "Écrire la réponse complète d'abord", "Recopier tout le texte"],
+            correct: 1,
+            explanation: "Étape 1 : Je lis bien la question et je recherche dans le texte les mots ou expressions qui me permettent de répondre. Ex : 'À qui l'ainée ressemble-t-elle ?' → chercher dans le texte."
+          },
+          {
+            q: "Que fait-on à l'étape 2 ?",
+            options: ["On intègre la citation", "On répond à la question avec ses propres mots", "On ouvre les guillemets", "On cherche les mots difficiles"],
+            correct: 1,
+            explanation: "Étape 2 : Je réponds à la question avec MES PROPRES MOTS d'abord, avant d'intégrer la citation. Ex : 'L'ainée ressemble à sa mère.'"
+          },
+          {
+            q: "Comment intégrer la citation (étape 3) ?",
+            options: ["On la met entre parenthèses", "On ouvre avec « avant le premier mot, on ferme après le dernier ; on introduit avec 'En effet, l'auteur écrit «…»'", "On la souligne", "On la met en gras"],
+            correct: 1,
+            explanation: "Étape 3 : J'intègre la citation entre guillemets français (« »). J'introduis avec une formule comme 'En effet, l'auteur écrit «…»' ou 'Dans le texte, on peut lire «…»'."
+          },
+          {
+            q: "Que faire si la citation est trop longue (étape 4) ?",
+            options: ["On la laisse telle quelle", "On écrit les premiers mots + '(…)' + les derniers mots, sans oublier les guillemets", "On la résume", "On ne la met pas"],
+            correct: 1,
+            explanation: "Étape 4 : Si la citation est trop longue, on écrit les premiers mots + (…) + les derniers mots. On n'oublie pas les guillemets au début et à la fin."
+          },
+          {
+            q: "Quels signes encadrent une citation en français ?",
+            options: ["Des virgules", "Des guillemets français : « »", "Des parenthèses ( )", "Des tirets —"],
+            correct: 1,
+            explanation: "En français, une citation s'encadre avec des guillemets français : « (avant le premier mot) et » (après le dernier mot). Ce sont des guillemets différents des guillemets anglais."
+          },
+          {
+            q: "Quelle formule peut-on utiliser pour introduire une citation ?",
+            options: ["'Voilà ce qui est écrit :'", "'En effet, l'auteur écrit «…»' ou 'Dans le texte, on peut lire «…»'", "'Par exemple :'", "'On dit que'"],
+            correct: 1,
+            explanation: "On utilise des formules d'introduction comme : 'En effet, l'auteur écrit «…»', 'Dans le texte, on peut lire «…»', 'En effet, dans le texte, l'auteur écrit «…»'."
+          },
+          {
+            q: "Dans une bonne réponse avec citation, quel est l'ordre ?",
+            options: ["Citation → réponse", "Réponse avec mes mots → formule d'intro → citation entre guillemets", "Citation → explication", "Juste la citation suffit"],
+            correct: 1,
+            explanation: "L'ordre : 1) Je réponds avec mes mots. 2) Je cite avec une formule d'intro + guillemets. Ex : 'L'ainée ressemble à sa mère. En effet, dans le texte, l'auteur écrit : «Elles étaient toutes deux si désagréables et si orgueilleuses.»'"
+          }
+        ],
+        flashcards: [
+          { front: "Étape 1 — Chercher", back: "Je lis bien la question et je recherche dans le texte les mots ou expressions qui me permettent de répondre." },
+          { front: "Étape 2 — Répondre avec ses mots", back: "Je réponds à la question avec mes propres mots avant d'intégrer la citation." },
+          { front: "Étape 3 — Intégrer la citation", back: "J'ouvre avec « avant le premier mot, je ferme après le dernier. J'introduis avec : 'En effet, l'auteur écrit «…»'" },
+          { front: "Étape 4 — Citation longue", back: "Si trop longue : j'écris les premiers mots + (…) + les derniers mots. Je n'oublie pas les guillemets." },
+          { front: "Guillemets français", back: "« guillemets d'ouverture et » guillemets de fermeture. Obligatoires pour encadrer une citation." },
+          { front: "Formule d'introduction", back: "'En effet, l'auteur écrit «…»' ou 'Dans le texte, on peut lire «…»'" },
+          { front: "Citation", back: "Mots EXACTS copiés du texte entre guillemets, pour prouver et justifier sa réponse." }
+        ],
+        summary: `<h2>📖 Utiliser une citation</h2>
+<p style="background:rgba(108,92,231,0.15);border-left:3px solid #6c5ce7;padding:8px 12px;border-radius:4px;margin:10px 0">
+Une citation = mots <strong>exacts</strong> du texte copiés entre guillemets (« ») pour <strong>justifier</strong> sa réponse.
+</p>
+<h3>Les 4 étapes</h3>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin:8px 0">
+<tr style="background:rgba(108,92,231,0.3)"><th style="padding:5px;text-align:left">Étape</th><th style="padding:5px;text-align:left">Ce qu'il faut faire</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>1. Chercher</strong></td><td style="padding:5px">Lire la question → chercher dans le texte les mots qui permettent de répondre</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px"><strong>2. Répondre</strong></td><td style="padding:5px">Répondre à la question avec ses <em>propres mots</em></td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>3. Citer</strong></td><td style="padding:5px">Introduire : <em>En effet, l'auteur écrit «…»</em> — ouvrir <strong>«</strong> avant le 1er mot, fermer <strong>»</strong> après le dernier</td></tr>
+<tr><td style="padding:5px"><strong>4. Trop long ?</strong></td><td style="padding:5px">Premiers mots + <strong>(…)</strong> + derniers mots — ne pas oublier les guillemets</td></tr>
+</table>
+<p style="background:rgba(253,203,110,0.15);border-left:3px solid #fdcb6e;padding:8px 12px;border-radius:4px;margin:10px 0">
+<strong>Exemple :</strong> À qui ressemble la sœur ainée ?<br>
+→ L'ainée ressemble à sa mère. En effet, dans le texte, l'auteur écrit : «&nbsp;Elles étaient toutes deux si désagréables et si orgueilleuses.&nbsp;»
+</p>`,
+        mindmap: {
+          center: "Citation",
+          branches: [
+            { label: "4 étapes", color: "#6c5ce7", children: ["1. Chercher dans le texte", "2. Répondre avec ses mots", "3. Citer entre « »", "4. (…) si trop long"] },
+            { label: "Guillemets", color: "#e94560", children: ["« ouvre", "» ferme", "Guillemets français"] },
+            { label: "Formules intro", color: "#0984e3", children: ["En effet, l'auteur écrit «»", "Dans le texte, on lit «»"] },
+            { label: "But", color: "#00b894", children: ["Justifier sa réponse", "Preuve du texte"] }
           ]
         }
       }
@@ -3256,6 +3540,34 @@ const RESOURCES = {
       chapter: "Les classes grammaticales",
       date: "oct. 2026",
       note: "9 classes grammaticales, mots variables/invariables, interjections, onomatopées"
+    },
+    {
+      name: "Fiche outil - Homophones grammaticaux (a/à, est/et, ou/où…)",
+      type: "photo",
+      chapter: "Les homophones grammaticaux",
+      date: "oct. 2026",
+      note: "Fiche complète : homophones de a, est, ou, c'est, sont, ont + méthodes de remplacement"
+    },
+    {
+      name: "Fiche outil - Homophones de sa/se/leur/mais/la",
+      type: "photo",
+      chapter: "Les homophones grammaticaux",
+      date: "oct. 2026",
+      note: "Partie 2 : homophones de sa/ça, se/ce/ceux, leur/leurs, mais/mes/met, la/l'as/là"
+    },
+    {
+      name: "Fiche méthode - Réussir sa dictée",
+      type: "photo",
+      chapter: "Réussir sa dictée",
+      date: "oct. 2026",
+      note: "4 étapes : ponctuation, accords GN, verbes (é/er), homophones — système 20/20"
+    },
+    {
+      name: "Cours - Utiliser une citation (cahier)",
+      type: "photo",
+      chapter: "Utiliser une citation",
+      date: "oct. 2026",
+      note: "4 étapes manuscrites : chercher, répondre, intégrer entre guillemets, (…) si trop long"
     }
   ],
   maths: [
