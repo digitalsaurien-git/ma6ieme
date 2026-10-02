@@ -744,7 +744,7 @@ body {
     <div class="subject-card" data-color="green" onclick="openSubject('maths')">
       <span class="emoji">🔢</span>
       <div class="name">Maths</div>
-      <div class="count">2 chapitres</div>
+      <div class="count">3 chapitres</div>
     </div>
     <div class="subject-card" data-color="orange" onclick="openSubject('arts')">
       <span class="emoji">🎨</span>
@@ -1791,6 +1791,127 @@ Découvert au <strong>Tchad</strong> en 2001, <span class="key-term">Toumaï</sp
             { label: "Rangs", color: "#0984e3", children: ["Dixièmes (0,1)", "Centièmes (0,01)", "Millièmes (0,001)"] },
             { label: "Zéros inutiles", color: "#e94560", children: ["45,60 = 45,6", "5,080 = 5,08", "089 = 89"] },
             { label: "Fractions", color: "#fdcb6e", children: ["2,3 = 23/10", "45,67 = 4567/100", "49/100 = 0,49"] }
+          ]
+        }
+      },
+      {
+        id: "divisions-durees",
+        title: "Divisions, Durées",
+        desc: "Multiples, diviseurs, division euclidienne et décimale",
+        quiz: [
+          {
+            q: "7 est-il un diviseur de 56 ?",
+            options: ["Non, car 56 ÷ 7 n'est pas entier", "Oui, car 56 = 7 × 8", "Non, car 7 < 56", "Oui, car 7 + 8 = 15"],
+            correct: 1,
+            explanation: "7 est diviseur de 56 car 56 ÷ 7 = 8, qui est un nombre entier. On peut écrire : 56 = 7 × 8."
+          },
+          {
+            q: "Combien de diviseurs a le nombre 12 ?",
+            options: ["3 diviseurs", "4 diviseurs", "6 diviseurs", "12 diviseurs"],
+            correct: 2,
+            explanation: "Les diviseurs de 12 sont : 1, 2, 3, 4, 6, 12 → soit 6 diviseurs. Car : 1×12, 2×6, 3×4."
+          },
+          {
+            q: "Lequel de ces nombres est un multiple de 6 ?",
+            options: ["14", "20", "42", "50"],
+            correct: 2,
+            explanation: "42 = 6 × 7, donc 42 est un multiple de 6. Les autres : 14÷6≈2,3 ; 20÷6≈3,3 ; 50÷6≈8,3 → non entiers."
+          },
+          {
+            q: "134 est-il un multiple de 12 ?",
+            options: ["Oui, car 134 est grand", "Non, car 134 ÷ 12 = 11,1… (à virgule)", "Oui, car 12 divise 134", "Non, car 134 est impair"],
+            correct: 1,
+            explanation: "134 ÷ 12 = 11,1… Le quotient n'est pas un entier, donc 134 n'est PAS un multiple de 12."
+          },
+          {
+            q: "0 peut-il être un diviseur ?",
+            options: ["Oui, tout nombre peut être diviseur", "Non, diviser par 0 est impossible", "Oui, mais seulement pour les grands nombres", "Ça dépend du nombre"],
+            correct: 1,
+            explanation: "Remarque du cours : 0 n'est JAMAIS un diviseur car il est impossible de diviser un nombre par 0."
+          },
+          {
+            q: "Dans la division euclidienne 73 ÷ 3, quel est le reste ?",
+            options: ["0", "1", "2", "3"],
+            correct: 1,
+            explanation: "73 = 3 × 24 + 1. Vérification : 3 × 24 = 72, et 73 − 72 = 1. Le reste est 1."
+          },
+          {
+            q: "Dans la division euclidienne 73 ÷ 3, quel est le quotient ?",
+            options: ["11", "20", "24", "25"],
+            correct: 2,
+            explanation: "73 ÷ 3 = 24 reste 1. Car : 3 × 24 = 72, et 72 + 1 = 73. Le quotient entier est 24."
+          },
+          {
+            q: "Qu'est-ce que le dividende dans une division ?",
+            options: ["Le nombre par lequel on divise", "Le résultat de la division", "Le nombre qu'on divise", "Ce qu'il reste après la division"],
+            correct: 2,
+            explanation: "Dans 73 ÷ 3 = 24 reste 1 : 73 est le dividende (le nombre qu'on divise), 3 est le diviseur, 24 est le quotient, 1 est le reste."
+          },
+          {
+            q: "56 est multiple de 7. Quelle autre phrase dit la même chose ?",
+            options: ["7 est multiple de 56", "56 est divisible par 7", "7 est divisible par 56", "56 et 7 sont premiers entre eux"],
+            correct: 1,
+            explanation: "Les trois formulations équivalentes : 7 est diviseur de 56 / 56 est multiple de 7 / 56 est divisible par 7."
+          },
+          {
+            q: "Quels sont les 4 premiers multiples de 5 (en commençant par 0) ?",
+            options: ["1, 5, 10, 15", "0, 5, 10, 15", "5, 10, 15, 20", "5, 15, 25, 35"],
+            correct: 1,
+            explanation: "Les multiples de 5 commencent à 0 : 5×0=0, 5×1=5, 5×2=10, 5×3=15. Donc : 0, 5, 10, 15."
+          }
+        ],
+        flashcards: [
+          { front: "Diviseur", back: "b est un diviseur de a si a ÷ b est un nombre entier. Ex : 7 est diviseur de 56 car 56 ÷ 7 = 8." },
+          { front: "Multiple", back: "a est un multiple de b si on peut écrire a = b × n (n entier). Ex : 56 est multiple de 7 car 56 = 7 × 8." },
+          { front: "Divisible par", back: "56 est divisible par 7 = même chose que dire 7 est diviseur de 56 = 56 est multiple de 7." },
+          { front: "Diviseurs de 12", back: "1, 2, 3, 4, 6, 12. Méthode : chercher les paires → 1×12, 2×6, 3×4." },
+          { front: "Multiples de 6", back: "6, 12, 18, 24, 30, 36, 42, 48, 54, 60… On multiplie 6 par 1, 2, 3, 4…" },
+          { front: "0 n'est pas un diviseur", back: "Impossible de diviser par 0 → 0 n'est jamais un diviseur. Un diviseur ou multiple est toujours un entier." },
+          { front: "Division euclidienne", back: "On pose a ÷ b = q reste r. On écrit : a = b × q + r. Ex : 73 = 3 × 24 + 1." },
+          { front: "Dividende / Diviseur", back: "Dans 73 ÷ 3 : 73 = dividende (le nombre qu'on divise), 3 = diviseur (par quoi on divise)." },
+          { front: "Quotient", back: "Résultat de la division. Ex : 73 ÷ 3 = 24 (quotient entier) avec reste 1." },
+          { front: "Reste", back: "Ce qu'il reste après la division euclidienne. Toujours strictement inférieur au diviseur. Ex : 73 = 3×24+1, reste = 1." }
+        ],
+        summary: `<h2>🔢 Divisions, Durées</h2>
+<h3>Partie 1 — Multiples et diviseurs</h3>
+<ul>
+<li><span class="key-term">Diviseur</span> : b est diviseur de a si a ÷ b est un entier. Ex : 7 est diviseur de 56 car 56 ÷ 7 = 8.</li>
+<li><span class="key-term">Multiple</span> : a est multiple de b si a = b × n. Ex : 56 est multiple de 7 car 56 = 7 × 8.</li>
+<li><strong>3 formulations équivalentes</strong> : « 7 est diviseur de 56 » = « 56 est multiple de 7 » = « 56 est divisible par 7 »</li>
+<li>⚠️ <strong>0 n'est jamais un diviseur</strong> (impossible de diviser par 0)</li>
+<li>Un diviseur ou multiple est toujours un <strong>nombre entier</strong></li>
+</ul>
+<h3>Exemples</h3>
+<ul>
+<li><strong>Diviseurs de 12</strong> : 1, 2, 3, 4, 6, 12 — car 1×12=12, 2×6=12, 3×4=12</li>
+<li><strong>Diviseurs de 24</strong> : 1, 2, 3, 4, 6, 8, 12, 24</li>
+<li><strong>Multiples de 6</strong> : 6, 12, 18, 24, 30, 36, 42, 48, 54, 60…</li>
+<li><strong>134 est-il multiple de 12 ?</strong> → 134 ÷ 12 = 11,1… pas un entier → NON</li>
+</ul>
+<h3>Méthode : trouver des multiples</h3>
+<ul>
+<li>Multiplier le nombre par 0, 1, 2, 3… : multiples de 5 = 0, 5, 10, 15…</li>
+<li>Vérifier si c'est un multiple : faire la division. Si le résultat est entier → oui.</li>
+</ul>
+<h3>Partie 2 — Division euclidienne</h3>
+<ul>
+<li>On pose la division et on écrit : <strong>dividende = diviseur × quotient + reste</strong></li>
+<li>Exemple : 73 ÷ 3 = 24 reste 1, donc <strong>73 = 3 × 24 + 1</strong></li>
+<li>Vocabulaire : <strong>dividende</strong> = ce qu'on divise, <strong>diviseur</strong> = par quoi on divise, <strong>quotient</strong> = résultat, <strong>reste</strong> = ce qui reste</li>
+<li>Le reste est toujours <strong>strictement inférieur</strong> au diviseur</li>
+</ul>
+<h3>Partie 3 — Division décimale</h3>
+<ul>
+<li>On continue la division au-delà du reste (on ajoute une virgule et des zéros)</li>
+<li>Le quotient devient un nombre décimal</li>
+</ul>`,
+        mindmap: {
+          center: "Divisions",
+          branches: [
+            { label: "Multiples", color: "#00b894", children: ["n × 1, n × 2…", "Multiples de 6 : 6,12,18…", "Commencent à 0"] },
+            { label: "Diviseurs", color: "#0984e3", children: ["a ÷ b = entier", "Div. de 12 : 1,2,3,4,6,12", "Chercher par paires"] },
+            { label: "3 formulations", color: "#fdcb6e", children: ["b diviseur de a", "a multiple de b", "a divisible par b"] },
+            { label: "Division euclidienne", color: "#e94560", children: ["a = b×q + r", "Dividende / Diviseur", "Quotient + Reste"] }
           ]
         }
       }
@@ -2870,6 +2991,13 @@ const RESOURCES = {
       chapter: "Nombres décimaux et fractions",
       date: "oct. 2026",
       note: "Partie entière/décimale, rangs après virgule, zéros inutiles, fractions décimales, décomposition"
+    },
+    {
+      name: "Cours - Divisions, Durées (photos cahier)",
+      type: "photo",
+      chapter: "Divisions, Durées",
+      date: "oct. 2026",
+      note: "Partie 1 : multiples/diviseurs, méthode — Partie 2 : division euclidienne (73÷3=24 r.1) — Partie 3 : division décimale"
     }
   ],
   arts: [
