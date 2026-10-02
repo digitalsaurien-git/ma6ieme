@@ -221,6 +221,16 @@ body {
 .chapter-item:active { transform: scale(0.98); }
 .chapter-item .ch-title { font-size: 16px; font-weight: 700; }
 .chapter-item .ch-desc { font-size: 13px; color: var(--text2); margin-top: 4px; }
+.chapter-item--grouped { margin-left: 8px; }
+.chapter-group-header {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.45);
+  padding: 12px 4px 4px;
+  margin-top: 4px;
+}
 
 /* ─── PHOTO MEMO (chapter memos) ─── */
 .chapter-photos {
@@ -677,7 +687,7 @@ body {
     <div class="subject-card" data-color="orange" onclick="openSubject('arts')">
       <span class="emoji">🎨</span>
       <div class="name">Arts</div>
-      <div class="count">2 chapitres</div>
+      <div class="count">1 chapitre</div>
     </div>
     <div class="subject-card" data-color="teal" onclick="openSubject('svt')">
       <span class="emoji">🌿</span>
@@ -1128,6 +1138,7 @@ const DATA = {
     chapters: [
       {
         id: "baba-yaga",
+        group: "Les contes",
         title: "Baba Yaga (conte)",
         desc: "Un conte russe traditionnel : la méchante sorcière Baba Yaga",
         quiz: [
@@ -1205,6 +1216,7 @@ const DATA = {
       },
       {
         id: "vocabulaire-contes",
+        group: "Les contes",
         title: "Vocabulaire des contes",
         desc: "Les mots importants pour comprendre et raconter un conte",
         quiz: [
@@ -1786,6 +1798,48 @@ const DATA = {
             options: ["Parce qu'elle est petite", "Parce qu'elle n'existe pas dans la nature", "Parce qu'elle est laide", "Parce qu'elle est ancienne"],
             correct: 1,
             explanation: "Une créature hybride n'existe pas dans la nature : c'est une création de l'imagination. On mélange des éléments réels pour inventer quelque chose de nouveau."
+          },
+          {
+            q: "Qu'est-ce qu'un collage en arts plastiques ?",
+            options: ["Un dessin au crayon", "Une technique qui consiste à assembler des morceaux d'images ou de matières découpés", "Une sculpture en argile", "Une peinture à l'huile"],
+            correct: 1,
+            explanation: "Le collage est une technique artistique qui consiste à prélever (découper) des éléments et à les assembler pour créer une nouvelle composition."
+          },
+          {
+            q: "Qu'est-ce qu'un photomontage ?",
+            options: ["Une photo prise avec un appareil très cher", "Un montage réalisé à partir de photos découpées et assemblées", "Un album photo", "Une image numérique"],
+            correct: 1,
+            explanation: "Le photomontage = montage de photos. On découpe des photos (ou parties de photos) et on les colle ensemble pour créer une image nouvelle. C'est ce que fait Hannah Höch."
+          },
+          {
+            q: "Qui est Hannah Höch ?",
+            options: ["Une photographe de mode", "Une artiste dadaïste qui a créé des photomontages engagés", "Une sculptrice célèbre", "Une peintre impressionniste"],
+            correct: 1,
+            explanation: "Hannah Höch est une artiste du mouvement Dada. Son œuvre « Cut with the kitchen knife... » (1919) est un photomontage engagé qui mélange des images de personnalités de la société berlinoise."
+          },
+          {
+            q: "En quelle année Hannah Höch a-t-elle créé son photomontage célèbre ?",
+            options: ["1899", "1919", "1945", "1982"],
+            correct: 1,
+            explanation: "Hannah Höch a créé « Cut with the kitchen knife dada... » en 1919, juste après la Première Guerre mondiale. Ce photomontage mesure 144 × 90 cm."
+          },
+          {
+            q: "Qui est Joan Fontcuberta et quelle est sa technique ?",
+            options: ["Un peintre qui peint des fleurs", "Un photographe espagnol qui crée de fausses espèces végétales avec des déchets", "Un sculpteur qui utilise du métal", "Un artiste qui dessine des bandes dessinées"],
+            correct: 1,
+            explanation: "Joan Fontcuberta est un photographe espagnol (série Herbarium, 1982-85). Il photographie des déchets pour créer de fausses espèces végétales, comme une façon ironique de montrer la nature abîmée par l'humain."
+          },
+          {
+            q: "Qu'est-ce qu'une composition en arts plastiques ?",
+            options: ["La façon dont on range les crayons", "L'organisation des éléments dans l'espace de la feuille", "Le titre de l'œuvre", "Le matériel utilisé"],
+            correct: 1,
+            explanation: "La composition = l'organisation des éléments dans l'espace de l'image (feuille, toile…). Comment sont disposés les formes, les couleurs, les images."
+          },
+          {
+            q: "Que signifie « prélever » en arts plastiques ?",
+            options: ["Ranger son matériel", "Découper ou extraire un élément d'une image pour l'utiliser dans sa composition", "Colorier une surface", "Faire un croquis"],
+            correct: 1,
+            explanation: "Prélever = découper ou extraire un élément (une forme, une image) pour l'utiliser dans sa propre composition. C'est la première étape du collage."
           }
         ],
         flashcards: [
@@ -1794,7 +1848,14 @@ const DATA = {
           { front: "Minotaure", back: "Créature de la mythologie grecque : corps d'homme, tête de taureau." },
           { front: "Sphinx", back: "Créature mythologique : corps de lion, tête humaine, ailes d'aigle." },
           { front: "Sirène", back: "Créature mythologique : buste de femme, queue de poisson." },
-          { front: "Collage", back: "Technique artistique qui consiste à assembler des morceaux d'images découpés." }
+          { front: "Collage", back: "Technique artistique consistant à assembler des morceaux d'images ou de matières découpés et collés." },
+          { front: "Prélever", back: "Découper ou extraire un élément d'une image ou d'un document pour l'utiliser dans une composition." },
+          { front: "Montage", back: "Assembler, organiser des éléments prélevés pour créer une nouvelle image." },
+          { front: "Composition", back: "L'organisation des éléments dans l'espace de la feuille. Comment l'artiste arrange ce qu'il y a dans l'image." },
+          { front: "Photomontage", back: "Technique artistique qui consiste à assembler des photos ou parties de photos découpées." },
+          { front: "Hannah Höch", back: "Artiste dadaïste (1889-1978). Célèbre pour ses photomontages politiques. Œuvre : « Cut with the kitchen knife… » (1919, 144×90 cm)." },
+          { front: "Joan Fontcuberta", back: "Photographe espagnol contemporain. Série Herbarium (1982-85) : photographie de déchets qui ressemblent à des plantes — regard ironique sur la nature." },
+          { front: "Dadaïsme", back: "Mouvement artistique du début du 20e siècle. Art provocateur, mélange d'humour et de critique sociale." }
         ],
         summary: `<h2>🎨 La créature hybride</h2>
 <h3>Définition</h3>
@@ -1811,112 +1872,7 @@ const DATA = {
 <li><strong>Griffon</strong> : corps de lion + tête et ailes d'aigle</li>
 <li><strong>Centaure</strong> : buste d'homme + corps de cheval</li>
 </ul>
-<h3>Le projet</h3>
-<ul>
-<li>Créer sa propre créature hybride en mélangeant au moins <strong>2 animaux différents</strong></li>
-<li>Techniques possibles : <strong>collage</strong>, dessin, peinture</li>
-<li>Le résultat doit être cohérent : on doit pouvoir imaginer que cette créature vit quelque part</li>
-</ul>`,
-        mindmap: {
-          center: "Créature hybride",
-          branches: [
-            { label: "Exemples", color: "#e17055", children: ["Minotaure", "Sphinx", "Sirène", "Griffon"] },
-            { label: "Techniques", color: "#0984e3", children: ["Collage", "Dessin", "Peinture"] },
-            { label: "Principes", color: "#00b894", children: ["Mélange", "Imagination", "Cohérence"] },
-            { label: "Éléments", color: "#fdcb6e", children: ["Tête", "Corps", "Membres", "Ailes / Queue"] }
-          ]
-        }
-      },
-      {
-        id: "collage-photomontage",
-        title: "Le collage et le photomontage",
-        desc: "Créer une composition en découpant et assemblant des images — Hannah Höch et Joan Fontcuberta",
-        quiz: [
-          {
-            q: "Qu'est-ce qu'un collage en arts plastiques ?",
-            options: [
-              "Un dessin au crayon",
-              "Une technique qui consiste à assembler des morceaux d'images ou de matières découpés",
-              "Une sculpture en argile",
-              "Une peinture à l'huile"
-            ],
-            correct: 1,
-            explanation: "Le collage est une technique artistique qui consiste à prélever (découper) des éléments et à les assembler pour créer une nouvelle composition."
-          },
-          {
-            q: "Qu'est-ce qu'un photomontage ?",
-            options: [
-              "Une photo prise avec un appareil très cher",
-              "Un montage réalisé à partir de photos découpées et assemblées",
-              "Un album photo",
-              "Une image numérique"
-            ],
-            correct: 1,
-            explanation: "Le photomontage = montage de photos. On découpe des photos (ou parties de photos) et on les colle ensemble pour créer une image nouvelle. C'est ce que fait Hannah Höch."
-          },
-          {
-            q: "Qui est Hannah Höch ?",
-            options: [
-              "Une photographe de mode",
-              "Une artiste dadaïste qui a créé des photomontages engagés",
-              "Une sculptrice célèbre",
-              "Une peintre impressionniste"
-            ],
-            correct: 1,
-            explanation: "Hannah Höch est une artiste du mouvement Dada. Son œuvre « Cut with the kitchen knife... » (1919) est un photomontage engagé qui mélange des images de personnalités de la société berlinoise."
-          },
-          {
-            q: "En quelle année Hannah Höch a-t-elle créé son photomontage célèbre ?",
-            options: ["1899", "1919", "1945", "1982"],
-            correct: 1,
-            explanation: "Hannah Höch a créé « Cut with the kitchen knife dada... » en 1919, juste après la Première Guerre mondiale. Ce photomontage mesure 144 × 90 cm."
-          },
-          {
-            q: "Que représente l'œuvre de Hannah Höch ?",
-            options: [
-              "Des paysages naturels",
-              "Des personnalités politiques, scientifiques et artistes dans un chaos tourbillonnant",
-              "Des animaux fantastiques",
-              "Des formes géométriques"
-            ],
-            correct: 1,
-            explanation: "L'œuvre rassemble des personnalités (hommes politiques, artistes, dadaïstes) avec des machines (roues, locomotives), créant une image de la société berlinoise après la guerre."
-          },
-          {
-            q: "Qui est Joan Fontcuberta et quelle est sa technique ?",
-            options: [
-              "Un peintre qui peint des fleurs",
-              "Un photographe espagnol qui crée de fausses espèces végétales avec des déchets",
-              "Un sculpteur qui utilise du métal",
-              "Un artiste qui dessine des bandes dessinées"
-            ],
-            correct: 1,
-            explanation: "Joan Fontcuberta est un photographe espagnol (série Herbarium, 1982-85). Il photographie des déchets pour créer de fausses espèces végétales, comme une façon ironique de montrer la nature abîmée par l'humain."
-          },
-          {
-            q: "Qu'est-ce qu'une composition en arts plastiques ?",
-            options: [
-              "La façon dont on range les crayons",
-              "L'organisation des éléments dans l'espace de la feuille",
-              "Le titre de l'œuvre",
-              "Le matériel utilisé"
-            ],
-            correct: 1,
-            explanation: "La composition = l'organisation des éléments dans l'espace de l'image (feuille, toile…). Comment sont disposés les formes, les couleurs, les images."
-          }
-        ],
-        flashcards: [
-          { front: "Collage", back: "Technique artistique consistant à assembler des morceaux d'images ou de matières découpés et collés." },
-          { front: "Prélever", back: "Découper ou extraire un élément d'une image ou d'un document pour l'utiliser dans une composition." },
-          { front: "Montage", back: "Assembler, organiser des éléments prélevés pour créer une nouvelle image." },
-          { front: "Composition", back: "L'organisation des éléments dans l'espace de la feuille. Comment l'artiste arrange ce qu'il y a dans l'image." },
-          { front: "Photomontage", back: "Technique artistique qui consiste à assembler des photos ou parties de photos découpées." },
-          { front: "Hannah Höch", back: "Artiste dadaïste (1889-1978). Célèbre pour ses photomontages politiques. Œuvre : « Cut with the kitchen knife… » (1919, 144×90 cm)." },
-          { front: "Joan Fontcuberta", back: "Photographe espagnol contemporain. Série Herbarium (1982-85) : photographie de déchets qui ressemblent à des plantes — regard ironique sur la nature." },
-          { front: "Dadaïsme", back: "Mouvement artistique du début du 20e siècle. Art provocateur, mélange d'humour et de critique sociale." }
-        ],
-        summary: `<h2>🎨 Le collage et le photomontage</h2>
-<h3>Le vocabulaire clé</h3>
+<h3>Le vocabulaire du collage</h3>
 <ul>
 <li><span class="key-term">Collage</span> = assembler des morceaux d'images/matières découpés</li>
 <li><span class="key-term">Prélever</span> = découper un élément pour l'utiliser</li>
@@ -1937,21 +1893,22 @@ const DATA = {
 <li>Série <em>Herbarium</em> : photographie des <strong>déchets</strong> qui ressemblent à des plantes</li>
 <li>Regard <strong>ironique</strong> sur la nature abîmée par l'Homme</li>
 </ul>
-<h3>Le projet : Créature hybride</h3>
+<h3>Le projet</h3>
 <ul>
-<li>Créer une créature unique avec des images imprimées, ciseaux et colle</li>
-<li>Technique = <strong>collage</strong> uniquement</li>
+<li>Créer sa propre créature hybride en mélangeant au moins <strong>2 animaux différents</strong></li>
+<li>Technique = <strong>collage</strong> : images imprimées, ciseaux, colle</li>
+<li>Le résultat doit être cohérent : on doit pouvoir imaginer que cette créature vit quelque part</li>
 </ul>`,
         mindmap: {
-          center: "Collage & Montage",
+          center: "Créature hybride",
           branches: [
-            { label: "Techniques", color: "#e17055", children: ["Collage", "Prélever", "Montage", "Composition"] },
-            { label: "Hannah Höch", color: "#e94560", children: ["Dada 1919", "Photomontage", "Critique sociale"] },
-            { label: "Joan Fontcuberta", color: "#6c5ce7", children: ["Herbarium 1982", "Déchets → plantes", "Regard ironique"] },
-            { label: "Notre projet", color: "#fdcb6e", children: ["Images imprimées", "Ciseaux + colle", "Créature unique"] }
+            { label: "Exemples mytho", color: "#e17055", children: ["Minotaure", "Sphinx", "Sirène", "Griffon"] },
+            { label: "Vocabulaire", color: "#0984e3", children: ["Collage", "Prélever", "Montage", "Composition"] },
+            { label: "Références", color: "#e94560", children: ["Hannah Höch 1919", "Joan Fontcuberta 1982", "Dadaïsme"] },
+            { label: "Notre projet", color: "#fdcb6e", children: ["Images imprimées", "Ciseaux + colle", "2 animaux min."] }
           ]
         }
-      }
+      },
     ]
   },
 
@@ -2148,7 +2105,7 @@ const DATA = {
           { front: "Éventer", back: "Technique pour sentir un produit chimique : agiter la main au-dessus du flacon pour amener les vapeurs vers le nez." },
           { front: "3 étapes au laboratoire", back: "1. Se préparer (blouse, lunettes, gants, cheveux attachés) → 2. Réaliser la manipulation → 3. Quitter son poste (ranger, nettoyer, éliminer les déchets)." }
         ],
-        summary: `<h2>🔬 Sécurité au laboratoire</h2>
+        summary: `<h2>⚗️ Sécurité au laboratoire</h2>
 <h3>Les 3 étapes d'une séance</h3>
 <ol>
 <li><strong>Se préparer à son poste</strong> : entrer calmement, blouse 100% coton + lunettes + gants + cheveux attachés, ne toucher aucun flacon sans consignes</li>
@@ -2156,18 +2113,62 @@ const DATA = {
 <li><strong>Quitter son poste</strong> : ranger et nettoyer la paillasse, éliminer les déchets selon les consignes du prof, laver la verrerie</li>
 </ol>
 <h3>Les 9 pictogrammes de danger (GHS)</h3>
-<table style="width:100%;border-collapse:collapse;font-size:12px;margin:8px 0">
-<tr style="background:rgba(233,69,96,0.3)"><th style="padding:4px;text-align:left">Symbole</th><th style="padding:4px;text-align:left">Nom</th><th style="padding:4px;text-align:left">Danger</th><th style="padding:4px;text-align:left">Prudence</th></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:4px">💥</td><td style="padding:4px"><strong>Explosif</strong></td><td style="padding:4px">Choc ou chaleur → explosion</td><td style="padding:4px">Ventiler, pas de source de chaleur</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:4px">🔥</td><td style="padding:4px"><strong>Inflammable</strong></td><td style="padding:4px">Brûle facilement</td><td style="padding:4px">Éloigner flammes et chaleur</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:4px">⭕</td><td style="padding:4px"><strong>Comburant</strong></td><td style="padding:4px">Facilite la combustion</td><td style="padding:4px">Éloigner flammes et chaleur</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:4px">🫧</td><td style="padding:4px"><strong>Gaz sous pression</strong></td><td style="padding:4px">Explose sous la chaleur</td><td style="padding:4px">Éloigner sources de chaleur</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:4px">🧪</td><td style="padding:4px"><strong>Corrosif</strong></td><td style="padding:4px">Brûle peau, yeux, matériaux</td><td style="padding:4px">Éviter tout contact</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:4px">☠️</td><td style="padding:4px"><strong>Toxique</strong></td><td style="padding:4px">Empoisonne, peut tuer</td><td style="padding:4px">Protections adéquates</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:4px">⚠️</td><td style="padding:4px"><strong>Nocif/irritant</strong></td><td style="padding:4px">Nuit à la santé ou irrite</td><td style="padding:4px">Protections adéquates</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:4px">🏥</td><td style="padding:4px"><strong>Danger santé</strong></td><td style="padding:4px">Nuit gravement à long terme</td><td style="padding:4px">Protections adéquates</td></tr>
-<tr><td style="padding:4px">🐟</td><td style="padding:4px"><strong>Env. aquatique</strong></td><td style="padding:4px">Pollue l'eau et la nature</td><td style="padding:4px">Ne pas rejeter dans la nature</td></tr>
-</table>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0">
+<div style="background:rgba(233,69,96,0.12);border:2px solid rgba(233,69,96,0.4);border-radius:10px;padding:8px;text-align:center">
+  <div style="font-size:32px;line-height:1.1">💥</div>
+  <div style="font-weight:700;font-size:13px;margin:3px 0">Explosif</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.7)">Choc → explosion</div>
+  <div style="font-size:10px;color:rgba(255,165,0,0.9);margin-top:2px">⚡ Pas de choc ni chaleur</div>
+</div>
+<div style="background:rgba(255,100,0,0.12);border:2px solid rgba(255,100,0,0.4);border-radius:10px;padding:8px;text-align:center">
+  <div style="font-size:32px;line-height:1.1">🔥</div>
+  <div style="font-weight:700;font-size:13px;margin:3px 0">Inflammable</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.7)">Brûle facilement</div>
+  <div style="font-size:10px;color:rgba(255,165,0,0.9);margin-top:2px">⚡ Éloigner flammes</div>
+</div>
+<div style="background:rgba(255,200,0,0.12);border:2px solid rgba(255,200,0,0.4);border-radius:10px;padding:8px;text-align:center">
+  <div style="font-size:32px;line-height:1.1">🔆</div>
+  <div style="font-weight:700;font-size:13px;margin:3px 0">Comburant</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.7)">Favorise la combustion</div>
+  <div style="font-size:10px;color:rgba(255,165,0,0.9);margin-top:2px">⚡ Éloigner matériaux inflammables</div>
+</div>
+<div style="background:rgba(100,180,255,0.12);border:2px solid rgba(100,180,255,0.4);border-radius:10px;padding:8px;text-align:center">
+  <div style="font-size:32px;line-height:1.1">🫙</div>
+  <div style="font-weight:700;font-size:13px;margin:3px 0">Gaz sous pression</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.7)">Explose sous la chaleur</div>
+  <div style="font-size:10px;color:rgba(255,165,0,0.9);margin-top:2px">⚡ Pas de source de chaleur</div>
+</div>
+<div style="background:rgba(200,50,50,0.12);border:2px solid rgba(200,50,50,0.4);border-radius:10px;padding:8px;text-align:center">
+  <div style="font-size:32px;line-height:1.1">🧪</div>
+  <div style="font-weight:700;font-size:13px;margin:3px 0">Corrosif</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.7)">Brûle peau et yeux</div>
+  <div style="font-size:10px;color:rgba(255,165,0,0.9);margin-top:2px">⚡ Éviter tout contact</div>
+</div>
+<div style="background:rgba(180,0,180,0.12);border:2px solid rgba(180,0,180,0.4);border-radius:10px;padding:8px;text-align:center">
+  <div style="font-size:32px;line-height:1.1">☠️</div>
+  <div style="font-weight:700;font-size:13px;margin:3px 0">Toxique</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.7)">Empoisonne, peut tuer</div>
+  <div style="font-size:10px;color:rgba(255,165,0,0.9);margin-top:2px">⚡ Protections obligatoires</div>
+</div>
+<div style="background:rgba(255,165,0,0.12);border:2px solid rgba(255,165,0,0.4);border-radius:10px;padding:8px;text-align:center">
+  <div style="font-size:32px;line-height:1.1">⚠️</div>
+  <div style="font-weight:700;font-size:13px;margin:3px 0">Nocif / Irritant</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.7)">Irrite ou nuit à la santé</div>
+  <div style="font-size:10px;color:rgba(255,165,0,0.9);margin-top:2px">⚡ Porter des protections</div>
+</div>
+<div style="background:rgba(0,150,100,0.12);border:2px solid rgba(0,150,100,0.4);border-radius:10px;padding:8px;text-align:center">
+  <div style="font-size:32px;line-height:1.1">🫀</div>
+  <div style="font-weight:700;font-size:13px;margin:3px 0">Danger santé</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.7)">Nuit gravement à long terme</div>
+  <div style="font-size:10px;color:rgba(255,165,0,0.9);margin-top:2px">⚡ Portez des protections</div>
+</div>
+<div style="background:rgba(0,100,200,0.12);border:2px solid rgba(0,100,200,0.4);border-radius:10px;padding:8px;text-align:center">
+  <div style="font-size:32px;line-height:1.1">🐟</div>
+  <div style="font-weight:700;font-size:13px;margin:3px 0">Env. aquatique</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.7)">Pollue l'eau et la nature</div>
+  <div style="font-size:10px;color:rgba(255,165,0,0.9);margin-top:2px">⚡ Ne pas rejeter dans la nature</div>
+</div>
+</div>
 <h3>En cas d'accident</h3>
 <ul>
 <li>Projection dans les yeux → <strong>rincer à l'eau 15 minutes</strong></li>
@@ -2491,9 +2492,19 @@ function openSubject(subjectId, isBack) {
 
   const list = document.getElementById('chapterList');
   list.innerHTML = '';
+  let lastGroup = null;
   subj.chapters.forEach(ch => {
+    if (ch.group && ch.group !== lastGroup) {
+      lastGroup = ch.group;
+      const header = document.createElement('div');
+      header.className = 'chapter-group-header';
+      header.textContent = ch.group;
+      list.appendChild(header);
+    } else if (!ch.group) {
+      lastGroup = null;
+    }
     const div = document.createElement('div');
-    div.className = 'chapter-item';
+    div.className = 'chapter-item' + (ch.group ? ' chapter-item--grouped' : '');
     div.style.borderLeftColor = subj.color;
     div.innerHTML = `<div class="ch-title">${ch.title}</div><div class="ch-desc">${ch.desc}</div>`;
     div.onclick = () => openChapter(subjectId, ch.id);
@@ -2996,6 +3007,13 @@ const RESOURCES = {
       chapter: "Le collage et le photomontage",
       date: "oct. 2026",
       note: "Collage, montage, composition, prélever, Hannah Höch 1919, Joan Fontcuberta 1982"
+    },
+    {
+      name: "Fiche vocabulaire - Collage et photomontage",
+      type: "pdf",
+      chapter: "La créature hybride",
+      date: "oct. 2026",
+      note: "Vocabulaire technique : collage, prélever, montage, composition — Hannah Höch (Cut with the kitchen knife, 1919) — Joan Fontcuberta (Herbarium, 1982-85)"
     }
   ],
   svt: [
