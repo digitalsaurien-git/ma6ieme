@@ -599,6 +599,81 @@ body {
   color: var(--text2); font-size: 15px;
 }
 .empty-devoirs .big { font-size: 48px; margin-bottom: 12px; }
+/* ─── AIDE OVERLAY ─── */
+.aide-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);
+  display: none; align-items: flex-end; justify-content: center;
+}
+.aide-overlay.visible { display: flex; }
+.aide-panel {
+  background: linear-gradient(160deg, #1e1e3f, #16213e);
+  border-radius: 24px 24px 0 0;
+  width: 100%; max-width: 500px;
+  max-height: 88vh; overflow-y: auto;
+  padding: 20px 20px 32px;
+  border-top: 2px solid rgba(108,92,231,0.5);
+}
+.aide-panel-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 16px;
+}
+.aide-panel-header h3 { font-size: 16px; font-weight: 700; color: var(--purple); }
+.aide-panel-close {
+  background: rgba(255,255,255,0.1); border: none; color: var(--text);
+  width: 32px; height: 32px; border-radius: 50%; font-size: 14px; cursor: pointer;
+}
+.aide-exo-box {
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 12px; padding: 14px; margin-bottom: 14px;
+}
+.aide-exo-box .exo-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--text2); margin-bottom: 6px;
+}
+.aide-exo-box .exo-text {
+  font-size: 14px; line-height: 1.6; color: var(--text);
+}
+.aide-exo-box .exo-text .exo-math {
+  font-weight: 700; color: var(--yellow); font-size: 15px;
+}
+.aide-section-title {
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--text2);
+  margin: 14px 0 8px; padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.aide-explication {
+  background: rgba(108,92,231,0.1);
+  border: 1.5px solid rgba(108,92,231,0.3);
+  border-radius: 12px; padding: 14px; margin-bottom: 10px;
+  font-size: 14px; line-height: 1.6;
+}
+.aide-indice {
+  background: rgba(253,203,110,0.08);
+  border: 1.5px solid rgba(253,203,110,0.25);
+  border-radius: 12px; padding: 12px; margin-bottom: 8px;
+  cursor: pointer;
+}
+.aide-indice-header {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 13px; font-weight: 700; color: var(--yellow);
+}
+.aide-indice-body {
+  font-size: 13px; line-height: 1.6; color: var(--text);
+  margin-top: 8px; display: none;
+}
+.aide-indice.open .aide-indice-body { display: block; }
+.aide-indice-header .toggle-icon { transition: transform 0.2s; }
+.aide-indice.open .toggle-icon { transform: rotate(90deg); }
+.btn-devoir-aide {
+  padding: 5px 10px;
+  background: rgba(108,92,231,0.15);
+  border: 1px solid rgba(108,92,231,0.4); color: var(--purple);
+  border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;
+}
+.btn-devoir-aide:active { opacity: 0.8; }
 
 /* ─── PHOTO VIEWER OVERLAY ─── */
 .photo-overlay {
@@ -823,6 +898,17 @@ body {
   <button class="photo-overlay-close" onclick="closePhotoOverlay()">✕</button>
   <img id="photoOverlayImg" src="" alt="Photo de révision">
   <button class="photo-overlay-del" id="photoOverlayDel" onclick="deletePhoto()">🗑️ Supprimer cette photo</button>
+</div>
+
+<!-- ─── AIDE SESAMATH OVERLAY ─── -->
+<div class="aide-overlay" id="aideOverlay" onclick="closeAideIfBg(event)">
+  <div class="aide-panel" id="aidePanel">
+    <div class="aide-panel-header">
+      <h3>🤔 J'ai pas compris…</h3>
+      <button class="aide-panel-close" onclick="closeAide()">✕</button>
+    </div>
+    <div id="aidePanelBody"></div>
+  </div>
 </div>
 
 <script>
@@ -2332,6 +2418,136 @@ function savePhotos(subjectId, chapterId, arr) {
 }
 
 // ══════════════════════════════════════════════════
+//  SÉSAMATH — EXERCICES ET AIDE
+// ══════════════════════════════════════════════════
+const SESAMATH = {
+  // Clé : "ex.N p.P" — numéro d'exercice + page du cahier Sésamath 6e
+  "ex.53 p.26": {
+    matiere: "Maths",
+    theme: "Division — ordre de grandeur",
+    serie: "N1 Série 4 — Opérations sur les nombres",
+    enonce: "Après avoir calculé un <strong>ordre de grandeur</strong> du résultat, pose et effectue chaque calcul.",
+    questions: [
+      "a. 2 725 ÷ 13 ≈ ………",
+      "b. 4 550 ÷ 25 ≈ ………"
+    ],
+    explication: `Pour faire une division, on suit deux étapes :<br>
+<strong>Étape 1 — L'ordre de grandeur</strong> : on arrondit les deux nombres pour avoir une idée du résultat avant même de calculer. Par exemple, 2 725 c'est à peu près 2 700, et 13 c'est à peu près 10. Donc 2 725 ÷ 13 ≈ 2 700 ÷ 10 = 270. C'est notre "ordre de grandeur", notre estimation.<br><br>
+<strong>Étape 2 — La vraie division posée</strong> : on pose la division en colonne comme d'habitude et on calcule le résultat exact.`,
+    indices: [
+      {
+        titre: "💡 Indice 1 — C'est quoi un ordre de grandeur ?",
+        texte: `Un ordre de grandeur, c'est juste une estimation rapide. On arrondit les chiffres pour que ce soit plus facile.<br>
+Par exemple : 2 725 → on peut arrondir à 2 700 ou même 3 000.<br>
+13 → on peut arrondir à 10.<br>
+Donc <strong>2 725 ÷ 13 ≈ 2 700 ÷ 10 = 270</strong>. Tu sais maintenant que la vraie réponse sera proche de 270 !`
+      },
+      {
+        titre: "💡 Indice 2 — Comment poser la division ?",
+        texte: `Pour <strong>2 725 ÷ 13</strong>, on pose comme ça :<br>
+• On regarde les premiers chiffres de 2 725 : "27". Combien de fois 13 rentre dans 27 ? → 2 fois (car 2 × 13 = 26).<br>
+• On note 2, on fait 27 − 26 = 1, on descend le chiffre suivant (2) → on a 12.<br>
+• Combien de fois 13 rentre dans 12 ? → 0 fois ! On descend le 5 → on a 125.<br>
+• Combien de fois 13 rentre dans 125 ? → 9 fois (car 9 × 13 = 117).<br>
+• 125 − 117 = 8. Reste = 8.<br>
+Résultat : <strong>2 725 ÷ 13 = 209 reste 8</strong>`
+      },
+      {
+        titre: "💡 Indice 3 — Le calcul de b. (4 550 ÷ 25)",
+        texte: `Pour estimer : 4 550 ≈ 4 500 et 25 ≈ 25. Donc 4 500 ÷ 25 = 180. L'ordre de grandeur est <strong>180</strong>.<br><br>
+Pour la vraie division :<br>
+• 25 rentre dans 45 → 1 fois (1 × 25 = 25). Reste : 45 − 25 = 20.<br>
+• On descend le 5 → 205. 25 rentre dans 205 → 8 fois (8 × 25 = 200). Reste : 5.<br>
+• On descend le 0 → 50. 25 rentre dans 50 → 2 fois (2 × 25 = 50). Reste : 0.<br>
+Résultat : <strong>4 550 ÷ 25 = 182</strong>`
+      }
+    ]
+  }
+};
+
+// Cherche un exercice Sésamath par une référence textuelle (ex: "exercice 53 page 26")
+function findSesamath(noteText) {
+  if (!noteText) return null;
+  const lower = noteText.toLowerCase();
+  // Test direct sur les clés connues
+  for (const key in SESAMATH) {
+    const parts = key.match(/ex\.(\d+) p\.(\d+)/);
+    if (!parts) continue;
+    const num = parts[1], page = parts[2];
+    if (lower.includes('ex') && lower.includes(num) && lower.includes(page)) {
+      return { key, data: SESAMATH[key] };
+    }
+  }
+  return null;
+}
+
+function openAide(index) {
+  const devoirs = loadDevoirs();
+  const d = devoirs[index];
+  const body = document.getElementById('aidePanelBody');
+  const found = findSesamath((d.note || '') + ' ' + (d.title || ''));
+
+  if (found) {
+    const ex = found.data;
+    const questionsHtml = ex.questions.map(q =>
+      `<div class="exo-math">${q}</div>`
+    ).join('');
+    const indicesHtml = ex.indices.map((ind, i) => `
+      <div class="aide-indice" id="indice${i}" onclick="toggleIndice(${i})">
+        <div class="aide-indice-header">
+          ${ind.titre}
+          <span class="toggle-icon">▶</span>
+        </div>
+        <div class="aide-indice-body">${ind.texte}</div>
+      </div>`).join('');
+
+    body.innerHTML = `
+      <div class="aide-exo-box">
+        <div class="exo-label">📘 ${ex.serie}</div>
+        <div class="exo-text">
+          <div style="margin-bottom:8px">${ex.enonce}</div>
+          ${questionsHtml}
+        </div>
+      </div>
+      <div class="aide-section-title">🗣️ Explication simple</div>
+      <div class="aide-explication">${ex.explication}</div>
+      <div class="aide-section-title">🧩 Indices (clique pour révéler)</div>
+      ${indicesHtml}
+    `;
+  } else {
+    // Pas d'exercice Sésamath reconnu — aide générale
+    body.innerHTML = `
+      <div class="aide-explication" style="margin-bottom:12px">
+        📚 <strong>${d.title}</strong><br>
+        <span style="color:var(--text2);font-size:13px">${d.subject}</span>
+      </div>
+      <div style="background:rgba(253,203,110,0.08);border:1.5px solid rgba(253,203,110,0.2);border-radius:12px;padding:14px;font-size:14px;line-height:1.7">
+        💡 Pour ce devoir, demande à ton prof ou regarde le cours dans l'app !<br><br>
+        👉 <strong>Va dans la matière "${d.subject}"</strong> et cherche le chapitre qui correspond.
+      </div>
+      <div style="margin-top:14px;font-size:12px;color:var(--text2)">
+        Astuce : si tu as une référence du style "exercice 53 page 26", note-la dans le champ "Note" du devoir et l'app trouvera l'aide automatiquement !
+      </div>
+    `;
+  }
+
+  document.getElementById('aideOverlay').classList.add('visible');
+}
+
+function closeAide() {
+  document.getElementById('aideOverlay').classList.remove('visible');
+}
+
+function closeAideIfBg(e) {
+  if (e.target === document.getElementById('aideOverlay')) closeAide();
+}
+
+function toggleIndice(i) {
+  const el = document.getElementById('indice' + i);
+  el.classList.toggle('open');
+}
+
+// ══════════════════════════════════════════════════
 //  DEVOIRS STORAGE (localStorage)
 // ══════════════════════════════════════════════════
 function loadDevoirs() {
@@ -2406,6 +2622,7 @@ function renderDevoirs() {
         <div class="di-date">📅 ${dateLabel}</div>
         <div class="devoir-actions">
           ${!d.done ? `<button class="btn-devoir-done" onclick="markDone(${i})">✓ Fait !</button>` : ''}
+          ${d.subject === 'Maths' ? `<button class="btn-devoir-aide" onclick="openAide(${i})">🤔 J'ai pas compris</button>` : ''}
           <button class="btn-devoir-delete" onclick="deleteDevoir(${i})">✕ Supprimer</button>
         </div>
       </div>
