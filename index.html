@@ -786,7 +786,7 @@ body {
     <div class="subject-card" data-color="pink" onclick="openSubject('anglais')">
       <span class="emoji">🇬🇧</span>
       <div class="name">Anglais</div>
-      <div class="count">1 chapitre</div>
+      <div class="count">2 chapitres</div>
     </div>
   </div>
 </div>
@@ -2492,113 +2492,251 @@ Découvert au <strong>Tchad</strong> en 2001, <span class="key-term">Toumaï</sp
       {
         id: "we-love-animals",
         title: "We love animals",
-        desc: "Les animaux de compagnie, he/she, se présenter avec son animal",
+        desc: "Animaux, couleurs, article an/a, 'I can see…', he/she, se présenter",
         quiz: [
           {
-            q: "How do you say 'chien' in English?",
-            options: ["Cat", "Dog", "Pig", "Rabbit"],
+            q: "How do you say 'requin' in English?",
+            options: ["Wolf", "Shark", "Tiger", "Lion"],
             correct: 1,
-            explanation: "Dog = chien. In the lesson, Randy is a dog. 🐕"
+            explanation: "Shark = requin 🦈. Les autres : wolf = loup, tiger = tigre, lion = lion."
           },
           {
-            q: "Randy is a dog. Randy is male. Which pronoun do you use?",
+            q: "Which article do you use before 'orange tiger'?",
+            options: ["A orange tiger", "An orange tiger", "The orange tiger", "One orange tiger"],
+            correct: 1,
+            explanation: "'AN' est utilisé devant un mot qui commence par une voyelle (a, e, i, o, u). 'Orange' commence par 'o' → an orange tiger. ✅"
+          },
+          {
+            q: "Which article do you use before 'grey rabbit'?",
+            options: ["An grey rabbit", "A grey rabbit", "The grey rabbit", "One grey rabbit"],
+            correct: 1,
+            explanation: "'A' est utilisé devant un mot qui commence par une consonne. 'Grey' commence par 'g' → a grey rabbit. ✅"
+          },
+          {
+            q: "How do you say 'loup' in English?",
+            options: ["Fox", "Wolf", "Bear", "Lion"],
+            correct: 1,
+            explanation: "Wolf = loup 🐺. Fox = renard, bear = ours, lion = lion."
+          },
+          {
+            q: "Complete: 'I can see… ___ elephant.'",
+            options: ["a", "an", "the", "one"],
+            correct: 1,
+            explanation: "'AN' avant une voyelle : 'elephant' commence par 'e' → I can see an elephant. 🐘"
+          },
+          {
+            q: "How do you say 'paresseux' in English?",
+            options: ["Gorilla", "Mammoth", "Sloth", "Panther"],
+            correct: 2,
+            explanation: "Sloth = paresseux 🦥. Gorilla = gorille, mammoth = mammouth, panther = panthère."
+          },
+          {
+            q: "What does 'I can see' mean?",
+            options: ["Je peux entendre", "Je peux voir", "Je peux sentir", "Je peux toucher"],
+            correct: 1,
+            explanation: "'I can see' = je peux voir. Structure : I can see… a grey rabbit / an orange fox / a brown sloth."
+          },
+          {
+            q: "Which word is a colour?",
+            options: ["Gorilla", "Panther", "Grey", "Shark"],
+            correct: 2,
+            explanation: "Grey = gris 🩶. Les couleurs du cours : grey (gris), orange, brown (marron), blue (bleu)."
+          },
+          {
+            q: "Randy is a dog. Randy is male. Which pronoun?",
             options: ["It", "She", "He", "They"],
             correct: 2,
-            explanation: "For a male animal, we use 'He'. For a female animal, we use 'She'."
+            explanation: "He = pour un animal mâle. She = pour un animal femelle. Ex: He is a dog. 🐕"
           },
           {
-            q: "Bubble is a turtle. Bubble is female. Complete: '___ is a turtle.'",
-            options: ["He", "It", "She", "They"],
-            correct: 2,
-            explanation: "Bubble is female, so we use 'She'. She is a turtle. 🐢"
-          },
-          {
-            q: "How do you say 'lapin' in English?",
-            options: ["Mouse", "Parrot", "Rabbit", "Pig"],
-            correct: 2,
-            explanation: "Rabbit = lapin. Peter is a rabbit in the lesson. 🐰"
-          },
-          {
-            q: "Which sentence is correct to introduce your pet?",
-            options: ["Hello, I am my cat Kitty.", "Hello, I'm Kader and this is my cat Kitty.", "Hello, this Kitty is my.", "Hello, cat my name Kitty."],
+            q: "How do you say 'orang-outan' in English?",
+            options: ["Gorilla", "Orangutan", "Mammoth", "Panther"],
             correct: 1,
-            explanation: "The correct structure is: 'Hello, I'm [name] and this is my [pet name].' 🐾"
-          },
-          {
-            q: "Polly is a parrot. What is Polly's gender?",
-            options: ["Male", "Female", "We don't know", "Neither"],
-            correct: 1,
-            explanation: "In the lesson, Polly is female. Her master has a parrot named Polly. 🦜"
-          },
-          {
-            q: "How do you say 'poisson rouge' in English?",
-            options: ["Goldfish", "Redfish", "Bluefish", "Starfish"],
-            correct: 0,
-            explanation: "Goldfish = poisson rouge. Marlin is a goldfish in the lesson. 🐠"
-          },
-          {
-            q: "Mickey is a mouse. Mickey is male. Which sentence is correct?",
-            options: ["She is a mouse.", "It is a mouse.", "He is a mouse.", "They is a mouse."],
-            correct: 2,
-            explanation: "Mickey is male, so we say 'He is a mouse.' 🐭"
+            explanation: "Orangutan = orang-outan 🦧. Gorilla = gorille, mammoth = mammouth, panther = panthère noire."
           }
         ],
         flashcards: [
-          { front: "Dog 🐕", back: "Chien — Randy is a dog. He is male." },
-          { front: "Turtle 🐢", back: "Tortue — Bubble is a turtle. She is female." },
-          { front: "Parrot 🦜", back: "Perroquet — Polly is a parrot. She is female." },
-          { front: "Cat 🐱", back: "Chat — Kitty is a cat. She is female." },
-          { front: "Mouse 🐭", back: "Souris — Mickey is a mouse. He is male." },
-          { front: "Pig 🐷", back: "Cochon — Babe is a pig. She is female." },
-          { front: "Rabbit 🐰", back: "Lapin — Peter is a rabbit. He is male." },
-          { front: "Goldfish 🐠", back: "Poisson rouge — Marlin is a goldfish. He is male." },
-          { front: "He / She", back: "He → animal mâle (male)\nShe → animal femelle (female)" },
-          { front: "Introduce your pet", back: "'Hello, I'm [name] and this is my [pet name].'\nEx: Hello, I'm Melwan and this is my dog Randy." }
+          { front: "Shark 🦈", back: "Requin" },
+          { front: "Tiger 🐯", back: "Tigre" },
+          { front: "Wolf 🐺", back: "Loup" },
+          { front: "Lion 🦁", back: "Lion" },
+          { front: "Horse 🐴", back: "Cheval" },
+          { front: "Gorilla 🦍", back: "Gorille" },
+          { front: "Panther 🐆", back: "Panthère" },
+          { front: "Orangutan 🦧", back: "Orang-outan" },
+          { front: "Sloth 🦥", back: "Paresseux" },
+          { front: "Mammoth 🦣", back: "Mammouth" },
+          { front: "AN + voyelle", back: "AN devant une voyelle (a, e, i, o, u)\nEx : an orange tiger, an elephant" },
+          { front: "A + consonne", back: "A devant une consonne\nEx : a grey rabbit, a brown sloth" },
+          { front: "I can see…", back: "Je peux voir…\nEx : I can see a grey rabbit / an orange fox." },
+          { front: "He / She", back: "He → animal mâle ♂\nShe → animal femelle ♀" },
+          { front: "Couleurs", back: "Grey = gris 🩶 / Orange = orange 🟠 / Brown = marron 🟤 / Blue = bleu 🔵" }
         ],
         summary: `<h2>🇬🇧 We love animals — Unit 1</h2>
 
-<h3>🐾 Les animaux de compagnie (Pets)</h3>
-<table style="width:100%;border-collapse:collapse;margin-bottom:16px">
-<tr style="background:rgba(232,67,147,0.2)"><th style="padding:8px;text-align:left">English</th><th style="padding:8px;text-align:left">Français</th><th style="padding:8px;text-align:left">Name</th></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:8px">🐕 Dog</td><td style="padding:8px">Chien</td><td style="padding:8px">Randy (♂)</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:8px">🐢 Turtle</td><td style="padding:8px">Tortue</td><td style="padding:8px">Bubble (♀)</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:8px">🦜 Parrot</td><td style="padding:8px">Perroquet</td><td style="padding:8px">Polly (♀)</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:8px">🐱 Cat</td><td style="padding:8px">Chat</td><td style="padding:8px">Kitty (♀)</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:8px">🐭 Mouse</td><td style="padding:8px">Souris</td><td style="padding:8px">Mickey (♂)</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:8px">🐷 Pig</td><td style="padding:8px">Cochon</td><td style="padding:8px">Babe (♀)</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:8px">🐰 Rabbit</td><td style="padding:8px">Lapin</td><td style="padding:8px">Peter (♂)</td></tr>
-<tr><td style="padding:8px">🐠 Goldfish</td><td style="padding:8px">Poisson rouge</td><td style="padding:8px">Marlin (♂)</td></tr>
+<h3>🐾 Vocabulaire — Les animaux (Animals)</h3>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:12px">
+<tr style="background:rgba(232,67,147,0.2)"><th style="padding:6px;text-align:left">English</th><th style="padding:6px;text-align:left">Français</th><th style="padding:6px;text-align:left">English</th><th style="padding:6px;text-align:left">Français</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px">🐰 Rabbit</td><td style="padding:5px">Lapin</td><td style="padding:5px">🐴 Horse</td><td style="padding:5px">Cheval</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px">🐱 Cat</td><td style="padding:5px">Chat</td><td style="padding:5px">🦈 Shark</td><td style="padding:5px">Requin</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px">🐯 Tiger</td><td style="padding:5px">Tigre</td><td style="padding:5px">🐕 Dog</td><td style="padding:5px">Chien</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px">🐺 Wolf</td><td style="padding:5px">Loup</td><td style="padding:5px">🦁 Lion</td><td style="padding:5px">Lion</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px">🦣 Mammoth</td><td style="padding:5px">Mammouth</td><td style="padding:5px">🐟 Fish</td><td style="padding:5px">Poisson</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px">🦍 Gorilla</td><td style="padding:5px">Gorille</td><td style="padding:5px">🐆 Panther</td><td style="padding:5px">Panthère</td></tr>
+<tr><td style="padding:5px">🦧 Orangutan</td><td style="padding:5px">Orang-outan</td><td style="padding:5px">🦥 Sloth</td><td style="padding:5px">Paresseux</td></tr>
 </table>
 
-<h3>👤 He or She?</h3>
-<p>Pour les animaux, on utilise <strong>He</strong> (mâle) ou <strong>She</strong> (femelle) :</p>
-<ul>
-<li>♂ Male → <strong>He</strong> is a dog. <strong>His</strong> master is…</li>
-<li>♀ Female → <strong>She</strong> is a cat. <strong>Her</strong> master is…</li>
-</ul>
+<h3>🎨 Couleurs (Colours)</h3>
+<p>Grey 🩶 = gris &nbsp;|&nbsp; Orange 🟠 = orange &nbsp;|&nbsp; Brown 🟤 = marron &nbsp;|&nbsp; Blue 🔵 = bleu</p>
 
-<h3>📝 Structure de phrase</h3>
-<p>Pour présenter un animal :</p>
-<ul>
-<li><em>She is Bubble.</em> (son prénom)</li>
-<li><em>She is a turtle.</em> (son espèce)</li>
-<li><em>She is female.</em> (son genre)</li>
-<li><em>She is small and green.</em> (sa description)</li>
-<li><em>Her master is [prénom].</em> (son maître)</li>
-</ul>
+<h3>👁️ I can see…</h3>
+<p style="background:rgba(232,67,147,0.15);padding:10px;border-radius:8px;border-left:3px solid #e84393">
+<em>I can see… a grey rabbit / a grey blue buffalo / an orange fox / a brown sloth.</em>
+</p>
 
-<h3>🗣️ Se présenter avec son animal</h3>
-<p style="background:rgba(232,67,147,0.15);padding:12px;border-radius:8px;border-left:3px solid #e84393">
-<strong>Hello, I'm [ton prénom] and this is my [animal name].</strong><br>
-<em>Ex: Hello, I'm Melwan and this is my dog Randy.</em>
-</p>`,
+<h3>📝 Grammaire — Article indéfini AN / A</h3>
+<p>AN / A = un / une en français. <strong>Il n'y a pas de masculin/féminin en anglais !</strong></p>
+<p>Le choix dépend de la <strong>première lettre du mot suivant</strong> :</p>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin:8px 0">
+<tr style="background:rgba(0,184,148,0.3)"><th style="padding:6px">Article</th><th style="padding:6px">Quand ?</th><th style="padding:6px">Exemple</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:6px;text-align:center"><strong>AN</strong></td><td style="padding:6px">Mot commençant par une <span style="color:#fdcb6e">VOYELLE</span> (a, e, i, o, u)</td><td style="padding:6px"><em>an <u>o</u>range tiger</em></td></tr>
+<tr><td style="padding:6px;text-align:center"><strong>A</strong></td><td style="padding:6px">Mot commençant par une <span style="color:#00b894">CONSONNE</span></td><td style="padding:6px"><em>a <u>g</u>rey rabbit</em></td></tr>
+</table>
+
+<h3>👤 He / She</h3>
+<ul>
+<li>♂ Mâle → <strong>He</strong> is a tiger.</li>
+<li>♀ Femelle → <strong>She</strong> is a cat.</li>
+</ul>`,
         mindmap: {
           center: "We love animals",
           branches: [
-            { label: "Pets", color: "#e84393", children: ["Dog 🐕", "Cat 🐱", "Rabbit 🐰", "Turtle 🐢", "Parrot 🦜", "Pig 🐷", "Mouse 🐭", "Goldfish 🐠"] },
-            { label: "He / She", color: "#0984e3", children: ["He = mâle", "She = femelle", "His/Her master"] },
-            { label: "Describe", color: "#00b894", children: ["She is Bubble.", "She is a turtle.", "She is female.", "She is small."] },
-            { label: "Introduce", color: "#fdcb6e", children: ["Hello, I'm…", "…and this is my…", "[pet name]"] }
+            { label: "Animals", color: "#e84393", children: ["Shark 🦈 Requin", "Wolf 🐺 Loup", "Gorilla 🦍", "Sloth 🦥 Paresseux", "Orangutan 🦧"] },
+            { label: "AN / A", color: "#0984e3", children: ["AN + voyelle", "A + consonne", "an orange tiger", "a grey rabbit"] },
+            { label: "I can see…", color: "#00b894", children: ["a grey rabbit", "an orange fox", "a brown sloth"] },
+            { label: "He / She", color: "#fdcb6e", children: ["He = mâle ♂", "She = femelle ♀"] }
+          ]
+        }
+      }
+    ,
+      {
+        id: "days-months-numbers",
+        title: "Days, Months & Numbers",
+        desc: "Jours de la semaine, mois de l'année, nombres cardinaux 1–1000",
+        quiz: [
+          {
+            q: "What comes after Tuesday?",
+            options: ["Monday", "Thursday", "Wednesday", "Friday"],
+            correct: 2,
+            explanation: "The days in order: Monday, Tuesday, WEDNESDAY, Thursday, Friday, Saturday, Sunday."
+          },
+          {
+            q: "How do you say 'mercredi' in English?",
+            options: ["Tuesday", "Thursday", "Wednesday", "Saturday"],
+            correct: 2,
+            explanation: "Wednesday = mercredi 📅. Attention à l'orthographe : Wednes-day !"
+          },
+          {
+            q: "Which month comes after July?",
+            options: ["June", "September", "August", "October"],
+            correct: 2,
+            explanation: "July → AUGUST → September. Les mois d'été : June, July, August."
+          },
+          {
+            q: "How do you say 'novembre' in English?",
+            options: ["October", "December", "September", "November"],
+            correct: 3,
+            explanation: "November = novembre. Décembre = December, octobre = October, septembre = September."
+          },
+          {
+            q: "How do you say 13 in English?",
+            options: ["Thirty", "Twelve", "Thirteen", "Fourteen"],
+            correct: 2,
+            explanation: "13 = thirteen. Les nombres en -teen : thirteen (13), fourteen (14), fifteen (15)… jusqu'à nineteen (19)."
+          },
+          {
+            q: "How do you say 'cinquante' in English?",
+            options: ["Fifteen", "Forty", "Sixty", "Fifty"],
+            correct: 3,
+            explanation: "50 = fifty. Les dizaines : thirty (30), forty (40), fifty (50), sixty (60), seventy (70), eighty (80), ninety (90)."
+          },
+          {
+            q: "How do you say 'samedi' in English?",
+            options: ["Sunday", "Friday", "Saturday", "Thursday"],
+            correct: 2,
+            explanation: "Saturday = samedi. Sunday = dimanche. Les deux jours du week-end : Saturday & Sunday."
+          },
+          {
+            q: "How do you say 1000 in English?",
+            options: ["One million", "One hundred", "Ten hundred", "One thousand"],
+            correct: 3,
+            explanation: "1000 = one thousand. 100 = one hundred. Attention : on dit 'one thousand', pas 'ten hundred'."
+          },
+          {
+            q: "How do you say 'juin' in English?",
+            options: ["January", "July", "June", "August"],
+            correct: 2,
+            explanation: "June = juin 🌞. Attention à ne pas confondre June (juin) et July (juillet) !"
+          },
+          {
+            q: "What is the correct spelling of the number 17?",
+            options: ["Seventen", "Seventeen", "Seventean", "Seventeem"],
+            correct: 1,
+            explanation: "17 = seventeen. On écrit 'seven' + 'teen' = seventeen. ✅"
+          }
+        ],
+        flashcards: [
+          { front: "Monday / Tuesday", back: "Lundi / Mardi" },
+          { front: "Wednesday / Thursday", back: "Mercredi / Jeudi" },
+          { front: "Friday / Saturday / Sunday", back: "Vendredi / Samedi / Dimanche" },
+          { front: "January → June", back: "Janvier, Février, Mars, Avril, Mai, Juin" },
+          { front: "July → December", back: "Juillet, Août, Septembre, Octobre, Novembre, Décembre" },
+          { front: "11 → 19 (-teen)", back: "eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen" },
+          { front: "20 → 90 (dizaines)", back: "twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety" },
+          { front: "21, 22, 23…", back: "twenty-one, twenty-two, twenty-three… (avec un tiret)" },
+          { front: "100 / 1000", back: "one hundred / one thousand" },
+          { front: "Piège : June / July", back: "June = juin 🌞 / July = juillet ☀️ — Ne pas confondre !" }
+        ],
+        summary: `<h2>🇬🇧 Days, Months & Numbers</h2>
+
+<h3>📅 Days of the week — Jours de la semaine</h3>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:12px">
+<tr style="background:rgba(232,67,147,0.2)"><th style="padding:6px">English</th><th style="padding:6px">Français</th><th style="padding:6px">English</th><th style="padding:6px">Français</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px">Monday</td><td style="padding:5px">Lundi</td><td style="padding:5px">Friday</td><td style="padding:5px">Vendredi</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px">Tuesday</td><td style="padding:5px">Mardi</td><td style="padding:5px">Saturday</td><td style="padding:5px">Samedi</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px">Wednesday</td><td style="padding:5px">Mercredi</td><td style="padding:5px">Sunday</td><td style="padding:5px">Dimanche</td></tr>
+<tr><td style="padding:5px">Thursday</td><td style="padding:5px">Jeudi</td><td style="padding:5px"></td><td style="padding:5px"></td></tr>
+</table>
+
+<h3>🗓️ Months of the year — Mois de l'année</h3>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:12px">
+<tr style="background:rgba(232,67,147,0.2)"><th style="padding:6px">English</th><th style="padding:6px">Français</th><th style="padding:6px">English</th><th style="padding:6px">Français</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px">January</td><td style="padding:5px">Janvier</td><td style="padding:5px">July</td><td style="padding:5px">Juillet</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px">February</td><td style="padding:5px">Février</td><td style="padding:5px">August</td><td style="padding:5px">Août</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px">March</td><td style="padding:5px">Mars</td><td style="padding:5px">September</td><td style="padding:5px">Septembre</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px">April</td><td style="padding:5px">Avril</td><td style="padding:5px">October</td><td style="padding:5px">Octobre</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px">May</td><td style="padding:5px">Mai</td><td style="padding:5px">November</td><td style="padding:5px">Novembre</td></tr>
+<tr><td style="padding:5px">June ⚠️</td><td style="padding:5px">Juin</td><td style="padding:5px">December</td><td style="padding:5px">Décembre</td></tr>
+</table>
+<p style="font-size:12px;color:rgba(255,255,255,0.5)">⚠️ June = juin / July = juillet — ne pas confondre !</p>
+
+<h3>🔢 Cardinal Numbers — Nombres cardinaux</h3>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:8px">
+<tr style="background:rgba(232,67,147,0.2)"><th style="padding:6px">Nombre</th><th style="padding:6px">English</th><th style="padding:6px">Nombre</th><th style="padding:6px">English</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px">1–10</td><td style="padding:5px">one, two, three, four, five, six, seven, eight, nine, ten</td><td style="padding:5px">30</td><td style="padding:5px">thirty</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px">11</td><td style="padding:5px">eleven</td><td style="padding:5px">40</td><td style="padding:5px">forty</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px">12</td><td style="padding:5px">twelve</td><td style="padding:5px">50</td><td style="padding:5px">fifty</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px">13–19</td><td style="padding:5px">thirteen… nineteen (-teen)</td><td style="padding:5px">60–90</td><td style="padding:5px">sixty… ninety</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px">20</td><td style="padding:5px">twenty</td><td style="padding:5px">100</td><td style="padding:5px">one hundred</td></tr>
+<tr><td style="padding:5px">21–29</td><td style="padding:5px">twenty-one… twenty-nine</td><td style="padding:5px">1000</td><td style="padding:5px">one thousand</td></tr>
+</table>`,
+        mindmap: {
+          center: "Days / Months / Numbers",
+          branches: [
+            { label: "Days", color: "#e84393", children: ["Mon Tue Wed Thu", "Fri Sat Sun", "Lundi → Dimanche"] },
+            { label: "Months", color: "#0984e3", children: ["Jan Feb Mar Apr May Jun", "Jul Aug Sep Oct Nov Dec", "⚠️ June ≠ July"] },
+            { label: "Numbers 1–20", color: "#00b894", children: ["one, two… ten", "eleven, twelve", "thirteen… nineteen (-teen)", "twenty"] },
+            { label: "Dizaines", color: "#fdcb6e", children: ["thirty, forty, fifty", "sixty, seventy, eighty", "ninety, hundred, thousand"] }
           ]
         }
       }
@@ -3212,6 +3350,20 @@ const RESOURCES = {
       chapter: "We love animals",
       date: "oct. 2026",
       note: "Animaux de compagnie, pronoms he/she, se présenter avec son animal"
+    },
+    {
+      name: "Cours - We Love Animals (photo cahier)",
+      type: "photo",
+      chapter: "We love animals",
+      date: "sept. 2026",
+      note: "Unit 1 : animaux sauvages + couleurs + I can see… + grammaire an/a (voyelle/consonne)"
+    },
+    {
+      name: "Référentiel - Days, Months, Cardinal Numbers",
+      type: "photo",
+      chapter: "Days, Months & Numbers",
+      date: "sept. 2026",
+      note: "Tableau jours + mois + nombres cardinaux 1 à 1000"
     }
   ]
 };
