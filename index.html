@@ -207,33 +207,6 @@ body {
 }
 .koala-hello span { color: var(--yellow); font-weight: 700; }
 
-/* ─── DEVOIRS BANNER ─── */
-.devoirs-banner {
-  max-width: 500px;
-  margin: 14px auto 0;
-  background: linear-gradient(135deg, rgba(108,92,231,0.3), rgba(15,52,96,0.8));
-  border: 1.5px solid rgba(108,92,231,0.5);
-  border-radius: var(--radius);
-  padding: 14px 16px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.devoirs-banner:active { opacity: 0.85; }
-.devoirs-banner .db-icon { font-size: 28px; }
-.devoirs-banner .db-text h3 { font-size: 15px; font-weight: 700; }
-.devoirs-banner .db-text p { font-size: 12px; color: var(--text2); margin-top: 2px; }
-.devoirs-badge {
-  margin-left: auto;
-  background: var(--accent);
-  color: #fff;
-  font-size: 12px; font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 20px;
-  white-space: nowrap;
-}
-
 /* ─── SECTION HEADER ─── */
 .section-header {
   display: flex; align-items: center; gap: 8px;
@@ -297,44 +270,6 @@ body {
 }
 
 /* ─── PHOTO MEMO (chapter memos) ─── */
-.chapter-photos {
-  max-width: 500px; margin: 0 auto 16px;
-}
-.photo-header {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 10px;
-}
-.photo-header h3 { font-size: 14px; color: var(--text2); font-weight: 600; }
-.photo-add-btn {
-  background: var(--purple);
-  color: #fff; border: none;
-  padding: 8px 14px; border-radius: 10px;
-  font-size: 13px; font-weight: 700; cursor: pointer;
-  display: flex; align-items: center; gap: 6px;
-}
-.photo-add-btn:active { opacity: 0.8; }
-.photos-scroll {
-  display: flex; gap: 10px; overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 6px;
-}
-.photo-thumb {
-  flex-shrink: 0;
-  width: 90px; height: 90px;
-  border-radius: 10px;
-  object-fit: cover;
-  border: 2px solid rgba(108,92,231,0.4);
-  cursor: pointer;
-}
-.photo-thumb-empty {
-  flex-shrink: 0;
-  width: 90px; height: 90px;
-  border-radius: 10px;
-  border: 2px dashed rgba(255,255,255,0.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; color: var(--text2); text-align: center; padding: 8px;
-}
-
 /* ─── ACTIVITY BUTTONS ─── */
 .activity-grid {
   display: grid;
@@ -584,188 +519,6 @@ body {
 .section-title h2 { font-size: 20px; font-weight: 800; margin-top: 6px; }
 .section-title .sub { font-size: 13px; color: var(--text2); margin-top: 4px; }
 
-/* ─── DEVOIRS SCREEN ─── */
-.devoirs-container { max-width: 500px; margin: 0 auto; }
-
-.devoir-add-form {
-  background: linear-gradient(135deg, var(--card), var(--bg2));
-  border-radius: var(--radius); padding: 18px; margin-bottom: 20px;
-}
-.devoir-add-form h3 { font-size: 15px; font-weight: 700; margin-bottom: 14px; color: var(--yellow); }
-.form-row { margin-bottom: 12px; }
-.form-row label { display: block; font-size: 12px; color: var(--text2); margin-bottom: 5px; }
-.form-row input, .form-row select, .form-row textarea {
-  width: 100%; padding: 12px;
-  background: rgba(255,255,255,0.08);
-  border: 1.5px solid rgba(255,255,255,0.15);
-  border-radius: 10px; color: var(--text);
-  font-size: 15px; font-family: inherit;
-}
-.form-row input:focus, .form-row select:focus, .form-row textarea:focus {
-  outline: none; border-color: var(--purple);
-}
-.form-row select option { background: #1a1a2e; }
-.form-row textarea { resize: none; height: 70px; }
-.btn-add-devoir {
-  width: 100%; padding: 14px;
-  background: var(--purple);
-  color: #fff; border: none; border-radius: 12px;
-  font-size: 15px; font-weight: 700; cursor: pointer;
-}
-.btn-add-devoir:active { opacity: 0.85; }
-
-.devoirs-list { margin-top: 8px; }
-.devoir-card {
-  background: linear-gradient(135deg, var(--card), var(--bg2));
-  border-radius: var(--radius);
-  padding: 16px;
-  margin-bottom: 12px;
-  border-left: 4px solid var(--purple);
-  display: flex; gap: 12px; align-items: flex-start;
-}
-.devoir-card.urgent { border-left-color: var(--accent); }
-.devoir-card.done-card { opacity: 0.5; border-left-color: var(--green); }
-.devoir-countdown {
-  flex-shrink: 0;
-  text-align: center;
-  background: rgba(108,92,231,0.2);
-  border-radius: 10px;
-  padding: 10px 12px;
-  min-width: 64px;
-}
-.devoir-card.urgent .devoir-countdown { background: rgba(233,69,96,0.2); }
-.devoir-card.done-card .devoir-countdown { background: rgba(0,184,148,0.2); }
-.devoir-countdown .days-num { font-size: 26px; font-weight: 800; color: var(--purple); display: block; }
-.devoir-card.urgent .devoir-countdown .days-num { color: var(--accent); }
-.devoir-card.done-card .devoir-countdown .days-num { color: var(--green); font-size: 18px; }
-.devoir-countdown .days-label { font-size: 10px; color: var(--text2); }
-.devoir-info { flex: 1; }
-.devoir-info .di-subject { font-size: 11px; color: var(--text2); margin-bottom: 3px; text-transform: uppercase; }
-.devoir-info .di-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
-.devoir-info .di-note { font-size: 12px; color: var(--text2); }
-.devoir-info .di-date { font-size: 11px; color: var(--text2); margin-top: 6px; }
-.devoir-actions { display: flex; gap: 6px; margin-top: 8px; }
-.btn-devoir-done {
-  padding: 5px 10px;
-  background: rgba(0,184,148,0.15);
-  border: 1px solid var(--green); color: var(--green);
-  border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;
-}
-.btn-devoir-delete {
-  padding: 5px 10px;
-  background: rgba(233,69,96,0.1);
-  border: 1px solid rgba(233,69,96,0.3); color: var(--accent);
-  border-radius: 8px; font-size: 12px; cursor: pointer;
-}
-
-.empty-devoirs {
-  text-align: center; padding: 40px 20px;
-  color: var(--text2); font-size: 15px;
-}
-.empty-devoirs .big { font-size: 48px; margin-bottom: 12px; }
-/* ─── AIDE OVERLAY ─── */
-.aide-overlay {
-  position: fixed; inset: 0; z-index: 200;
-  background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);
-  display: none; align-items: flex-end; justify-content: center;
-}
-.aide-overlay.visible { display: flex; }
-.aide-panel {
-  background: linear-gradient(160deg, #1e1e3f, #16213e);
-  border-radius: 24px 24px 0 0;
-  width: 100%; max-width: 500px;
-  max-height: 88vh; overflow-y: auto;
-  padding: 20px 20px 32px;
-  border-top: 2px solid rgba(108,92,231,0.5);
-}
-.aide-panel-header {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 16px;
-}
-.aide-panel-header h3 { font-size: 16px; font-weight: 700; color: var(--purple); }
-.aide-panel-close {
-  background: rgba(255,255,255,0.1); border: none; color: var(--text);
-  width: 32px; height: 32px; border-radius: 50%; font-size: 14px; cursor: pointer;
-}
-.aide-exo-box {
-  background: rgba(255,255,255,0.06);
-  border: 1.5px solid rgba(255,255,255,0.12);
-  border-radius: 12px; padding: 14px; margin-bottom: 14px;
-}
-.aide-exo-box .exo-label {
-  font-size: 10px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.08em; color: var(--text2); margin-bottom: 6px;
-}
-.aide-exo-box .exo-text {
-  font-size: 14px; line-height: 1.6; color: var(--text);
-}
-.aide-exo-box .exo-text .exo-math {
-  font-weight: 700; color: var(--yellow); font-size: 15px;
-}
-.aide-section-title {
-  font-size: 12px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.06em; color: var(--text2);
-  margin: 14px 0 8px; padding-bottom: 4px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.aide-explication {
-  background: rgba(108,92,231,0.1);
-  border: 1.5px solid rgba(108,92,231,0.3);
-  border-radius: 12px; padding: 14px; margin-bottom: 10px;
-  font-size: 14px; line-height: 1.6;
-}
-.aide-indice {
-  background: rgba(253,203,110,0.08);
-  border: 1.5px solid rgba(253,203,110,0.25);
-  border-radius: 12px; padding: 12px; margin-bottom: 8px;
-  cursor: pointer;
-}
-.aide-indice-header {
-  display: flex; justify-content: space-between; align-items: center;
-  font-size: 13px; font-weight: 700; color: var(--yellow);
-}
-.aide-indice-body {
-  font-size: 13px; line-height: 1.6; color: var(--text);
-  margin-top: 8px; display: none;
-}
-.aide-indice.open .aide-indice-body { display: block; }
-.aide-indice-header .toggle-icon { transition: transform 0.2s; }
-.aide-indice.open .toggle-icon { transform: rotate(90deg); }
-.btn-devoir-aide {
-  padding: 5px 10px;
-  background: rgba(108,92,231,0.15);
-  border: 1px solid rgba(108,92,231,0.4); color: var(--purple);
-  border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;
-}
-.btn-devoir-aide:active { opacity: 0.8; }
-
-/* ─── PHOTO VIEWER OVERLAY ─── */
-.photo-overlay {
-  position: fixed; inset: 0; z-index: 200;
-  background: rgba(0,0,0,0.92);
-  display: none; align-items: center; justify-content: center;
-  flex-direction: column;
-}
-.photo-overlay.show { display: flex; }
-.photo-overlay img {
-  max-width: 95vw; max-height: 80vh;
-  border-radius: 12px; object-fit: contain;
-}
-.photo-overlay-close {
-  position: absolute; top: 16px; right: 16px;
-  background: rgba(255,255,255,0.15);
-  border: none; color: #fff;
-  width: 44px; height: 44px; border-radius: 50%;
-  font-size: 22px; cursor: pointer;
-}
-.photo-overlay-del {
-  margin-top: 16px;
-  background: rgba(233,69,96,0.2);
-  border: 1.5px solid var(--accent); color: var(--accent);
-  padding: 10px 24px; border-radius: 10px; font-size: 14px;
-  cursor: pointer; font-weight: 700;
-}
-
 /* ─── KOALA in quiz ─── */
 .quiz-koala {
   text-align: center; margin-bottom: 12px;
@@ -792,15 +545,6 @@ body {
     <div class="koala-hello">Salut <span>Melwan</span> 👋 Prêt à tout déchirer ?</div>
   </div>
 
-  <!-- Devoirs banner -->
-  <div class="devoirs-banner" onclick="openDevoirs()">
-    <span class="db-icon">📅</span>
-    <div class="db-text">
-      <h3>Mes contrôles &amp; devoirs</h3>
-      <p>Compte à rebours, fiches de révision</p>
-    </div>
-    <span class="devoirs-badge" id="devoirsBadge">0 à venir</span>
-  </div>
 
   <div class="section-header">
     <h2>Mes matières</h2>
@@ -857,8 +601,7 @@ body {
   <div class="section-title" id="activityTitle"></div>
 
   <!-- Photo memos for this chapter -->
-  <div class="chapter-photos" id="chapterPhotos"></div>
-
+  
   <div class="activity-grid">
     <div class="activity-btn" onclick="startActivity('summary')">
       <span class="emoji">📝</span>
@@ -903,48 +646,6 @@ body {
   <div class="mindmap-container" id="mindmapContainer"></div>
 </div>
 
-<!-- ═══ SCREEN: DEVOIRS ═══ -->
-<div class="screen" id="screen-devoirs">
-  <div class="devoirs-container">
-    <div class="section-title">
-      <span class="emoji">📅</span>
-      <h2>Contrôles &amp; Devoirs</h2>
-      <div class="sub">Prépare-toi à l'avance !</div>
-    </div>
-
-    <div class="devoir-add-form">
-      <h3>➕ Ajouter un contrôle ou devoir</h3>
-      <div class="form-row">
-        <label>Matière</label>
-        <select id="dSubject">
-          <option value="Histoire">🏛️ Histoire</option>
-          <option value="Français">📖 Français</option>
-          <option value="Maths">🔢 Maths</option>
-          <option value="Arts">🎨 Arts</option>
-          <option value="SVT">🌿 SVT</option>
-          <option value="Physique-Chimie">⚗️ Physique-Chimie</option>
-          <option value="Anglais">🇬🇧 Anglais</option>
-          <option value="Autre">📚 Autre</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <label>Titre (ex: Contrôle d'histoire chapitre 1)</label>
-        <input type="text" id="dTitle" placeholder="Contrôle sur la Préhistoire...">
-      </div>
-      <div class="form-row">
-        <label>Date du contrôle</label>
-        <input type="date" id="dDate">
-      </div>
-      <div class="form-row">
-        <label>Note / rappel (optionnel)</label>
-        <textarea id="dNote" placeholder="Revoir les outils préhistoriques, les espèces humaines..."></textarea>
-      </div>
-      <button class="btn-add-devoir" onclick="addDevoir()">Ajouter 📌</button>
-    </div>
-
-    <div class="devoirs-list" id="devoirsList"></div>
-  </div>
-</div>
 
 <!-- ─── RESOURCES OVERLAY ─── -->
 <div class="resources-overlay" id="resourcesOverlay" onclick="closeResourcesIfBg(event)">
@@ -965,22 +666,7 @@ body {
 </div>
 
 <!-- ─── PHOTO OVERLAY ─── -->
-<div class="photo-overlay" id="photoOverlay" onclick="closePhotoOverlay(event)">
-  <button class="photo-overlay-close" onclick="closePhotoOverlay()">✕</button>
-  <img id="photoOverlayImg" src="" alt="Photo de révision">
-  <button class="photo-overlay-del" id="photoOverlayDel" onclick="deletePhoto()">🗑️ Supprimer cette photo</button>
-</div>
 
-<!-- ─── AIDE SESAMATH OVERLAY ─── -->
-<div class="aide-overlay" id="aideOverlay" onclick="closeAideIfBg(event)">
-  <div class="aide-panel" id="aidePanel">
-    <div class="aide-panel-header">
-      <h3>🤔 J'ai pas compris…</h3>
-      <button class="aide-panel-close" onclick="closeAide()">✕</button>
-    </div>
-    <div id="aidePanelBody"></div>
-  </div>
-</div>
 
 <script>
 // ══════════════════════════════════════════════════
@@ -2478,276 +2164,6 @@ Découvert au <strong>Tchad</strong> en 2001, <span class="key-term">Toumaï</sp
 };
 
 // ══════════════════════════════════════════════════
-//  PHOTO STORAGE (localStorage)
-// ══════════════════════════════════════════════════
-let photoStore = {};
-let viewingPhoto = null; // { chapterKey, index }
-
-function photoKey(subjectId, chapterId) {
-  return 'photos__' + subjectId + '__' + chapterId;
-}
-
-function loadPhotos(subjectId, chapterId) {
-  try {
-    const raw = localStorage.getItem(photoKey(subjectId, chapterId));
-    return raw ? JSON.parse(raw) : [];
-  } catch(e) { return []; }
-}
-
-function savePhotos(subjectId, chapterId, arr) {
-  try { localStorage.setItem(photoKey(subjectId, chapterId), JSON.stringify(arr)); } catch(e) {}
-}
-
-// ══════════════════════════════════════════════════
-//  SÉSAMATH — EXERCICES ET AIDE
-// ══════════════════════════════════════════════════
-const SESAMATH = {
-  // Clé : "ex.N p.P" — numéro d'exercice + page du cahier Sésamath 6e
-  "ex.53 p.26": {
-    matiere: "Maths",
-    theme: "Division — ordre de grandeur",
-    serie: "N1 Série 4 — Opérations sur les nombres",
-    enonce: "Après avoir calculé un <strong>ordre de grandeur</strong> du résultat, pose et effectue chaque calcul.",
-    questions: [
-      "a. 2 725 ÷ 13 ≈ ………",
-      "b. 4 550 ÷ 25 ≈ ………"
-    ],
-    explication: `Pour faire une division, on suit deux étapes :<br>
-<strong>Étape 1 — L'ordre de grandeur</strong> : on arrondit les deux nombres pour avoir une idée du résultat avant même de calculer. Par exemple, 2 725 c'est à peu près 2 700, et 13 c'est à peu près 10. Donc 2 725 ÷ 13 ≈ 2 700 ÷ 10 = 270. C'est notre "ordre de grandeur", notre estimation.<br><br>
-<strong>Étape 2 — La vraie division posée</strong> : on pose la division en colonne comme d'habitude et on calcule le résultat exact.`,
-    indices: [
-      {
-        titre: "💡 Indice 1 — C'est quoi un ordre de grandeur ?",
-        texte: `Un ordre de grandeur, c'est juste une estimation rapide. On arrondit les chiffres pour que ce soit plus facile.<br>
-Par exemple : 2 725 → on peut arrondir à 2 700 ou même 3 000.<br>
-13 → on peut arrondir à 10.<br>
-Donc <strong>2 725 ÷ 13 ≈ 2 700 ÷ 10 = 270</strong>. Tu sais maintenant que la vraie réponse sera proche de 270 !`
-      },
-      {
-        titre: "💡 Indice 2 — Comment poser la division ?",
-        texte: `Pour <strong>2 725 ÷ 13</strong>, on pose comme ça :<br>
-• On regarde les premiers chiffres de 2 725 : "27". Combien de fois 13 rentre dans 27 ? → 2 fois (car 2 × 13 = 26).<br>
-• On note 2, on fait 27 − 26 = 1, on descend le chiffre suivant (2) → on a 12.<br>
-• Combien de fois 13 rentre dans 12 ? → 0 fois ! On descend le 5 → on a 125.<br>
-• Combien de fois 13 rentre dans 125 ? → 9 fois (car 9 × 13 = 117).<br>
-• 125 − 117 = 8. Reste = 8.<br>
-Résultat : <strong>2 725 ÷ 13 = 209 reste 8</strong>`
-      },
-      {
-        titre: "💡 Indice 3 — Le calcul de b. (4 550 ÷ 25)",
-        texte: `Pour estimer : 4 550 ≈ 4 500 et 25 ≈ 25. Donc 4 500 ÷ 25 = 180. L'ordre de grandeur est <strong>180</strong>.<br><br>
-Pour la vraie division :<br>
-• 25 rentre dans 45 → 1 fois (1 × 25 = 25). Reste : 45 − 25 = 20.<br>
-• On descend le 5 → 205. 25 rentre dans 205 → 8 fois (8 × 25 = 200). Reste : 5.<br>
-• On descend le 0 → 50. 25 rentre dans 50 → 2 fois (2 × 25 = 50). Reste : 0.<br>
-Résultat : <strong>4 550 ÷ 25 = 182</strong>`
-      }
-    ]
-  }
-};
-
-// Cherche un exercice Sésamath par une référence textuelle (ex: "exercice 53 page 26")
-function findSesamath(noteText) {
-  if (!noteText) return null;
-  const lower = noteText.toLowerCase();
-  // Test direct sur les clés connues
-  for (const key in SESAMATH) {
-    const parts = key.match(/ex\.(\d+) p\.(\d+)/);
-    if (!parts) continue;
-    const num = parts[1], page = parts[2];
-    if (lower.includes('ex') && lower.includes(num) && lower.includes(page)) {
-      return { key, data: SESAMATH[key] };
-    }
-  }
-  return null;
-}
-
-function openAide(index) {
-  const devoirs = loadDevoirs();
-  const d = devoirs[index];
-  const body = document.getElementById('aidePanelBody');
-  const found = findSesamath((d.note || '') + ' ' + (d.title || ''));
-
-  if (found) {
-    const ex = found.data;
-    const questionsHtml = ex.questions.map(q =>
-      `<div class="exo-math">${q}</div>`
-    ).join('');
-    const indicesHtml = ex.indices.map((ind, i) => `
-      <div class="aide-indice" id="indice${i}" onclick="toggleIndice(${i})">
-        <div class="aide-indice-header">
-          ${ind.titre}
-          <span class="toggle-icon">▶</span>
-        </div>
-        <div class="aide-indice-body">${ind.texte}</div>
-      </div>`).join('');
-
-    body.innerHTML = `
-      <div class="aide-exo-box">
-        <div class="exo-label">📘 ${ex.serie}</div>
-        <div class="exo-text">
-          <div style="margin-bottom:8px">${ex.enonce}</div>
-          ${questionsHtml}
-        </div>
-      </div>
-      <div class="aide-section-title">🗣️ Explication simple</div>
-      <div class="aide-explication">${ex.explication}</div>
-      <div class="aide-section-title">🧩 Indices (clique pour révéler)</div>
-      ${indicesHtml}
-    `;
-  } else {
-    // Pas d'exercice Sésamath reconnu — aide générale
-    body.innerHTML = `
-      <div class="aide-explication" style="margin-bottom:12px">
-        📚 <strong>${d.title}</strong><br>
-        <span style="color:var(--text2);font-size:13px">${d.subject}</span>
-      </div>
-      <div style="background:rgba(253,203,110,0.08);border:1.5px solid rgba(253,203,110,0.2);border-radius:12px;padding:14px;font-size:14px;line-height:1.7">
-        💡 Pour ce devoir, demande à ton prof ou regarde le cours dans l'app !<br><br>
-        👉 <strong>Va dans la matière "${d.subject}"</strong> et cherche le chapitre qui correspond.
-      </div>
-      <div style="margin-top:14px;font-size:12px;color:var(--text2)">
-        Astuce : si tu as une référence du style "exercice 53 page 26", note-la dans le champ "Note" du devoir et l'app trouvera l'aide automatiquement !
-      </div>
-    `;
-  }
-
-  document.getElementById('aideOverlay').classList.add('visible');
-}
-
-function closeAide() {
-  document.getElementById('aideOverlay').classList.remove('visible');
-}
-
-function closeAideIfBg(e) {
-  if (e.target === document.getElementById('aideOverlay')) closeAide();
-}
-
-function toggleIndice(i) {
-  const el = document.getElementById('indice' + i);
-  el.classList.toggle('open');
-}
-
-// ══════════════════════════════════════════════════
-//  DEVOIRS STORAGE (localStorage)
-// ══════════════════════════════════════════════════
-function loadDevoirs() {
-  try {
-    const raw = localStorage.getItem('melwan_devoirs');
-    return raw ? JSON.parse(raw) : [];
-  } catch(e) { return []; }
-}
-
-function saveDevoirs(arr) {
-  try { localStorage.setItem('melwan_devoirs', JSON.stringify(arr)); } catch(e) {}
-}
-
-function getDaysUntil(dateStr) {
-  const now = new Date();
-  now.setHours(0,0,0,0);
-  const target = new Date(dateStr);
-  target.setHours(0,0,0,0);
-  return Math.round((target - now) / 86400000);
-}
-
-function updateDevoirsBadge() {
-  const devoirs = loadDevoirs().filter(d => !d.done);
-  const badge = document.getElementById('devoirsBadge');
-  if (badge) {
-    const upcoming = devoirs.filter(d => getDaysUntil(d.date) >= 0);
-    badge.textContent = upcoming.length + (upcoming.length === 1 ? ' à venir' : ' à venir');
-  }
-}
-
-function renderDevoirs() {
-  const list = document.getElementById('devoirsList');
-  if (!list) return;
-  const devoirs = loadDevoirs();
-
-  if (devoirs.length === 0) {
-    list.innerHTML = `<div class="empty-devoirs"><div class="big">📅</div>Aucun contrôle ajouté pour l'instant.<br><br>Ajoute tes prochains contrôles pour ne rien rater !</div>`;
-    return;
-  }
-
-  // Sort by date ascending
-  devoirs.sort((a,b) => new Date(a.date) - new Date(b.date));
-
-  list.innerHTML = devoirs.map((d, i) => {
-    const days = getDaysUntil(d.date);
-    let daysText, daysNum;
-    if (d.done) {
-      daysNum = '✓'; daysText = 'Fait !';
-    } else if (days < 0) {
-      daysNum = 'J+' + Math.abs(days); daysText = 'Passé';
-    } else if (days === 0) {
-      daysNum = '⚠️'; daysText = "Aujourd'hui !";
-    } else if (days === 1) {
-      daysNum = 'J-1'; daysText = 'Demain !';
-    } else {
-      daysNum = 'J-' + days; daysText = days + ' jours';
-    }
-    const urgent = !d.done && days >= 0 && days <= 2;
-    const doneClass = d.done ? ' done-card' : (urgent ? ' urgent' : '');
-    const dateObj = new Date(d.date);
-    const dateLabel = dateObj.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'long' });
-    return `
-    <div class="devoir-card${doneClass}">
-      <div class="devoir-countdown">
-        <span class="days-num">${daysNum}</span>
-        <span class="days-label">${daysText}</span>
-      </div>
-      <div class="devoir-info">
-        <div class="di-subject">${d.subject}</div>
-        <div class="di-title">${d.title}</div>
-        ${d.note ? `<div class="di-note">${d.note}</div>` : ''}
-        <div class="di-date">📅 ${dateLabel}</div>
-        <div class="devoir-actions">
-          ${!d.done ? `<button class="btn-devoir-done" onclick="markDone(${i})">✓ Fait !</button>` : ''}
-          ${d.subject === 'Maths' ? `<button class="btn-devoir-aide" onclick="openAide(${i})">🤔 J'ai pas compris</button>` : ''}
-          <button class="btn-devoir-delete" onclick="deleteDevoir(${i})">✕ Supprimer</button>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function addDevoir() {
-  const subject = document.getElementById('dSubject').value;
-  const title = document.getElementById('dTitle').value.trim();
-  const date = document.getElementById('dDate').value;
-  const note = document.getElementById('dNote').value.trim();
-
-  if (!title) { alert('Ajoute un titre !'); return; }
-  if (!date) { alert('Choisis une date !'); return; }
-
-  const devoirs = loadDevoirs();
-  devoirs.push({ subject, title, date, note, done: false, id: Date.now() });
-  saveDevoirs(devoirs);
-
-  document.getElementById('dTitle').value = '';
-  document.getElementById('dDate').value = '';
-  document.getElementById('dNote').value = '';
-  renderDevoirs();
-  updateDevoirsBadge();
-}
-
-function markDone(index) {
-  const devoirs = loadDevoirs();
-  devoirs[index].done = true;
-  saveDevoirs(devoirs);
-  renderDevoirs();
-  updateDevoirsBadge();
-}
-
-function deleteDevoir(index) {
-  const devoirs = loadDevoirs();
-  devoirs.splice(index, 1);
-  saveDevoirs(devoirs);
-  renderDevoirs();
-  updateDevoirsBadge();
-}
-
-// ══════════════════════════════════════════════════
 //  NAVIGATION
 // ══════════════════════════════════════════════════
 let navStack = ['subjects'];
@@ -2774,8 +2190,6 @@ function goBack() {
     openSubject(currentSubject, true);
   } else if (prev === 'activities') {
     openChapter(currentSubject, currentChapter, true);
-  } else if (prev === 'devoirs') {
-    openDevoirs(true);
   }
 }
 
@@ -2822,85 +2236,10 @@ function openChapter(subjectId, chapterId, isBack) {
     `<span class="emoji">${subj.emoji}</span><h2>${ch.title}</h2><div class="sub">Que veux-tu faire ?</div>`;
   document.getElementById('headerSub').textContent = ch.title;
 
-  // Render photo memos for this chapter
-  renderChapterPhotos(subjectId, chapterId);
 
   showScreen('activities');
 }
 
-function openDevoirs(isBack) {
-  if (!isBack) navStack.push('devoirs');
-  document.getElementById('headerSub').textContent = 'Contrôles & Devoirs';
-  renderDevoirs();
-  showScreen('devoirs');
-}
-
-// ══════════════════════════════════════════════════
-//  PHOTO CAPTURE
-// ══════════════════════════════════════════════════
-function renderChapterPhotos(subjectId, chapterId) {
-  const photos = loadPhotos(subjectId, chapterId);
-  const container = document.getElementById('chapterPhotos');
-
-  let html = `<div class="photo-header">
-    <h3>📸 Mes photos de révision</h3>
-    <label class="photo-add-btn">
-      📷 Ajouter
-      <input type="file" accept="image/*" capture="environment" style="display:none" onchange="handlePhotoCapture(event)">
-    </label>
-  </div>`;
-
-  if (photos.length === 0) {
-    html += `<div class="photos-scroll"><div class="photo-thumb-empty">Prends une photo de ton cours ou de tes devoirs !</div></div>`;
-  } else {
-    html += `<div class="photos-scroll">`;
-    photos.forEach((p, i) => {
-      html += `<img class="photo-thumb" src="${p.dataUrl}" alt="Photo ${i+1}" onclick="viewPhoto(${i})">`;
-    });
-    html += `</div>`;
-  }
-
-  container.innerHTML = html;
-}
-
-function handlePhotoCapture(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const photos = loadPhotos(currentSubject, currentChapter);
-    photos.push({ dataUrl: e.target.result, ts: Date.now() });
-    savePhotos(currentSubject, currentChapter, photos);
-    renderChapterPhotos(currentSubject, currentChapter);
-  };
-  reader.readAsDataURL(file);
-}
-
-function viewPhoto(index) {
-  const photos = loadPhotos(currentSubject, currentChapter);
-  if (!photos[index]) return;
-  viewingPhoto = { subjectId: currentSubject, chapterId: currentChapter, index };
-  document.getElementById('photoOverlayImg').src = photos[index].dataUrl;
-  document.getElementById('photoOverlay').classList.add('show');
-}
-
-function closePhotoOverlay(e) {
-  if (!e || e.target === document.getElementById('photoOverlay') || e.type === 'click') {
-    document.getElementById('photoOverlay').classList.remove('show');
-    viewingPhoto = null;
-  }
-}
-
-function deletePhoto() {
-  if (!viewingPhoto) return;
-  const { subjectId, chapterId, index } = viewingPhoto;
-  const photos = loadPhotos(subjectId, chapterId);
-  photos.splice(index, 1);
-  savePhotos(subjectId, chapterId, photos);
-  document.getElementById('photoOverlay').classList.remove('show');
-  viewingPhoto = null;
-  renderChapterPhotos(subjectId, chapterId);
-}
 
 // ══════════════════════════════════════════════════
 //  ACTIVITIES
