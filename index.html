@@ -1941,103 +1941,130 @@ const DATA = {
       {
         id: "securite-labo",
         title: "Sécurité au laboratoire",
-        desc: "Les règles de sécurité et les pictogrammes de danger en chimie",
+        desc: "Les 9 pictogrammes GHS, les règles de sécurité et le protocole en chimie",
         quiz: [
           {
             q: "Que faut-il porter obligatoirement au laboratoire de chimie ?",
-            options: ["Un chapeau", "Des lunettes de protection et une blouse", "Des gants de boxe", "Des baskets"],
+            options: ["Un chapeau", "Une blouse 100% coton + lunettes + gants + cheveux attachés", "Des gants de boxe", "Des baskets"],
             correct: 1,
-            explanation: "Au laboratoire, il faut porter une blouse (pour protéger les vêtements) et des lunettes de protection (pour les yeux). Les cheveux longs doivent être attachés."
+            explanation: "Au laboratoire, il faut porter une blouse 100% coton (pour les projections), des lunettes de protection (pour les yeux), des gants et attacher les cheveux longs."
           },
           {
             q: "Que signifie le pictogramme avec une tête de mort ?",
-            options: ["Danger de piraterie", "Produit toxique : peut tuer ou rendre très malade", "Produit périmé", "Produit magique"],
+            options: ["Produit périmé", "Produit toxique : empoisonne rapidement, même à faible dose, peut provoquer la mort", "Produit piquant", "Produit dangereux pour les poissons"],
             correct: 1,
-            explanation: "La tête de mort signifie « toxique » ou « mortel ». Ce produit peut causer la mort ou des dommages graves à la santé en cas d'inhalation, ingestion ou contact avec la peau."
+            explanation: "La tête de mort signifie 'toxique'. Ce produit peut provoquer la mort ou des dommages graves à la santé même en petite quantité. Prudence : utiliser des protections adéquates."
           },
           {
             q: "Que signifie le pictogramme avec une flamme ?",
-            options: ["Produit qui sent bon", "Produit inflammable : peut prendre feu facilement", "Produit chaud", "Produit lumineux"],
+            options: ["Produit qui sent bon", "Produit inflammable : brûle facilement. Éloigner des flammes et sources de chaleur.", "Produit chaud", "Produit lumineux"],
             correct: 1,
-            explanation: "La flamme signifie « inflammable ». Ce produit peut prendre feu facilement au contact d'une flamme, d'une étincelle ou de chaleur."
+            explanation: "La flamme signifie 'inflammable'. Ce produit peut prendre feu facilement. Prudence : éloigner des flammes et de toute source de chaleur."
           },
           {
-            q: "Que fait-on en cas de projection d'un produit chimique dans les yeux ?",
-            options: ["On se frotte les yeux", "On rince abondamment à l'eau pendant 15 minutes", "On attend que ça passe", "On met des lunettes de soleil"],
+            q: "Que signifie le pictogramme avec une flamme AU-DESSUS d'un cercle ?",
+            options: ["Double inflammable", "Comburant : facilite la combustion, fait brûler encore plus fort", "Gaz chaud", "Produit explosif raté"],
             correct: 1,
-            explanation: "En cas de projection dans les yeux, il faut rincer immédiatement à l'eau claire pendant au moins 15 minutes et prévenir le professeur."
+            explanation: "La flamme au-dessus d'un cercle signifie 'comburant'. Ce produit facilite la combustion (il fait brûler les autres produits plus fort). Prudence : éloigner des flammes et sources de chaleur."
           },
           {
-            q: "Combien de pictogrammes de danger existe-t-il ?",
-            options: ["3", "5", "9", "15"],
+            q: "Quel pictogramme représente un cylindre avec des flammes ou une explosion ?",
+            options: ["Corrosif", "Gaz sous pression", "Explosif", "Comburant"],
+            correct: 1,
+            explanation: "Le cylindre sous pression représente les 'gaz sous pression'. Ces gaz peuvent exploser sous l'effet de la chaleur. Prudence : éloigner des sources de chaleur."
+          },
+          {
+            q: "Que signifie le pictogramme avec une main et une surface rongées par un liquide ?",
+            options: ["Produit glissant", "Produit corrosif : attaque les tissus vivants et les matériaux", "Produit mouillant", "Produit collant"],
+            correct: 1,
+            explanation: "Ce pictogramme signifie 'corrosif'. Le produit peut brûler la peau, les yeux et ronger certains matériaux. Prudence : éviter tout contact avec les yeux, la peau et les vêtements."
+          },
+          {
+            q: "Que signifie le pictogramme avec un point d'exclamation ?",
+            options: ["Produit interdit", "Nocif / Irritant : nuit à la santé ou irrite — utiliser des protections adéquates", "Produit urgent", "Produit important"],
+            correct: 1,
+            explanation: "Le point d'exclamation signifie 'nocif/irritant'. Ce produit peut nuire à la santé ou irriter la peau, les yeux ou les poumons. Prudence : utiliser des protections adéquates."
+          },
+          {
+            q: "Combien y a-t-il de pictogrammes de danger GHS en tout ?",
+            options: ["5", "7", "9", "12"],
             correct: 2,
-            explanation: "Il existe 9 pictogrammes de danger : explosif, inflammable, comburant, gaz sous pression, corrosif, toxique, nocif/irritant, danger pour la santé, dangereux pour l'environnement."
+            explanation: "Il y a 9 pictogrammes GHS : explosif, inflammable, comburant, gaz sous pression, corrosif, toxique, nocif/irritant, danger pour la santé, dangereux pour l'environnement."
           },
           {
-            q: "Que signifie le pictogramme avec un produit rongeant une main et une surface ?",
-            options: ["Produit glissant", "Produit corrosif : brûle la peau et les matériaux", "Produit collant", "Produit mouillant"],
+            q: "Que doit-on faire AVANT de commencer une manipulation en chimie ?",
+            options: ["Goûter les produits pour les identifier", "Vérifier l'étiquetage des produits utilisés et ne jamais improviser", "Mélanger tous les produits pour gagner du temps", "Enlever ses lunettes pour mieux voir"],
             correct: 1,
-            explanation: "Ce pictogramme signifie « corrosif ». Le produit peut brûler gravement la peau, les yeux et détruire certains matériaux comme le métal."
+            explanation: "Avant toute manipulation : vérifier l'étiquetage, ne jamais improviser, et mélanger avec précaution. Ne jamais orienter un tube à essai vers le visage de quelqu'un."
           },
           {
             q: "A-t-on le droit de goûter un produit chimique au laboratoire ?",
-            options: ["Oui, pour savoir ce que c'est", "Non, jamais !", "Oui, si le prof est d'accord", "Oui, juste avec le bout de la langue"],
+            options: ["Oui, pour identifier le produit", "Non, jamais !", "Oui, si le prof est d'accord", "Oui, juste avec le bout de la langue"],
             correct: 1,
-            explanation: "On ne goûte JAMAIS un produit chimique ! On ne le sent pas non plus directement. Pour sentir, on évente (on agite la main au-dessus du flacon)."
+            explanation: "On ne goûte JAMAIS un produit chimique ! On ne le sent pas non plus directement. Pour sentir : éventer (agiter la main au-dessus du flacon pour amener les vapeurs vers le nez)."
+          },
+          {
+            q: "Que faire en cas de projection d'un produit chimique dans les yeux ?",
+            options: ["Se frotter les yeux", "Rincer abondamment à l'eau pendant 15 minutes et prévenir le professeur", "Attendre que ça passe", "Mettre des lunettes de soleil"],
+            correct: 1,
+            explanation: "En cas de projection dans les yeux, rincer immédiatement à l'eau claire pendant au moins 15 minutes et prévenir le professeur."
           }
         ],
         flashcards: [
-          { front: "Pictogramme de danger", back: "Symbole sur un produit chimique indiquant le type de danger (flamme = inflammable, tête de mort = toxique…)." },
-          { front: "Inflammable 🔥", back: "Produit qui peut prendre feu facilement. Éloigner des flammes et de la chaleur." },
-          { front: "Toxique ☠️", back: "Produit qui peut tuer ou rendre gravement malade. Ne pas toucher, inhaler ou avaler." },
-          { front: "Corrosif", back: "Produit qui brûle la peau, les yeux et ronge les matériaux." },
-          { front: "Comburant", back: "Produit qui facilite la combustion. Il fait brûler plus fort un feu existant." },
-          { front: "Nocif / Irritant", back: "Produit qui peut irriter la peau, les yeux ou les voies respiratoires." },
-          { front: "Blouse + lunettes", back: "Équipement obligatoire au laboratoire de chimie pour se protéger." },
+          { front: "💥 Explosif", back: "Peut exploser lors d'un choc ou si exposé à une source de chaleur. Prudence : ventiler, éliminer toute source de chaleur." },
+          { front: "🔥 Inflammable", back: "Brûle facilement. Prudence : éloigner des flammes et de toute source de chaleur." },
+          { front: "⭕ Comburant", back: "Facilite la combustion (fait brûler encore plus fort). Prudence : éloigner des flammes et sources de chaleur." },
+          { front: "🫧 Gaz sous pression", back: "Risque d'exploser sous l'effet de la chaleur. Prudence : éloigner des sources de chaleur." },
+          { front: "🧪 Corrosif", back: "Attaque les tissus vivants et les matériaux. Prudence : éviter tout contact avec les yeux, la peau et les vêtements." },
+          { front: "☠️ Toxique", back: "Empoisonne rapidement même à faible dose, peut provoquer la mort. Prudence : utiliser des protections adéquates." },
+          { front: "⚠️ Nocif / Irritant", back: "Nuit à la santé ou irrite (peau, yeux, poumons). Prudence : utiliser des protections adéquates." },
+          { front: "🏥 Danger pour la santé", back: "Nuit gravement à la santé sur le long terme (cancer, allergies…). Prudence : utiliser des protections adéquates." },
+          { front: "🐟 Dangereux pour l'environnement", back: "Nuit à l'environnement aquatique. Prudence : ne pas rejeter dans la nature." },
+          { front: "Blouse + lunettes", back: "Équipement obligatoire au labo de chimie. La blouse doit être en 100% coton." },
           { front: "En cas de projection", back: "Rincer immédiatement à l'eau pendant 15 minutes et prévenir le professeur." },
-          { front: "Éventer", back: "Technique pour sentir un produit chimique : agiter la main au-dessus du flacon pour amener les vapeurs vers le nez." }
+          { front: "Éventer", back: "Technique pour sentir un produit chimique : agiter la main au-dessus du flacon pour amener les vapeurs vers le nez." },
+          { front: "3 étapes au laboratoire", back: "1. Se préparer (blouse, lunettes, gants, cheveux attachés) → 2. Réaliser la manipulation → 3. Quitter son poste (ranger, nettoyer, éliminer les déchets)." }
         ],
         summary: `<h2>🔬 Sécurité au laboratoire</h2>
-<h3>Les règles de base</h3>
-<ul>
-<li>Porter une <strong>blouse</strong> et des <strong>lunettes de protection</strong></li>
-<li>Attacher les <strong>cheveux longs</strong></li>
-<li><strong>Ne jamais goûter</strong> ni sentir directement un produit chimique</li>
-<li>Pour sentir : <span class="key-term">éventer</span> (agiter la main au-dessus du flacon)</li>
-<li>Ne pas courir, ne pas s'amuser avec le matériel</li>
-</ul>
-<h3>Les 9 pictogrammes de danger</h3>
-<ul>
-<li>💥 <strong>Explosif</strong> : peut exploser</li>
-<li>🔥 <strong>Inflammable</strong> : prend feu facilement</li>
-<li>⭕ <strong>Comburant</strong> : active le feu</li>
-<li>🫧 <strong>Gaz sous pression</strong> : contenu sous pression</li>
-<li>🧪 <strong>Corrosif</strong> : brûle la peau et les matériaux</li>
-<li>☠️ <strong>Toxique</strong> : peut tuer ou rendre très malade</li>
-<li>⚠️ <strong>Nocif / Irritant</strong> : irrite la peau ou les yeux</li>
-<li>🏥 <strong>Danger pour la santé</strong> : risques graves sur le long terme</li>
-<li>🐟 <strong>Dangereux pour l'environnement</strong> : pollue l'eau, le sol, les animaux</li>
-</ul>
+<h3>Les 3 étapes d'une séance</h3>
+<ol>
+<li><strong>Se préparer à son poste</strong> : entrer calmement, blouse 100% coton + lunettes + gants + cheveux attachés, ne toucher aucun flacon sans consignes</li>
+<li><strong>Réaliser les travaux</strong> : vérifier l'étiquetage, ne jamais improviser, mélanger avec précaution, ne jamais orienter un tube à essai vers le visage, reboucher chaque flacon</li>
+<li><strong>Quitter son poste</strong> : ranger et nettoyer la paillasse, éliminer les déchets selon les consignes du prof, laver la verrerie</li>
+</ol>
+<h3>Les 9 pictogrammes de danger (GHS)</h3>
+<table style="width:100%;border-collapse:collapse;font-size:12px;margin:8px 0">
+<tr style="background:rgba(233,69,96,0.3)"><th style="padding:4px;text-align:left">Symbole</th><th style="padding:4px;text-align:left">Nom</th><th style="padding:4px;text-align:left">Danger</th><th style="padding:4px;text-align:left">Prudence</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:4px">💥</td><td style="padding:4px"><strong>Explosif</strong></td><td style="padding:4px">Choc ou chaleur → explosion</td><td style="padding:4px">Ventiler, pas de source de chaleur</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:4px">🔥</td><td style="padding:4px"><strong>Inflammable</strong></td><td style="padding:4px">Brûle facilement</td><td style="padding:4px">Éloigner flammes et chaleur</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:4px">⭕</td><td style="padding:4px"><strong>Comburant</strong></td><td style="padding:4px">Facilite la combustion</td><td style="padding:4px">Éloigner flammes et chaleur</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:4px">🫧</td><td style="padding:4px"><strong>Gaz sous pression</strong></td><td style="padding:4px">Explose sous la chaleur</td><td style="padding:4px">Éloigner sources de chaleur</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:4px">🧪</td><td style="padding:4px"><strong>Corrosif</strong></td><td style="padding:4px">Brûle peau, yeux, matériaux</td><td style="padding:4px">Éviter tout contact</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:4px">☠️</td><td style="padding:4px"><strong>Toxique</strong></td><td style="padding:4px">Empoisonne, peut tuer</td><td style="padding:4px">Protections adéquates</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:4px">⚠️</td><td style="padding:4px"><strong>Nocif/irritant</strong></td><td style="padding:4px">Nuit à la santé ou irrite</td><td style="padding:4px">Protections adéquates</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:4px">🏥</td><td style="padding:4px"><strong>Danger santé</strong></td><td style="padding:4px">Nuit gravement à long terme</td><td style="padding:4px">Protections adéquates</td></tr>
+<tr><td style="padding:4px">🐟</td><td style="padding:4px"><strong>Env. aquatique</strong></td><td style="padding:4px">Pollue l'eau et la nature</td><td style="padding:4px">Ne pas rejeter dans la nature</td></tr>
+</table>
 <h3>En cas d'accident</h3>
 <ul>
-<li>Projection dans les yeux → rincer à l'eau 15 minutes</li>
+<li>Projection dans les yeux → <strong>rincer à l'eau 15 minutes</strong></li>
 <li>Brûlure sur la peau → rincer à l'eau et prévenir le prof</li>
 <li>Toujours <strong>prévenir le professeur</strong></li>
 </ul>`,
         mindmap: {
           center: "Sécurité labo",
           branches: [
-            { label: "Protection", color: "#0984e3", children: ["Blouse", "Lunettes", "Cheveux attachés"] },
-            { label: "Interdits", color: "#e94560", children: ["Ne pas goûter", "Ne pas courir", "Ne pas sentir direct"] },
-            { label: "Pictogrammes", color: "#fdcb6e", children: ["Inflammable", "Toxique", "Corrosif", "Explosif"] },
-            { label: "Urgence", color: "#00b894", children: ["Rincer à l'eau", "Prévenir le prof", "Rince-œil"] }
+            { label: "3 étapes", color: "#0984e3", children: ["1. Se préparer", "2. Manipuler", "3. Ranger/nettoyer"] },
+            { label: "Protection", color: "#00b894", children: ["Blouse 100% coton", "Lunettes", "Gants", "Cheveux attachés"] },
+            { label: "Interdits", color: "#e94560", children: ["Ne pas goûter", "Ne pas improviser", "Pas de flamme sans autorisation"] },
+            { label: "9 pictogrammes", color: "#fdcb6e", children: ["Explosif", "Inflammable", "Corrosif", "Toxique", "Nocif", "Comburant", "Gaz pression", "Danger santé", "Env. aquatique"] }
           ]
         }
       },
       {
         id: "matiere-vivant",
         title: "Vivant, minéral, technique",
-        desc: "Distinguer les êtres vivants, les minéraux et les objets techniques",
+        desc: "Classer la matière : êtres vivants (végétaux, animaux), matière minérale, matière organique morte, objets techniques",
         quiz: [
           {
             q: "Qu'est-ce qui caractérise un être vivant ?",
@@ -2049,7 +2076,7 @@ const DATA = {
             q: "Un caillou est-il vivant ?",
             options: ["Oui, il grandit lentement", "Non, c'est un minéral — il ne naît pas, ne grandit pas, ne meurt pas", "Oui, car il contient des minéraux", "Ça dépend de la taille"],
             correct: 1,
-            explanation: "Un caillou est un minéral (matière minérale). Il ne naît pas, ne grandit pas, ne se reproduit pas et ne meurt pas. Ce n'est pas un être vivant."
+            explanation: "Un caillou est de la matière minérale. Il ne naît pas, ne grandit pas, ne se reproduit pas et ne meurt pas. Ce n'est pas un être vivant."
           },
           {
             q: "Qu'est-ce qu'un objet technique ?",
@@ -2059,58 +2086,71 @@ const DATA = {
           },
           {
             q: "Dans quelle catégorie se trouve un arbre ?",
-            options: ["Minéral", "Objet technique", "Être vivant", "Aucune de ces catégories"],
+            options: ["Minéral", "Objet technique", "Être vivant — végétal", "Matière organique morte"],
             correct: 2,
-            explanation: "Un arbre est un être vivant : il naît (graine), grandit, se reproduit (graines, fruits) et meurt. Même s'il ne bouge pas, il est vivant !"
+            explanation: "Un arbre est un être vivant de type végétal : il naît (graine), grandit, se reproduit (graines, fruits) et meurt. Même s'il ne bouge pas, il est vivant !"
           },
           {
             q: "L'eau est-elle vivante ?",
             options: ["Oui, car elle bouge", "Non, c'est de la matière minérale", "Oui, car les poissons vivent dedans", "Ça dépend de la température"],
             correct: 1,
             explanation: "L'eau est de la matière minérale. Elle peut bouger (couler, vagues) mais elle ne naît pas, ne grandit pas et ne se reproduit pas."
+          },
+          {
+            q: "Dans quelle grande catégorie se trouvent les végétaux ET les animaux ?",
+            options: ["Matière minérale", "Êtres vivants", "Objets techniques", "Matière organique morte"],
+            correct: 1,
+            explanation: "Les végétaux (plantes, arbres, algues…) et les animaux (mammifères, insectes, poissons…) sont tous des êtres vivants : ils naissent, grandissent, se reproduisent et meurent."
+          },
+          {
+            q: "Qu'est-ce que la matière organique morte ?",
+            options: ["De la matière minérale ancienne", "De la matière produite par des êtres vivants, mais qui ne vit plus (feuilles mortes, bois mort…)", "Des êtres vivants microscopiques", "Des objets techniques en bois"],
+            correct: 1,
+            explanation: "La matière organique morte est produite par des êtres vivants mais ne vit plus elle-même : feuilles mortes, bois mort, humus (terre)… Elle joue un rôle dans la composition du sol."
           }
         ],
         flashcards: [
-          { front: "Être vivant", back: "Organisme qui naît, grandit, se nourrit, se reproduit et meurt. Ex : animal, plante, champignon." },
-          { front: "Matière minérale", back: "Matière non vivante d'origine naturelle. Ex : eau, roche, sable, sel, air." },
+          { front: "Être vivant", back: "Organisme qui naît, grandit, se nourrit, se reproduit et meurt. Ex : animal, plante, champignon, bactérie." },
+          { front: "Végétaux", back: "Êtres vivants qui fabriquent leur nourriture grâce à la lumière (photosynthèse). Ex : herbe, arbre, algue." },
+          { front: "Animaux", back: "Êtres vivants qui se déplacent et consomment d'autres êtres vivants. Ex : chien, aigle, grenouille, insecte." },
+          { front: "Matière minérale", back: "Matière non vivante d'origine naturelle. Ex : eau, roche, sable, sel, air, métal." },
+          { front: "Matière organique morte", back: "Matière produite par des êtres vivants, mais plus vivante : feuilles mortes, bois mort, humus dans la terre." },
           { front: "Objet technique", back: "Objet fabriqué par l'humain pour répondre à un besoin. Ex : vélo, téléphone, stylo." },
           { front: "Les fonctions du vivant", back: "Se nourrir, grandir, se reproduire, réagir à l'environnement." },
           { front: "Différence vivant / minéral", back: "Le vivant naît, grandit, se reproduit et meurt. Le minéral ne fait rien de tout cela." },
-          { front: "Matière organique", back: "Matière produite par les êtres vivants : bois, cuir, laine, coton…" }
+          { front: "La composition de la terre", back: "La terre (sol) contient : matière minérale (sable, roche) + matière organique morte (humus, feuilles) + êtres vivants (vers, bactéries, racines)." }
         ],
         summary: `<h2>🔬 Vivant, minéral, technique</h2>
+<h3>Classification de la matière</h3>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin:8px 0">
+<tr style="background:rgba(0,184,148,0.3)"><th style="padding:5px;text-align:left">Catégorie</th><th style="padding:5px;text-align:left">Exemples</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>Végétaux</strong> 🌿</td><td style="padding:5px">Herbe, arbre, algue, mousse</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px"><strong>Animaux</strong> 🐾</td><td style="padding:5px">Chien, aigle, grenouille, insecte</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px" colspan="2">↳ Végétaux + Animaux = <span class="key-term">Êtres vivants</span></td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px"><strong>Matière organique morte</strong></td><td style="padding:5px">Feuilles mortes, bois mort, humus</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>Matière minérale</strong></td><td style="padding:5px">Eau, roche, sable, sel, air, métaux</td></tr>
+<tr><td style="padding:5px"><strong>Objet technique</strong> ⚙️</td><td style="padding:5px">Vélo, stylo, téléphone, maison</td></tr>
+</table>
 <h3>Les êtres vivants</h3>
 <ul>
 <li>Un être vivant <strong>naît, grandit, se nourrit, se reproduit et meurt</strong></li>
-<li>Exemples : animaux, plantes, champignons, bactéries</li>
+<li>Il existe deux grands groupes : les <span class="key-term">végétaux</span> et les <span class="key-term">animaux</span></li>
 <li>Même un arbre ou une bactérie sont des êtres vivants !</li>
-<li>Ils sont composés de <span class="key-term">matière organique</span> (produite par le vivant)</li>
-</ul>
-<h3>La matière minérale</h3>
-<ul>
-<li>Matière <strong>non vivante</strong> d'origine naturelle</li>
-<li>Ne naît pas, ne grandit pas, ne se reproduit pas</li>
-<li>Exemples : eau, roches, sable, sel, air, métaux</li>
-</ul>
-<h3>Les objets techniques</h3>
-<ul>
-<li>Fabriqués par <strong>l'être humain</strong> pour répondre à un <strong>besoin</strong></li>
-<li>Exemples : vélo, stylo, téléphone, maison</li>
-<li>Peuvent être faits de matière organique (bois) ou minérale (métal)</li>
 </ul>
 <h3>Attention aux pièges !</h3>
 <ul>
-<li>Un arbre ne bouge pas mais il est <strong>vivant</strong></li>
-<li>L'eau bouge mais elle n'est <strong>pas vivante</strong></li>
-<li>Le bois d'une table vient du vivant mais la table est un <strong>objet technique</strong></li>
+<li>Un arbre ne bouge pas mais il est <strong>vivant</strong> (végétal)</li>
+<li>L'eau bouge mais elle n'est <strong>pas vivante</strong> (minéral)</li>
+<li>Le bois mort d'une table vient du vivant mais c'est de la <strong>matière organique morte</strong></li>
+<li>La <strong>terre</strong> (sol) mélange : matière minérale + matière organique morte + êtres vivants</li>
 </ul>`,
         mindmap: {
-          center: "Matière",
+          center: "Classer la matière",
           branches: [
-            { label: "Vivant", color: "#00b894", children: ["Naît", "Grandit", "Se reproduit", "Meurt"] },
-            { label: "Minéral", color: "#0984e3", children: ["Eau", "Roche", "Air", "Métaux"] },
-            { label: "Objet technique", color: "#e17055", children: ["Fabriqué", "Besoin", "Vélo, stylo…"] },
-            { label: "Matière", color: "#fdcb6e", children: ["Organique (vivant)", "Minérale (non vivant)"] }
+            { label: "Êtres vivants", color: "#00b894", children: ["Végétaux (plantes…)", "Animaux (chien, aigle…)", "Naissent / meurent"] },
+            { label: "Matière minérale", color: "#0984e3", children: ["Eau", "Roche, sable", "Sel, métaux, air"] },
+            { label: "Matière org. morte", color: "#e17055", children: ["Feuilles mortes", "Bois mort", "Humus (terre)"] },
+            { label: "Objet technique", color: "#fdcb6e", children: ["Fabriqué par l'humain", "Répond à un besoin", "Vélo, stylo, téléphone"] }
           ]
         }
       }
@@ -2889,6 +2929,20 @@ const RESOURCES = {
     }
   ],
   sciences: [
+    {
+      name: "Cours - Sécurité et verrerie en chimie",
+      type: "pdf",
+      chapter: "Sécurité au laboratoire",
+      date: "oct. 2026",
+      note: "9 pictogrammes GHS (explosif, inflammable, comburant, gaz sous pression, corrosif, toxique, nocif, danger santé, env. aquatique) — 3 étapes de la séance — étiquetage des produits chimiques"
+    },
+    {
+      name: "Classification de la matière (tableau de bord)",
+      type: "cours",
+      chapter: "Vivant, minéral, technique",
+      date: "oct. 2026",
+      note: "Végétaux + animaux = êtres vivants ; objet technique ; matière organique morte ; matière minérale ; composition de la terre"
+    },
     {
       name: "Cours - Le monde du vivant",
       type: "pdf",
