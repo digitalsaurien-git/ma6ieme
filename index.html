@@ -95,7 +95,71 @@ body {
   display: flex; align-items: center; justify-content: center;
 }
 .resources-panel-close:active { background: rgba(255,255,255,0.2); }
-.resources-panel-body { padding: 12px 18px; }
+.resources-panel-body { padding: 0; }
+.res-tabs {
+  display: flex; border-bottom: 1.5px solid rgba(255,255,255,0.1);
+  padding: 0 18px; gap: 0;
+}
+.res-tab {
+  padding: 12px 16px; font-size: 13px; font-weight: 700;
+  color: var(--text2); cursor: pointer; border: none;
+  background: none; border-bottom: 2px solid transparent;
+  margin-bottom: -1.5px;
+}
+.res-tab.active { color: var(--purple); border-bottom-color: var(--purple); }
+.res-tab-content { display: none; padding: 12px 18px; }
+.res-tab-content.active { display: block; }
+.res-copy-btn {
+  display: flex; align-items: center; gap: 8px;
+  width: 100%;
+  padding: 11px 14px;
+  background: rgba(108,92,231,0.12);
+  border: 1.5px solid rgba(108,92,231,0.35);
+  border-radius: 10px; color: var(--purple);
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  margin-bottom: 16px;
+}
+.res-copy-btn:active { opacity: 0.8; }
+.res-copy-btn .copy-ok { display:none; color: var(--green); }
+.res-copy-btn.copied .copy-default { display:none; }
+.res-copy-btn.copied .copy-ok { display:inline; }
+/* Programme */
+.prog-matiere-block { margin-bottom: 18px; }
+.prog-matiere-title {
+  font-size: 13px; font-weight: 800;
+  color: var(--text2); text-transform: uppercase;
+  letter-spacing: 0.07em; margin-bottom: 8px;
+  padding-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.prog-chapitre {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 8px 10px; margin-bottom: 5px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px; border-left: 3px solid transparent;
+}
+.prog-chapitre .prog-ch-name {
+  font-size: 13px; font-weight: 600; flex: 1;
+}
+.prog-chapitre .prog-ch-count {
+  font-size: 10px; color: var(--text2);
+  background: rgba(255,255,255,0.08);
+  border-radius: 5px; padding: 2px 5px;
+  white-space: nowrap;
+}
+.prog-copy-btn {
+  display: flex; align-items: center; gap: 8px;
+  width: 100%;
+  padding: 11px 14px;
+  background: rgba(0,184,148,0.1);
+  border: 1.5px solid rgba(0,184,148,0.3);
+  border-radius: 10px; color: var(--green);
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  margin-bottom: 16px;
+}
+.prog-copy-btn:active { opacity: 0.8; }
+.prog-copy-btn .copy-ok { display:none; color: var(--green); }
+.prog-copy-btn.copied .copy-default { display:none; }
+.prog-copy-btn.copied .copy-ok { display:inline; }
 .resources-subject-block { margin-bottom: 18px; }
 .resources-subject-block h4 {
   font-size: 13px; font-weight: 700; color: var(--text2);
@@ -886,10 +950,17 @@ body {
 <div class="resources-overlay" id="resourcesOverlay" onclick="closeResourcesIfBg(event)">
   <div class="resources-panel" id="resourcesPanel">
     <div class="resources-panel-header">
-      <h3>📂 Mes documents de cours</h3>
+      <h3>⚙️ Suivi du cours</h3>
       <button class="resources-panel-close" onclick="closeResources()">✕</button>
     </div>
-    <div class="resources-panel-body" id="resourcesPanelBody"></div>
+    <div class="resources-panel-body">
+      <div class="res-tabs">
+        <button class="res-tab active" id="resTab-docs" onclick="switchResTab('docs')">📄 Documents</button>
+        <button class="res-tab" id="resTab-programme" onclick="switchResTab('programme')">📋 Programme</button>
+      </div>
+      <div class="res-tab-content active" id="resTabContent-docs" id="resourcesPanelBody"></div>
+      <div class="res-tab-content" id="resTabContent-programme"></div>
+    </div>
   </div>
 </div>
 
@@ -3289,43 +3360,167 @@ const RESOURCES_SUBJECT_LABELS = {
 const FILE_ICONS = { pdf: "📄", image: "🖼️", doc: "📝" };
 
 function openResources() {
-  const body = document.getElementById('resourcesPanelBody');
-  let html = '';
+  renderResDocsTab();
+  renderResProgrammeTab();
+  document.getElementById('resourcesOverlay').classList.add('show');
+}
+
+function switchResTab(tab) {
+  ['docs','programme'].forEach(t => {
+    document.getElementById('resTab-' + t).classList.toggle('active', t === tab);
+    document.getElementById('resTabContent-' + t).classList.toggle('active', t === tab);
+  });
+}
+
+function renderResDocsTab() {
+  const body = document.getElementById('resTabContent-docs');
   let totalDocs = 0;
+
+  // Construire le texte à copier (format clair pour le prof)
+  let copyLines = [];
+  copyLines.push('📚 Documents de cours de Melwan — 6ème');
+  copyLines.push('');
+
+  let html = '';
 
   Object.entries(RESOURCES).forEach(([subjectKey, docs]) => {
     if (!docs || docs.length === 0) return;
     totalDocs += docs.length;
     const subj = RESOURCES_SUBJECT_LABELS[subjectKey] || { emoji: "📚", name: subjectKey };
+    // Tri alphabétique
+    const sorted = [...docs].sort((a, b) => a.name.localeCompare(b.name, 'fr'));
+
+    copyLines.push(subj.emoji + ' ' + subj.name.toUpperCase());
+    sorted.forEach(doc => {
+      const ext = doc.type === 'pdf' ? '.pdf' : doc.type === 'doc' ? '.docx' : '.' + (doc.type || 'pdf');
+      copyLines.push('  • ' + doc.name + ext);
+    });
+    copyLines.push('');
+
     html += `<div class="resources-subject-block">
-      <h4>${subj.emoji} ${subj.name} <span style="font-size:11px;font-weight:400;color:var(--text2)">${docs.length} doc${docs.length > 1 ? 's' : ''}</span></h4>`;
-    docs.forEach(doc => {
+      <h4>${subj.emoji} ${subj.name} <span style="font-size:11px;font-weight:400;color:var(--text2)">${sorted.length} doc${sorted.length > 1 ? 's' : ''}</span></h4>`;
+    sorted.forEach(doc => {
       const icon = FILE_ICONS[doc.type] || "📄";
+      const ext = doc.type === 'pdf' ? '.pdf' : doc.type === 'doc' ? '.docx' : '.' + (doc.type || 'pdf');
       html += `<div class="resources-file-item" style="border-left-color:${DATA[subjectKey]?.color || 'var(--accent)'}">
         <span class="resources-file-icon">${icon}</span>
         <div class="resources-file-info">
-          <div class="resources-file-name">${doc.name}</div>
+          <div class="resources-file-name">${doc.name}<span style="color:var(--text2);font-size:11px">${ext}</span></div>
           <div class="resources-file-meta">${doc.chapter} · ${doc.date}</div>
-          ${doc.note ? `<div class="resources-file-meta" style="margin-top:2px;font-style:italic">${doc.note}</div>` : ''}
         </div>
       </div>`;
     });
     html += `</div>`;
   });
 
+  const copyText = copyLines.join('\n');
+
   if (totalDocs === 0) {
-    html = `<div class="resources-empty">
-      <div class="big">📂</div>
-      Aucun document enregistré pour l'instant.
-    </div>`;
+    html = `<div class="resources-empty"><div class="big">📂</div>Aucun document enregistré.</div>`;
   }
 
   html += `<div class="resources-add-hint">
-    💡 <strong>Pour ajouter un document :</strong> envoie le PDF ou l'image à Claude avec le message "Ajoute ce cours pour Melwan" et il mettra la liste à jour.
+    💡 <strong>Pour ajouter :</strong> envoie le PDF à Claude avec "Ajoute ce cours pour Melwan".
   </div>`;
 
-  body.innerHTML = html;
-  document.getElementById('resourcesOverlay').classList.add('show');
+  body.innerHTML = `
+    <button class="res-copy-btn" id="docsCopyBtn" onclick="copyDocs()">
+      <span class="copy-default">📋 Copier la liste pour le prof</span>
+      <span class="copy-ok">✅ Copié !</span>
+    </button>
+    ${html}`;
+
+  // Stocker le texte à copier dans un attribut data
+  document.getElementById('docsCopyBtn').dataset.text = copyText;
+}
+
+function copyDocs() {
+  const btn = document.getElementById('docsCopyBtn');
+  const text = btn.dataset.text || '';
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    setTimeout(() => btn.classList.remove('copied'), 2000);
+  }).catch(() => {
+    // Fallback : sélection manuelle
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.classList.add('copied');
+    setTimeout(() => btn.classList.remove('copied'), 2000);
+  });
+}
+
+function renderResProgrammeTab() {
+  const body = document.getElementById('resTabContent-programme');
+
+  // Construire le programme : chapitres uniques par matière
+  let copyLines = [];
+  copyLines.push('📋 Programme de Melwan — 6ème');
+  copyLines.push('');
+
+  let html = '';
+
+  Object.entries(RESOURCES).forEach(([subjectKey, docs]) => {
+    if (!docs || docs.length === 0) return;
+    const subj = RESOURCES_SUBJECT_LABELS[subjectKey] || { emoji: "📚", name: subjectKey };
+
+    // Chapitres uniques, avec compte de docs
+    const chapCount = {};
+    docs.forEach(doc => {
+      const ch = doc.chapter || '(non classé)';
+      chapCount[ch] = (chapCount[ch] || 0) + 1;
+    });
+    const chapsSorted = Object.keys(chapCount).sort((a, b) => a.localeCompare(b, 'fr'));
+    const subjectColor = DATA[subjectKey]?.color || 'var(--accent)';
+
+    copyLines.push(subj.emoji + ' ' + subj.name.toUpperCase());
+    chapsSorted.forEach(ch => copyLines.push('  • ' + ch));
+    copyLines.push('');
+
+    html += `<div class="prog-matiere-block">
+      <div class="prog-matiere-title">${subj.emoji} ${subj.name}</div>`;
+    chapsSorted.forEach(ch => {
+      const count = chapCount[ch];
+      html += `<div class="prog-chapitre" style="border-left-color:${subjectColor}">
+        <div class="prog-ch-name">${ch}</div>
+        <div class="prog-ch-count">${count} doc${count > 1 ? 's' : ''}</div>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+
+  const copyText = copyLines.join('\n');
+
+  body.innerHTML = `
+    <button class="prog-copy-btn" id="progCopyBtn" onclick="copyProg()">
+      <span class="copy-default">📋 Copier le programme pour le prof</span>
+      <span class="copy-ok">✅ Copié !</span>
+    </button>
+    ${html}
+    <div class="resources-add-hint">
+      💡 Ce programme se construit automatiquement à partir des documents enregistrés.
+    </div>`;
+
+  document.getElementById('progCopyBtn').dataset.text = copyText;
+}
+
+function copyProg() {
+  const btn = document.getElementById('progCopyBtn');
+  const text = btn.dataset.text || '';
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    setTimeout(() => btn.classList.remove('copied'), 2000);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.classList.add('copied');
+    setTimeout(() => btn.classList.remove('copied'), 2000);
+  });
 }
 
 function closeResources() {
