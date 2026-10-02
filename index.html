@@ -776,7 +776,7 @@ body {
     <div class="subject-card" data-color="teal" onclick="openSubject('svt')">
       <span class="emoji">🌿</span>
       <div class="name">SVT</div>
-      <div class="count">1 chapitre</div>
+      <div class="count">2 chapitres</div>
     </div>
     <div class="subject-card" data-color="purple" onclick="openSubject('physchimie')">
       <span class="emoji">⚗️</span>
@@ -2184,6 +2184,127 @@ Découvert au <strong>Tchad</strong> en 2001, <span class="key-term">Toumaï</sp
             { label: "Objet technique", color: "#fdcb6e", children: ["Fabriqué par l'humain", "Répond à un besoin", "Vélo, stylo, téléphone"] }
           ]
         }
+      },
+      {
+        id: "espece-determination",
+        title: "Espèce et détermination",
+        desc: "Définition d'une espèce, critères de classement, clé de détermination",
+        quiz: [
+          {
+            q: "Quels sont les critères pour appartenir à la même espèce ?",
+            options: ["Avoir la même couleur", "Se ressembler ET pouvoir se reproduire en donnant des petits fertiles", "Vivre au même endroit", "Avoir le même régime alimentaire"],
+            correct: 1,
+            explanation: "Pour appartenir à la même espèce, il faut : se ressembler, être capable de se reproduire ensemble ET que leurs petits soient fertiles (capables de se reproduire à leur tour)."
+          },
+          {
+            q: "Qu'est-ce qu'un hybride ?",
+            options: ["Un animal très grand", "Un croisement entre deux espèces différentes, qui donne un animal stérile", "Un animal domestique", "Une nouvelle espèce"],
+            correct: 1,
+            explanation: "Un hybride est le croisement entre deux espèces différentes. Il est stérile (ne peut pas se reproduire). Exemple : le zorse = croisement d'une jument et d'un zèbre."
+          },
+          {
+            q: "Qu'est-ce qu'un animal fertile ?",
+            options: ["Un animal qui mange beaucoup", "Un animal capable de se reproduire", "Un animal très rapide", "Un animal qui vit longtemps"],
+            correct: 1,
+            explanation: "Fertile = capable de se reproduire. L'inverse est stérile. C'est un critère essentiel pour définir une espèce : les individus d'une même espèce ont des petits fertiles."
+          },
+          {
+            q: "À quoi sert une clé de détermination ?",
+            options: ["À ouvrir une porte de laboratoire", "À identifier un être vivant en répondant à des questions par oui ou non", "À mesurer la taille des animaux", "À classer les espèces par taille"],
+            correct: 1,
+            explanation: "Une clé de détermination (ou d'identification) sert à identifier des êtres vivants. On avance étape par étape en choisissant entre deux critères (oui/non, a/n'a pas)."
+          },
+          {
+            q: "Qu'est-ce que 'classer' des espèces ?",
+            options: ["Les mettre par ordre alphabétique", "Ne prendre en compte que les attributs présents et partagés par les différents organismes", "Les trier par couleur", "Les compter"],
+            correct: 1,
+            explanation: "Classer = on ne prend en compte QUE les attributs présents et partagés par les différents organismes pour les regrouper. C'est différent de trier (présence/absence) ou de ranger (ordre)."
+          },
+          {
+            q: "Quelle est la différence entre 'trier' et 'classer' ?",
+            options: ["Ce sont deux mots pour la même chose", "Trier = présence ou absence d'un attribut ; classer = attributs présents et partagés seulement", "Trier c'est plus précis que classer", "Classer c'est mettre dans l'ordre alphabétique"],
+            correct: 1,
+            explanation: "Trier = on se base sur la présence OU l'absence d'un attribut. Classer = on ne prend en compte QUE les attributs présents et partagés. Exemple : trier par 'a une coquille' vs 'n'a pas de coquille'."
+          },
+          {
+            q: "Que signifie 'identifier' un être vivant ?",
+            options: ["Le dessiner", "Trouver à quelle espèce il appartient", "Le capturer", "Le peser"],
+            correct: 1,
+            explanation: "Identifier un être vivant = trouver à quelle espèce il appartient. On utilise une clé de détermination pour y arriver en répondant à des questions successives."
+          },
+          {
+            q: "Quel est l'exemple d'hybride mentionné dans le cours ?",
+            options: ["Le mulet (cheval + âne)", "Le zorse (jument + zèbre)", "Le tigon (tigre + lion)", "Le labradoodle (labrador + caniche)"],
+            correct: 1,
+            explanation: "Le cours cite le zorse = croisement d'une jument (cheval femelle) et d'un zèbre. C'est un hybride stérile car jument et zèbre sont deux espèces différentes."
+          },
+          {
+            q: "Une clé de détermination est-elle une classification ?",
+            options: ["Oui, c'est pareil", "Non, une clé n'est pas une classification — c'est un outil pour identifier", "Oui, mais seulement pour les animaux", "Non, car elle ne fonctionne que par oui/non"],
+            correct: 1,
+            explanation: "Une clé de détermination n'est PAS une classification. C'est un outil pour identifier des êtres vivants, pas pour les regrouper selon leurs caractères communs."
+          },
+          {
+            q: "Que signifie 'déterminer' une espèce ?",
+            options: ["La détruire", "Reconnaître une espèce déjà répertoriée, retrouver son nom et sa famille", "La créer en laboratoire", "La compter dans la nature"],
+            correct: 1,
+            explanation: "Déterminer = reconnaître une espèce déjà répertoriée et retrouver son nom, sa famille. On utilise une clé de détermination pour cela."
+          }
+        ],
+        flashcards: [
+          { front: "Espèce", back: "Ensemble d'êtres vivants qui se ressemblent, qui sont capables de se reproduire et dont les petits sont fertiles." },
+          { front: "Fertile", back: "Capable de se reproduire. L'inverse est stérile. Critère clé de la définition d'une espèce." },
+          { front: "Hybride", back: "Croisement entre deux espèces différentes → animal stérile. Ex : le zorse = jument × zèbre." },
+          { front: "Identifier un être vivant", back: "Trouver à quelle espèce il appartient, grâce à une clé de détermination." },
+          { front: "Clé de détermination", back: "Outil pour identifier des êtres vivants. On avance étape par étape en choisissant entre des critères (oui/non, a/n'a pas). Ce n'est PAS une classification." },
+          { front: "Trier", back: "Se baser sur la présence ou l'absence d'un attribut pour séparer les espèces. Ex : vit dans l'eau / ne vit pas dans l'eau." },
+          { front: "Classer", back: "Ne prendre en compte que les attributs présents et partagés par les organismes pour les regrouper." },
+          { front: "Ranger", back: "Mettre les espèces dans un ordre donné selon un critère. Ex : taille, ordre alphabétique." },
+          { front: "Déterminer", back: "Reconnaître une espèce déjà répertoriée, retrouver son nom et sa famille." },
+          { front: "Nom latin d'une espèce", back: "Chaque espèce a un nom latin unique et un mode de vie caractéristique — deux critères supplémentaires pour l'identification." }
+        ],
+        summary: `<h2>🌿 Espèce et détermination</h2>
+<h3>Partie I — Qu'est-ce qu'une espèce ?</h3>
+<ul>
+<li>Il existe une très grande diversité d'êtres vivants, regroupés en <span class="key-term">espèces</span> selon certains critères</li>
+<li>Pour appartenir à la même espèce, il faut :</li>
+</ul>
+<ul style="margin-top:4px;padding-left:36px">
+<li>Se ressembler</li>
+<li>Être capable de se reproduire et avoir des petits <strong>fertiles</strong></li>
+<li>(et aussi : avoir le même nom latin, le même mode de vie)</li>
+</ul>
+<p style="background:rgba(0,184,148,0.15);border-left:3px solid #00b894;padding:8px 12px;border-radius:4px;margin:10px 0">
+<strong>Espèce</strong> = ensemble d'êtres vivants qui se ressemblent, qui sont capables de se reproduire et dont les petits sont fertiles.
+</p>
+<p style="background:rgba(9,132,227,0.15);border-left:3px solid #0984e3;padding:8px 12px;border-radius:4px;margin:10px 0">
+<strong>Fertile</strong> = capable de se reproduire (l'inverse : stérile)
+</p>
+<p style="background:rgba(253,203,110,0.15);border-left:3px solid #fdcb6e;padding:8px 12px;border-radius:4px;margin:10px 0">
+⚠️ <strong>Hybride</strong> = croisement entre deux espèces différentes → animal <strong>stérile</strong>. Ex : le zorse = jument × zèbre
+</p>
+<h3>Partie II — Distinguer les espèces entre elles</h3>
+<ul>
+<li><strong>Identifier</strong> un être vivant = trouver à quelle espèce il appartient</li>
+<li>Une <span class="key-term">clé de détermination</span> est un outil pour identifier des êtres vivants : on avance par étapes en choisissant entre deux critères (oui/non, a/n'a pas). <strong>Ce n'est pas une classification.</strong></li>
+</ul>
+<h3>Vocabulaire clé</h3>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin:8px 0">
+<tr style="background:rgba(0,184,148,0.3)"><th style="padding:5px;text-align:left">Mot</th><th style="padding:5px;text-align:left">Définition</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>Trier</strong></td><td style="padding:5px">Présence ou absence d'un attribut. Ex : vit dans l'eau / ne vit pas dans l'eau</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px"><strong>Classer</strong></td><td style="padding:5px">Attributs présents et partagés seulement</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>Ranger</strong></td><td style="padding:5px">Mettre dans un ordre (taille, alphabétique…)</td></tr>
+<tr><td style="padding:5px"><strong>Déterminer</strong></td><td style="padding:5px">Reconnaître une espèce répertoriée, retrouver son nom et sa famille</td></tr>
+</table>`,
+        mindmap: {
+          center: "Espèce",
+          branches: [
+            { label: "Définition", color: "#00b894", children: ["Se ressembler", "Reproduction fertile", "Même nom latin"] },
+            { label: "Hybride", color: "#e94560", children: ["2 espèces différentes", "Stérile", "Ex : zorse"] },
+            { label: "Clé de détermination", color: "#0984e3", children: ["Identifier un vivant", "Oui / Non", "Pas une classification"] },
+            { label: "Vocabulaire", color: "#fdcb6e", children: ["Trier (présence/absence)", "Classer (partagés)", "Ranger (ordre)", "Déterminer (nom)"] }
+          ]
+        }
       }
     ]
   },
@@ -3052,6 +3173,13 @@ const RESOURCES = {
       chapter: "Vivant, minéral, technique",
       date: "oct. 2026",
       note: "Végétaux + animaux = êtres vivants ; objet technique ; matière organique morte ; matière minérale ; composition de la terre"
+    },
+    {
+      name: "Fiche méthode - Espèce et détermination (photo cahier)",
+      type: "photo",
+      chapter: "Espèce et détermination",
+      date: "oct. 2026",
+      note: "Partie I : définition espèce, hybride (zorse) — Partie II : clé de détermination, vocabulaire (trier/classer/ranger/déterminer)"
     }
   ],
   physchimie: [
