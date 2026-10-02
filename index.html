@@ -526,6 +526,28 @@ body {
 .quiz-koala svg { width: 52px; height: 52px; }
 
 /* ══════════════════════════════════════════════════
+   RESPONSIVE — PAYSAGE MOBILE (portrait → landscape, < 1024px)
+   La roue crantée sort du header et se fixe en bas à droite
+   ══════════════════════════════════════════════════ */
+@media (orientation: landscape) and (max-width: 1023px) {
+  .settings-btn {
+    position: fixed;
+    bottom: 14px;
+    right: 14px;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    z-index: 200;
+    background: rgba(15, 52, 96, 0.85);
+    border: 1.5px solid rgba(255,255,255,0.15);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  }
+}
+
+/* ══════════════════════════════════════════════════
    RESPONSIVE — TABLETTE ≥ 640px
    Contenu plus large, grilles 3 col, panneau plus haut
    ══════════════════════════════════════════════════ */
