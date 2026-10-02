@@ -55,6 +55,77 @@ body {
 }
 .back-btn:active { background: rgba(255,255,255,0.2); }
 
+/* ─── ROUE CRANTÉE ─── */
+.settings-btn {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,0.1); border: none; color: var(--text);
+  width: 40px; height: 40px; border-radius: 50%; font-size: 20px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.settings-btn:active { background: rgba(255,255,255,0.2); }
+
+/* ─── PANNEAU RESSOURCES ─── */
+.resources-overlay {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(0,0,0,0.7);
+  display: none; align-items: flex-end; justify-content: center;
+}
+.resources-overlay.show { display: flex; }
+.resources-panel {
+  background: var(--bg2);
+  border-radius: 20px 20px 0 0;
+  width: 100%; max-width: 500px;
+  padding: 0 0 32px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-top: 3px solid var(--accent);
+}
+.resources-panel-header {
+  position: sticky; top: 0;
+  background: var(--bg2);
+  padding: 16px 18px 12px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.resources-panel-header h3 { font-size: 17px; font-weight: 800; }
+.resources-panel-close {
+  background: rgba(255,255,255,0.1); border: none; color: var(--text);
+  width: 36px; height: 36px; border-radius: 50%; font-size: 18px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.resources-panel-close:active { background: rgba(255,255,255,0.2); }
+.resources-panel-body { padding: 12px 18px; }
+.resources-subject-block { margin-bottom: 18px; }
+.resources-subject-block h4 {
+  font-size: 13px; font-weight: 700; color: var(--text2);
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+}
+.resources-file-item {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px; padding: 10px 12px;
+  margin-bottom: 6px;
+  border-left: 3px solid rgba(255,255,255,0.15);
+}
+.resources-file-icon { font-size: 20px; flex-shrink: 0; }
+.resources-file-info { flex: 1; }
+.resources-file-name { font-size: 14px; font-weight: 600; }
+.resources-file-meta { font-size: 11px; color: var(--text2); margin-top: 2px; }
+.resources-empty {
+  text-align: center; padding: 32px 20px;
+  color: var(--text2); font-size: 14px;
+}
+.resources-empty .big { font-size: 40px; margin-bottom: 8px; }
+.resources-add-hint {
+  background: rgba(233,69,96,0.1);
+  border: 1.5px solid rgba(233,69,96,0.3);
+  border-radius: 12px; padding: 12px 16px;
+  font-size: 13px; color: var(--text2); margin: 12px 0 0;
+  line-height: 1.5;
+}
+.resources-add-hint strong { color: var(--accent); }
+
 /* ─── SCREENS ─── */
 .screen { display: none; padding: 16px; padding-bottom: 80px; }
 .screen.active { display: block; }
@@ -543,6 +614,7 @@ body {
   <button class="back-btn" id="backBtn" onclick="goBack()">&#8592;</button>
   <h1>Mes <span>Cours</span></h1>
   <div class="sub" id="headerSub">Choisis ta matière !</div>
+  <button class="settings-btn" id="settingsBtn" onclick="openResources()" title="Mes documents">⚙️</button>
 </div>
 
 <!-- ═══ SCREEN: SUBJECTS ═══ -->
@@ -612,17 +684,17 @@ body {
   <div class="chapter-photos" id="chapterPhotos"></div>
 
   <div class="activity-grid">
+    <div class="activity-btn" onclick="startActivity('summary')">
+      <span class="emoji">📝</span>
+      <div class="label">Résumé</div>
+    </div>
     <div class="activity-btn" onclick="startActivity('quiz')">
       <span class="emoji">❓</span>
       <div class="label">Quiz</div>
     </div>
     <div class="activity-btn" onclick="startActivity('flashcards')">
       <span class="emoji">🃏</span>
-      <div class="label">Flashcards</div>
-    </div>
-    <div class="activity-btn" onclick="startActivity('summary')">
-      <span class="emoji">📝</span>
-      <div class="label">Résumé</div>
+      <div class="label">Flashcard</div>
     </div>
     <div class="activity-btn" onclick="startActivity('mindmap')">
       <span class="emoji">🧠</span>
@@ -693,6 +765,17 @@ body {
     </div>
 
     <div class="devoirs-list" id="devoirsList"></div>
+  </div>
+</div>
+
+<!-- ─── RESOURCES OVERLAY ─── -->
+<div class="resources-overlay" id="resourcesOverlay" onclick="closeResourcesIfBg(event)">
+  <div class="resources-panel" id="resourcesPanel">
+    <div class="resources-panel-header">
+      <h3>📂 Mes documents de cours</h3>
+      <button class="resources-panel-close" onclick="closeResources()">✕</button>
+    </div>
+    <div class="resources-panel-body" id="resourcesPanelBody"></div>
   </div>
 </div>
 
@@ -1977,6 +2060,132 @@ function zoomMindmap(delta) {
   else { mmZoom = Math.max(80, Math.min(250, mmZoom + delta)); }
   const svg = document.getElementById('mmSvg');
   if (svg) svg.style.width = mmZoom + '%';
+}
+
+// ══════════════════════════════════════════════════
+//  RESOURCES — Liste des documents envoyés par matière
+// ══════════════════════════════════════════════════
+
+// ⬇️ Kader : ajoute ici chaque document que tu envoies à Claude
+// Format : { name, type ('pdf'|'image'|'doc'), chapter, date, note }
+const RESOURCES = {
+  histoire: [
+    {
+      name: "Cours - Les débuts de l'humanité",
+      type: "pdf",
+      chapter: "Les débuts de l'humanité",
+      date: "sept. 2026",
+      note: "Préhistoire, Homo habilis, Homo erectus, Homo sapiens, outils, feu, art rupestre"
+    }
+  ],
+  francais: [
+    {
+      name: "Fiche - Baba Yaga (conte russe)",
+      type: "pdf",
+      chapter: "Baba Yaga",
+      date: "sept. 2026",
+      note: "Personnages, schéma narratif, morale"
+    },
+    {
+      name: "Fiche - Vocabulaire des contes",
+      type: "pdf",
+      chapter: "Vocabulaire des contes",
+      date: "sept. 2026",
+      note: "Adjuvant, opposant, quête, merveilleux, formules d'ouverture/clôture"
+    }
+  ],
+  maths: [
+    {
+      name: "Cours - Nombres entiers et décimaux",
+      type: "pdf",
+      chapter: "Nombres entiers et décimaux",
+      date: "sept. 2026",
+      note: "Fractions, comparaison, addition, soustraction"
+    }
+  ],
+  arts: [
+    {
+      name: "Fiche - Le portrait artistique",
+      type: "pdf",
+      chapter: "Le portrait",
+      date: "sept. 2026",
+      note: "Composition, cadrage, proportions du visage"
+    }
+  ],
+  sciences: [
+    {
+      name: "Cours - Le monde du vivant",
+      type: "pdf",
+      chapter: "Le monde du vivant",
+      date: "sept. 2026",
+      note: "Cellule, êtres vivants, classification"
+    },
+    {
+      name: "Cours - Les écosystèmes",
+      type: "pdf",
+      chapter: "Les écosystèmes",
+      date: "sept. 2026",
+      note: "Chaînes alimentaires, biodiversité, équilibre"
+    }
+  ]
+};
+
+const RESOURCES_SUBJECT_LABELS = {
+  histoire:  { emoji: "🏛️", name: "Histoire" },
+  francais:  { emoji: "📖", name: "Français" },
+  maths:     { emoji: "🔢", name: "Maths" },
+  arts:      { emoji: "🎨", name: "Arts" },
+  sciences:  { emoji: "🔬", name: "Sciences" }
+};
+
+const FILE_ICONS = { pdf: "📄", image: "🖼️", doc: "📝" };
+
+function openResources() {
+  const body = document.getElementById('resourcesPanelBody');
+  let html = '';
+  let totalDocs = 0;
+
+  Object.entries(RESOURCES).forEach(([subjectKey, docs]) => {
+    if (!docs || docs.length === 0) return;
+    totalDocs += docs.length;
+    const subj = RESOURCES_SUBJECT_LABELS[subjectKey] || { emoji: "📚", name: subjectKey };
+    html += `<div class="resources-subject-block">
+      <h4>${subj.emoji} ${subj.name} <span style="font-size:11px;font-weight:400;color:var(--text2)">${docs.length} doc${docs.length > 1 ? 's' : ''}</span></h4>`;
+    docs.forEach(doc => {
+      const icon = FILE_ICONS[doc.type] || "📄";
+      html += `<div class="resources-file-item" style="border-left-color:${DATA[subjectKey]?.color || 'var(--accent)'}">
+        <span class="resources-file-icon">${icon}</span>
+        <div class="resources-file-info">
+          <div class="resources-file-name">${doc.name}</div>
+          <div class="resources-file-meta">${doc.chapter} · ${doc.date}</div>
+          ${doc.note ? `<div class="resources-file-meta" style="margin-top:2px;font-style:italic">${doc.note}</div>` : ''}
+        </div>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+
+  if (totalDocs === 0) {
+    html = `<div class="resources-empty">
+      <div class="big">📂</div>
+      Aucun document enregistré pour l'instant.
+    </div>`;
+  }
+
+  html += `<div class="resources-add-hint">
+    💡 <strong>Pour ajouter un document :</strong> envoie le PDF ou l'image à Claude avec le message "Ajoute ce cours pour Melwan" et il mettra la liste à jour.
+  </div>`;
+
+  body.innerHTML = html;
+  document.getElementById('resourcesOverlay').classList.add('show');
+}
+
+function closeResources() {
+  document.getElementById('resourcesOverlay').classList.remove('show');
+}
+
+function closeResourcesIfBg(e) {
+  if (e.target === document.getElementById('resourcesOverlay')) closeResources();
 }
 
 // ══════════════════════════════════════════════════
