@@ -299,6 +299,41 @@ body {
   transition: transform 0.12s, background 0.12s;
 }
 .devoir-chip:active { transform: scale(0.96); background: rgba(253,203,110,0.25); }
+.devoir-revise-btn {
+  display: block; width: 100%; margin-top: 12px;
+  background: var(--yellow); color: #1a1a2e;
+  border: none; border-radius: 10px; padding: 11px;
+  font-size: 14px; font-weight: 800; cursor: pointer;
+  -webkit-user-select: none; user-select: none;
+}
+.devoir-revise-btn:active { transform: scale(0.97); }
+
+/* ─── SÉANCES DE RÉVISION ─── */
+.revision-sessions { max-width: 500px; margin: 10px auto; }
+.revision-card {
+  background: linear-gradient(135deg, var(--card), var(--bg2));
+  border-radius: var(--radius);
+  padding: 20px 18px;
+  margin-bottom: 16px;
+  border: 2px solid rgba(253,203,110,0.3);
+}
+.revision-card.done { border-color: var(--green); opacity: 0.8; }
+.revision-card .rev-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.revision-card .rev-label { font-size: 17px; font-weight: 800; }
+.revision-card .rev-done-badge { background: var(--green); color: #fff; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 20px; }
+.revision-card .rev-sub { font-size: 13px; color: var(--text2); margin-bottom: 12px; }
+.revision-card .rev-chapters { font-size: 13px; color: var(--text2); margin-bottom: 14px; line-height: 1.6; }
+.revision-card .rev-chapters b { color: var(--text); }
+.revision-start-btn {
+  display: block; width: 100%;
+  background: linear-gradient(135deg, var(--yellow), #f0a830);
+  color: #1a1a2e; border: none; border-radius: 10px;
+  padding: 13px; font-size: 15px; font-weight: 800; cursor: pointer;
+  -webkit-user-select: none; user-select: none;
+}
+.revision-start-btn:active { transform: scale(0.97); }
+.revision-start-btn.redo { background: rgba(255,255,255,0.1); color: var(--text); }
+.revision-intro { max-width: 500px; margin: 0 auto 6px; font-size: 13px; color: var(--text2); text-align: center; padding: 0 8px; }
 
 /* ─── PHOTO MEMO (chapter memos) ─── */
 /* ─── ACTIVITY BUTTONS ─── */
@@ -853,6 +888,12 @@ body {
       <div class="label">Carte mentale</div>
     </div>
   </div>
+</div>
+
+<!-- ═══ SCREEN: RÉVISION (séances) ═══ -->
+<div class="screen" id="screen-revision">
+  <div class="section-title" id="revisionTitle"></div>
+  <div class="revision-sessions" id="revisionSessions"></div>
 </div>
 
 <!-- ═══ SCREEN: QUIZ ═══ -->
@@ -3194,6 +3235,7 @@ let navStack = ['subjects'];
 let currentSubject = null;
 let currentChapterData = null;
 let currentChapter = null;
+let currentDevoirId = null;
 
 function showScreen(id) {
   if (id !== 'summary') stopTTS();
@@ -3214,6 +3256,8 @@ function goBack() {
     openSubject(currentSubject, true);
   } else if (prev === 'activities') {
     openChapter(currentSubject, currentChapter, true);
+  } else if (prev === 'revision') {
+    openRevisionSessions(currentDevoirId, true);
   }
 }
 
@@ -3308,6 +3352,22 @@ function startQuiz(ch) {
   showScreen('quiz');
 }
 
+// Rejoue le quiz en cours (même questions, nouvel ordre) — utilisé en
+// mode révision pour refaire une séance sans en changer le contenu.
+function restartCurrentQuiz() {
+  quizState.questions = shuffleArr(quizState.questions);
+  quizState.current = 0;
+  quizState.score = 0;
+  quizState.results = [];
+  showQuizQuestion();
+}
+
+function backToRevisionSessions() {
+  const devoirId = quizState.revisionMeta.devoirId;
+  if (navStack[navStack.length - 1] === 'quiz') navStack.pop();
+  openRevisionSessions(devoirId, true);
+}
+
 function showQuizQuestion() {
   const { questions, current, score } = quizState;
   const container = document.getElementById('quizContainer');
@@ -3326,6 +3386,13 @@ function showQuizQuestion() {
     } else {
       emoji = '📖'; msg = "T'inquiète pas !"; sub = 'Relis le résumé et réessaie, tu vas voir la différence !';
     }
+    if (quizState.revisionMeta) {
+      markSessionDone(quizState.revisionMeta.devoirId, quizState.revisionMeta.sessionIndex);
+    }
+    const restartBtn = quizState.revisionMeta
+      ? `<button class="quiz-restart" onclick="restartCurrentQuiz()">Refaire cette séance 🔄</button>
+         <button class="quiz-restart" style="background:var(--card);margin-top:10px" onclick="backToRevisionSessions()">⬅️ Retour aux séances</button>`
+      : `<button class="quiz-restart" onclick="startActivity('quiz')">Recommencer 🔄</button>`;
     container.innerHTML = `
       <div class="quiz-koala">${getKoalaSVG(60, pct >= 70 ? 'star' : 'happy')}</div>
       <div class="quiz-score">
@@ -3333,7 +3400,8 @@ function showQuizQuestion() {
         <div class="big" style="color: var(--correct)">${score}/${questions.length}</div>
         <div class="msg">${msg}</div>
         <div style="font-size:14px;color:var(--text2);margin-top:8px">${sub}</div>
-        <button class="quiz-restart" onclick="startActivity('quiz')">Recommencer 🔄</button>
+        ${quizState.revisionMeta ? `<div style="font-size:13px;color:var(--yellow);margin-top:6px;font-weight:700">✓ ${quizState.revisionMeta.label} terminée</div>` : ''}
+        ${restartBtn}
       </div>`;
     return;
   }
@@ -3864,7 +3932,11 @@ const DEVOIRS = [
     subject: "histoire",
     title: "Éval Histoire",
     note: "Réviser les 2 chapitres : résumé, quiz et flashcards",
-    chapters: ["debuts-humanite", "histoire-prehistoire"]
+    chapters: ["debuts-humanite", "histoire-prehistoire"],
+    // Mode révision : répartit tout le quiz des chapitres en N séances
+    // équilibrées (par défaut 2), pour étaler la révision sur plusieurs
+    // jours sans surcharger — voir sessionLabels pour personnaliser.
+    sessionLabels: ["Séance 1 — Samedi matin", "Séance 2 — Dimanche matin"]
   }
 ];
 
@@ -3887,6 +3959,9 @@ function renderDevoirs() {
       if (!ch) return '';
       return `<div class="devoir-chip" data-subject="${d.subject}" data-chapter="${chId}">${subj.emoji} ${ch.title}</div>`;
     }).join('');
+    const reviseBtn = d.sessionLabels
+      ? `<button class="devoir-revise-btn" data-devoir="${d.id}">🎯 Réviser en ${d.sessionLabels.length} séances</button>`
+      : '';
     return `<div class="devoir-card">
       <div class="devoir-head">
         <span class="devoir-badge">${badge} · ${d.dateLabel}</span>
@@ -3894,6 +3969,7 @@ function renderDevoirs() {
       </div>
       <div class="devoir-note">${d.note}</div>
       <div class="devoir-chips">${chips}</div>
+      ${reviseBtn}
     </div>`;
   }).join('');
 
@@ -3902,8 +3978,113 @@ function renderDevoirs() {
       openChapter(chip.dataset.subject, chip.dataset.chapter);
     });
   });
+  panel.querySelectorAll('.devoir-revise-btn').forEach(btn => {
+    btn.addEventListener('click', () => openRevisionSessions(btn.dataset.devoir));
+  });
 }
 renderDevoirs();
+
+// ══════════════════════════════════════════════════
+//  MODE RÉVISION — répartit le quiz de plusieurs
+//  chapitres en N séances équilibrées (ex: 2 jours)
+// ══════════════════════════════════════════════════
+function shuffleArr(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+
+function getRevisionProgress() {
+  try { return JSON.parse(localStorage.getItem('revisionProgress') || '{}'); }
+  catch (e) { return {}; }
+}
+function markSessionDone(devoirId, sessionIndex) {
+  try {
+    const prog = getRevisionProgress();
+    prog[devoirId] = prog[devoirId] || [];
+    if (!prog[devoirId].includes(sessionIndex)) prog[devoirId].push(sessionIndex);
+    localStorage.setItem('revisionProgress', JSON.stringify(prog));
+  } catch (e) {}
+}
+function isSessionDone(devoirId, sessionIndex) {
+  const prog = getRevisionProgress();
+  return !!(prog[devoirId] && prog[devoirId].includes(sessionIndex));
+}
+
+// Construit les N séances : chaque chapitre est découpé en N tranches
+// mélangées, et la tranche i de chaque chapitre rejoint la séance i.
+// Ainsi chaque séance couvre TOUS les chapitres du devoir, aucune notion
+// n'est laissée de côté même si une seule séance est faite.
+function buildRevisionSessions(devoir) {
+  const subj = DATA[devoir.subject];
+  const n = devoir.sessionLabels.length;
+  const sessions = Array.from({ length: n }, () => ({ questions: [], chapterTitles: [] }));
+
+  devoir.chapters.forEach(chId => {
+    const ch = subj.chapters.find(c => c.id === chId);
+    if (!ch) return;
+    const pool = shuffleArr(ch.quiz);
+    const chunkSize = Math.ceil(pool.length / n);
+    for (let i = 0; i < n; i++) {
+      const slice = pool.slice(i * chunkSize, (i + 1) * chunkSize);
+      sessions[i].questions.push(...slice);
+      if (slice.length > 0) sessions[i].chapterTitles.push(ch.title);
+    }
+  });
+
+  sessions.forEach(s => { s.questions = shuffleArr(s.questions); });
+  return sessions;
+}
+
+function openRevisionSessions(devoirId, isBack) {
+  const devoir = DEVOIRS.find(d => d.id === devoirId);
+  if (!devoir) return;
+  currentDevoirId = devoirId;
+  const subj = DATA[devoir.subject];
+  if (!isBack) navStack.push('revision');
+
+  document.getElementById('revisionTitle').innerHTML =
+    `<span class="emoji">🎯</span><h2>${devoir.title}</h2><div class="sub">${devoir.dateLabel}</div>`;
+  document.getElementById('headerSub').textContent = 'Mode révision';
+
+  const sessions = buildRevisionSessions(devoir);
+  const container = document.getElementById('revisionSessions');
+  container.innerHTML = `<div class="revision-intro">Chaque séance couvre tout le programme — fais-les toutes les deux pour ne rien manquer.</div>` +
+    sessions.map((s, i) => {
+      const done = isSessionDone(devoir.id, i);
+      return `<div class="revision-card ${done ? 'done' : ''}">
+        <div class="rev-head">
+          <span class="rev-label">${devoir.sessionLabels[i]}</span>
+          ${done ? '<span class="rev-done-badge">✓ Fait</span>' : ''}
+        </div>
+        <div class="rev-sub">${s.questions.length} questions</div>
+        <div class="rev-chapters">${subj.emoji} <b>${s.chapterTitles.join(' + ')}</b></div>
+        <button class="revision-start-btn ${done ? 'redo' : ''}" data-session="${i}" data-devoir="${devoir.id}">
+          ${done ? '🔄 Refaire cette séance' : '▶️ Démarrer la séance'}
+        </button>
+      </div>`;
+    }).join('');
+
+  container.querySelectorAll('.revision-start-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      startRevisionSession(btn.dataset.devoir, parseInt(btn.dataset.session, 10));
+    });
+  });
+
+  showScreen('revision');
+}
+
+function startRevisionSession(devoirId, sessionIndex) {
+  const devoir = DEVOIRS.find(d => d.id === devoirId);
+  const sessions = buildRevisionSessions(devoir);
+  const session = sessions[sessionIndex];
+  navStack.push('quiz');
+  quizState = {
+    questions: session.questions,
+    current: 0,
+    score: 0,
+    results: [],
+    revisionMeta: { devoirId, sessionIndex, label: devoir.sessionLabels[sessionIndex] }
+  };
+  showQuizQuestion();
+  showScreen('quiz');
+}
 
 function openResources() {
   renderResDocsTab();
