@@ -269,6 +269,37 @@ body {
   margin-top: 4px;
 }
 
+/* ─── DEVOIRS À VENIR (bandeau accueil) ─── */
+.devoirs-panel { max-width: 500px; margin: 0 auto 6px; }
+.devoir-card {
+  background: linear-gradient(135deg, rgba(253,203,110,0.18), rgba(15,52,96,0.6));
+  border: 2px solid var(--yellow);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 12px;
+  cursor: default;
+}
+.devoir-card .devoir-head {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+}
+.devoir-card .devoir-badge {
+  background: var(--yellow); color: #1a1a2e; font-weight: 800;
+  font-size: 11px; padding: 3px 9px; border-radius: 20px; white-space: nowrap;
+}
+.devoir-card .devoir-title { font-size: 16px; font-weight: 800; flex: 1; }
+.devoir-card .devoir-note { font-size: 13px; color: var(--text2); margin-bottom: 10px; }
+.devoir-card .devoir-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.devoir-chip {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(253,203,110,0.4);
+  color: var(--text);
+  font-size: 13px; font-weight: 600;
+  padding: 8px 12px; border-radius: 10px;
+  cursor: pointer; -webkit-user-select: none; user-select: none;
+  transition: transform 0.12s, background 0.12s;
+}
+.devoir-chip:active { transform: scale(0.96); background: rgba(253,203,110,0.25); }
+
 /* ─── PHOTO MEMO (chapter memos) ─── */
 /* ─── ACTIVITY BUTTONS ─── */
 .activity-grid {
@@ -746,6 +777,7 @@ body {
     <div class="koala-hello">Salut <span>Melwan</span> 👋 Prêt à tout déchirer ?</div>
   </div>
 
+  <div class="devoirs-panel" id="devoirsPanel"></div>
 
   <div class="section-header">
     <h2>Mes matières</h2>
@@ -3693,6 +3725,60 @@ const RESOURCES_SUBJECT_LABELS = {
 };
 
 const FILE_ICONS = { pdf: "📄", image: "🖼️", doc: "📝" };
+
+// ══════════════════════════════════════════════════
+//  DEVOIRS À VENIR — bandeau d'accueil (éval, DM, etc.)
+//  Pour en ajouter un : date au format "YYYY-MM-DD",
+//  chapters = liste d'id de chapitres (DATA[subject].chapters)
+// ══════════════════════════════════════════════════
+const DEVOIRS = [
+  {
+    id: "eval-histoire-oct2026",
+    date: "2026-10-13",
+    dateLabel: "mardi 13 oct.",
+    subject: "histoire",
+    title: "Éval Histoire",
+    note: "Réviser les 2 chapitres : résumé, quiz et flashcards",
+    chapters: ["debuts-humanite", "histoire-prehistoire"]
+  }
+];
+
+function renderDevoirs() {
+  const panel = document.getElementById('devoirsPanel');
+  if (!panel) return;
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const upcoming = DEVOIRS
+    .filter(d => d.date >= todayStr)
+    .sort((a, b) => a.date.localeCompare(b.date));
+
+  if (upcoming.length === 0) { panel.innerHTML = ''; return; }
+
+  panel.innerHTML = upcoming.map(d => {
+    const subj = DATA[d.subject];
+    const daysLeft = Math.round((new Date(d.date) - new Date(todayStr)) / 86400000);
+    const badge = daysLeft === 0 ? "Aujourd'hui" : daysLeft === 1 ? "Demain" : `J-${daysLeft}`;
+    const chips = d.chapters.map(chId => {
+      const ch = subj.chapters.find(c => c.id === chId);
+      if (!ch) return '';
+      return `<div class="devoir-chip" data-subject="${d.subject}" data-chapter="${chId}">${subj.emoji} ${ch.title}</div>`;
+    }).join('');
+    return `<div class="devoir-card">
+      <div class="devoir-head">
+        <span class="devoir-badge">${badge} · ${d.dateLabel}</span>
+        <span class="devoir-title">${d.title}</span>
+      </div>
+      <div class="devoir-note">${d.note}</div>
+      <div class="devoir-chips">${chips}</div>
+    </div>`;
+  }).join('');
+
+  panel.querySelectorAll('.devoir-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      openChapter(chip.dataset.subject, chip.dataset.chapter);
+    });
+  });
+}
+renderDevoirs();
 
 function openResources() {
   renderResDocsTab();
