@@ -3303,6 +3303,8 @@ function goBack() {
     openChapter(currentSubject, currentChapter, true);
   } else if (prev === 'revision') {
     openRevisionSessions(currentDevoirId, true);
+  } else if (prev === 'aide') {
+    openAideDevoir(currentDevoirId, true);
   }
 }
 
@@ -4159,9 +4161,15 @@ function openRevisionSessions(devoirId, isBack) {
     `<span class="emoji">🎯</span><h2>${devoir.title}</h2><div class="sub">${devoir.dateLabel}</div>`;
   document.getElementById('headerSub').textContent = 'Mode révision';
 
+  const chapterLinks = devoir.chapters.map(chId => {
+    const ch = subj.chapters.find(c => c.id === chId);
+    if (!ch) return '';
+    return `<button class="devoir-chip" data-subject="${devoir.subject}" data-chapter="${chId}" style="margin:6px 4px 0">📖 ${ch.title}</button>`;
+  }).join('');
+
   const sessions = buildRevisionSessions(devoir);
   const container = document.getElementById('revisionSessions');
-  container.innerHTML = `<div class="revision-intro">Chaque séance couvre tout le programme — fais-les toutes les deux pour ne rien manquer.</div>` +
+  container.innerHTML = `<div class="revision-intro">Chaque séance couvre tout le programme — fais-les toutes les deux pour ne rien manquer.<div style="text-align:center">${chapterLinks}</div></div>` +
     sessions.map((s, i) => {
       const done = isSessionDone(devoir.id, i);
       return `<div class="revision-card ${done ? 'done' : ''}">
@@ -4180,6 +4188,11 @@ function openRevisionSessions(devoirId, isBack) {
   container.querySelectorAll('.revision-start-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       startRevisionSession(btn.dataset.devoir, parseInt(btn.dataset.session, 10));
+    });
+  });
+  container.querySelectorAll('.devoir-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      viewChapterSummary(devoirId, btn.dataset.subject, btn.dataset.chapter);
     });
   });
 
@@ -4209,22 +4222,51 @@ function startRevisionSession(devoirId, sessionIndex) {
 // ══════════════════════════════════════════════════
 let aideHintState = {}; // { itemIndex: nombre d'indices déjà révélés }
 
-function openAideDevoir(devoirId) {
+function openAideDevoir(devoirId, isBack) {
   const devoir = DEVOIRS.find(d => d.id === devoirId);
   if (!devoir || !devoir.aide) return;
   currentDevoirId = devoirId;
-  aideHintState = {};
-  navStack.push('aide');
+  if (!isBack) { aideHintState = {}; navStack.push('aide'); }
 
   document.getElementById('aideTitle').innerHTML =
     `<span class="emoji">💡</span><h2>Aide au devoir</h2><div class="sub">${devoir.title}</div>`;
   document.getElementById('headerSub').textContent = 'Aide pas à pas';
+
+  const subj = DATA[devoir.subject];
+  const chapterLinks = (devoir.chapters || []).map(chId => {
+    const ch = subj.chapters.find(c => c.id === chId);
+    if (!ch) return '';
+    return `<button class="devoir-chip" data-subject="${devoir.subject}" data-chapter="${chId}" style="margin-right:8px;margin-top:8px">📖 Voir le résumé : ${ch.title}</button>`;
+  }).join('');
+
   document.getElementById('aideMethod').innerHTML =
     `<strong>Consigne :</strong> ${devoir.aide.instructions}<br><br>
-     Clique sur « Indice suivant » phrase par phrase, un petit pas à la fois — la réponse ne sera jamais donnée, juste de quoi te mettre sur la piste.`;
+     Clique sur « Indice suivant » phrase par phrase, un petit pas à la fois — la réponse ne sera jamais donnée, juste de quoi te mettre sur la piste.
+     ${chapterLinks ? `<div style="margin-top:4px">${chapterLinks}</div>` : ''}`;
+
+  document.getElementById('aideMethod').querySelectorAll('.devoir-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      viewChapterSummary(devoirId, btn.dataset.subject, btn.dataset.chapter);
+    });
+  });
 
   renderAidePhrases(devoir);
   showScreen('aide');
+}
+
+// Ouvre le résumé d'un chapitre directement depuis l'écran d'aide ou de
+// révision d'un devoir, sans perdre le fil : le bouton retour ramène à
+// l'écran du devoir (aide ou séances), pas à la liste des matières.
+function viewChapterSummary(devoirId, subjectId, chapterId) {
+  const subj = DATA[subjectId];
+  const ch = subj.chapters.find(c => c.id === chapterId);
+  if (!ch) return;
+  currentSubject = subjectId;
+  currentChapter = chapterId;
+  currentDevoirId = devoirId;
+  navStack.push('summary');
+  document.getElementById('headerSub').textContent = ch.title;
+  startSummary(ch);
 }
 
 function renderAidePhrases(devoir) {
