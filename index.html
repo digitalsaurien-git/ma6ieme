@@ -335,6 +335,44 @@ body {
 .revision-start-btn.redo { background: rgba(255,255,255,0.1); color: var(--text); }
 .revision-intro { max-width: 500px; margin: 0 auto 6px; font-size: 13px; color: var(--text2); text-align: center; padding: 0 8px; }
 
+/* ─── AIDE AU DEVOIR (indices progressifs) ─── */
+.aide-method {
+  max-width: 500px; margin: 0 auto 16px;
+  background: linear-gradient(135deg, rgba(108,92,231,0.18), rgba(15,52,96,0.6));
+  border-left: 3px solid var(--purple);
+  border-radius: 10px; padding: 14px 16px;
+  font-size: 13px; color: var(--text2); line-height: 1.6;
+}
+.aide-method strong { color: var(--text); }
+.aide-phrases { max-width: 500px; margin: 0 auto; }
+.aide-card {
+  background: linear-gradient(135deg, var(--card), var(--bg2));
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 14px;
+}
+.aide-card .aide-num { font-size: 11px; font-weight: 800; color: var(--yellow); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+.aide-card .aide-text { font-size: 15px; font-weight: 600; line-height: 1.5; margin-bottom: 12px; }
+.aide-hint-box {
+  background: rgba(253,203,110,0.12);
+  border-left: 3px solid var(--yellow);
+  border-radius: 8px; padding: 10px 12px;
+  font-size: 13px; color: var(--text); margin-bottom: 10px;
+  line-height: 1.5;
+}
+.aide-hint-box div { margin-bottom: 6px; }
+.aide-hint-box div:last-child { margin-bottom: 0; }
+.aide-hint-btn {
+  background: rgba(253,203,110,0.2);
+  border: 1.5px solid var(--yellow);
+  color: var(--text);
+  font-size: 13px; font-weight: 700;
+  padding: 9px 14px; border-radius: 10px;
+  cursor: pointer; -webkit-user-select: none; user-select: none;
+}
+.aide-hint-btn:active { transform: scale(0.97); }
+.aide-hint-btn.spent { opacity: 0.4; cursor: default; }
+
 /* ─── PHOTO MEMO (chapter memos) ─── */
 /* ─── ACTIVITY BUTTONS ─── */
 .activity-grid {
@@ -894,6 +932,13 @@ body {
 <div class="screen" id="screen-revision">
   <div class="section-title" id="revisionTitle"></div>
   <div class="revision-sessions" id="revisionSessions"></div>
+</div>
+
+<!-- ═══ SCREEN: AIDE AU DEVOIR (indices progressifs) ═══ -->
+<div class="screen" id="screen-aide">
+  <div class="section-title" id="aideTitle"></div>
+  <div class="aide-method" id="aideMethod"></div>
+  <div class="aide-phrases" id="aidePhrases"></div>
 </div>
 
 <!-- ═══ SCREEN: QUIZ ═══ -->
@@ -3932,7 +3977,52 @@ const DEVOIRS = [
     subject: "francais",
     title: "DM Français — Identifier les pronoms",
     note: "Exercice 3 sur la fiche « identifier les pronoms » — revoir pronoms personnels/démonstratifs/possessifs et l'astuce pronom vs déterminant",
-    chapters: ["adjectifs-pronoms"]
+    chapters: ["adjectifs-pronoms"],
+    // Aide pas-à-pas pour un exercice précis du cahier : indices progressifs
+    // qui guident sans jamais donner la réponse (ni le pronom, ni ce qu'il
+    // remplace). Chaque clic sur "Indice suivant" en révèle un de plus.
+    aide: {
+      instructions: "Souligne les 9 pronoms personnels, puis entoure le nom ou groupe nominal qu'ils remplacent.",
+      items: [
+        {
+          text: "Yannis était en colère. Il est sorti et a dit : « Je peux enfin souffler ».",
+          hints: [
+            "Il y a 2 pronoms personnels dans cette phrase.",
+            "Dans la 2e partie, il y a un petit mot tout seul juste avant un verbe conjugué — regarde s'il peut remplacer le prénom cité juste avant, sans le répéter.",
+            "Dans les guillemets, quelqu'un parle à la 1ère personne (« je »). Qui est en train de parler ici, d'après toi ?",
+            "Astuce finale : un pronom personnel remplace presque toujours un nom déjà cité juste avant lui dans le texte."
+          ]
+        },
+        {
+          text: "Julie est une camarade appréciée des autres élèves. Ils la considèrent beaucoup.",
+          hints: [
+            "Cette phrase contient 2 pronoms personnels : un au masculin pluriel, un au féminin singulier.",
+            "Le premier (masculin pluriel) remplace un groupe de plusieurs personnes cité juste avant — relis le début de la phrase précédente.",
+            "Le second est collé juste devant le verbe « considèrent » — il remplace une personne féminine citée au tout début.",
+            "Astuce : un petit mot comme « la », « le » ou « les » collé juste devant un verbe est souvent un pronom (et non un article)."
+          ]
+        },
+        {
+          text: "Eva et Lounès ont organisé une belle fête, ils ont mangé du gâteau et les invités leur ont offert des jeux.",
+          hints: [
+            "Cette phrase contient elle aussi 2 pronoms personnels.",
+            "Le premier remplace les deux prénoms cités au début de la phrase — à quel genre et nombre correspond-il ?",
+            "Le second se trouve juste avant « ont offert » et signifie « à eux » — à qui les invités ont-ils offert des jeux ?",
+            "Astuce : « leur » tout seul (sans nom juste après) est un pronom ; « leur » suivi d'un nom (ex : leur fête) serait un déterminant."
+          ]
+        },
+        {
+          text: "Sarah, si tu veux progresser, tu dois te concentrer davantage.",
+          hints: [
+            "Cette phrase est la plus riche : elle contient 3 pronoms personnels !",
+            "Deux d'entre eux sont identiques et désignent la personne à qui l'on parle directement — laquelle, et avec quel pronom la tutoie-t-on ?",
+            "Le troisième est collé juste avant « concentrer » — il renvoie aussi à cette même personne, comme dans « se laver ».",
+            "Astuce : tous les pronoms de cette phrase remplacent la même personne — celle à qui on s'adresse directement, nommée au début."
+          ]
+        }
+      ],
+      closing: "Une fois les 9 trouvés, vérifie : chaque pronom doit avoir un nom ou groupe nominal entouré qui lui correspond en genre et en nombre."
+    }
   },
   {
     id: "eval-anglais-oct2026",
@@ -3981,6 +4071,9 @@ function renderDevoirs() {
     const reviseBtn = d.sessionLabels
       ? `<button class="devoir-revise-btn" data-devoir="${d.id}">🎯 Réviser en ${d.sessionLabels.length} séances</button>`
       : '';
+    const aideBtn = d.aide
+      ? `<button class="devoir-revise-btn" data-aide-devoir="${d.id}" style="background:var(--purple);color:#fff;margin-top:${d.sessionLabels ? '8px' : '12px'}">💡 Aide pas à pas pour ce devoir</button>`
+      : '';
     return `<div class="devoir-card">
       <div class="devoir-head">
         <span class="devoir-badge">${badge} · ${d.dateLabel}</span>
@@ -3989,6 +4082,7 @@ function renderDevoirs() {
       <div class="devoir-note">${d.note}</div>
       <div class="devoir-chips">${chips}</div>
       ${reviseBtn}
+      ${aideBtn}
     </div>`;
   }).join('');
 
@@ -3996,6 +4090,9 @@ function renderDevoirs() {
     chip.addEventListener('click', () => {
       openChapter(chip.dataset.subject, chip.dataset.chapter);
     });
+  });
+  panel.querySelectorAll('[data-aide-devoir]').forEach(btn => {
+    btn.addEventListener('click', () => openAideDevoir(btn.dataset.aideDevoir));
   });
   panel.querySelectorAll('.devoir-revise-btn').forEach(btn => {
     btn.addEventListener('click', () => openRevisionSessions(btn.dataset.devoir));
@@ -4103,6 +4200,57 @@ function startRevisionSession(devoirId, sessionIndex) {
   };
   showQuizQuestion();
   showScreen('quiz');
+}
+
+// ══════════════════════════════════════════════════
+//  AIDE AU DEVOIR — indices progressifs pour un exercice
+//  précis (jamais la réponse) : chaque clic révèle 1 indice
+//  de plus par phrase, indépendamment des autres.
+// ══════════════════════════════════════════════════
+let aideHintState = {}; // { itemIndex: nombre d'indices déjà révélés }
+
+function openAideDevoir(devoirId) {
+  const devoir = DEVOIRS.find(d => d.id === devoirId);
+  if (!devoir || !devoir.aide) return;
+  currentDevoirId = devoirId;
+  aideHintState = {};
+  navStack.push('aide');
+
+  document.getElementById('aideTitle').innerHTML =
+    `<span class="emoji">💡</span><h2>Aide au devoir</h2><div class="sub">${devoir.title}</div>`;
+  document.getElementById('headerSub').textContent = 'Aide pas à pas';
+  document.getElementById('aideMethod').innerHTML =
+    `<strong>Consigne :</strong> ${devoir.aide.instructions}<br><br>
+     Clique sur « Indice suivant » phrase par phrase, un petit pas à la fois — la réponse ne sera jamais donnée, juste de quoi te mettre sur la piste.`;
+
+  renderAidePhrases(devoir);
+  showScreen('aide');
+}
+
+function renderAidePhrases(devoir) {
+  const container = document.getElementById('aidePhrases');
+  container.innerHTML = devoir.aide.items.map((item, i) => {
+    const revealed = aideHintState[i] || 0;
+    const hintsHtml = revealed > 0
+      ? `<div class="aide-hint-box">${item.hints.slice(0, revealed).map((h, hi) => `<div>💡 <strong>Indice ${hi + 1}.</strong> ${h}</div>`).join('')}</div>`
+      : '';
+    const allSpent = revealed >= item.hints.length;
+    const btnLabel = revealed === 0 ? '💡 Indice' : (allSpent ? '✓ Tous les indices donnés' : `💡 Indice suivant (${revealed}/${item.hints.length})`);
+    return `<div class="aide-card">
+      <div class="aide-num">Phrase ${i + 1}</div>
+      <div class="aide-text">${item.text}</div>
+      ${hintsHtml}
+      <button class="aide-hint-btn ${allSpent ? 'spent' : ''}" data-item="${i}" ${allSpent ? 'disabled' : ''}>${btnLabel}</button>
+    </div>`;
+  }).join('') + (devoir.aide.closing ? `<div class="revision-intro">${devoir.aide.closing}</div>` : '');
+
+  container.querySelectorAll('.aide-hint-btn:not(.spent)').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const i = parseInt(btn.dataset.item, 10);
+      aideHintState[i] = (aideHintState[i] || 0) + 1;
+      renderAidePhrases(devoir);
+    });
+  });
 }
 
 function openResources() {
