@@ -3996,67 +3996,162 @@ const DEVOIRS = [
     note: "Exercice 3 sur la fiche « identifier les pronoms » — revoir pronoms personnels/démonstratifs/possessifs et l'astuce pronom vs déterminant",
     chapters: ["adjectifs-pronoms"],
     // Aide pas-à-pas pour un exercice précis du cahier : indices progressifs
-    // qui guident sans jamais donner la réponse. Deux pistes séparées par
-    // phrase — hintsA pour la consigne a) souligner les pronoms, hintsB
-    // pour la consigne b) entourer ce qu'ils remplacent — avec chacune
-    // son propre bouton "Indice suivant".
+    // qui guident sans jamais donner la réponse. Structure générique
+    // "tracks" réutilisable pour tout futur devoir : chaque item peut avoir
+    // une ou plusieurs pistes d'indices indépendantes (ici 2 : a) souligner
+    // les pronoms, b) entourer ce qu'ils remplacent), chacune avec son
+    // propre bouton "Indice suivant".
     aide: {
       instructions: "a) Souligne les 9 pronoms personnels. b) Entoure le nom ou groupe nominal qu'ils remplacent.",
       items: [
         {
           text: "Yannis était en colère. Il est sorti et a dit : « Je peux enfin souffler ».",
-          hintsA: [
-            "Il y a 2 pronoms personnels dans cette phrase.",
-            "Dans la 2e partie, il y a un petit mot tout seul juste avant un verbe conjugué — regarde s'il peut remplacer le prénom cité juste avant, sans le répéter.",
-            "Dans les guillemets, quelqu'un parle à la 1ère personne (« je »). C'est aussi un pronom personnel !"
-          ],
-          hintsB: [
-            "Pour le 1er pronom trouvé : relis le début de la phrase — quel prénom a été cité juste avant lui ?",
-            "Pour le 2e pronom (dans la citation) : qui est en train de parler entre les guillemets ? C'est cette personne qu'il désigne.",
-            "Astuce : les deux pronoms de cette phrase remplacent en fait la MÊME personne — logique, puisque c'est elle qui est sortie ET qui parle."
+          tracks: [
+            {
+              id: 'a', subtaskLabel: "a) Souligner les pronoms", btnLabel: "trouver les pronoms",
+              hints: [
+                "Il y a 2 pronoms personnels dans cette phrase.",
+                "Dans la 2e partie, il y a un petit mot tout seul juste avant un verbe conjugué — regarde s'il peut remplacer le prénom cité juste avant, sans le répéter.",
+                "Dans les guillemets, quelqu'un parle à la 1ère personne (« je »). C'est aussi un pronom personnel !"
+              ]
+            },
+            {
+              id: 'b', subtaskLabel: "b) Entourer ce qu'ils remplacent", btnLabel: "ce qu'ils remplacent",
+              hints: [
+                "Pour le 1er pronom trouvé : relis le début de la phrase — quel prénom a été cité juste avant lui ?",
+                "Pour le 2e pronom (dans la citation) : qui est en train de parler entre les guillemets ? C'est cette personne qu'il désigne.",
+                "Astuce : les deux pronoms de cette phrase remplacent en fait la MÊME personne — logique, puisque c'est elle qui est sortie ET qui parle."
+              ]
+            }
           ]
         },
         {
           text: "Julie est une camarade appréciée des autres élèves. Ils la considèrent beaucoup.",
-          hintsA: [
-            "Cette phrase contient 2 pronoms personnels : un au masculin pluriel, un au féminin singulier.",
-            "Le premier (masculin pluriel) est tout seul au début de la 2e phrase, avant le verbe.",
-            "Le second est un petit mot collé juste devant le verbe « considèrent »."
-          ],
-          hintsB: [
-            "Pour « Ils » : à qui ça correspond en genre/nombre masculin pluriel ? Regarde le groupe de personnes cité juste avant, à la fin de la 1ère phrase.",
-            "Pour « la » : quelle personne féminine est citée tout au début de la phrase ? C'est elle que « la » remplace.",
-            "Vérifie : le nom que tu entoures doit être du même genre et du même nombre que le pronom (masculin pluriel pour l'un, féminin singulier pour l'autre)."
+          tracks: [
+            {
+              id: 'a', subtaskLabel: "a) Souligner les pronoms", btnLabel: "trouver les pronoms",
+              hints: [
+                "Cette phrase contient 2 pronoms personnels : un au masculin pluriel, un au féminin singulier.",
+                "Le premier (masculin pluriel) est tout seul au début de la 2e phrase, avant le verbe.",
+                "Le second est un petit mot collé juste devant le verbe « considèrent »."
+              ]
+            },
+            {
+              id: 'b', subtaskLabel: "b) Entourer ce qu'ils remplacent", btnLabel: "ce qu'ils remplacent",
+              hints: [
+                "Pour « Ils » : à qui ça correspond en genre/nombre masculin pluriel ? Regarde le groupe de personnes cité juste avant, à la fin de la 1ère phrase.",
+                "Pour « la » : quelle personne féminine est citée tout au début de la phrase ? C'est elle que « la » remplace.",
+                "Vérifie : le nom que tu entoures doit être du même genre et du même nombre que le pronom (masculin pluriel pour l'un, féminin singulier pour l'autre)."
+              ]
+            }
           ]
         },
         {
           text: "Eva et Lounès ont organisé une belle fête, ils ont mangé du gâteau et les invités leur ont offert des jeux.",
-          hintsA: [
-            "Cette phrase contient elle aussi 2 pronoms personnels.",
-            "Le premier est juste après la virgule, avant « ont mangé ».",
-            "Le second se trouve juste avant « ont offert » et veut dire « à eux »."
-          ],
-          hintsB: [
-            "Pour le premier pronom : à quel genre et nombre correspond-il ? Regarde les deux prénoms cités tout au début de la phrase.",
-            "Pour le second (« à eux ») : à qui les invités ont-ils offert des jeux ? C'est la même réponse que pour le premier pronom !",
-            "Astuce : « leur » tout seul (sans nom juste après) est un pronom ; « leur » suivi d'un nom (ex : leur fête) serait un déterminant, pas un pronom."
+          tracks: [
+            {
+              id: 'a', subtaskLabel: "a) Souligner les pronoms", btnLabel: "trouver les pronoms",
+              hints: [
+                "Cette phrase contient elle aussi 2 pronoms personnels.",
+                "Le premier est juste après la virgule, avant « ont mangé ».",
+                "Le second se trouve juste avant « ont offert » et veut dire « à eux »."
+              ]
+            },
+            {
+              id: 'b', subtaskLabel: "b) Entourer ce qu'ils remplacent", btnLabel: "ce qu'ils remplacent",
+              hints: [
+                "Pour le premier pronom : à quel genre et nombre correspond-il ? Regarde les deux prénoms cités tout au début de la phrase.",
+                "Pour le second (« à eux ») : à qui les invités ont-ils offert des jeux ? C'est la même réponse que pour le premier pronom !",
+                "Astuce : « leur » tout seul (sans nom juste après) est un pronom ; « leur » suivi d'un nom (ex : leur fête) serait un déterminant, pas un pronom."
+              ]
+            }
           ]
         },
         {
           text: "Sarah, si tu veux progresser, tu dois te concentrer davantage.",
-          hintsA: [
-            "Cette phrase est la plus riche : elle contient 3 pronoms personnels !",
-            "Deux d'entre eux sont identiques et se trouvent avant « veux » et avant « dois ».",
-            "Le troisième est collé juste avant « concentrer », comme dans « se laver »."
-          ],
-          hintsB: [
-            "À qui parle-t-on dans cette phrase ? Le prénom est donné tout au début, avant la virgule.",
-            "Les 3 pronoms de cette phrase remplacent tous la MÊME personne : celle à qui l'on s'adresse directement.",
-            "Vérifie : « tu » et « te » désignent la personne qu'on tutoie — ici, une seule et même personne pour les 3 pronoms."
+          tracks: [
+            {
+              id: 'a', subtaskLabel: "a) Souligner les pronoms", btnLabel: "trouver les pronoms",
+              hints: [
+                "Cette phrase est la plus riche : elle contient 3 pronoms personnels !",
+                "Deux d'entre eux sont identiques et se trouvent avant « veux » et avant « dois ».",
+                "Le troisième est collé juste avant « concentrer », comme dans « se laver »."
+              ]
+            },
+            {
+              id: 'b', subtaskLabel: "b) Entourer ce qu'ils remplacent", btnLabel: "ce qu'ils remplacent",
+              hints: [
+                "À qui parle-t-on dans cette phrase ? Le prénom est donné tout au début, avant la virgule.",
+                "Les 3 pronoms de cette phrase remplacent tous la MÊME personne : celle à qui l'on s'adresse directement.",
+                "Vérifie : « tu » et « te » désignent la personne qu'on tutoie — ici, une seule et même personne pour les 3 pronoms."
+              ]
+            }
           ]
         }
       ],
       closing: "Une fois les 9 pronoms soulignés et leur nom/groupe entouré, vérifie : chaque pronom doit correspondre en genre et en nombre au mot que tu as entouré."
+    }
+  },
+  {
+    id: "dm-histoire-carte-oct2026",
+    date: "2026-10-12",
+    dateLabel: "lundi 12 oct.",
+    subject: "histoire",
+    title: "DM Histoire — Carte des foyers agricoles au Néolithique",
+    note: "Chapitre 4.11 — document avec carte des foyers de civilisations agricoles + 3 questions. Répondre en commençant par les régions les plus anciennes, dans l'ordre chronologique.",
+    chapters: ["debuts-humanite"],
+    // Aide pas-à-pas pour la carte des foyers agricoles (doc en fin de
+    // fiche) : 3 questions indépendantes, une seule piste d'indices
+    // chacune (structure générique "tracks" réutilisée, sans split a)/b)
+    // puisqu'il n'y a qu'une seule tâche par question ici).
+    aide: {
+      instructions: "Réponds aux 3 questions à partir de la carte et de sa légende (foyers = ovales jaunes avec une date ; plantes cultivées = mots en vert italique ; animaux élevés = mots en noir).",
+      itemLabel: "Question",
+      items: [
+        {
+          text: "Dans quelles régions du monde a-t-on pratiqué l'agriculture au Néolithique ? (en commençant par les régions les plus anciennes, dans l'ordre chronologique)",
+          tracks: [
+            {
+              id: 'regions', btnLabel: "trouver et classer les régions",
+              hints: [
+                "Regarde la légende : les ovales jaunes sur la carte sont les « foyers » où l'agriculture est apparue. Il y en a 8 — repère leur nom (ce sont des régions du monde).",
+                "Chaque foyer a une date entre parenthèses, écrite en « avant J.-C. » (ex : 10000-9000 av. J.-C.). Note la date de chacun des 8 foyers.",
+                "Pour les classer du plus ancien au plus récent : plus le nombre d'années « avant J.-C. » est grand, plus c'est ancien. Le foyer le plus ancien est celui dont la date commence le plus tôt.",
+                "Le foyer le plus ancien se situe au Proche-Orient. Essaie maintenant de ranger les 7 autres en comparant leurs dates entre elles, une par une."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Quels animaux sont élevés ?",
+          tracks: [
+            {
+              id: 'animaux', btnLabel: "trouver les animaux élevés",
+              hints: [
+                "D'après la légende, les animaux élevés sont écrits en noir (sans italique) à côté de chaque foyer.",
+                "Parcours les 8 foyers un par un et note les noms d'animaux écrits en noir pour chacun — certains foyers partagent les mêmes animaux (ex : un animal domestique très courant revient presque partout), d'autres ont des animaux différents.",
+                "Essaie de regrouper ce que tu trouves par type : grands animaux de troupeau (pour la viande, le lait, le travail) et petits animaux de basse-cour.",
+                "Vérifie que ta liste couvre bien les 8 foyers et pas seulement un ou deux — un animal élevé en Amérique du Sud, par exemple, n'est pas le même qu'au Proche-Orient."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Quelles plantes sont cultivées ?",
+          tracks: [
+            {
+              id: 'plantes', btnLabel: "trouver les plantes cultivées",
+              hints: [
+                "D'après la légende, les plantes cultivées sont écrites en vert et en italique à côté de chaque foyer.",
+                "Parcours les 8 foyers un par un et note les noms de plantes en vert italique pour chacun.",
+                "Essaie de regrouper ce que tu trouves par famille : céréales (comme le blé, l'orge, le riz…), tubercules (comme la pomme de terre), et autres cultures (coton, tabac…).",
+                "Vérifie que ta liste couvre bien les 8 foyers — certaines plantes (comme le maïs) apparaissent dans plusieurs régions d'Amérique, d'autres sont propres à une seule région."
+              ]
+            }
+          ]
+        }
+      ],
+      closing: "Relis bien la carte avant de conclure : les flèches montrent comment l'agriculture s'est diffusée depuis chaque foyer vers les régions voisines."
     }
   },
   {
@@ -4347,14 +4442,16 @@ function renderHintTrack(itemIndex, track, label, hints) {
 
 function renderAidePhrases(devoir) {
   const container = document.getElementById('aidePhrases');
+  const itemLabel = devoir.aide.itemLabel || 'Phrase';
   container.innerHTML = devoir.aide.items.map((item, i) => {
+    const tracksHtml = item.tracks.map(t => {
+      const subtask = t.subtaskLabel ? `<div class="aide-subtask">${t.subtaskLabel}</div>` : '';
+      return `${subtask}${renderHintTrack(i, t.id, t.btnLabel, t.hints)}`;
+    }).join('');
     return `<div class="aide-card">
-      <div class="aide-num">Phrase ${i + 1}</div>
+      <div class="aide-num">${itemLabel} ${i + 1}</div>
       <div class="aide-text">${item.text}</div>
-      <div class="aide-subtask">a) Souligner les pronoms</div>
-      ${renderHintTrack(i, 'a', 'trouver les pronoms', item.hintsA)}
-      <div class="aide-subtask">b) Entourer ce qu'ils remplacent</div>
-      ${renderHintTrack(i, 'b', "ce qu'ils remplacent", item.hintsB)}
+      ${tracksHtml}
     </div>`;
   }).join('') + (devoir.aide.closing ? `<div class="revision-intro">${devoir.aide.closing}</div>` : '');
 
