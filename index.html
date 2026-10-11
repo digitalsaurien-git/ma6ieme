@@ -4411,38 +4411,38 @@ const DEVOIRS = [
     dateLabel: "lundi 12 oct.",
     subject: "maths",
     title: "DM Maths — Exercices 61 et 62",
-    note: "Manuel Sésamath 6ème (le grand livre de classe) — p.31 · exercices n°61 et 62",
+    note: "Manuel Sésamath 6ème p.31 — Chapitre N1 : Nombres entiers (2) — Durées",
     chapters: ["nombres-entiers-decimaux"],
     aide: {
-      instructions: "Ouvre ton manuel Sésamath page 31 et lis les exercices 61 et 62. Tu peux aussi le voir en ligne : manuel.sesamath.net → 6ème → page 75. Prends le temps de bien lire l'énoncé avant de poser les calculs.",
+      instructions: "Les deux exercices sont sur les durées (heures, minutes, secondes). Lis bien chaque énoncé avant de calculer.",
       itemLabel: "Exercice",
       items: [
         {
-          text: "Exercice 61 — p.31 Sésamath",
+          text: "Ex. 61 — Marées à Brest (1er mars 2012)",
           tracks: [{
             id: "ex61",
             btnLabel: "aide pour l'exercice 61",
             hints: [
-              "Lis bien l'énoncé : de quoi parle-t-on ? Nombres entiers, décimaux ? Repère les mots clés (« ranger », « comparer », « écrire »…).",
-              "Pour comparer des nombres décimaux : aligne d'abord les parties entières. Si elles sont égales, compare les chiffres après la virgule position par position (dixièmes, centièmes…).",
-              "Pose les nombres en colonnes si besoin, en alignant les virgules. Ajoute des zéros à droite si les décimales n'ont pas le même nombre de chiffres (ex : 3,5 et 3,50 c'est pareil)."
+              "Le tableau donne les heures : Basse Mer 4h01, Pleine Mer 9h58, Basse Mer 16h27, Pleine Mer 22h34. Pour la partie a. : calcule la durée entre chaque ligne → c'est la durée de la marée. Exemple : de 4h01 à 9h58, combien de temps s'écoule ?",
+              "Pour calculer une durée entre deux heures : d'abord les minutes (58 − 1 = 57 min), puis les heures (9 − 4 = 5 h). Donc de 4h01 à 9h58 = 5 h 57 min. Applique la même méthode pour les autres lignes.",
+              "Pour la partie b. : la marée suivante dure 6 h 35 min. La dernière Pleine Mer est à 22h34. Ajoute 6 h 35 min à 22h34 pour trouver la Basse Mer suivante. Astuce : ajoute d'abord les minutes, puis les heures, et fais attention si les minutes dépassent 60."
             ]
           }]
         },
         {
-          text: "Exercice 62 — p.31 Sésamath",
+          text: "Ex. 62 — Le randonneur",
           tracks: [{
             id: "ex62",
             btnLabel: "aide pour l'exercice 62",
             hints: [
-              "Lis bien l'énoncé : identifie ce qu'on te demande de faire (classer, compléter, écrire en lettres, trouver le rang d'un chiffre…).",
-              "Pour trouver le rang d'un chiffre dans un nombre : compte de droite à gauche — unités, dizaines, centaines, milliers. Après la virgule : dixièmes, centièmes, millièmes.",
-              "Si tu bloques, essaie avec un exemple simple : dans 4 527, le chiffre 5 est aux centaines. Applique le même raisonnement avec les nombres de l'exercice."
+              "Le randonneur part à 9h30 et rentre à 12h05. Il fait 3 pauses de 5 minutes chacune. Question : combien de temps a-t-il marché (sans les pauses) ? Étape 1 : calcule le temps total du départ à l'arrivée.",
+              "De 9h30 à 12h05 : les minutes → de 30 à 05, comme 05 < 30, emprunte 1 heure → 60 + 5 − 30 = 35 min. Les heures → 12 − 9 − 1 (emprunté) = 2 h. Donc temps total = 2 h 35 min.",
+              "Étape 2 : calcule le temps des pauses → 3 pauses × 5 min = 15 min. Étape 3 : temps de marche = temps total − pauses = 2 h 35 min − 15 min = 2 h 20 min."
             ]
           }]
         }
       ],
-      closing: "Relis tes réponses : est-ce que l'ordre de tes nombres a du sens ? Vérifie en les comparant deux à deux."
+      closing: "Vérifie tes réponses en recomptant à rebours : si tu ajoutes le temps de marche + les pauses, est-ce que tu retrouves 2 h 35 min ?"
     }
   },
   {
