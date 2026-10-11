@@ -4418,26 +4418,50 @@ const DEVOIRS = [
       itemLabel: "Exercice",
       items: [
         {
-          text: "Ex. 61 — Marées à Brest (1er mars 2012)",
+          text: `<div style="font-weight:700;margin-bottom:8px">Ex. 61 — Marées à Brest (1<sup>er</sup> mars 2012)</div>
+<table style="border-collapse:collapse;width:100%;font-size:14px;margin-bottom:8px">
+  <thead>
+    <tr style="background:rgba(255,255,255,0.12)">
+      <th style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px;text-align:left"> </th>
+      <th style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px;text-align:center">Heure</th>
+      <th style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px;text-align:center">Durée de la marée</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px">🌊 Basse Mer</td><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px;text-align:center">4 h 01</td><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px;text-align:center;color:var(--text2)">à calculer</td></tr>
+    <tr style="background:rgba(255,255,255,0.05)"><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px">🏖️ Pleine Mer</td><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px;text-align:center">9 h 58</td><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px;text-align:center;color:var(--text2)">à calculer</td></tr>
+    <tr><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px">🌊 Basse Mer</td><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px;text-align:center">16 h 27</td><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px;text-align:center;color:var(--text2)">à calculer</td></tr>
+    <tr style="background:rgba(255,255,255,0.05)"><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px">🏖️ Pleine Mer</td><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px;text-align:center">22 h 34</td><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px;text-align:center;color:var(--text2)">à calculer</td></tr>
+  </tbody>
+</table>
+<div style="font-size:13px;color:var(--text2)"><strong>a.</strong> Complète la durée de chaque marée.<br><strong>b.</strong> La marée suivante dure 6 h 35 min. À quelle heure a lieu la basse mer suivante ?</div>`,
           tracks: [{
             id: "ex61",
-            btnLabel: "aide pour l'exercice 61",
+            btnLabel: "indice pour la partie a.",
             hints: [
-              "Le tableau donne les heures : Basse Mer 4h01, Pleine Mer 9h58, Basse Mer 16h27, Pleine Mer 22h34. Pour la partie a. : calcule la durée entre chaque ligne → c'est la durée de la marée. Exemple : de 4h01 à 9h58, combien de temps s'écoule ?",
-              "Pour calculer une durée entre deux heures : d'abord les minutes (58 − 1 = 57 min), puis les heures (9 − 4 = 5 h). Donc de 4h01 à 9h58 = 5 h 57 min. Applique la même méthode pour les autres lignes.",
-              "Pour la partie b. : la marée suivante dure 6 h 35 min. La dernière Pleine Mer est à 22h34. Ajoute 6 h 35 min à 22h34 pour trouver la Basse Mer suivante. Astuce : ajoute d'abord les minutes, puis les heures, et fais attention si les minutes dépassent 60."
+              "Pour calculer la durée d'une marée, soustrais l'heure de départ à l'heure d'arrivée. Exemple : de 4 h 01 à 9 h 58 → minutes : 58 − 1 = 57 min, heures : 9 − 4 = 5 h. Durée = 5 h 57 min. Fais pareil pour les deux suivantes.",
+              "De 9 h 58 à 16 h 27 : minutes → 27 − 58 impossible, donc emprunte 1 heure → 60 + 27 − 58 = 29 min. Heures → 16 − 9 − 1 = 6 h. Durée = 6 h 29 min. Et de 16 h 27 à 22 h 34 : minutes → 34 − 27 = 7 min, heures → 22 − 16 = 6 h. Durée = 6 h 07 min.",
+              "Pour la partie b. : la dernière Pleine Mer est à 22 h 34. La prochaine Basse Mer arrive 6 h 35 min plus tard. Ajoute : 34 min + 35 min = 69 min = 1 h 09 min. Reporte sur les heures : 22 h + 6 h + 1 h = 29 h → dépasse minuit ! 29 h − 24 h = 5 h. Basse Mer suivante : 5 h 09 (le 2 mars)."
             ]
           }]
         },
         {
-          text: "Ex. 62 — Le randonneur",
+          text: `<div style="font-weight:700;margin-bottom:8px">Ex. 62 — Le randonneur</div>
+<table style="border-collapse:collapse;width:100%;font-size:14px;margin-bottom:8px">
+  <tbody>
+    <tr><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px">🥾 Départ</td><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px;text-align:center;font-weight:700">9 h 30</td></tr>
+    <tr style="background:rgba(255,255,255,0.05)"><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px">🏠 Retour</td><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px;text-align:center;font-weight:700">12 h 05</td></tr>
+    <tr><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px">⏸️ Pauses</td><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px;text-align:center">3 pauses de 5 min chacune</td></tr>
+    <tr style="background:rgba(255,255,255,0.05)"><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px">❓ Question</td><td style="border:1px solid rgba(255,255,255,0.2);padding:7px 10px">Pendant combien de temps ce randonneur a-t-il <strong>marché</strong> ?</td></tr>
+  </tbody>
+</table>`,
           tracks: [{
             id: "ex62",
-            btnLabel: "aide pour l'exercice 62",
+            btnLabel: "indice pour l'exercice 62",
             hints: [
-              "Le randonneur part à 9h30 et rentre à 12h05. Il fait 3 pauses de 5 minutes chacune. Question : combien de temps a-t-il marché (sans les pauses) ? Étape 1 : calcule le temps total du départ à l'arrivée.",
-              "De 9h30 à 12h05 : les minutes → de 30 à 05, comme 05 < 30, emprunte 1 heure → 60 + 5 − 30 = 35 min. Les heures → 12 − 9 − 1 (emprunté) = 2 h. Donc temps total = 2 h 35 min.",
-              "Étape 2 : calcule le temps des pauses → 3 pauses × 5 min = 15 min. Étape 3 : temps de marche = temps total − pauses = 2 h 35 min − 15 min = 2 h 20 min."
+              "Étape 1 — Calcule le temps total (départ → retour) : de 9 h 30 à 12 h 05. Les minutes : 05 − 30 impossible → emprunte 1 heure → 60 + 05 − 30 = 35 min. Les heures : 12 − 9 − 1 = 2 h. Temps total = 2 h 35 min.",
+              "Étape 2 — Calcule le temps perdu en pauses : 3 pauses × 5 min = 15 min.",
+              "Étape 3 — Temps de marche = temps total − pauses = 2 h 35 min − 15 min = 2 h 20 min. Le randonneur a marché pendant 2 heures et 20 minutes."
             ]
           }]
         }
