@@ -65,9 +65,28 @@ body {
 }
 .settings-btn:active { background: rgba(255,255,255,0.2); }
 
+/* ─── BOUTON DEVOIRS (📚 bulle rouge) ─── */
+.devoirs-btn {
+  position: absolute; right: 60px; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,0.1); border: none; color: var(--text);
+  width: 40px; height: 40px; border-radius: 50%; font-size: 20px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.devoirs-btn:active { background: rgba(255,255,255,0.2); }
+.devoirs-badge {
+  position: absolute; top: -4px; right: -4px;
+  background: var(--accent); color: #fff;
+  font-size: 10px; font-weight: 800;
+  width: 18px; height: 18px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+  display: none;
+}
+.devoirs-badge.show { display: flex; }
+
 /* ─── BOUTON ARCHIVE DEVOIRS ─── */
 .archive-btn {
-  position: absolute; right: 60px; top: 50%; transform: translateY(-50%);
+  position: absolute; right: 108px; top: 50%; transform: translateY(-50%);
   background: rgba(255,255,255,0.1); border: none; color: var(--text);
   width: 40px; height: 40px; border-radius: 50%; font-size: 20px;
   cursor: pointer; display: none; align-items: center; justify-content: center;
@@ -81,6 +100,44 @@ body {
   width: 18px; height: 18px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   pointer-events: none;
+}
+
+/* ─── PANNEAU DEVOIRS (bottom-sheet) ─── */
+.devoirs-overlay {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(0,0,0,0.7);
+  display: none; align-items: flex-end; justify-content: center;
+}
+.devoirs-overlay.show { display: flex; }
+.devoirs-sheet {
+  background: var(--bg2);
+  border-radius: 20px 20px 0 0;
+  width: 100%; max-width: 500px;
+  padding: 0 0 32px;
+  max-height: 85vh;
+  overflow-y: auto;
+  border-top: 3px solid var(--accent);
+}
+.devoirs-sheet-header {
+  position: sticky; top: 0;
+  background: var(--bg2);
+  padding: 16px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.devoirs-sheet-header h3 { font-size: 17px; font-weight: 800; }
+.devoirs-sheet-close {
+  background: rgba(255,255,255,0.1); border: none; color: var(--text);
+  width: 36px; height: 36px; border-radius: 50%; font-size: 18px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.devoirs-day-label {
+  font-size: 12px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--text2);
+  margin: 16px 16px 6px;
+}
+#devoirsSheetContent .devoir-card {
+  margin: 0 16px 12px;
 }
 
 /* ─── PANNEAU ARCHIVE ─── */
@@ -755,16 +812,23 @@ body {
     border: 1.5px solid rgba(255,255,255,0.15);
     box-shadow: 0 2px 10px rgba(0,0,0,0.4);
   }
-  .archive-btn.has-done {
+  .devoirs-btn {
     position: fixed;
     bottom: 14px;
     right: 68px;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: 44px;
-    height: 44px;
-    font-size: 20px;
+    top: auto; left: auto; transform: none;
+    width: 44px; height: 44px; font-size: 20px;
+    z-index: 200;
+    background: rgba(233,69,96,0.25);
+    border: 1.5px solid rgba(233,69,96,0.5);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  }
+  .archive-btn.has-done {
+    position: fixed;
+    bottom: 14px;
+    right: 122px;
+    top: auto; left: auto; transform: none;
+    width: 44px; height: 44px; font-size: 20px;
     z-index: 200;
     background: rgba(0,184,148,0.25);
     border: 1.5px solid rgba(0,184,148,0.4);
@@ -872,9 +936,17 @@ body {
     position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
     width: 48px; height: 48px; font-size: 22px;
   }
-  /* Bouton archive repositionné au-dessus de la roue */
-  .archive-btn.has-done {
+  /* Bouton devoirs repositionné dans la sidebar */
+  .devoirs-btn {
     position: absolute; bottom: 76px; left: 50%; transform: translateX(-50%);
+    right: auto; top: auto;
+    width: 48px; height: 48px; font-size: 22px;
+    background: rgba(233,69,96,0.2);
+    border: 1.5px solid rgba(233,69,96,0.5);
+  }
+  /* Bouton archive repositionné au-dessus du bouton devoirs */
+  .archive-btn.has-done {
+    position: absolute; bottom: 132px; left: 50%; transform: translateX(-50%);
     right: auto; top: auto;
     width: 48px; height: 48px; font-size: 22px;
     background: rgba(0,184,148,0.2);
@@ -971,7 +1043,22 @@ body {
     🏆
     <span class="archive-badge" id="archiveBadge"></span>
   </button>
+  <button class="devoirs-btn" id="devoirsBtn" onclick="openDevoirsSheet()" title="Mes devoirs">
+    📚
+    <span class="devoirs-badge" id="devoirsBadge"></span>
+  </button>
   <button class="settings-btn" id="settingsBtn" onclick="openResources()" title="Mes documents">⚙️</button>
+</div>
+
+<!-- ─── PANEL DEVOIRS (bottom-sheet) ─── -->
+<div class="devoirs-overlay" id="devoirsOverlay" onclick="closeDevoirsIfBg(event)">
+  <div class="devoirs-sheet">
+    <div class="devoirs-sheet-header">
+      <h3>📚 Devoirs à venir</h3>
+      <button class="devoirs-sheet-close" onclick="closeDevoirsSheet()">✕</button>
+    </div>
+    <div id="devoirsSheetContent"></div>
+  </div>
 </div>
 
 <!-- ─── PANNEAU ARCHIVE DEVOIRS ─── -->
@@ -993,8 +1080,6 @@ body {
     <div id="koalaHero"></div>
     <div class="koala-hello">Salut <span>Melwan</span> 👋 Prêt à tout déchirer ?</div>
   </div>
-
-  <div class="devoirs-panel" id="devoirsPanel"></div>
 
   <div class="section-header">
     <h2>Mes matières</h2>
@@ -4294,6 +4379,46 @@ const DEVOIRS = [
     sessionLabels: ["Séance unique — Dimanche"]
   },
   {
+    id: "dm-maths-oct2026",
+    date: "2026-10-12",
+    dateLabel: "lundi 12 oct.",
+    subject: "maths",
+    title: "DM Maths — Exercices 61 et 62",
+    note: "Manuel Sésamath 6ème — exercices n°61 et 62 page 31",
+    chapters: ["nombres-entiers-decimaux"],
+    aide: {
+      instructions: "Exercice 61 et exercice 62 page 31 du manuel Sésamath. Lis bien l'énoncé avant de poser les calculs.",
+      itemLabel: "Exercice",
+      items: [
+        {
+          text: "Exercice 61 — p.31 Sésamath",
+          tracks: [{
+            id: "ex61",
+            btnLabel: "aide pour l'exercice 61",
+            hints: [
+              "Lis bien l'énoncé : de quoi parle-t-on ? Nombres entiers, décimaux ? Repère les mots clés (« ranger », « comparer », « écrire »…).",
+              "Pour comparer des nombres décimaux : aligne d'abord les parties entières. Si elles sont égales, compare les chiffres après la virgule position par position (dixièmes, centièmes…).",
+              "Pose les nombres en colonnes si besoin, en alignant les virgules. Ajoute des zéros à droite si les décimales n'ont pas le même nombre de chiffres (ex : 3,5 et 3,50 c'est pareil)."
+            ]
+          }]
+        },
+        {
+          text: "Exercice 62 — p.31 Sésamath",
+          tracks: [{
+            id: "ex62",
+            btnLabel: "aide pour l'exercice 62",
+            hints: [
+              "Lis bien l'énoncé : identifie ce qu'on te demande de faire (classer, compléter, écrire en lettres, trouver le rang d'un chiffre…).",
+              "Pour trouver le rang d'un chiffre dans un nombre : compte de droite à gauche — unités, dizaines, centaines, milliers. Après la virgule : dixièmes, centièmes, millièmes.",
+              "Si tu bloques, essaie avec un exemple simple : dans 4 527, le chiffre 5 est aux centaines. Applique le même raisonnement avec les nombres de l'exercice."
+            ]
+          }]
+        }
+      ],
+      closing: "Relis tes réponses : est-ce que l'ordre de tes nombres a du sens ? Vérifie en les comparant deux à deux."
+    }
+  },
+  {
     id: "eval-histoire-oct2026",
     date: "2026-10-13",
     dateLabel: "mardi 13 oct.",
@@ -4301,10 +4426,76 @@ const DEVOIRS = [
     title: "Éval Histoire",
     note: "Réviser les 2 chapitres : résumé, quiz et flashcards",
     chapters: ["debuts-humanite", "histoire-prehistoire"],
-    // Mode révision : répartit tout le quiz des chapitres en N séances
-    // équilibrées (par défaut 2), pour étaler la révision sur plusieurs
-    // jours sans surcharger — voir sessionLabels pour personnaliser.
     sessionLabels: ["Séance 1 — Samedi matin", "Séance 2 — Dimanche matin"]
+  },
+  {
+    id: "eval-francais-seq1-oct2026",
+    date: "2026-10-14",
+    dateLabel: "mercredi 14 oct.",
+    subject: "francais",
+    title: "Éval Français — Séquence 1",
+    note: "Relire toutes les séances et la conclusion · Mots importants : adjuvant, opposant, merveilleux, morale · Savoir utiliser des citations pour répondre",
+    chapters: ["baba-yaga"],
+    sessionLabels: ["Séance de révision — Mardi soir"]
+  },
+  {
+    id: "eval-histoire-mercredi-oct2026",
+    date: "2026-10-14",
+    dateLabel: "mercredi 14 oct.",
+    subject: "histoire",
+    title: "Éval Histoire (mercredi)",
+    note: "Réviser le chapitre d'histoire pour l'évaluation",
+    chapters: ["debuts-humanite", "histoire-prehistoire"],
+    sessionLabels: ["Séance unique — Mardi soir"]
+  },
+  {
+    id: "dm-physchimie-activite-oct2026",
+    date: "2026-10-14",
+    dateLabel: "mercredi 14 oct.",
+    subject: "physchimie",
+    title: "DM Physique-Chimie — Finir l'activité",
+    note: "Finir la dernière activité si elle n'est pas terminée",
+    chapters: ["securite-labo"]
+  },
+  {
+    id: "dm-physchimie-materiel-oct2026",
+    date: "2026-10-15",
+    dateLabel: "jeudi 15 oct.",
+    subject: "physchimie",
+    title: "DM Physique-Chimie — Matériel de chimie",
+    note: "Apprendre les noms des objets — fiche p.30 « Schématiser le matériel de chimie »",
+    chapters: ["securite-labo"],
+    aide: {
+      instructions: "Apprends à reconnaître et à nommer chaque objet de la fiche p.30. Il y a deux catégories : la verrerie et les autres instruments.",
+      itemLabel: "Objet",
+      items: [
+        {
+          text: "La verrerie (6 objets)",
+          tracks: [{
+            id: "verrerie",
+            btnLabel: "aide pour la verrerie",
+            hints: [
+              "Les 6 objets de la verrerie : le bécher (cylindre large ouvert), l'erlenmeyer (triangle avec col), l'éprouvette graduée (tube étroit gradué), la fiole jaugée (ventre rond + col long + trait de jauge), le tube à essais (tube fin fermé au fond), le cristallisoir (bol plat et large).",
+              "Astuce pour retenir : bécher = seau de chimiste · erlenmeyer = tente de chimiste · éprouvette = règle creuse · fiole jaugée = bouteille de sorcier · tube à essais = doigt de gant en verre · cristallisoir = assiette de chimiste.",
+              "Pour le schéma : le bécher se dessine comme un rectangle ouvert en haut. L'erlenmeyer comme un triangle avec une cheminée. La fiole jaugée a un ventre rond et un trait horizontal sur le col (le trait de jauge). Pense à utiliser une règle !"
+            ]
+          }]
+        },
+        {
+          text: "Les autres instruments (4 objets)",
+          tracks: [{
+            id: "instruments",
+            btnLabel: "aide pour les autres instruments",
+            hints: [
+              "Les 4 autres instruments : le verre à pied (verre sur socle, forme de Y inversé), le ballon à fond plat (boule avec col, 250 ml), la balance (plateau électronique, affiche 0,0 g), l'entonnoir (forme de Y ou de triangle pointu en bas).",
+              "Astuce : verre à pied = verre de cocktail · ballon à fond plat = ballon de baudruche avec un pied plat · balance = celle de la cuisine mais plus précise · entonnoir = chapeau de sorcière à l'envers.",
+              "Pour le schéma du verre à pied : deux lignes en V ouvert vers le haut + une ligne horizontale pour le pied. Pour l'entonnoir : un triangle pointu en bas avec un tube qui sort du sommet. Utilise une règle !"
+            ]
+          }]
+        }
+      ],
+      closing: "Teste-toi : cache les noms et essaie de retrouver chaque objet rien qu'avec le dessin. Puis cache les dessins et essaie de les schématiser de mémoire."
+    }
   }
 ];
 
@@ -4378,42 +4569,75 @@ function bindDevoirCardEvents(container, onDoneToggle) {
   });
 }
 
-function updateArchiveBtn() {
+function updateDevoirsBtns() {
   const todayStr = new Date().toISOString().slice(0, 10);
-  const doneDevoirs = DEVOIRS.filter(d => d.date >= todayStr && isDevoirDone(d.id));
-  const btn = document.getElementById('archiveBtn');
-  const badge = document.getElementById('archiveBadge');
-  if (!btn) return;
-  if (doneDevoirs.length > 0) {
-    btn.classList.add('has-done');
-    badge.textContent = doneDevoirs.length;
-  } else {
-    btn.classList.remove('has-done');
-    badge.textContent = '';
+  const upcoming = DEVOIRS.filter(d => d.date >= todayStr);
+  const active = upcoming.filter(d => !isDevoirDone(d.id));
+  const done = upcoming.filter(d => isDevoirDone(d.id));
+
+  // Badge 📚 devoirs actifs
+  const dbadge = document.getElementById('devoirsBadge');
+  if (dbadge) {
+    if (active.length > 0) { dbadge.textContent = active.length; dbadge.classList.add('show'); }
+    else { dbadge.textContent = ''; dbadge.classList.remove('show'); }
+  }
+
+  // Bouton 🏆 archive
+  const archBtn = document.getElementById('archiveBtn');
+  const archBadge = document.getElementById('archiveBadge');
+  if (archBtn) {
+    if (done.length > 0) { archBtn.classList.add('has-done'); archBadge.textContent = done.length; }
+    else { archBtn.classList.remove('has-done'); archBadge.textContent = ''; }
   }
 }
 
 function renderDevoirs() {
-  const panel = document.getElementById('devoirsPanel');
-  if (!panel) return;
-  const todayStr = new Date().toISOString().slice(0, 10);
-  const upcoming = DEVOIRS
-    .filter(d => d.date >= todayStr)
-    .sort((a, b) => a.date.localeCompare(b.date));
-
-  // Séparer actifs et terminés
-  const active = upcoming.filter(d => !isDevoirDone(d.id));
-
-  if (active.length === 0) {
-    panel.innerHTML = '';
-  } else {
-    panel.innerHTML = active.map(d => buildDevoirCardHtml(d, todayStr, { inArchive: false })).join('');
-    bindDevoirCardEvents(panel, () => { renderDevoirs(); updateArchiveBtn(); });
-  }
-
-  updateArchiveBtn();
+  // Plus de panel inline — tout passe par le bottom-sheet
+  updateDevoirsBtns();
 }
 renderDevoirs();
+
+// ─── PANEL DEVOIRS (bottom-sheet) ───
+function openDevoirsSheet() {
+  const content = document.getElementById('devoirsSheetContent');
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const active = DEVOIRS
+    .filter(d => d.date >= todayStr && !isDevoirDone(d.id))
+    .sort((a, b) => a.date.localeCompare(b.date));
+
+  if (active.length === 0) {
+    content.innerHTML = `<div class="archive-empty">🎉 Tous les devoirs sont faits !<br><br>Retrouve-les dans l'archive 🏆</div>`;
+  } else {
+    // Grouper par jour
+    const byDay = {};
+    active.forEach(d => {
+      if (!byDay[d.date]) byDay[d.date] = [];
+      byDay[d.date].push(d);
+    });
+    let html = '';
+    Object.keys(byDay).sort().forEach(dateKey => {
+      const dayDevoirs = byDay[dateKey];
+      const dayLabel = dayDevoirs[0].dateLabel;
+      html += `<div class="devoirs-day-label">📅 ${dayLabel}</div>`;
+      html += dayDevoirs.map(d => buildDevoirCardHtml(d, todayStr, { inArchive: false })).join('');
+    });
+    content.innerHTML = html;
+    bindDevoirCardEvents(content, () => {
+      updateDevoirsBtns();
+      openDevoirsSheet(); // re-render
+    });
+  }
+
+  document.getElementById('devoirsOverlay').classList.add('show');
+}
+
+function closeDevoirsSheet() {
+  document.getElementById('devoirsOverlay').classList.remove('show');
+}
+
+function closeDevoirsIfBg(e) {
+  if (e.target === document.getElementById('devoirsOverlay')) closeDevoirsSheet();
+}
 
 // ─── ARCHIVE DEVOIRS TERMINÉS ───
 function openArchive() {
@@ -4431,8 +4655,7 @@ function openArchive() {
       `<div class="archive-sync-note">📱 Note : les devoirs cochés ne se synchronisent pas entre tes appareils. Si tu coches un devoir sur l'ordi, il faut le recocher sur le téléphone.</div>` +
       done.map(d => buildDevoirCardHtml(d, todayStr, { inArchive: true })).join('');
     bindDevoirCardEvents(content, () => {
-      renderDevoirs();
-      updateArchiveBtn();
+      updateDevoirsBtns();
       openArchive(); // re-render le panel
     });
   }
