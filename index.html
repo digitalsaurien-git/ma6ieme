@@ -418,6 +418,30 @@ body {
 }
 
 /* ─── DEVOIRS À VENIR (bandeau accueil) ─── */
+.devoirs-inline-banner {
+  max-width: 500px; margin: 0 auto 16px;
+  background: linear-gradient(135deg, rgba(253,203,110,0.18), rgba(15,52,96,0.6));
+  border: 2px solid var(--yellow);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 14px;
+  -webkit-user-select: none; user-select: none;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.devoirs-inline-banner:active { transform: scale(0.97); }
+.devoirs-inline-banner .dib-icon { font-size: 32px; flex-shrink: 0; }
+.devoirs-inline-banner .dib-body { flex: 1; }
+.devoirs-inline-banner .dib-title { font-size: 17px; font-weight: 800; }
+.devoirs-inline-banner .dib-sub { font-size: 13px; color: var(--text2); margin-top: 3px; }
+.devoirs-inline-banner .dib-arrow { font-size: 20px; color: var(--yellow); flex-shrink: 0; }
+.devoirs-inline-banner .dib-badge {
+  background: var(--accent); color: #fff;
+  font-size: 15px; font-weight: 900;
+  min-width: 32px; height: 32px; border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 8px; flex-shrink: 0;
+}
 .devoirs-panel { max-width: 500px; margin: 0 auto 6px; }
 .devoir-card {
   background: linear-gradient(135deg, rgba(253,203,110,0.18), rgba(15,52,96,0.6));
@@ -4614,20 +4638,23 @@ function renderDevoirsInline() {
     .sort((a, b) => a.date.localeCompare(b.date));
   if (active.length === 0) { container.innerHTML = ''; return; }
 
-  const byDay = {};
-  active.forEach(d => {
-    if (!byDay[d.date]) byDay[d.date] = [];
-    byDay[d.date].push(d);
-  });
-  let html = `<div class="section-header"><h2>📚 Mes devoirs</h2><hr></div><div class="devoirs-panel">`;
-  Object.keys(byDay).sort().forEach(dateKey => {
-    const dayDevoirs = byDay[dateKey];
-    html += `<div class="devoirs-day-label">📅 ${dayDevoirs[0].dateLabel}</div>`;
-    html += dayDevoirs.map(d => buildDevoirCardHtml(d, todayStr, { inArchive: false })).join('');
-  });
-  html += `</div>`;
-  container.innerHTML = html;
-  bindDevoirCardEvents(container, () => { updateDevoirsBtns(); renderDevoirsInline(); });
+  // Trouver la prochaine date
+  const nextDate = active[0].dateLabel;
+  const nbJours = [...new Set(active.map(d => d.date))].length;
+  const subLabel = nbJours === 1
+    ? `Pour ${nextDate}`
+    : `Prochain : ${nextDate} · ${nbJours} jours avec des devoirs`;
+
+  container.innerHTML = `
+    <div class="devoirs-inline-banner" onclick="openDevoirsSheet()">
+      <div class="dib-icon">📚</div>
+      <div class="dib-body">
+        <div class="dib-title">Mes devoirs</div>
+        <div class="dib-sub">${subLabel}</div>
+      </div>
+      <div class="dib-badge">${active.length}</div>
+      <div class="dib-arrow">›</div>
+    </div>`;
 }
 
 // ─── PANEL DEVOIRS (bottom-sheet) ───
