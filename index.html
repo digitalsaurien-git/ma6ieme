@@ -1081,6 +1081,9 @@ body {
     <div class="koala-hello">Salut <span>Melwan</span> 👋 Prêt à tout déchirer ?</div>
   </div>
 
+  <!-- Devoirs inline -->
+  <div id="devoirsInline"></div>
+
   <div class="section-header">
     <h2>Mes matières</h2>
     <hr>
@@ -4548,12 +4551,17 @@ function buildDevoirCardHtml(d, todayStr, opts = {}) {
   }
 }
 
+function closeAllSheets() {
+  document.getElementById('devoirsOverlay')?.classList.remove('show');
+  document.getElementById('archiveOverlay')?.classList.remove('show');
+}
+
 function bindDevoirCardEvents(container, onDoneToggle) {
   container.querySelectorAll('.devoir-chip').forEach(chip => {
-    chip.addEventListener('click', () => openChapter(chip.dataset.subject, chip.dataset.chapter));
+    chip.addEventListener('click', () => { closeAllSheets(); openChapter(chip.dataset.subject, chip.dataset.chapter); });
   });
   container.querySelectorAll('[data-aide-devoir]').forEach(btn => {
-    btn.addEventListener('click', () => openAideDevoir(btn.dataset.aideDevoir));
+    btn.addEventListener('click', () => { closeAllSheets(); openAideDevoir(btn.dataset.aideDevoir); });
   });
   container.querySelectorAll('[data-done-devoir]').forEach(btn => {
     btn.addEventListener('click', () => { toggleDevoirDone(btn.dataset.doneDevoir); onDoneToggle(); });
@@ -4562,10 +4570,10 @@ function bindDevoirCardEvents(container, onDoneToggle) {
     btn.addEventListener('click', () => { toggleDevoirDone(btn.dataset.undoDevoir); onDoneToggle(); });
   });
   container.querySelectorAll('.devoir-revise-btn[data-devoir]').forEach(btn => {
-    btn.addEventListener('click', () => openRevisionSessions(btn.dataset.devoir));
+    btn.addEventListener('click', () => { closeAllSheets(); openRevisionSessions(btn.dataset.devoir); });
   });
   container.querySelectorAll('.archive-action-btn[data-devoir]').forEach(btn => {
-    btn.addEventListener('click', () => openRevisionSessions(btn.dataset.devoir));
+    btn.addEventListener('click', () => { closeAllSheets(); openRevisionSessions(btn.dataset.devoir); });
   });
 }
 
@@ -4592,10 +4600,35 @@ function updateDevoirsBtns() {
 }
 
 function renderDevoirs() {
-  // Plus de panel inline — tout passe par le bottom-sheet
   updateDevoirsBtns();
+  renderDevoirsInline();
 }
 renderDevoirs();
+
+function renderDevoirsInline() {
+  const container = document.getElementById('devoirsInline');
+  if (!container) return;
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const active = DEVOIRS
+    .filter(d => d.date >= todayStr && !isDevoirDone(d.id))
+    .sort((a, b) => a.date.localeCompare(b.date));
+  if (active.length === 0) { container.innerHTML = ''; return; }
+
+  const byDay = {};
+  active.forEach(d => {
+    if (!byDay[d.date]) byDay[d.date] = [];
+    byDay[d.date].push(d);
+  });
+  let html = `<div class="section-header"><h2>📚 Mes devoirs</h2><hr></div><div class="devoirs-panel">`;
+  Object.keys(byDay).sort().forEach(dateKey => {
+    const dayDevoirs = byDay[dateKey];
+    html += `<div class="devoirs-day-label">📅 ${dayDevoirs[0].dateLabel}</div>`;
+    html += dayDevoirs.map(d => buildDevoirCardHtml(d, todayStr, { inArchive: false })).join('');
+  });
+  html += `</div>`;
+  container.innerHTML = html;
+  bindDevoirCardEvents(container, () => { updateDevoirsBtns(); renderDevoirsInline(); });
+}
 
 // ─── PANEL DEVOIRS (bottom-sheet) ───
 function openDevoirsSheet() {
