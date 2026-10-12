@@ -1142,7 +1142,7 @@ body {
     <div class="subject-card" data-color="purple" onclick="openSubject('physchimie')">
       <span class="emoji">⚗️</span>
       <div class="name">Physique-Chimie</div>
-      <div class="count">1 chapitre</div>
+      <div class="count">2 chapitres</div>
     </div>
     <div class="subject-card" data-color="pink" onclick="openSubject('anglais')">
       <span class="emoji">🇬🇧</span>
@@ -3469,6 +3469,127 @@ Une citation = mots <strong>exacts</strong> du texte copiés entre guillemets (�
             { label: "9 pictogrammes", color: "#fdcb6e", children: ["Explosif", "Inflammable", "Corrosif", "Toxique", "Nocif", "Comburant", "Gaz pression", "Danger santé", "Env. aquatique"] }
           ]
         }
+      },
+      {
+        id: "materiel-chimie",
+        title: "Le matériel de chimie",
+        desc: "Reconnaître et schématiser la verrerie et les instruments de laboratoire",
+        bossQuiz: [
+          { emoji: "🧪", schema: "║  ║", label: "Bécher", accept: ["becher","bécher","bêcher","becker"] },
+          { emoji: "🔺", schema: "△", label: "Erlenmeyer", accept: ["erlenmeyer","erlenmaier","erlenmeyer"] },
+          { emoji: "📏", schema: "│┤", label: "Éprouvette graduée", accept: ["eprouvette graduee","éprouvette graduée","eprouvette","éprouvette","eprouvette gradué","eprouvette gradue"] },
+          { emoji: "⚗️", schema: "◡", label: "Fiole jaugée", accept: ["fiole jaugee","fiole jaugée","fiole jauge","fiole jaugé","fiol jaugee"] },
+          { emoji: "🧫", schema: "⊓", label: "Tube à essais", accept: ["tube a essais","tube à essais","tube essais","tube a essai","tube à essai"] },
+          { emoji: "🫙", schema: "⊏⊐", label: "Cristallisoir", accept: ["cristallisoir","cristalisoir","cristallisoir","cristalissoir"] },
+          { emoji: "🥂", schema: "∨", label: "Verre à pied", accept: ["verre a pied","verre à pied","verre pied"] },
+          { emoji: "🔮", schema: "○", label: "Ballon à fond plat", accept: ["ballon a fond plat","ballon à fond plat","ballon fond plat","balon fond plat","balon a fond plat"] },
+          { emoji: "⚖️", schema: "▭", label: "Balance", accept: ["balance"] },
+          { emoji: "🔽", schema: "Y", label: "Entonnoir", accept: ["entonnoir","entonnoire","entonnoir","entonoir","entoinoir"] }
+        ],
+        quiz: [
+          {
+            q: "Comment s'appelle ce récipient en verre avec un fond plat et des bords droits, gradué, utilisé pour mesurer et mélanger des liquides ?",
+            options: ["Erlenmeyer", "Bécher", "Fiole jaugée", "Cristallisoir"],
+            correct: 1,
+            explanation: "Le bécher est un récipient cylindrique à bords droits, en verre. Il sert à mesurer grossièrement et mélanger des liquides."
+          },
+          {
+            q: "Comment s'appelle ce récipient en forme de triangle (cône) avec un col étroit ?",
+            options: ["Bécher", "Verre à pied", "Erlenmeyer", "Tube à essais"],
+            correct: 2,
+            explanation: "L'erlenmeyer est reconnaissable à sa forme triangulaire évasée vers le bas avec un col étroit. Il sert à chauffer et mélanger des liquides."
+          },
+          {
+            q: "Comment s'appelle ce long tube en verre gradué, utilisé pour mesurer précisément un volume de liquide ?",
+            options: ["Tube à essais", "Fiole jaugée", "Éprouvette graduée", "Cristallisoir"],
+            correct: 2,
+            explanation: "L'éprouvette graduée est un long tube cylindrique en verre avec des graduations. Elle sert à mesurer précisément un volume de liquide."
+          },
+          {
+            q: "Comment s'appelle ce récipient en verre avec un corps sphérique, un col étroit et une marque (trait de jauge) indiquant un volume précis ?",
+            options: ["Ballon à fond plat", "Fiole jaugée", "Erlenmeyer", "Verre à pied"],
+            correct: 1,
+            explanation: "La fiole jaugée est reconnaissable à son corps sphérique et son trait de jauge sur le col. Elle sert à préparer une solution à volume très précis."
+          },
+          {
+            q: "Comment s'appelle ce petit tube en verre fermé à une extrémité, utilisé pour des petites réactions chimiques ?",
+            options: ["Éprouvette graduée", "Cristallisoir", "Tube à essais", "Fiole jaugée"],
+            correct: 2,
+            explanation: "Le tube à essais est un petit tube en verre fermé en bas. Il sert à réaliser de petites réactions chimiques ou observer des propriétés d'un produit."
+          },
+          {
+            q: "Comment s'appelle ce récipient bas et large, en verre, ressemblant à un saladier, utilisé pour les cristallisations ?",
+            options: ["Bécher", "Cristallisoir", "Verre à pied", "Ballon à fond plat"],
+            correct: 1,
+            explanation: "Le cristallisoir est un récipient plat et large en verre, qui ressemble à un saladier. Il sert notamment pour les expériences de cristallisation."
+          },
+          {
+            q: "Comment s'appelle ce verre en forme de V renversé avec une tige et un pied ?",
+            options: ["Verre à pied", "Erlenmeyer", "Ballon à fond plat", "Fiole jaugée"],
+            correct: 0,
+            explanation: "Le verre à pied est reconnaissable à sa forme en V avec une tige et un pied. Au laboratoire, il sert à contenir des liquides et permet de les observer facilement."
+          },
+          {
+            q: "Comment s'appelle ce récipient sphérique en verre avec un col étroit et un fond plat ?",
+            options: ["Fiole jaugée", "Verre à pied", "Erlenmeyer", "Ballon à fond plat"],
+            correct: 3,
+            explanation: "Le ballon à fond plat est une sphère en verre avec un col étroit et un fond aplati pour pouvoir le poser. Il sert à chauffer des liquides et réaliser des réactions."
+          },
+          {
+            q: "Quel instrument sert à peser des solides ou des liquides au laboratoire ?",
+            options: ["Éprouvette graduée", "Fiole jaugée", "Balance", "Cristallisoir"],
+            correct: 2,
+            explanation: "La balance est l'instrument utilisé pour peser. En chimie, on utilise souvent des balances de précision qui affichent la masse en grammes (g)."
+          },
+          {
+            q: "Comment s'appelle cet instrument en forme de Y ou de V utilisé pour filtrer ou verser des liquides dans un col étroit ?",
+            options: ["Tube à essais", "Éprouvette graduée", "Cristallisoir", "Entonnoir"],
+            correct: 3,
+            explanation: "L'entonnoir est en forme de Y ou de V. Il sert à verser des liquides dans des récipients à col étroit, ou à filtrer (avec un filtre en papier)."
+          }
+        ],
+        flashcards: [
+          { front: "Bécher", back: "Récipient cylindrique à bords droits. Sert à mesurer grossièrement et mélanger des liquides." },
+          { front: "Erlenmeyer", back: "Récipient en forme de triangle (cône évasé) avec un col étroit. Sert à chauffer et mélanger." },
+          { front: "Éprouvette graduée", back: "Long tube gradué. Sert à mesurer précisément un volume de liquide." },
+          { front: "Fiole jaugée", back: "Corps sphérique + col étroit + trait de jauge. Sert à préparer une solution à volume très précis." },
+          { front: "Tube à essais", back: "Petit tube fermé en bas. Sert pour de petites réactions chimiques." },
+          { front: "Cristallisoir", back: "Récipient bas et large (comme un saladier). Sert pour les cristallisations." },
+          { front: "Verre à pied", back: "Forme en V avec tige et pied. Sert à contenir et observer des liquides." },
+          { front: "Ballon à fond plat", back: "Sphère en verre, col étroit, fond aplati. Sert à chauffer des liquides." },
+          { front: "Balance", back: "Instrument pour peser. Affiche la masse en grammes (g)." },
+          { front: "Entonnoir", back: "Forme en Y. Sert à verser dans un col étroit ou à filtrer avec un filtre en papier." }
+        ],
+        summary: `<h2>⚗️ Le matériel de chimie</h2>
+<h3>La verrerie</h3>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin:8px 0">
+<tr style="background:rgba(108,92,231,0.3)"><th style="padding:6px;text-align:left">Nom</th><th style="padding:6px;text-align:left">Forme / Schéma</th><th style="padding:6px;text-align:left">Utilisation</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:6px"><strong>Bécher</strong></td><td style="padding:6px;font-family:monospace">║&nbsp;&nbsp;║</td><td style="padding:6px">Mesurer grossièrement, mélanger</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:6px"><strong>Erlenmeyer</strong></td><td style="padding:6px;font-family:monospace">△ (cône)</td><td style="padding:6px">Chauffer, mélanger</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:6px"><strong>Éprouvette graduée</strong></td><td style="padding:6px;font-family:monospace">│ gradué</td><td style="padding:6px">Mesurer précisément un volume</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:6px"><strong>Fiole jaugée</strong></td><td style="padding:6px;font-family:monospace">◡ + trait de jauge</td><td style="padding:6px">Préparer une solution précise</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:6px"><strong>Tube à essais</strong></td><td style="padding:6px;font-family:monospace">│ fermé en bas</td><td style="padding:6px">Petites réactions chimiques</td></tr>
+<tr><td style="padding:6px"><strong>Cristallisoir</strong></td><td style="padding:6px;font-family:monospace">⊏—⊐ (saladier)</td><td style="padding:6px">Cristallisations</td></tr>
+</table>
+<h3>Autres instruments</h3>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin:8px 0">
+<tr style="background:rgba(108,92,231,0.3)"><th style="padding:6px;text-align:left">Nom</th><th style="padding:6px;text-align:left">Forme</th><th style="padding:6px;text-align:left">Utilisation</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:6px"><strong>Verre à pied</strong></td><td style="padding:6px;font-family:monospace">∨ avec pied</td><td style="padding:6px">Contenir et observer des liquides</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:6px"><strong>Ballon à fond plat</strong></td><td style="padding:6px;font-family:monospace">○ + fond plat</td><td style="padding:6px">Chauffer des liquides, réactions</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:6px"><strong>Balance</strong></td><td style="padding:6px;font-family:monospace">▭ + écran</td><td style="padding:6px">Peser (masse en grammes)</td></tr>
+<tr><td style="padding:6px"><strong>Entonnoir</strong></td><td style="padding:6px;font-family:monospace">Y</td><td style="padding:6px">Verser dans un col étroit, filtrer</td></tr>
+</table>
+<div style="background:rgba(108,92,231,0.15);border-left:3px solid #6c5ce7;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px">
+💡 <strong>Astuce pour schématiser :</strong> Utilise une règle et un crayon à papier. Les schémas sont simplifiés : bécher = rectangle, erlenmeyer = triangle, fiole jaugée = poire avec une marque.
+</div>`,
+        mindmap: {
+          center: "Matériel de chimie",
+          branches: [
+            { label: "Verrerie", color: "#6c5ce7", children: ["Bécher", "Erlenmeyer", "Éprouvette graduée", "Fiole jaugée", "Tube à essais", "Cristallisoir"] },
+            { label: "Autres instruments", color: "#0984e3", children: ["Verre à pied", "Ballon à fond plat", "Balance", "Entonnoir"] },
+            { label: "Schématiser", color: "#00b894", children: ["Règle + crayon", "Formes simples", "Trait de jauge"] }
+          ]
+        }
       }
     ]
   },
@@ -3819,15 +3940,46 @@ function openChapter(subjectId, chapterId, isBack) {
 // ══════════════════════════════════════════════════
 //  ACTIVITIES
 // ══════════════════════════════════════════════════
-function startActivity(type) {
+function startActivity(type, mode) {
   navStack.push(type);
   const subj = DATA[currentSubject];
   const ch = subj.chapters.find(c => c.id === currentChapter);
 
-  if (type === 'quiz') startQuiz(ch);
+  if (type === 'quiz') {
+    if (ch.bossQuiz && !mode) {
+      showQuizModeSelector(ch);
+    } else if (mode === 'boss') {
+      startBossQuiz(ch);
+    } else {
+      startQuiz(ch);
+    }
+  }
   else if (type === 'flashcards') startFlashcards(ch);
   else if (type === 'summary') startSummary(ch);
   else if (type === 'mindmap') startMindmap(ch);
+}
+
+function showQuizModeSelector(ch) {
+  showScreen('quiz');
+  const container = document.getElementById('quizContainer');
+  container.innerHTML = `
+    <div style="text-align:center;padding:24px 16px">
+      <div style="font-size:48px;margin-bottom:12px">⚗️</div>
+      <div style="font-size:20px;font-weight:700;margin-bottom:6px">${ch.title}</div>
+      <div style="font-size:14px;color:var(--text2);margin-bottom:28px">Choisis ton mode !</div>
+      <div onclick="startQuiz(DATA[currentSubject].chapters.find(c=>c.id===currentChapter))"
+        style="background:var(--card);border:2px solid var(--correct);border-radius:16px;padding:18px;margin-bottom:14px;cursor:pointer;text-align:left">
+        <div style="font-size:26px;margin-bottom:6px">🐨 Mode Koala</div>
+        <div style="font-weight:700;color:var(--correct);margin-bottom:4px">Version entraînement</div>
+        <div style="font-size:13px;color:var(--text2)">4 propositions à chaque question — tu choisis la bonne réponse</div>
+      </div>
+      <div onclick="startBossQuiz(DATA[currentSubject].chapters.find(c=>c.id===currentChapter))"
+        style="background:var(--card);border:2px solid #e17055;border-radius:16px;padding:18px;cursor:pointer;text-align:left">
+        <div style="font-size:26px;margin-bottom:6px">💀 Mode Boss</div>
+        <div style="font-weight:700;color:#e17055;margin-bottom:4px">Version défi !</div>
+        <div style="font-size:13px;color:var(--text2)">Tu vois le schéma… et tu dois retrouver le nom tout seul !</div>
+      </div>
+    </div>`;
 }
 
 // ─── QUIZ ───
@@ -3873,6 +4025,150 @@ function backToRevisionSessions() {
   const devoirId = quizState.revisionMeta.devoirId;
   if (navStack[navStack.length - 1] === 'quiz') navStack.pop();
   openRevisionSessions(devoirId, true);
+}
+
+// ─── MODE BOSS ───
+let bossState = {};
+
+// Distance de Levenshtein (tolérance orthographique)
+function levenshtein(a, b) {
+  const m = a.length, n = b.length;
+  const dp = Array.from({length: m+1}, (_, i) => [i, ...Array(n).fill(0)]);
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+  for (let i = 1; i <= m; i++)
+    for (let j = 1; j <= n; j++)
+      dp[i][j] = a[i-1] === b[j-1] ? dp[i-1][j-1]
+        : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
+  return dp[m][n];
+}
+
+function normalize(s) {
+  return s.toLowerCase().trim()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9 ]/g, '');
+}
+
+function bossCheckAnswer(input, item) {
+  const inp = normalize(input);
+  if (!inp) return false;
+  // Vérifier chaque forme acceptée
+  for (const acc of item.accept) {
+    const ref = normalize(acc);
+    if (inp === ref) return true;
+    // Tolérance : 1 erreur par tranche de 5 caractères (max 3)
+    const maxDist = Math.min(3, Math.floor(ref.length / 5));
+    if (levenshtein(inp, ref) <= maxDist) return true;
+  }
+  return false;
+}
+
+function startBossQuiz(ch) {
+  const items = [...ch.bossQuiz].sort(() => Math.random() - 0.5);
+  bossState = { items, current: 0, score: 0, results: [] };
+  showBossQuestion();
+  showScreen('quiz');
+}
+
+function showBossQuestion() {
+  const { items, current, score } = bossState;
+  const container = document.getElementById('quizContainer');
+
+  if (current >= items.length) {
+    const pct = Math.round((score / items.length) * 100);
+    const noteSur20 = Math.round((score / items.length) * 20);
+    const colorNote = noteSur20 >= 14 ? 'var(--correct)' : noteSur20 >= 10 ? 'var(--yellow)' : 'var(--wrong)';
+    let emoji, msg, sub;
+    if (pct >= 90) { emoji = '💀'; msg = 'BOSS vaincu !'; sub = 'Tu connais tout le matériel par cœur, incroyable !'; }
+    else if (pct >= 70) { emoji = '🔥'; msg = 'Presque boss !'; sub = 'Encore un peu d\'entraînement et tu les auras tous !'; }
+    else if (pct >= 50) { emoji = '💪'; msg = 'Pas mal !'; sub = 'Continue à t\'entraîner, ça vient !'; }
+    else { emoji = '📖'; msg = 'Révise le résumé !'; sub = 'Regarde les schémas et réessaie, tu vas progresser !'; }
+    container.innerHTML = `
+      <div class="quiz-koala">${getKoalaSVG(60, pct >= 70 ? 'star' : 'happy')}</div>
+      <div class="quiz-score">
+        <div class="big">${emoji}</div>
+        <div class="big" style="color:${colorNote}">${noteSur20}<span style="font-size:36px;color:var(--text2)">/20</span></div>
+        <div style="font-size:13px;color:var(--text2);margin-top:4px">${score} bonne${score > 1 ? 's' : ''} réponse${score > 1 ? 's' : ''} sur ${items.length}</div>
+        <div class="msg">${msg}</div>
+        <div style="font-size:14px;color:var(--text2);margin-top:8px">${sub}</div>
+        <button class="quiz-restart" onclick="startBossQuiz(DATA[currentSubject].chapters.find(c=>c.id===currentChapter))">Recommencer 💀</button>
+        <button class="quiz-restart" style="background:var(--card);margin-top:10px" onclick="showQuizModeSelector(DATA[currentSubject].chapters.find(c=>c.id===currentChapter))">⬅️ Choisir le mode</button>
+      </div>`;
+    return;
+  }
+
+  const item = items[current];
+  const progress = (current / items.length) * 100;
+  const dots = items.map((_, i) => {
+    let cls = 'streak-dot';
+    if (i < bossState.results.length) cls += bossState.results[i] ? ' lit' : ' miss';
+    return `<span class="${cls}"></span>`;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="quiz-progress"><div class="quiz-progress-bar" style="width:${progress}%"></div></div>
+    <div class="streak-bar">${dots}</div>
+    <div class="quiz-question-num" style="color:#e17055">💀 Mode Boss — ${current + 1} / ${items.length}</div>
+    <div style="text-align:center;margin:20px 0">
+      <div style="font-size:64px;line-height:1;margin-bottom:8px">${item.emoji}</div>
+      <div style="font-family:monospace;font-size:28px;background:var(--card);border-radius:10px;padding:10px 18px;display:inline-block;letter-spacing:4px">${item.schema}</div>
+    </div>
+    <div class="quiz-question" style="font-size:16px">Comment s'appelle cet instrument de laboratoire ?</div>
+    <div id="bossInputZone" style="margin:16px 0">
+      <input id="bossInput" type="text" autocomplete="off" autocorrect="off" spellcheck="false"
+        placeholder="Tape le nom…"
+        style="width:100%;padding:14px;border-radius:12px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-size:16px;box-sizing:border-box;outline:none"
+        onkeydown="if(event.key==='Enter')bossValidate()"
+      />
+      <button onclick="bossValidate()"
+        style="width:100%;margin-top:10px;padding:14px;border-radius:12px;border:none;background:#e17055;color:#fff;font-size:16px;font-weight:700;cursor:pointer">
+        Valider ✓
+      </button>
+    </div>
+    <div class="quiz-explanation" id="bossExplanation" style="display:none">💡 La réponse : <strong>${item.label}</strong></div>
+    <button class="quiz-next" id="bossNext" onclick="bossNext()" style="display:none">Suivant →</button>`;
+
+  setTimeout(() => {
+    const inp = document.getElementById('bossInput');
+    if (inp) inp.focus();
+  }, 100);
+}
+
+function bossValidate() {
+  const item = bossState.items[bossState.current];
+  const inp = document.getElementById('bossInput');
+  if (!inp) return;
+  const val = inp.value.trim();
+  if (!val) return;
+
+  const isCorrect = bossCheckAnswer(val, item);
+  bossState.results.push(isCorrect);
+  if (isCorrect) bossState.score++;
+
+  // Feedback visuel
+  inp.disabled = true;
+  inp.style.border = `2px solid ${isCorrect ? 'var(--correct)' : 'var(--wrong)'}`;
+  inp.style.background = isCorrect ? 'rgba(0,184,148,0.15)' : 'rgba(233,69,96,0.15)';
+
+  const validateBtn = inp.nextElementSibling;
+  if (validateBtn) validateBtn.style.display = 'none';
+
+  // Afficher l'explication et le bouton suivant
+  const exp = document.getElementById('bossExplanation');
+  if (exp) {
+    exp.style.display = 'block';
+    exp.innerHTML = isCorrect
+      ? `✅ Bravo ! C'est bien <strong>${item.label}</strong> !`
+      : `❌ C'était <strong>${item.label}</strong>. Tu as écrit : <em>${val || '(rien)'}</em>`;
+  }
+  const nextBtn = document.getElementById('bossNext');
+  if (nextBtn) nextBtn.style.display = 'block';
+
+  showEncouragement(isCorrect);
+}
+
+function bossNext() {
+  bossState.current++;
+  showBossQuestion();
 }
 
 function showQuizQuestion() {
