@@ -1433,6 +1433,36 @@ const DATA = {
             ],
             correct: 1,
             explanation: "Au Paléolithique, on taille la pierre par percussion (on la frappe pour obtenir un tranchant). Au Néolithique, on la polit en la frottant longuement : les outils sont plus solides et plus efficaces (haches pour couper les arbres, etc.)."
+          },
+          {
+            q: "Quels animaux domestiques apparaissent au Proche-Orient vers -10 000 ans ?",
+            options: ["Le cheval, le chat et le chien", "Le mouton, la chèvre, le porc et le bœuf", "La poule, le canard et l'oie", "Le lama, l'alpaga et le cochon d'Inde"],
+            correct: 1,
+            explanation: "Au Proche-Orient, vers -10 000 ans, les hommes domestiquent le mouton, la chèvre, le porc et le bœuf. Ils cultivent aussi le blé. C'est la première région du monde où apparaissent l'agriculture et l'élevage."
+          },
+          {
+            q: "Quels sont les animaux élevés et la plante cultivée en Amérique au Néolithique ?",
+            options: ["Le mouton et le blé", "Le bœuf et l'orge", "Le lama et le maïs", "La chèvre et le riz"],
+            correct: 2,
+            explanation: "L'Amérique ne possède pas les espèces du Proche-Orient ou de Chine. Elle cultive le maïs et élève le lama. Chaque région a développé son agriculture avec ses propres espèces."
+          },
+          {
+            q: "Quelles plantes et animaux apparaissent en Chine vers -8 000 ans ?",
+            options: ["Le blé et le mouton", "Le riz et la poule", "Le maïs et le cochon", "L'orge et le cheval"],
+            correct: 1,
+            explanation: "En Chine, vers -8 000 ans, apparaissent la poule et le riz — des espèces inconnues ailleurs. Ces innovations se diffusent ensuite vers l'Europe et l'Afrique centrale."
+          },
+          {
+            q: "Qu'est-ce qu'une stèle ?",
+            options: ["Une peinture dans une grotte", "Une maison néolithique sur pilotis", "Une pierre dressée et gravée représentant des scènes de la vie quotidienne", "Un outil en silex taillé"],
+            correct: 2,
+            explanation: "Une stèle est une pierre dressée sur laquelle les hommes du Néolithique ont gravé leurs activités, notamment agricoles. C'est différent des peintures rupestres du Paléolithique qui se trouvaient dans les grottes."
+          },
+          {
+            q: "Comment les hommes du Néolithique représentaient-ils leurs activités agricoles ?",
+            options: ["Sur des toiles de lin", "Dans des grottes (peintures rupestres)", "Sur des pierres gravées appelées stèles", "Sur des tablettes d'argile"],
+            correct: 2,
+            explanation: "Au Néolithique, les activités agricoles sont représentées sur des pierres gravées appelées stèles. C'est une forme d'art différente des peintures rupestres du Paléolithique."
           }
         ],
         flashcards: [
@@ -1451,7 +1481,8 @@ const DATA = {
           { front: "Peintures rupestres", back: "Peintures sur les parois des grottes. Ex : Lascaux (chevaux, bisons, rennes). Les grottes = lieux sacrés." },
           { front: "Foyer", back: "Endroit où on fait le feu. Le feu = cuisson, chaleur, lumière, protection." },
           { front: "Nomade", back: "Qui se déplace constamment pour trouver de la nourriture (chasse et cueillette)." },
-          { front: "Sédentaire", back: "Qui vit au même endroit fixe. Les humains deviennent sédentaires au Néolithique avec l'agriculture." }
+          { front: "Sédentaire", back: "Qui vit au même endroit fixe. Les humains deviennent sédentaires au Néolithique avec l'agriculture." },
+          { front: "Stèle", back: "Pierre gravée dressée. Au Néolithique, les hommes représentent leurs activités agricoles sur des stèles (pierre gravée debout)." }
         ],
         summary: `<h2>🏛️ Les débuts de l'humanité</h2>
 <h3>I – Les Hominidés : une origine africaine</h3>
@@ -1502,6 +1533,23 @@ Découvert au <strong>Tchad</strong> en 2001, <span class="key-term">Toumaï</sp
 <li>Signifie « nouvelle pierre » / « âge de la pierre polie »</li>
 <li>Outils polis (haches, couteaux) → plus efficaces pour couper les arbres, construire</li>
 <li>Maisons sur pilotis, en bois avec toits de chaume → vie <strong>sédentaire</strong></li>
+</ul>
+<h3>V – La révolution agricole au Néolithique</h3>
+<p>La culture et l'élevage sont apparus à des endroits différents selon les régions :</p>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin:8px 0">
+<tr style="background:rgba(0,184,148,0.3)"><th style="padding:5px;text-align:left">Région</th><th style="padding:5px;text-align:left">Date</th><th style="padding:5px;text-align:left">Cultures / Élevages</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>Proche-Orient</strong> ⭐</td><td style="padding:5px">-10 000 ans</td><td style="padding:5px">Blé, mouton, chèvre, porc, bœuf</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>Chine</strong></td><td style="padding:5px">-8 000 ans</td><td style="padding:5px">Riz, poule → diffusé en Europe et Afrique centrale</td></tr>
+<tr><td style="padding:5px"><strong>Amérique</strong></td><td style="padding:5px">Indépendant</td><td style="padding:5px">Maïs, lama (pas d'espèces du Proche-Orient)</td></tr>
+</table>
+<div style="background:rgba(0,184,148,0.15);border-left:3px solid #00b894;border-radius:8px;padding:10px 12px;margin:8px 0">
+<strong>⭐ À retenir :</strong> La révolution agricole ne s'est pas diffusée depuis un seul endroit. Chaque région a domestiqué ses propres espèces. L'Amérique, isolée, n'a pas les mêmes espèces que l'Ancien Monde.
+</div>
+<h3>VI – L'activité artistique au Néolithique</h3>
+<ul>
+<li>Les activités agricoles sont représentées sur des pierres gravées : les <span class="key-term">stèles</span></li>
+<li>Une stèle = pierre dressée, gravée, qui représente des scènes de la vie quotidienne</li>
+<li>C'est différent des peintures rupestres du Paléolithique (grottes) → au Néolithique, l'art est sur des pierres en plein air</li>
 </ul>`,
         mindmap: {
           center: "Débuts de l'humanité",
@@ -1509,7 +1557,8 @@ Découvert au <strong>Tchad</strong> en 2001, <span class="key-term">Toumaï</sp
             { label: "Hominidés", color: "#e94560", children: ["Toumaï -7Ma", "Homo habilis -2,5Ma", "Homo erectus -1,5Ma", "Homo sapiens -200k"] },
             { label: "Migrations", color: "#0984e3", children: ["-100k Asie", "-70k Asie Est", "-40k Europe", "-20k Amériques"] },
             { label: "Paléolithique", color: "#fdcb6e", children: ["Biface / Racloir", "Maîtrise du feu", "Lascaux (peintures)", "Vie nomade"] },
-            { label: "Néolithique", color: "#00b894", children: ["Pierre polie", "-10 000 ans", "Maisons pilotis", "Vie sédentaire"] }
+            { label: "Néolithique", color: "#00b894", children: ["Pierre polie", "-10 000 ans", "Maisons pilotis", "Vie sédentaire"] },
+            { label: "Agriculture", color: "#6c5ce7", children: ["Proche-Orient -10 000", "Chine -8 000 (riz/poule)", "Amérique (maïs/lama)", "Stèles = art agricole"] }
           ]
         }
       },
