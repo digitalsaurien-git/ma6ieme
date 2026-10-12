@@ -751,7 +751,7 @@ body {
   position: fixed;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%) scale(0.5);
-  background: rgba(0,0,0,0.85);
+  background: rgba(30,180,80,0.92);
   color: #fff;
   padding: 20px 32px;
   border-radius: 20px;
@@ -761,6 +761,9 @@ body {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s, transform 0.3s;
+}
+.encourage-toast.wrong-toast {
+  background: rgba(210,40,60,0.92);
 }
 .encourage-toast.show {
   opacity: 1;
@@ -3983,12 +3986,12 @@ const ENCOURAGE_CORRECT = [
   { emoji: '🚀', text: 'Tu gères !' },
 ];
 const ENCOURAGE_WRONG = [
-  { emoji: '💡', text: "T'es pas loin !" },
-  { emoji: '📖', text: 'Bien essayé !' },
-  { emoji: '🧠', text: 'Tu vas retenir !' },
-  { emoji: '👍', text: "C'est comme ça qu'on apprend !" },
-  { emoji: '🌱', text: "La prochaine, c'est la bonne !" },
-  { emoji: '🎯', text: 'Presque !' },
+  { emoji: '❌', text: "C'est comme ça qu'on apprend !" },
+  { emoji: '❌', text: "Raté ! Lis bien l'explication 👇" },
+  { emoji: '❌', text: "Pas cette fois ! À retenir." },
+  { emoji: '❌', text: "Erreur ! La prochaine, c'est la bonne." },
+  { emoji: '❌', text: "Pas bon ! Regarde bien la bonne réponse." },
+  { emoji: '❌', text: "Raté ! Ça rentrera avec la répétition." },
 ];
 
 function startQuiz(ch) {
@@ -4237,6 +4240,7 @@ function showEncouragement(isCorrect) {
     document.body.appendChild(toast);
   }
   toast.innerHTML = `<span class="toast-emoji">${pick.emoji}</span>${pick.text}`;
+  toast.classList.toggle('wrong-toast', !isCorrect);
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 1200);
 }
