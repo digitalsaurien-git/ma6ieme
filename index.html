@@ -1130,7 +1130,7 @@ body {
     <div class="subject-card" data-color="green" onclick="openSubject('maths')">
       <span class="emoji">🔢</span>
       <div class="name">Maths</div>
-      <div class="count">3 chapitres</div>
+      <div class="count">4 chapitres</div>
     </div>
     <div class="subject-card" data-color="orange" onclick="openSubject('arts')">
       <span class="emoji">🎨</span>
@@ -2747,7 +2747,12 @@ Une citation = mots <strong>exacts</strong> du texte copiés entre guillemets (�
           { front: "Division euclidienne", back: "On pose a ÷ b = q reste r. On écrit : a = b × q + r. Ex : 73 = 3 × 24 + 1." },
           { front: "Dividende / Diviseur", back: "Dans 73 ÷ 3 : 73 = dividende (le nombre qu'on divise), 3 = diviseur (par quoi on divise)." },
           { front: "Quotient", back: "Résultat de la division. Ex : 73 ÷ 3 = 24 (quotient entier) avec reste 1." },
-          { front: "Reste", back: "Ce qu'il reste après la division euclidienne. Toujours strictement inférieur au diviseur. Ex : 73 = 3×24+1, reste = 1." }
+          { front: "Reste", back: "Ce qu'il reste après la division euclidienne. Toujours strictement inférieur au diviseur. Ex : 73 = 3×24+1, reste = 1." },
+          { front: "Unités de durée", back: "1 heure (h) = 60 minutes (min) = 3 600 secondes (s). 1 minute = 60 secondes." },
+          { front: "Convertir en secondes", back: "Multiplier les minutes par 60. Ex : 25 min = 25 × 60 = 1 500 s." },
+          { front: "Convertir s → h min s", back: "1) Diviser par 60 → on obtient les minutes (quotient) et secondes (reste). 2) Rediviser par 60 → heures et minutes." },
+          { front: "20 543 s en h min s", back: "20 543 ÷ 60 = 342 min reste 23 s. Puis 342 ÷ 60 = 5 h reste 42 min. Résultat : 5 h 42 min 23 s." },
+          { front: "Additionner des durées", back: "Additionner min et min, h et h. Si min ≥ 60, retenir 1 h. Ex : 2h35 + 3h48 = 5h83 = 6h23." }
         ],
         summary: `<h2>🔢 Divisions, Durées</h2>
 <h3>Partie 1 — Multiples et diviseurs</h3>
@@ -2761,14 +2766,8 @@ Une citation = mots <strong>exacts</strong> du texte copiés entre guillemets (�
 <h3>Exemples</h3>
 <ul>
 <li><strong>Diviseurs de 12</strong> : 1, 2, 3, 4, 6, 12 — car 1×12=12, 2×6=12, 3×4=12</li>
-<li><strong>Diviseurs de 24</strong> : 1, 2, 3, 4, 6, 8, 12, 24</li>
-<li><strong>Multiples de 6</strong> : 6, 12, 18, 24, 30, 36, 42, 48, 54, 60…</li>
+<li><strong>Multiples de 5 (4 premiers)</strong> : 0, 5, 10, 15</li>
 <li><strong>134 est-il multiple de 12 ?</strong> → 134 ÷ 12 = 11,1… pas un entier → NON</li>
-</ul>
-<h3>Méthode : trouver des multiples</h3>
-<ul>
-<li>Multiplier le nombre par 0, 1, 2, 3… : multiples de 5 = 0, 5, 10, 15…</li>
-<li>Vérifier si c'est un multiple : faire la division. Si le résultat est entier → oui.</li>
 </ul>
 <h3>Partie 2 — Division euclidienne</h3>
 <ul>
@@ -2780,15 +2779,148 @@ Une citation = mots <strong>exacts</strong> du texte copiés entre guillemets (�
 <h3>Partie 3 — Division décimale</h3>
 <ul>
 <li>On continue la division au-delà du reste (on ajoute une virgule et des zéros)</li>
-<li>Le quotient devient un nombre décimal</li>
+<li>Exemple : 32,12 ÷ 4 = 8,03 ; 45 ÷ 8 = 5,625</li>
+<li>Pour arrondir au dixième : calculer jusqu'au centième (1 rang de plus)</li>
+<li>⚠️ La division par 0 est <strong>interdite</strong></li>
+</ul>
+<h3>Partie 4 — Durées</h3>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin:8px 0">
+<tr style="background:rgba(0,184,148,0.3)"><th style="padding:5px">Unité</th><th style="padding:5px">Abréviation</th><th style="padding:5px">Conversion</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px">Heure</td><td style="padding:5px">h</td><td style="padding:5px">1 h = 60 min = 3 600 s</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px">Minute</td><td style="padding:5px">min</td><td style="padding:5px">1 min = 60 s</td></tr>
+<tr><td style="padding:5px">Seconde</td><td style="padding:5px">s</td><td style="padding:5px">unité de base</td></tr>
+</table>
+<ul>
+<li><strong>Convertir s → h min s</strong> : diviser par 60 deux fois. Ex : 20 543 s ÷ 60 = 342 min reste 23 s ; 342 min ÷ 60 = 5 h reste 42 min → <strong>5 h 42 min 23 s</strong></li>
+<li><strong>Convertir min → s</strong> : multiplier par 60. Ex : 25 min × 60 = 1 500 s</li>
+<li><strong>Additionner des durées</strong> : si les minutes ≥ 60, retenir 1 h. Ex : 2 h 35 min + 3 h 48 min = 5 h 83 min = <strong>6 h 23 min</strong></li>
 </ul>`,
         mindmap: {
-          center: "Divisions",
+          center: "Divisions & Durées",
           branches: [
-            { label: "Multiples", color: "#00b894", children: ["n × 1, n × 2…", "Multiples de 6 : 6,12,18…", "Commencent à 0"] },
-            { label: "Diviseurs", color: "#0984e3", children: ["a ÷ b = entier", "Div. de 12 : 1,2,3,4,6,12", "Chercher par paires"] },
-            { label: "3 formulations", color: "#fdcb6e", children: ["b diviseur de a", "a multiple de b", "a divisible par b"] },
-            { label: "Division euclidienne", color: "#e94560", children: ["a = b×q + r", "Dividende / Diviseur", "Quotient + Reste"] }
+            { label: "Multiples / Diviseurs", color: "#00b894", children: ["a = b × n", "3 formulations", "0 jamais diviseur"] },
+            { label: "Division euclidienne", color: "#0984e3", children: ["a = b×q + r", "Reste < diviseur", "73 = 3×24 + 1"] },
+            { label: "Division décimale", color: "#e94560", children: ["Ajouter des zéros", "Virgule au quotient", "Arrondir au dixième"] },
+            { label: "Durées", color: "#fdcb6e", children: ["1h = 60 min = 3600s", "Convertir par ÷60", "Additionner (≥60 → retenue)"] }
+          ]
+        }
+      },
+      {
+        id: "droites",
+        title: "Droites",
+        desc: "Points, droites, points alignés, droites parallèles, sécantes et perpendiculaires",
+        quiz: [
+          {
+            q: "Comment nomme-t-on habituellement un point en géométrie ?",
+            options: ["Avec un chiffre", "Avec une lettre minuscule", "Avec une lettre majuscule", "Avec un symbole"],
+            correct: 2,
+            explanation: "Un point est nommé avec une lettre majuscule. Ex : point A, point B, point P."
+          },
+          {
+            q: "Qu'est-ce que des points alignés ?",
+            options: ["Des points proches les uns des autres", "Des points qui se trouvent sur une même droite", "Des points qui forment un angle", "Des points symétriques"],
+            correct: 1,
+            explanation: "Des points sont alignés lorsqu'ils se trouvent sur une même droite. Ex : A, B et C sont alignés s'ils sont tous sur la droite (d)."
+          },
+          {
+            q: "La droite (AB) peut aussi se noter :",
+            options: ["Seulement (AB)", "(AB), (BA), (AC) si C est sur la droite", "Seulement avec des lettres minuscules", "Elle ne peut pas avoir d'autre nom"],
+            correct: 1,
+            explanation: "Une droite passant par A et B peut se nommer (AB), (BA), et aussi (AC), (CA), (BC), (CB) si C est un autre point de cette droite."
+          },
+          {
+            q: "Quelle notation signifie que C appartient à la droite (d) ?",
+            options: ["C ∉ (d)", "C ∈ (d)", "C = (d)", "C // (d)"],
+            correct: 1,
+            explanation: "Le symbole ∈ signifie « appartient à ». C ∈ (d) se lit « C appartient à la droite (d) »."
+          },
+          {
+            q: "Deux droites parallèles, c'est :",
+            options: ["Deux droites qui se croisent en formant un angle droit", "Deux droites qui se coupent en un point quelconque", "Deux droites qui ne se coupent jamais", "Deux droites identiques"],
+            correct: 2,
+            explanation: "Deux droites sont parallèles si elles ne se coupent jamais. On note (d) // (d')."
+          },
+          {
+            q: "Quelle est la notation des droites perpendiculaires ?",
+            options: ["(d) // (d')", "(d) ⊥ (d')", "(d) = (d')", "(d) ∩ (d')"],
+            correct: 1,
+            explanation: "Le symbole ⊥ signifie perpendiculaire. (d) ⊥ (d') se lit « la droite (d) est perpendiculaire à la droite (d') »."
+          },
+          {
+            q: "Deux droites sécantes, c'est :",
+            options: ["Deux droites qui ne se coupent jamais", "Deux droites qui forment forcément un angle droit", "Deux droites qui se coupent en un point", "Deux droites identiques"],
+            correct: 2,
+            explanation: "Deux droites sécantes se coupent en un point appelé point d'intersection. Les droites perpendiculaires sont un cas particulier de droites sécantes."
+          },
+          {
+            q: "Quel outil utilise-t-on pour tracer une droite perpendiculaire ?",
+            options: ["Le compas seul", "L'équerre", "Le rapporteur", "La règle seule"],
+            correct: 1,
+            explanation: "On utilise l'équerre pour tracer une droite perpendiculaire à une droite donnée passant par un point."
+          },
+          {
+            q: "Une droite est :",
+            options: ["Un segment limité à deux points", "Un objet illimité des deux côtés", "Un demi-cercle", "Une courbe"],
+            correct: 1,
+            explanation: "Une droite est illimitée des deux côtés. C'est pour cela qu'on ne peut que la représenter partiellement sur une feuille."
+          },
+          {
+            q: "Pour tracer la droite parallèle à (d) passant par A, on utilise :",
+            options: ["Le compas seul", "L'équerre et la règle", "Seulement la règle", "Le rapporteur"],
+            correct: 1,
+            explanation: "Pour construire une droite parallèle, on utilise l'équerre et la règle : on fait glisser l'équerre le long de la règle posée contre (d) jusqu'au point A."
+          }
+        ],
+        flashcards: [
+          { front: "Point", back: "Position sur la feuille. On le nomme avec une lettre majuscule (A, B, P…). Un point n'a pas de dimension." },
+          { front: "Droite", back: "Ligne illimitée des deux côtés. On la note (d), (AB)… Une droite ne peut être que représentée, jamais entièrement dessinée." },
+          { front: "Points alignés", back: "Des points sont alignés s'ils sont sur une même droite. Ex : A, B, C alignés si A ∈ (BC)." },
+          { front: "C ∈ (d)", back: "Se lit « C appartient à la droite (d) ». Signifie que C est un point de la droite (d)." },
+          { front: "D ∉ (d)", back: "Se lit « D n'appartient pas à la droite (d) ». D n'est pas sur la droite (d)." },
+          { front: "Droites parallèles", back: "Deux droites qui ne se coupent jamais. Notation : (d) // (d'). Elles sont dans le même plan et ne se rencontrent pas." },
+          { front: "Droites sécantes", back: "Deux droites qui se coupent en un point (point d'intersection). Aucune notation particulière." },
+          { front: "Droites perpendiculaires", back: "Deux droites sécantes qui forment un angle droit (90°). Notation : (d) ⊥ (d'). On marque un petit carré à l'angle droit." },
+          { front: "Construire une perpendiculaire", back: "1) Poser l'équerre sur la droite. 2) Faire passer le côté de l'équerre par le point. 3) Tracer la droite le long de l'équerre." },
+          { front: "Construire une parallèle", back: "1) Poser l'équerre contre la droite. 2) Faire glisser l'équerre jusqu'au point A (en maintenant la règle). 3) Tracer la droite." }
+        ],
+        summary: `<h2>📐 Droites</h2>
+<h3>Partie 1 — Le point</h3>
+<ul>
+<li>Un <span class="key-term">point</span> définit une position sur la feuille. Il se nomme avec une <strong>lettre majuscule</strong>.</li>
+<li>Un point peut être tracé seul, sur une droite, à l'intersection de deux droites ou au sommet d'une figure.</li>
+<li>⚠️ Le point doit être tracé <strong>après</strong> la figure pour que l'ordre de construction soit respecté.</li>
+</ul>
+<h3>Partie 2 — La droite</h3>
+<ul>
+<li>Une droite est <strong>illimitée</strong> des deux côtés → impossible de la représenter entièrement.</li>
+<li>On la note (d), ou (AB) si A et B sont deux de ses points.</li>
+<li>La droite (AB) peut aussi se nommer (BA), (AC), (CA), (BC), (CB) si A, B, C sont alignés.</li>
+</ul>
+<h3>Points alignés</h3>
+<ul>
+<li>Des points sont <span class="key-term">alignés</span> s'ils sont sur une même droite.</li>
+<li>C ∈ (d) : C <strong>appartient</strong> à la droite (d).</li>
+<li>D ∉ (d) : D <strong>n'appartient pas</strong> à la droite (d).</li>
+</ul>
+<h3>Partie 3 — Positions de deux droites</h3>
+<table style="width:100%;border-collapse:collapse;font-size:12px;margin:8px 0">
+<tr style="background:rgba(0,184,148,0.3)"><th style="padding:5px">Position</th><th style="padding:5px">Définition</th><th style="padding:5px">Notation</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>Parallèles</strong></td><td style="padding:5px">Ne se coupent jamais</td><td style="padding:5px">(d) // (d')</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>Sécantes</strong></td><td style="padding:5px">Se coupent en un point</td><td style="padding:5px">—</td></tr>
+<tr><td style="padding:5px"><strong>Perpendiculaires</strong></td><td style="padding:5px">Se coupent à angle droit</td><td style="padding:5px">(d) ⊥ (d')</td></tr>
+</table>
+<h3>Partie 4 — Construction</h3>
+<ul>
+<li><strong>Droite perpendiculaire</strong> : on utilise l'équerre. On pose un côté sur la droite (d) et on fait passer l'autre côté par le point.</li>
+<li><strong>Droite parallèle</strong> : on utilise l'équerre <em>et</em> la règle. On fait glisser l'équerre le long de la règle jusqu'au point A.</li>
+</ul>`,
+        mindmap: {
+          center: "Droites",
+          branches: [
+            { label: "Le point", color: "#00b894", children: ["Lettre majuscule", "C ∈ (d)", "D ∉ (d)"] },
+            { label: "La droite", color: "#0984e3", children: ["Illimitée", "Notation (d) ou (AB)", "Points alignés"] },
+            { label: "Positions", color: "#e94560", children: ["Parallèles //", "Sécantes", "Perpendiculaires ⊥"] },
+            { label: "Construction", color: "#fdcb6e", children: ["Équerre", "Perpendiculaire", "Parallèle"] }
           ]
         }
       }
