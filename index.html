@@ -5394,7 +5394,69 @@ const DEVOIRS = [
     title: "Maths — Exercices n°3 p.118",
     note: "Exercice n°3 page 118 — Manuel Sésamath 6ème",
     chapters: ["divisions-durees"],
-    sessionLabels: ["Séance 1 — Jeudi soir", "Séance 2 — Dimanche soir"]
+    aide: {
+      instructions: "Voici l'exercice n°3 page 118 de ton manuel Sésamath. Lis bien l'énoncé de chaque question, puis utilise les indices si tu bloques.",
+      itemLabel: "Question",
+      items: [
+        {
+          text: "Liste tous les diviseurs du nombre 24.",
+          tracks: [
+            {
+              id: "A",
+              btnLabel: "Méthode",
+              hints: [
+                "Un diviseur de 24, c'est un nombre par lequel on peut diviser 24 et obtenir un entier. Commence par 1 : est-ce que 24 ÷ 1 est entier ?",
+                "Travaille par paires : 24 = 1 × 24, 24 = 2 × 12, 24 = 3 × 8, 24 = 4 × 6. Continue jusqu'à ce que les deux nombres se croisent.",
+                "Les diviseurs de 24 sont : 1, 2, 3, 4, 6, 8, 12, 24 — soit 8 diviseurs au total."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Parmi les nombres suivants, lesquels sont des multiples de 6 ? 18 — 25 — 36 — 40 — 54",
+          tracks: [
+            {
+              id: "A",
+              btnLabel: "Méthode",
+              hints: [
+                "Un multiple de 6, c'est un nombre qu'on peut écrire 6 × quelque chose. Commence par diviser chaque nombre par 6 et regarde si le résultat est entier.",
+                "18 ÷ 6 = 3 ✓ (entier) ; 25 ÷ 6 ≈ 4,16 ✗ ; 36 ÷ 6 = 6 ✓ ; 40 ÷ 6 ≈ 6,67 ✗ ; 54 ÷ 6 = 9 ✓.",
+                "Les multiples de 6 parmi cette liste sont : 18, 36 et 54."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Effectue la division euclidienne de 157 par 6, puis vérifie ton résultat.",
+          tracks: [
+            {
+              id: "A",
+              btnLabel: "Division posée",
+              hints: [
+                "La division euclidienne donne un quotient entier et un reste. Pose la division : 157 ÷ 6. Combien de fois 6 rentre-t-il dans 15 ?",
+                "6 × 2 = 12 → trop petit. 6 × 2 = 12, reste 3. Descends le 7 : 37 ÷ 6 → 6 × 6 = 36, reste 1. Donc quotient = 26, reste = 1.",
+                "Vérification : 6 × 26 + 1 = 156 + 1 = 157 ✓. La formule est toujours : dividende = diviseur × quotient + reste."
+              ]
+            }
+          ]
+        },
+        {
+          text: "57 est-il divisible par 3 ? Et par 9 ? Justifie.",
+          tracks: [
+            {
+              id: "A",
+              btnLabel: "Règles de divisibilité",
+              hints: [
+                "Pour savoir si un nombre est divisible par 3, additionne ses chiffres. Si la somme est divisible par 3, alors le nombre aussi. Pour 57 : 5 + 7 = ?",
+                "5 + 7 = 12, et 12 est divisible par 3 (12 ÷ 3 = 4). Donc 57 est divisible par 3. Pour le 9 : même règle, mais la somme doit être divisible par 9.",
+                "12 n'est pas divisible par 9 (12 ÷ 9 = 1,33…). Donc 57 est divisible par 3 mais PAS par 9. Vérifie : 57 ÷ 3 = 19 ✓ ; 57 ÷ 9 = 6,33… ✗"
+              ]
+            }
+          ]
+        }
+      ],
+      closing: "Tu peux vérifier tes calculs en multipliant : diviseur × quotient + reste = dividende."
+    }
   },
   {
     id: "dm-maths-nov2026",
@@ -5404,7 +5466,80 @@ const DEVOIRS = [
     title: "DM Maths — Ex. 24 p.142 + Ex. 65 p.32",
     note: "Devoir Maison : Exercice 24 page 142 + Exercice 65 page 32 — Manuel Sésamath 6ème — à rendre le lundi de la rentrée",
     chapters: ["nombres-entiers-decimaux", "divisions-durees"],
-    sessionLabels: ["Séance 1 — Mercredi soir", "Séance 2 — Vendredi soir"]
+    aide: {
+      instructions: "Voici les deux exercices de ton Devoir Maison. Lis chaque énoncé attentivement. Les indices sont là si tu bloques — ils t'aident à comprendre, pas à copier.",
+      itemLabel: "Exercice",
+      items: [
+        {
+          text: "Exercice 24 p.142 — Écriture décimale.\na) Écris en chiffres : deux cent quatre-vingt-sept virgule six.\nb) Écris en lettres : 45,08.\nc) Quel est le chiffre des centièmes dans 3,725 ?\nd) Range ces nombres dans l'ordre croissant : 4,9 — 4,19 — 4,91 — 4,09",
+          tracks: [
+            {
+              id: "a",
+              btnLabel: "Question a",
+              subtaskLabel: "a) En chiffres",
+              hints: [
+                "Décompose le nombre en entier et partie décimale. « Deux cent quatre-vingt-sept » c'est la partie entière. « Virgule six » c'est la partie après la virgule.",
+                "Deux cent quatre-vingt-sept = 287. Virgule six = ,6. Donc le nombre est 287,6."
+              ]
+            },
+            {
+              id: "b",
+              btnLabel: "Question b",
+              subtaskLabel: "b) En lettres",
+              hints: [
+                "45,08 : lis d'abord la partie entière (45), puis dis « virgule », puis la partie décimale (08).",
+                "45 = quarante-cinq. La partie décimale 08 se lit comme un nombre entier : zéro huit. Donc : quarante-cinq virgule zéro huit."
+              ]
+            },
+            {
+              id: "c",
+              btnLabel: "Question c",
+              subtaskLabel: "c) Chiffre des centièmes",
+              hints: [
+                "Dans un nombre décimal, les rangs après la virgule sont : dixièmes (1er rang), centièmes (2e rang), millièmes (3e rang). Dans 3,725 : 7 est aux dixièmes, 2 est aux centièmes, 5 est aux millièmes.",
+                "Le chiffre des centièmes dans 3,725 est 2."
+              ]
+            },
+            {
+              id: "d",
+              btnLabel: "Question d",
+              subtaskLabel: "d) Ordre croissant",
+              hints: [
+                "Pour comparer des décimaux, commence par comparer la partie entière. Tous ces nombres ont 4 comme partie entière. Regarde alors les dixièmes.",
+                "Les dixièmes : 4,9 → 9 dixièmes ; 4,19 → 1 dixième ; 4,91 → 9 dixièmes ; 4,09 → 0 dixième. Commence par le plus petit dixième, puis si les dixièmes sont égaux, compare les centièmes.",
+                "Ordre : 4,09 < 4,19 < 4,9 < 4,91. (Pour 4,9 et 4,91 : même chiffre des dixièmes → compare centièmes : 4,90 vs 4,91 → 4,90 < 4,91)"
+              ]
+            }
+          ]
+        },
+        {
+          text: "Exercice 65 p.32 — Division euclidienne.\na) Pose et effectue la division euclidienne de 245 par 7.\nb) Pose et effectue la division euclidienne de 389 par 12.\nc) Dans chaque cas, vérifie ton résultat avec la formule du cours.",
+          tracks: [
+            {
+              id: "a",
+              btnLabel: "Question a",
+              subtaskLabel: "a) 245 ÷ 7",
+              hints: [
+                "Pose la division : 245 ÷ 7. Combien de fois 7 rentre dans 24 ? 7 × 3 = 21, 7 × 4 = 28 (trop grand). Donc 3, et il reste 24 − 21 = 3.",
+                "Descends le 5 : tu as maintenant 35. Combien de fois 7 rentre dans 35 ? 7 × 5 = 35, reste 0.",
+                "Résultat : 245 ÷ 7 = 35, reste 0. Vérification : 7 × 35 + 0 = 245 ✓"
+              ]
+            },
+            {
+              id: "b",
+              btnLabel: "Question b",
+              subtaskLabel: "b) 389 ÷ 12",
+              hints: [
+                "Pose la division : 389 ÷ 12. Combien de fois 12 rentre dans 38 ? 12 × 3 = 36, 12 × 4 = 48 (trop grand). Donc 3, reste 38 − 36 = 2.",
+                "Descends le 9 : tu as 29. Combien de fois 12 rentre dans 29 ? 12 × 2 = 24, 12 × 3 = 36 (trop grand). Donc 2, reste 29 − 24 = 5.",
+                "Résultat : 389 ÷ 12 = 32, reste 5. Vérification : 12 × 32 + 5 = 384 + 5 = 389 ✓"
+              ]
+            }
+          ]
+        }
+      ],
+      closing: "N'oublie pas d'écrire les vérifications dans ton cahier — ça fait partie du devoir !"
+    }
   },
   {
     id: "eval-musique-nov2026",
