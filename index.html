@@ -1067,6 +1067,7 @@ body {
   <button class="back-btn" id="backBtn" onclick="goBack()">&#8592;</button>
   <h1>Mes <span>Cours</span></h1>
   <div class="sub" id="headerSub">Choisis ta matière !</div>
+  <div id="appVersionLabel" style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.5px;margin-top:2px;"></div>
   <button class="archive-btn" id="archiveBtn" onclick="openArchive()" title="Devoirs terminés">
     🏆
     <span class="archive-badge" id="archiveBadge"></span>
@@ -6229,6 +6230,13 @@ function closeResourcesIfBg(e) {
 //  INIT
 // ══════════════════════════════════════════════════
 updateDevoirsBadge();
+
+// Affiche le numéro de version dans le header
+(function showVersion() {
+  const v = document.querySelector('meta[name="app-version"]')?.content;
+  const el = document.getElementById('appVersionLabel');
+  if (v && el) el.textContent = 'v' + v;
+})();
 
 // ══════════════════════════════════════════════════
 //  AUTO-UPDATE : vérifie la version à chaque lancement
