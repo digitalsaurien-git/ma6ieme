@@ -6,6 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
+<meta name="app-version" content="20261020-1141">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -6228,6 +6229,46 @@ function closeResourcesIfBg(e) {
 //  INIT
 // ══════════════════════════════════════════════════
 updateDevoirsBadge();
+
+// ══════════════════════════════════════════════════
+//  AUTO-UPDATE : vérifie la version à chaque lancement
+//  Fonctionne en PWA (écran d'accueil iOS) — recharge
+//  automatiquement si une nouvelle version est dispo.
+// ══════════════════════════════════════════════════
+(function checkForUpdate() {
+  // Récupère la version actuelle depuis le meta tag
+  const currentVersion = document.querySelector('meta[name="app-version"]')?.content;
+  if (!currentVersion) return;
+
+  // Fonction qui fait le vrai check réseau
+  function doCheck() {
+    fetch(location.href + '?v=' + Date.now(), {
+      cache: 'no-store',
+      headers: { 'Cache-Control': 'no-cache' }
+    })
+    .then(r => r.text())
+    .then(html => {
+      const m = html.match(/<meta name="app-version" content="([^"]+)"/);
+      if (m && m[1] && m[1] !== currentVersion) {
+        // Nouvelle version détectée → recharge propre
+        location.reload(true);
+      }
+    })
+    .catch(() => {}); // Pas de réseau → pas grave, on garde le cache
+  }
+
+  // Vérifie dès que la page est visible (lancement depuis l'écran d'accueil)
+  if (document.visibilityState === 'visible') {
+    // Petit délai pour ne pas bloquer l'affichage initial
+    setTimeout(doCheck, 1500);
+  }
+  // Vérifie aussi à chaque fois que l'app revient au premier plan
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'visible') {
+      setTimeout(doCheck, 500);
+    }
+  });
+})();
 </script>
 </body>
 </html>
