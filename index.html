@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
-<meta name="app-version" content="20261020-1620">
+<meta name="app-version" content="20261022-1240">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -5393,71 +5393,57 @@ const DEVOIRS = [
     date: "2026-11-02",
     dateLabel: "lundi 2 nov.",
     subject: "maths",
-    title: "Maths — Exercices n°3 p.118",
-    note: "Exercice n°3 page 118 — Manuel Sésamath 6ème",
-    chapters: ["divisions-durees"],
+    title: "Maths — Ex. 3 p.118 — Figure papillon",
+    note: "Exercice n°3 page 118 — Figure papillon — droites, segments, appartenance — Manuel Sésamath 6ème",
+    chapters: ["droites-segments"],
     aide: {
-      instructions: "Voici l'exercice n°3 page 118 de ton manuel Sésamath. Lis bien l'énoncé de chaque question, puis utilise les indices si tu bloques.",
+      instructions: "Exercice 3 p.118 — Figure papillon. Observe bien la figure : A est en haut, R à gauche, S en haut à droite, U en bas à droite, et G est le point d'intersection des deux segments [AU] et [RS]. Utilise les indices si tu bloques.",
       itemLabel: "Question",
       items: [
         {
-          text: "Liste tous les diviseurs du nombre 24.",
+          text: "a. Recopie et complète avec ∈ ou ∉ :\n• G … [AU]   • A … [GU]   • S … [RG]\n• G … (AU)   • U … (AG)   • S … (RG)",
+          tracks: [
+            {
+              id: "A",
+              btnLabel: "Rappel du cours",
+              hints: [
+                "∈ signifie « appartient à » et ∉ signifie « n'appartient pas à ».\n• [AU] est le segment entre A et U — il a un début et une fin.\n• (AU) est la droite passant par A et U — elle est infinie dans les deux sens.\nG est le point où les deux segments se croisent.",
+                "Regarde chaque cas :\n• G est-il sur le segment [AU] ? Sur la figure, G se trouve bien entre A et U → G ∈ [AU]\n• A est-il sur le segment [GU] ? [GU] va de G à U, A est au-dessus → A ∉ [GU]\n• S est-il sur le segment [RG] ? [RG] va de R à G, S est après G → S ∉ [RG]",
+                "Suite :\n• G ∈ (AU) — G est sur la droite (AU) car A, G, U sont alignés\n• U ∈ (AG) — U est sur la droite (AG) car A, G, U sont alignés (même droite)\n• S ∉ (RG) — S n'est pas sur la droite (RG) car R, G, S ne sont pas alignés (S est à côté)"
+              ]
+            }
+          ]
+        },
+        {
+          text: "b. Quels sont les points alignés ? Fais deux phrases.",
           tracks: [
             {
               id: "A",
               btnLabel: "Méthode",
               hints: [
-                "Un diviseur de 24, c'est un nombre par lequel on peut diviser 24 et obtenir un entier. Commence par 1 : est-ce que 24 ÷ 1 est entier ?",
-                "Travaille par paires : 24 = 1 × 24, 24 = 2 × 12, 24 = 3 × 8, 24 = 4 × 6. Continue jusqu'à ce que les deux nombres se croisent.",
-                "Les diviseurs de 24 sont : 1, 2, 3, 4, 6, 8, 12, 24 — soit 8 diviseurs au total."
+                "Des points sont alignés s'ils sont tous sur une même droite. Regarde quels points sont reliés par un trait droit sur la figure.",
+                "Sur la figure, deux droites se croisent en G :\n• La droite qui passe par A, G et U\n• La droite qui passe par R, G et S\nChaque droite donne une phrase.",
+                "Les deux phrases :\n« Les points A, G et U sont alignés. »\n« Les points R, G et S sont alignés. »"
               ]
             }
           ]
         },
         {
-          text: "Parmi les nombres suivants, lesquels sont des multiples de 6 ? 18 — 25 — 36 — 40 — 54",
+          text: "c. Comment peux-tu définir le point G ?",
           tracks: [
             {
               id: "A",
-              btnLabel: "Méthode",
+              btnLabel: "Définition",
               hints: [
-                "Un multiple de 6, c'est un nombre qu'on peut écrire 6 × quelque chose. Commence par diviser chaque nombre par 6 et regarde si le résultat est entier.",
-                "18 ÷ 6 = 3 ✓ (entier) ; 25 ÷ 6 ≈ 4,16 ✗ ; 36 ÷ 6 = 6 ✓ ; 40 ÷ 6 ≈ 6,67 ✗ ; 54 ÷ 6 = 9 ✓.",
-                "Les multiples de 6 parmi cette liste sont : 18, 36 et 54."
-              ]
-            }
-          ]
-        },
-        {
-          text: "Effectue la division euclidienne de 157 par 6, puis vérifie ton résultat.",
-          tracks: [
-            {
-              id: "A",
-              btnLabel: "Division posée",
-              hints: [
-                "La division euclidienne donne un quotient entier et un reste. Pose la division : 157 ÷ 6. Combien de fois 6 rentre-t-il dans 15 ?",
-                "6 × 2 = 12 → trop petit. 6 × 2 = 12, reste 3. Descends le 7 : 37 ÷ 6 → 6 × 6 = 36, reste 1. Donc quotient = 26, reste = 1.",
-                "Vérification : 6 × 26 + 1 = 156 + 1 = 157 ✓. La formule est toujours : dividende = diviseur × quotient + reste."
-              ]
-            }
-          ]
-        },
-        {
-          text: "57 est-il divisible par 3 ? Et par 9 ? Justifie.",
-          tracks: [
-            {
-              id: "A",
-              btnLabel: "Règles de divisibilité",
-              hints: [
-                "Pour savoir si un nombre est divisible par 3, additionne ses chiffres. Si la somme est divisible par 3, alors le nombre aussi. Pour 57 : 5 + 7 = ?",
-                "5 + 7 = 12, et 12 est divisible par 3 (12 ÷ 3 = 4). Donc 57 est divisible par 3. Pour le 9 : même règle, mais la somme doit être divisible par 9.",
-                "12 n'est pas divisible par 9 (12 ÷ 9 = 1,33…). Donc 57 est divisible par 3 mais PAS par 9. Vérifie : 57 ÷ 3 = 19 ✓ ; 57 ÷ 9 = 6,33… ✗"
+                "Observe ce qui est particulier à G sur la figure. Qu'est-ce que G a de spécial par rapport aux autres points ?",
+                "G est le seul point qui appartient à la fois aux deux segments [AU] et [RS]. C'est leur point commun.",
+                "G est le point d'intersection des segments [AU] et [RS] (ou des droites (AU) et (RS))."
               ]
             }
           ]
         }
       ],
-      closing: "Tu peux vérifier tes calculs en multipliant : diviseur × quotient + reste = dividende."
+      closing: "Retiens : ∈ = appartient à, ∉ = n'appartient pas à. Un segment [AB] a un début et une fin. Une droite (AB) est infinie. G = point d'intersection = là où deux droites ou segments se croisent."
     }
   },
   {
