@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
-<meta name="app-version" content="20261103-1600">
+<meta name="app-version" content="20261103-1910">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -5313,6 +5313,78 @@ const FILE_ICONS = { pdf: "📄", image: "🖼️", doc: "📝" };
 //  chapters = liste d'id de chapitres (DATA[subject].chapters)
 // ══════════════════════════════════════════════════
 const DEVOIRS = [
+  {
+    id: "dm-histoire-geo-metropole-nov2026",
+    date: "2026-11-05",
+    dateLabel: "jeudi 5 nov.",
+    subject: "histoire",
+    title: "Apprendre le RC — Rio et Tokyo",
+    note: "Apprendre la RC (relevé de conclusions) sur Rio de Janeiro et Tokyo : points communs et différences, vocabulaire (métropole, bidonville, pays émergent)",
+    chapters: ["habiter-metropole"],
+    aide: {
+      instructions: "Utilise les flashcards et le résumé du chapitre pour apprendre. L'interrogation porte sur la comparaison Rio / Tokyo et le vocabulaire.",
+      itemLabel: "À réviser",
+      items: [
+        {
+          text: "Vocabulaire : métropole, bidonville, pays émergent, ville du Nord, ville du Sud",
+          tracks: [
+            {
+              id: "hist-vocab-metropole",
+              btnLabel: "Méthode pour retenir les définitions",
+              hints: [
+                "Cache la définition et essaie de la dire à voix haute d'après le mot — puis vérifie.",
+                "Métropole = ville qui exerce son influence sur un territoire à plusieurs échelles.",
+                "Bidonville = quartier pauvre, maisons construites par les habitants avec des matériaux de récupération.",
+                "Pays émergent = pays qui s'enrichit rapidement et joue un rôle croissant dans le monde (ex : Brésil)."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Points communs entre Rio et Tokyo : toutes deux des métropoles mondiales (grande taille, forte influence)",
+          tracks: [
+            {
+              id: "hist-communs-rio-tokyo",
+              btnLabel: "Aide — points communs",
+              hints: [
+                "Rio (Brésil) et Tokyo (Japon) sont toutes les deux des métropoles : elles exercent une influence à l'échelle mondiale.",
+                "Elles ont toutes les deux une grande population et un centre-ville moderne et dense.",
+                "Ce sont des villes importantes pour l'économie de leur pays."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Différences entre Rio et Tokyo : Rio = ville du Sud (pays émergent, bidonvilles) / Tokyo = ville du Nord (niveau de vie élevé)",
+          tracks: [
+            {
+              id: "hist-differences-rio-tokyo",
+              btnLabel: "Aide — différences",
+              hints: [
+                "Tokyo est une ville du Nord : niveau de vie élevé, pas de bidonvilles, quartiers modernes (ex : Shibuya).",
+                "Rio est une ville du Sud : le Brésil est un pays émergent. Il y a de grands contrastes — un centre moderne ET des favelas (bidonvilles) en banlieue.",
+                "Moyen mémo : Tokyo = Nord = riche. Rio = Sud = contrastes."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Lagos (Nigéria) : exemple de métropole d'un pays du Sud en développement, avec de forts contrastes riches/pauvres",
+          tracks: [
+            {
+              id: "hist-lagos",
+              btnLabel: "Aide — Lagos",
+              hints: [
+                "Lagos est la grande métropole du Nigéria, en Afrique.",
+                "Comme Rio, c'est une ville du Sud avec de forts écarts entre quartiers riches et quartiers pauvres.",
+                "Elle illustre les défis des métropoles des pays en développement."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
   {
     id: "dm-francais-adverbes-prep-nov2026",
     date: "2026-11-03",
