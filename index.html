@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
-<meta name="app-version" content="20261106-1900">
+<meta name="app-version" content="20261106-2200">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -5382,6 +5382,286 @@ const FILE_ICONS = { pdf: "📄", image: "🖼️", doc: "📝" };
 //  chapters = liste d'id de chapitres (DATA[subject].chapters)
 // ══════════════════════════════════════════════════
 const DEVOIRS = [
+  {
+    id: "eval-physchimie-picto-nov2026",
+    date: "2026-11-12",
+    dateLabel: "jeudi 12 nov.",
+    subject: "physchimie",
+    title: "Évaluation — Pictogrammes et matériel de chimie",
+    note: "Réviser les pictogrammes GHS, le matériel de chimie (noms + schémas) et les exercices du cours",
+    chapters: ["securite-labo"],
+    aide: {
+      instructions: "L'évaluation porte sur 3 parties : les pictogrammes GHS, le matériel de labo (noms et schémas), et les exercices vus en cours. Utilise le quiz et les flashcards du chapitre pour t'entraîner.",
+      itemLabel: "À réviser",
+      items: [
+        {
+          text: "Les 9 pictogrammes GHS : apprendre à reconnaître chaque symbole et ce qu'il signifie",
+          tracks: [
+            {
+              id: "picto-revision",
+              btnLabel: "Méthode pour retenir les pictogrammes",
+              hints: [
+                "Il y a 9 pictogrammes GHS. Groupe-les par type de danger : feu (flamme, flamme cercle, explosif), santé (tête de mort, point d'exclamation, risque grave), environnement (poisson mort), pression (bouteille de gaz).",
+                "Flamme orange = inflammable. Tête de mort = toxique (poison rapide). Point d'exclamation = irritant. Bonhomme blessé = risque grave pour la santé.",
+                "Exercice : cache le texte sur tes fiches et essaie de nommer chaque pictogramme d'après le dessin."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Matériel de chimie : noms et schémas — bécher, erlenmeyer, éprouvette, agitateur, pince, support…",
+          tracks: [
+            {
+              id: "materiel-chimie",
+              btnLabel: "Aide pour le matériel",
+              hints: [
+                "Entraîne-toi à dessiner les schémas de mémoire, puis compare avec ta fiche.",
+                "Bécher = verre cylindrique avec bec verseur. Erlenmeyer = verre en forme de cône. Éprouvette = tube long et fin.",
+                "Agitateur = tige en verre pour mélanger. Pince = pour tenir les tubes. Support = tige verticale avec valet."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Exercices du cours : relis et refais les exercices sur les pictogrammes et l'étiquetage",
+          tracks: [
+            {
+              id: "exercices-chimie",
+              btnLabel: "Rappel — étiquetage des produits chimiques",
+              hints: [
+                "Une étiquette de produit chimique comporte : le nom du produit, les pictogrammes de danger, les mentions de danger (codes H) et les conseils de prudence (codes P).",
+                "Les pictogrammes informent les utilisateurs des risques et des mesures de prévention.",
+                "Exercice type : on te montre un pictogramme → tu identifies le danger. Ou : on te décrit un danger → tu trouves le pictogramme."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    id: "eval-svt-espece-nov2026",
+    date: "2026-11-10",
+    dateLabel: "mardi 10 nov.",
+    subject: "svt",
+    title: "Évaluation — Espèce et classification",
+    note: "Définitions à savoir : espèce, fertile, hybride, classification, groupe, clé d'identification. Exercice noté : tableau de caractères + utilisation d'une clé d'identification",
+    chapters: ["espece-determination"],
+    aide: {
+      instructions: "L'évaluation comporte deux parties : les définitions à connaître par cœur, et un exercice noté (tableau de caractères + clé d'identification). Utilise les flashcards pour les définitions.",
+      itemLabel: "À réviser",
+      items: [
+        {
+          text: "Définitions à connaître : espèce, fertile, hybride, classification, groupe, clé d'identification",
+          tracks: [
+            {
+              id: "svt-definitions",
+              btnLabel: "Les 6 définitions",
+              hints: [
+                "Espèce = ensemble d'individus qui se ressemblent et peuvent se reproduire entre eux pour donner des descendants fertiles.",
+                "Fertile = capable de se reproduire. Hybride = individu né de deux espèces différentes → souvent stérile (ex : le mulet = âne × cheval).",
+                "Classification = manière de regrouper les êtres vivants selon leurs caractères communs. Groupe = ensemble d'êtres vivants qui partagent un ou plusieurs caractères."
+              ]
+            },
+            {
+              id: "svt-cle-identification",
+              btnLabel: "Clé d'identification : comment ça marche ?",
+              hints: [
+                "Une clé d'identification est un outil qui permet de déterminer (identifier) l'espèce d'un être vivant à partir d'une série de questions sur ses caractères.",
+                "On répond par oui/non à chaque question (dichotomique) → chaque réponse mène à la question suivante → on arrive au nom de l'espèce.",
+                "Exercice type : on te donne une clé et un être vivant à identifier → tu suis les étapes en observant les caractères (présence d'ailes, nombre de pattes, forme des feuilles…)."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Exercice noté : tableau de caractères — compléter un tableau avec les caractères communs/propres de plusieurs espèces",
+          tracks: [
+            {
+              id: "svt-tableau-caracteres",
+              btnLabel: "Comment remplir un tableau de caractères ?",
+              hints: [
+                "Un tableau de caractères liste des êtres vivants en lignes et des caractères (vertèbres, poils, plumes…) en colonnes. Tu indiques ✓ ou ✗ pour chaque case.",
+                "Les caractères communs à plusieurs espèces permettent de les regrouper. Les caractères propres à une seule espèce permettent de la distinguer.",
+                "Méthode : lis bien les descriptions ou regarde les images, et coche les caractères visibles, un par un."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    id: "eval-histoire-geo-metropole-nov2026",
+    date: "2026-11-10",
+    dateLabel: "mardi 10 nov.",
+    subject: "histoire",
+    title: "Apprendre RC — Rio, Tokyo et définitions",
+    note: "Apprendre la RC sur Rio et Tokyo + définitions : bidonville et pays émergent",
+    chapters: ["habiter-metropole"],
+    aide: {
+      instructions: "Révise la fiche RC et les définitions. L'interrogation peut porter sur les points communs/différences entre Rio et Tokyo, et les deux définitions.",
+      itemLabel: "À réviser",
+      items: [
+        {
+          text: "Définitions : bidonville et pays émergent — les apprendre mot pour mot",
+          tracks: [
+            {
+              id: "hist-def-bidonville-emergent",
+              btnLabel: "Les deux définitions",
+              hints: [
+                "Bidonville = quartier pauvre où les maisons sont construites par les habitants eux-mêmes avec des matériaux de récupération.",
+                "Pays émergent = pays qui s'enrichit rapidement et qui joue un rôle de plus en plus important dans le monde. Exemple : le Brésil.",
+                "Moyen mémo : bidonville → 'bidon' (récupération) ; émergent → 'émerge' (sort de la pauvreté, monte)."
+              ]
+            }
+          ]
+        },
+        {
+          text: "RC Rio et Tokyo : points communs (métropoles mondiales, centres modernes) et différences (Nord/Sud, bidonvilles)",
+          tracks: [
+            {
+              id: "hist-rc-rio-tokyo",
+              btnLabel: "Rappel RC",
+              hints: [
+                "Points communs : Rio et Tokyo sont toutes les deux des métropoles mondiales avec des centres-villes modernes et beaucoup de monde.",
+                "Différences : Tokyo = ville du Nord, niveau de vie élevé, enseignes lumineuses à Shibuya. Rio = ville du Sud, pays émergent (Brésil), centre moderne MAIS bidonvilles (favelas) en banlieue.",
+                "Résumé à retenir : Tokyo = riche, Nord. Rio = contrastes, Sud, pays émergent."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    id: "eval-anglais-unit1-nov2026",
+    date: "2026-11-09",
+    dateLabel: "lundi 9 nov.",
+    subject: "anglais",
+    title: "Évaluation finale — Unit 1 : We love animals",
+    note: "Évaluation sur : numbers, a/an, animals, BE au présent, adjectifs de personnalité (patient, calm, adorable, affectionate, protective, beautiful, provocative, nice, arrogant)",
+    chapters: ["we-love-animals"],
+    aide: {
+      instructions: "L'évaluation porte sur tout le chapitre Unit 1. Entraîne-toi avec les exercices 10 et 12 disponibles dans les ressources du cours. Utilise le quiz et les flashcards pour réviser.",
+      itemLabel: "À réviser",
+      items: [
+        {
+          text: "Numbers : nombres cardinaux (1–100) et ordinaux — the 1st, 2nd, 3rd…",
+          tracks: [
+            {
+              id: "ang-numbers",
+              btnLabel: "Rappel numbers",
+              hints: [
+                "Cardinaux : one, two, three… thirteen (13), fourteen (14)… twenty (20), thirty (30)… one hundred (100).",
+                "Ordinaux : first (1st), second (2nd), third (3rd), puis fourth, fifth, sixth… twentieth (20th).",
+                "Pièges : eleven (11), twelve (12) sont irréguliers. Forty (40) s'écrit sans 'u' (pas fourty)."
+              ]
+            }
+          ]
+        },
+        {
+          text: "A / AN : article indéfini — règle selon la première lettre du mot suivant",
+          tracks: [
+            {
+              id: "ang-a-an",
+              btnLabel: "Règle A / AN",
+              hints: [
+                "AN devant une voyelle (a, e, i, o, u) : an orange tiger, an elephant, an animal.",
+                "A devant une consonne : a grey rabbit, a brown bear, a wolf.",
+                "ATTENTION : c'est la première lettre du mot qui suit (souvent l'adjectif), pas du nom ! Ex : 'a useful tool' (u se prononce 'you' = consonne)."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Animals vocabulary : shark, tiger, wolf, lion, gorilla, panther, sloth, orangutan, bear, snake…",
+          tracks: [
+            {
+              id: "ang-animals",
+              btnLabel: "Liste des animaux",
+              hints: [
+                "Shark 🦈 requin / Tiger 🐯 tigre / Wolf 🐺 loup / Lion 🦁 lion / Gorilla 🦍 gorille.",
+                "Panther 🐆 panthère / Sloth 🦥 paresseux / Orangutan 🦧 orang-outan / Bear 🐻 ours / Snake 🐍 serpent.",
+                "Pour mémoriser : fais les flashcards du chapitre en mode caché, anglais → français."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Verbe BE au présent : I am, you are, he/she/it is, we/they are — formes contractées et négation",
+          tracks: [
+            {
+              id: "ang-be",
+              btnLabel: "Conjugaison de BE",
+              hints: [
+                "Affirmation : I AM / You ARE / He-She-It IS / We-They ARE.",
+                "Contraction : I'm / You're / He's / She's / It's / We're / They're.",
+                "Négation : I'm NOT / He ISN'T / They AREN'T. Question : ARE you…? / IS she…? → Yes, she IS. / No, she ISN'T."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Adjectifs de personnalité : patient, calm, adorable, affectionate, protective, beautiful, provocative, nice, arrogant",
+          tracks: [
+            {
+              id: "ang-adjectifs-perso",
+              btnLabel: "Traductions des adjectifs",
+              hints: [
+                "Patient = patient / Calm = calme / Adorable = adorable / Affectionate = affectueux / Protective = protecteur.",
+                "Beautiful = beau/belle / Provocative = provocateur / Nice = gentil(le) / Arrogant = arrogant.",
+                "Pour les retenir : relis l'exercice 11 (écrire 2 phrases sur ta personnalité avec ces adjectifs)."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    id: "dm-francais-prepositions-nov2026",
+    date: "2026-11-09",
+    dateLabel: "lundi 9 nov.",
+    subject: "francais",
+    title: "Faire les exercices sur les prépositions",
+    note: "Faire les exercices sur les prépositions (exercices 6 à 9 de la fiche adverbes/prépositions)",
+    chapters: ["nature-des-mots"],
+    aide: {
+      instructions: "Fais les exercices sur les prépositions de ta fiche. Les exercices sont déjà dans le devoir 'Exercices adverbes et prépositions' — retrouve-les là-bas pour les indices.",
+      itemLabel: "À faire",
+      items: [
+        {
+          text: "Exercice 6 — Entourer les prépositions dans un texte",
+          tracks: [
+            {
+              id: "prep-entourer-2",
+              btnLabel: "Rappel : liste des prépositions courantes",
+              hints: [
+                "Prépositions courantes : à, de, dans, en, sur, sous, par, pour, avec, sans, vers, entre, chez, contre, jusqu'à.",
+                "Une préposition est un mot invariable qui introduit un groupe nominal (GP = préposition + GN).",
+                "Astuce : teste chaque mot avec 'est-ce que ce mot peut être remplacé par « à/de/dans/sur… » ?' → si oui, c'est une préposition."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Exercices 7, 8, 9 — Associer GN + GP, compléter des GN et des phrases avec les prépositions manquantes",
+          tracks: [
+            {
+              id: "prep-completer-2",
+              btnLabel: "Choisir la bonne préposition",
+              hints: [
+                "Le sens de la phrase guide le choix : lieu (dans, sur, sous), direction (vers, jusqu'à), appartenance (de), manière (avec, sans).",
+                "Attention aux contractions : à + le = au / à + les = aux / de + le = du / de + les = des.",
+                "Si tu hésites, essaie plusieurs prépositions à voix haute et garde celle qui sonne juste."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
   {
     id: "dm-histoire-geo-metropole-nov2026",
     date: "2026-11-05",
