@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
-<meta name="app-version" content="20261103-1910">
+<meta name="app-version" content="20261106-1900">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -4239,6 +4239,42 @@ Le <strong>conte merveilleux</strong> = fiction pure, passé lointain, héros av
             options: ["Gorilla", "Orangutan", "Mammoth", "Panther"],
             correct: 1,
             explanation: "Orangutan = orang-outan 🦧. Gorilla = gorille, mammoth = mammouth, panther = panthère noire."
+          },
+          {
+            q: "Complete: 'Judy Hopps is a policewoman and ___ is very intelligent.'",
+            options: ["it", "he", "she", "they"],
+            correct: 2,
+            explanation: "Judy Hopps est une femme → she. Règle : he = masculin ♂, she = féminin ♀, it = objet/animal sans genre, they = pluriel."
+          },
+          {
+            q: "Complete: 'I ___ eleven years old.'",
+            options: ["am", "is", "are", "be"],
+            correct: 0,
+            explanation: "BE se conjugue : I AM, You ARE, He/She/It IS, We/They ARE. → I AM eleven years old. ✅"
+          },
+          {
+            q: "How do you say 'Est-ce que tu es britannique ?' in English?",
+            options: ["Are you British?", "Is you British?", "You are British?", "Am you British?"],
+            correct: 0,
+            explanation: "Pour poser une question avec BE, on inverse le sujet et le verbe : You are British → ARE you British? Pour 'you', on utilise ARE."
+          },
+          {
+            q: "Complete: 'The Furious Five ___ excellent warriors.'",
+            options: ["am", "is", "are", "be"],
+            correct: 2,
+            explanation: "The Furious Five = plusieurs personnes = pluriel → ARE. Rappel : I am / He-She-It is / You-We-They ARE."
+          },
+          {
+            q: "Complete: 'No, she ___ not American.' (forme développée)",
+            options: ["am", "is", "are", "be"],
+            correct: 1,
+            explanation: "She → She IS. Forme négative : She IS NOT American. Forme contractée : She ISN'T American."
+          },
+          {
+            q: "Replace 'Morph' with the correct pronoun: 'Morph is a magic pet.'",
+            options: ["He is a magic pet.", "She is a magic pet.", "They is a magic pet.", "It is a magic pet."],
+            correct: 3,
+            explanation: "Morph est un animal sans genre précisé → IT. Rappel : IT pour les animaux sauvages, HE/SHE pour les animaux de compagnie dont on connaît le sexe."
           }
         ],
         flashcards: [
@@ -4256,7 +4292,13 @@ Le <strong>conte merveilleux</strong> = fiction pure, passé lointain, héros av
           { front: "A + consonne", back: "A devant une consonne\nEx : a grey rabbit, a brown sloth" },
           { front: "I can see…", back: "Je peux voir…\nEx : I can see a grey rabbit / an orange fox." },
           { front: "He / She", back: "He → animal mâle ♂\nShe → animal femelle ♀" },
-          { front: "Couleurs", back: "Grey = gris 🩶 / Orange = orange 🟠 / Brown = marron 🟤 / Blue = bleu 🔵" }
+          { front: "Couleurs", back: "Grey = gris 🩶 / Orange = orange 🟠 / Brown = marron 🟤 / Blue = bleu 🔵" },
+          { front: "BE — Conjugaison", back: "I AM\nYou ARE\nHe / She / It IS\nWe ARE\nThey ARE" },
+          { front: "BE — Formes contractées", back: "I'm / You're / He's / She's / It's / We're / They're" },
+          { front: "BE — Forme négative", back: "I am NOT → I'm not\nHe/She is NOT → He's/She's not (ou isn't)\nThey are NOT → They're not (ou aren't)" },
+          { front: "BE — Question", back: "On inverse sujet et verbe :\nARE you British? / IS she a princess?\nYes, she IS. / No, she ISN'T." },
+          { front: "Pronoms personnels sujets", back: "I = je\nYou = tu / vous\nHe = il ♂\nShe = elle ♀\nIt = il/elle (objet, animal sans genre)\nWe = nous\nThey = ils/elles" },
+          { front: "He / She / It — Quand ?", back: "He → personne ou animal MÂLE\nShe → personne ou animal FEMELLE\nIt → objet OU animal sauvage (sans genre connu)" }
         ],
         summary: `<h2>🇬🇧 We love animals — Unit 1</h2>
 
@@ -4289,18 +4331,45 @@ Le <strong>conte merveilleux</strong> = fiction pure, passé lointain, héros av
 <tr><td style="padding:6px;text-align:center"><strong>A</strong></td><td style="padding:6px">Mot commençant par une <span style="color:#00b894">CONSONNE</span></td><td style="padding:6px"><em>a <u>g</u>rey rabbit</em></td></tr>
 </table>
 
-<h3>👤 He / She</h3>
+<h3>👤 He / She / It</h3>
 <ul>
-<li>♂ Mâle → <strong>He</strong> is a tiger.</li>
-<li>♀ Femelle → <strong>She</strong> is a cat.</li>
-</ul>`,
+<li>♂ Mâle → <strong>He</strong> is a tiger. / He is Randy.</li>
+<li>♀ Femelle → <strong>She</strong> is a cat. / She is Orla.</li>
+<li>🐾 Animal sauvage / objet → <strong>It</strong> is a magic pet.</li>
+</ul>
+
+<h3>🔤 Pronoms personnels sujets</h3>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:12px">
+<tr style="background:rgba(232,67,147,0.2)"><th style="padding:6px">Pronom</th><th style="padding:6px">Traduction</th><th style="padding:6px">Exemple</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px;text-align:center"><strong>I</strong></td><td style="padding:5px">je</td><td style="padding:5px"><em>I am eleven.</em></td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px;text-align:center"><strong>You</strong></td><td style="padding:5px">tu / vous</td><td style="padding:5px"><em>Are you British?</em></td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px;text-align:center"><strong>He</strong></td><td style="padding:5px">il ♂</td><td style="padding:5px"><em>He is arrogant.</em></td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px;text-align:center"><strong>She</strong></td><td style="padding:5px">elle ♀</td><td style="padding:5px"><em>She is not provocative.</em></td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px;text-align:center"><strong>It</strong></td><td style="padding:5px">il/elle (objet, animal)</td><td style="padding:5px"><em>It is a magic pet.</em></td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px;text-align:center"><strong>We</strong></td><td style="padding:5px">nous</td><td style="padding:5px"><em>We are friends.</em></td></tr>
+<tr><td style="padding:5px;text-align:center"><strong>They</strong></td><td style="padding:5px">ils / elles</td><td style="padding:5px"><em>They are partners.</em></td></tr>
+</table>
+
+<h3>🔵 Verbe BE — Être</h3>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:12px">
+<tr style="background:rgba(232,67,147,0.2)"><th style="padding:6px">Sujet</th><th style="padding:6px">Forme complète</th><th style="padding:6px">Forme contractée</th><th style="padding:6px">Négation</th></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px">I</td><td style="padding:5px">I <strong>am</strong></td><td style="padding:5px">I'm</td><td style="padding:5px">I'm not</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px">You</td><td style="padding:5px">You <strong>are</strong></td><td style="padding:5px">You're</td><td style="padding:5px">You aren't</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px">He / She / It</td><td style="padding:5px">He <strong>is</strong></td><td style="padding:5px">He's</td><td style="padding:5px">He isn't</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)"><td style="padding:5px">We / They</td><td style="padding:5px">They <strong>are</strong></td><td style="padding:5px">They're</td><td style="padding:5px">They aren't</td></tr>
+</table>
+<p style="background:rgba(232,67,147,0.15);padding:10px;border-radius:8px;border-left:3px solid #e84393">
+<strong>Question :</strong> on inverse sujet et verbe → <em>Are you British? / Is she a princess?</em><br>
+<strong>Réponse courte :</strong> Yes, she IS. / No, she ISN'T.
+</p>`,
         mindmap: {
           center: "We love animals",
           branches: [
             { label: "Animals", color: "#e84393", children: ["Shark 🦈 Requin", "Wolf 🐺 Loup", "Gorilla 🦍", "Sloth 🦥 Paresseux", "Orangutan 🦧"] },
             { label: "AN / A", color: "#0984e3", children: ["AN + voyelle", "A + consonne", "an orange tiger", "a grey rabbit"] },
             { label: "I can see…", color: "#00b894", children: ["a grey rabbit", "an orange fox", "a brown sloth"] },
-            { label: "He / She", color: "#fdcb6e", children: ["He = mâle ♂", "She = femelle ♀"] }
+            { label: "He / She / It", color: "#fdcb6e", children: ["He = mâle ♂", "She = femelle ♀", "It = objet / animal sauvage"] },
+            { label: "Verbe BE", color: "#6c5ce7", children: ["I am / You are / He is", "They are / We are", "Forme contractée : I'm…", "Négation : isn't / aren't"] }
           ]
         }
       }
