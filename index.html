@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
-<meta name="app-version" content="20261107-1230">
+<meta name="app-version" content="20261107-1530">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -3135,64 +3135,64 @@ Le <strong>conte merveilleux</strong> = fiction pure, passé lointain, héros av
         desc: "Points, droites, points alignés, droites parallèles, sécantes et perpendiculaires",
         quiz: [
           {
-            q: "Comment nomme-t-on habituellement un point en géométrie ?",
-            options: ["Avec un chiffre", "Avec une lettre minuscule", "Avec une lettre majuscule", "Avec un symbole"],
+            q: `Comment nomme-t-on habituellement un point en géométrie ?<br><svg viewBox="0 0 160 50" width="160" height="50" style="display:block;margin:8px auto"><circle cx="40" cy="25" r="4" fill="#00b894"/><text x="50" y="30" font-size="14" fill="#00b894" font-family="sans-serif" font-weight="bold">A</text><circle cx="110" cy="25" r="4" fill="#e94560"/><text x="120" y="30" font-size="14" fill="#e94560" font-family="sans-serif">a ?</text></svg>`,
+            options: ["Avec un chiffre (1, 2, 3…)", "Avec une lettre minuscule (a, b…)", "Avec une lettre majuscule (A, B…)", "Avec un symbole (★, ●…)"],
             correct: 2,
-            explanation: "Un point est nommé avec une lettre majuscule. Ex : point A, point B, point P."
+            explanation: "Un point est toujours nommé avec une lettre majuscule : A, B, M, P… La lettre minuscule est réservée aux droites."
           },
           {
-            q: "Qu'est-ce que des points alignés ?",
-            options: ["Des points proches les uns des autres", "Des points qui se trouvent sur une même droite", "Des points qui forment un angle", "Des points symétriques"],
+            q: `Ces trois points sont-ils alignés ?<br><svg viewBox="0 0 200 70" width="200" height="70" style="display:block;margin:8px auto"><defs><marker id="qm1a" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#a29bfe"/></marker><marker id="qm1b" markerWidth="5" markerHeight="5" refX="2" refY="2.5" orient="auto-start-reverse"><path d="M0,0 L5,2.5 L0,5 Z" fill="#a29bfe"/></marker></defs><line x1="8" y1="40" x2="192" y2="40" stroke="#a29bfe" stroke-width="1.5" marker-end="url(#qm1a)" marker-start="url(#qm1b)"/><circle cx="45" cy="40" r="4" fill="#fdcb6e"/><text x="41" y="32" font-size="12" fill="#fdcb6e" font-family="sans-serif" font-weight="bold">A</text><circle cx="100" cy="40" r="4" fill="#fdcb6e"/><text x="96" y="32" font-size="12" fill="#fdcb6e" font-family="sans-serif" font-weight="bold">B</text><circle cx="155" cy="40" r="4" fill="#fdcb6e"/><text x="151" y="32" font-size="12" fill="#fdcb6e" font-family="sans-serif" font-weight="bold">C</text></svg>`,
+            options: ["Non, ils sont trop espacés", "Oui, ils sont sur la même droite", "Non, il faudrait qu'ils soient proches", "On ne peut pas savoir"],
             correct: 1,
-            explanation: "Des points sont alignés lorsqu'ils se trouvent sur une même droite. Ex : A, B et C sont alignés s'ils sont tous sur la droite (d)."
+            explanation: "Des points sont alignés s'ils se trouvent sur une même droite. Ici A, B et C sont bien sur la même droite → ils sont alignés."
           },
           {
-            q: "La droite (AB) peut aussi se noter :",
-            options: ["Seulement (AB)", "(AB), (BA), (AC) si C est sur la droite", "Seulement avec des lettres minuscules", "Elle ne peut pas avoir d'autre nom"],
+            q: `Ce point D appartient-il à la droite (d) ?<br><svg viewBox="0 0 200 80" width="200" height="80" style="display:block;margin:8px auto"><defs><marker id="qm2a" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#0984e3"/></marker><marker id="qm2b" markerWidth="5" markerHeight="5" refX="2" refY="2.5" orient="auto-start-reverse"><path d="M0,0 L5,2.5 L0,5 Z" fill="#0984e3"/></marker></defs><line x1="8" y1="55" x2="192" y2="55" stroke="#0984e3" stroke-width="2" marker-end="url(#qm2a)" marker-start="url(#qm2b)"/><text x="175" y="50" font-size="12" fill="#0984e3" font-family="sans-serif">(d)</text><circle cx="100" cy="55" r="4" fill="#00b894"/><text x="96" y="47" font-size="12" fill="#00b894" font-family="sans-serif" font-weight="bold">A</text><circle cx="150" cy="20" r="4" fill="#e94560"/><text x="155" y="18" font-size="12" fill="#e94560" font-family="sans-serif" font-weight="bold">D</text></svg>`,
+            options: ["Oui, D ∈ (d)", "Non, D ∉ (d)", "On ne peut pas savoir", "D est parallèle à (d)"],
             correct: 1,
-            explanation: "Une droite passant par A et B peut se nommer (AB), (BA), et aussi (AC), (CA), (BC), (CB) si C est un autre point de cette droite."
+            explanation: "D est au-dessus de la droite (d), il n'est pas dessus. On écrit D ∉ (d), ce qui se lit « D n'appartient pas à la droite (d) »."
           },
           {
-            q: "Quelle notation signifie que C appartient à la droite (d) ?",
+            q: `Quelle notation signifie que C appartient à la droite (d) ?<br><svg viewBox="0 0 200 60" width="200" height="60" style="display:block;margin:8px auto"><defs><marker id="qm3a" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#a29bfe"/></marker><marker id="qm3b" markerWidth="5" markerHeight="5" refX="2" refY="2.5" orient="auto-start-reverse"><path d="M0,0 L5,2.5 L0,5 Z" fill="#a29bfe"/></marker></defs><line x1="8" y1="35" x2="192" y2="35" stroke="#a29bfe" stroke-width="2" marker-end="url(#qm3a)" marker-start="url(#qm3b)"/><text x="175" y="30" font-size="12" fill="#a29bfe" font-family="sans-serif">(d)</text><circle cx="90" cy="35" r="4" fill="#fdcb6e"/><text x="86" y="27" font-size="13" fill="#fdcb6e" font-family="sans-serif" font-weight="bold">C</text><text x="104" y="39" font-size="11" fill="rgba(255,255,255,0.5)" font-family="sans-serif">← sur la droite</text></svg>`,
             options: ["C ∉ (d)", "C ∈ (d)", "C = (d)", "C // (d)"],
             correct: 1,
-            explanation: "Le symbole ∈ signifie « appartient à ». C ∈ (d) se lit « C appartient à la droite (d) »."
+            explanation: "Le symbole ∈ signifie « appartient à ». C ∈ (d) se lit « C appartient à la droite (d) ». Le symbole ∉ signifie « n'appartient pas à »."
           },
           {
-            q: "Deux droites parallèles, c'est :",
-            options: ["Deux droites qui se croisent en formant un angle droit", "Deux droites qui se coupent en un point quelconque", "Deux droites qui ne se coupent jamais", "Deux droites identiques"],
+            q: `Comment appelle-t-on ces deux droites ?<br><svg viewBox="0 0 200 80" width="200" height="80" style="display:block;margin:8px auto"><defs><marker id="qm4a" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#fdcb6e"/></marker><marker id="qm4b" markerWidth="5" markerHeight="5" refX="2" refY="2.5" orient="auto-start-reverse"><path d="M0,0 L5,2.5 L0,5 Z" fill="#fdcb6e"/></marker></defs><line x1="8" y1="25" x2="192" y2="25" stroke="#fdcb6e" stroke-width="2" marker-end="url(#qm4a)" marker-start="url(#qm4b)"/><text x="160" y="20" font-size="11" fill="#fdcb6e" font-family="sans-serif">(d)</text><path d="M54,21 L60,25 L54,29" stroke="#fdcb6e" stroke-width="1.5" fill="none"/><line x1="8" y1="55" x2="192" y2="55" stroke="#fdcb6e" stroke-width="2" marker-end="url(#qm4a)" marker-start="url(#qm4b)"/><text x="160" y="50" font-size="11" fill="#fdcb6e" font-family="sans-serif">(d')</text><path d="M54,51 L60,55 L54,59" stroke="#fdcb6e" stroke-width="1.5" fill="none"/></svg>`,
+            options: ["Perpendiculaires", "Sécantes", "Parallèles", "Identiques"],
             correct: 2,
-            explanation: "Deux droites sont parallèles si elles ne se coupent jamais. On note (d) // (d')."
+            explanation: "Ces deux droites ne se coupent jamais : elles sont parallèles. On le note (d) // (d'). Les petites flèches sur les droites sont la marque conventionnelle du parallélisme."
           },
           {
-            q: "Quelle est la notation des droites perpendiculaires ?",
-            options: ["(d) // (d')", "(d) ⊥ (d')", "(d) = (d')", "(d) ∩ (d')"],
+            q: `Comment appelle-t-on ces deux droites ?<br><svg viewBox="0 0 200 80" width="200" height="80" style="display:block;margin:8px auto"><defs><marker id="qm5a" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#00b894"/></marker><marker id="qm5b" markerWidth="5" markerHeight="5" refX="2" refY="2.5" orient="auto-start-reverse"><path d="M0,0 L5,2.5 L0,5 Z" fill="#00b894"/></marker></defs><line x1="8" y1="40" x2="192" y2="40" stroke="#00b894" stroke-width="2" marker-end="url(#qm5a)" marker-start="url(#qm5b)"/><line x1="100" y1="8" x2="100" y2="72" stroke="#00b894" stroke-width="2" marker-end="url(#qm5a)" marker-start="url(#qm5b)"/><rect x="100" y="32" width="8" height="8" fill="none" stroke="#fdcb6e" stroke-width="2"/></svg>`,
+            options: ["Parallèles", "Perpendiculaires", "Sécantes non perpendiculaires", "Identiques"],
             correct: 1,
-            explanation: "Le symbole ⊥ signifie perpendiculaire. (d) ⊥ (d') se lit « la droite (d) est perpendiculaire à la droite (d') »."
+            explanation: "Ces deux droites se croisent en formant un angle droit (90°) — marqué par le petit carré. Elles sont perpendiculaires. On note (d) ⊥ (d')."
           },
           {
-            q: "Deux droites sécantes, c'est :",
-            options: ["Deux droites qui ne se coupent jamais", "Deux droites qui forment forcément un angle droit", "Deux droites qui se coupent en un point", "Deux droites identiques"],
+            q: `Comment appelle-t-on ces deux droites ?<br><svg viewBox="0 0 200 80" width="200" height="80" style="display:block;margin:8px auto"><defs><marker id="qm6a" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#e94560"/></marker><marker id="qm6b" markerWidth="5" markerHeight="5" refX="2" refY="2.5" orient="auto-start-reverse"><path d="M0,0 L5,2.5 L0,5 Z" fill="#e94560"/></marker></defs><line x1="8" y1="65" x2="192" y2="10" stroke="#e94560" stroke-width="2" marker-end="url(#qm6a)" marker-start="url(#qm6b)"/><line x1="8" y1="15" x2="192" y2="65" stroke="#e94560" stroke-width="2" marker-end="url(#qm6a)" marker-start="url(#qm6b)"/><circle cx="100" cy="38" r="4" fill="#fdcb6e"/><text x="106" y="34" font-size="11" fill="#fdcb6e" font-family="sans-serif" font-weight="bold">I</text></svg>`,
+            options: ["Parallèles", "Perpendiculaires", "Sécantes", "Confondues"],
             correct: 2,
-            explanation: "Deux droites sécantes se coupent en un point appelé point d'intersection. Les droites perpendiculaires sont un cas particulier de droites sécantes."
+            explanation: "Ces deux droites se coupent en un point I appelé point d'intersection. Elles sont sécantes. (Les perpendiculaires sont un cas particulier de droites sécantes.)"
           },
           {
-            q: "Quel outil utilise-t-on pour tracer une droite perpendiculaire ?",
-            options: ["Le compas seul", "L'équerre", "Le rapporteur", "La règle seule"],
+            q: `Quel outil représenté ici permet de tracer une droite perpendiculaire ?<br><svg viewBox="0 0 200 70" width="200" height="70" style="display:block;margin:8px auto"><polygon points="30,60 110,60 30,15" fill="rgba(0,184,148,0.2)" stroke="#00b894" stroke-width="2"/><text x="55" y="55" font-size="11" fill="#00b894" font-family="sans-serif">équerre</text><rect x="145" y="30" width="40" height="12" rx="2" fill="rgba(162,155,254,0.2)" stroke="#a29bfe" stroke-width="1.5"/><text x="148" y="42" font-size="11" fill="#a29bfe" font-family="sans-serif">règle</text><circle cx="175" cy="58" r="12" fill="rgba(253,203,110,0.1)" stroke="#fdcb6e" stroke-width="1.5"/><text x="163" y="62" font-size="10" fill="#fdcb6e" font-family="sans-serif">compas</text></svg>`,
+            options: ["Le compas", "L'équerre", "La règle seule", "Le rapporteur"],
             correct: 1,
-            explanation: "On utilise l'équerre pour tracer une droite perpendiculaire à une droite donnée passant par un point."
+            explanation: "L'équerre permet de tracer des angles droits (90°), donc des droites perpendiculaires. On pose l'équerre sur la droite et on trace le long de son côté perpendiculaire."
           },
           {
-            q: "Une droite est :",
-            options: ["Un segment limité à deux points", "Un objet illimité des deux côtés", "Un demi-cercle", "Une courbe"],
+            q: `Une droite est représentée ici. Qu'est-ce qui la distingue d'un segment ?<br><svg viewBox="0 0 220 55" width="220" height="55" style="display:block;margin:8px auto"><defs><marker id="qm7a" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0984e3"/></marker><marker id="qm7b" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto-start-reverse"><path d="M0,0 L6,3 L0,6 Z" fill="#0984e3"/></marker></defs><line x1="10" y1="27" x2="210" y2="27" stroke="#0984e3" stroke-width="2.5" marker-end="url(#qm7a)" marker-start="url(#qm7b)"/><text x="85" y="48" font-size="11" fill="rgba(255,255,255,0.5)" font-family="sans-serif">flèches des 2 côtés</text></svg>`,
+            options: ["Une droite a deux points marqués", "Une droite est illimitée des deux côtés", "Une droite est toujours horizontale", "Une droite a une longueur mesurable"],
             correct: 1,
-            explanation: "Une droite est illimitée des deux côtés. C'est pour cela qu'on ne peut que la représenter partiellement sur une feuille."
+            explanation: "Une droite est illimitée des deux côtés — on la représente avec des flèches aux deux extrémités. Un segment, lui, a deux extrémités fixes et une longueur mesurable."
           },
           {
-            q: "Pour tracer la droite parallèle à (d) passant par A, on utilise :",
-            options: ["Le compas seul", "L'équerre et la règle", "Seulement la règle", "Le rapporteur"],
+            q: `Pour tracer une droite parallèle à (d) passant par A, on utilise :<br><svg viewBox="0 0 200 80" width="200" height="80" style="display:block;margin:8px auto"><defs><marker id="qm8a" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#a29bfe"/></marker><marker id="qm8b" markerWidth="5" markerHeight="5" refX="2" refY="2.5" orient="auto-start-reverse"><path d="M0,0 L5,2.5 L0,5 Z" fill="#a29bfe"/></marker></defs><line x1="8" y1="62" x2="192" y2="62" stroke="#a29bfe" stroke-width="2" marker-end="url(#qm8a)" marker-start="url(#qm8b)"/><text x="170" y="57" font-size="11" fill="#a29bfe" font-family="sans-serif">(d)</text><line x1="8" y1="30" x2="192" y2="30" stroke="#fdcb6e" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#qm8a)" marker-start="url(#qm8b)"/><circle cx="100" cy="30" r="4" fill="#fdcb6e"/><text x="106" y="26" font-size="11" fill="#fdcb6e" font-family="sans-serif" font-weight="bold">A</text><rect x="8" y="59" width="184" height="6" fill="rgba(0,184,148,0.1)" stroke="#00b894" stroke-width="0.8" rx="1"/></svg>`,
+            options: ["Le compas seul", "L'équerre et la règle", "Seulement la règle", "Le rapporteur seul"],
             correct: 1,
-            explanation: "Pour construire une droite parallèle, on utilise l'équerre et la règle : on fait glisser l'équerre le long de la règle posée contre (d) jusqu'au point A."
+            explanation: "Pour construire une parallèle : on pose la règle sur (d), on fait glisser l'équerre le long de la règle jusqu'au point A, puis on trace. Les deux outils sont indispensables."
           }
         ],
         flashcards: [
