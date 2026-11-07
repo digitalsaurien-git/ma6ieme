@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
-<meta name="app-version" content="20261107-1135">
+<meta name="app-version" content="20261107-1140">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -3208,36 +3208,171 @@ Le <strong>conte merveilleux</strong> = fiction pure, passé lointain, héros av
           { front: "Construire une parallèle", back: "1) Poser l'équerre contre la droite. 2) Faire glisser l'équerre jusqu'au point A (en maintenant la règle). 3) Tracer la droite." }
         ],
         summary: `<h2>📐 Droites</h2>
-<h3>Partie 1 — Le point</h3>
+
+<h3>Partie 1 — Le point et la droite</h3>
 <ul>
-<li>Un <span class="key-term">point</span> définit une position sur la feuille. Il se nomme avec une <strong>lettre majuscule</strong>.</li>
-<li>Un point peut être tracé seul, sur une droite, à l'intersection de deux droites ou au sommet d'une figure.</li>
-<li>⚠️ Le point doit être tracé <strong>après</strong> la figure pour que l'ordre de construction soit respecté.</li>
+<li>Un <span class="key-term">point</span> se nomme avec une <strong>lettre majuscule</strong> (A, B, M…).</li>
+<li>Une <span class="key-term">droite</span> est <strong>illimitée</strong> des deux côtés → flèches aux deux extrémités.</li>
+<li>On la note <strong>(d)</strong>, ou <strong>(AB)</strong> si A et B sont deux de ses points.</li>
 </ul>
-<h3>Partie 2 — La droite</h3>
-<ul>
-<li>Une droite est <strong>illimitée</strong> des deux côtés → impossible de la représenter entièrement.</li>
-<li>On la note (d), ou (AB) si A et B sont deux de ses points.</li>
-<li>La droite (AB) peut aussi se nommer (BA), (AC), (CA), (BC), (CB) si A, B, C sont alignés.</li>
-</ul>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin:10px 0">
+  <div style="flex:1;min-width:140px;background:rgba(0,184,148,0.1);border:1px solid rgba(0,184,148,0.3);border-radius:10px;padding:10px;text-align:center">
+    <div style="font-size:11px;font-weight:700;color:#00b894;margin-bottom:6px">UN POINT</div>
+    <svg viewBox="0 0 120 60" width="100%" style="max-height:50px">
+      <circle cx="60" cy="30" r="4" fill="#00b894"/>
+      <text x="68" y="26" font-size="13" fill="#00b894" font-family="sans-serif" font-weight="bold">A</text>
+    </svg>
+    <div style="font-size:11px;color:rgba(255,255,255,0.6)">Lettre majuscule</div>
+  </div>
+  <div style="flex:1;min-width:140px;background:rgba(9,132,227,0.1);border:1px solid rgba(9,132,227,0.3);border-radius:10px;padding:10px;text-align:center">
+    <div style="font-size:11px;font-weight:700;color:#0984e3;margin-bottom:6px">UNE DROITE (AB)</div>
+    <svg viewBox="0 0 140 50" width="100%" style="max-height:50px">
+      <defs><marker id="arr1a" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0984e3"/></marker>
+      <marker id="arr1b" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto-start-reverse"><path d="M0,0 L6,3 L0,6 Z" fill="#0984e3"/></marker></defs>
+      <line x1="8" y1="25" x2="132" y2="25" stroke="#0984e3" stroke-width="2" marker-end="url(#arr1a)" marker-start="url(#arr1b)"/>
+      <circle cx="45" cy="25" r="3" fill="#fdcb6e"/>
+      <text x="41" y="18" font-size="11" fill="#fdcb6e" font-family="sans-serif" font-weight="bold">A</text>
+      <circle cx="95" cy="25" r="3" fill="#fdcb6e"/>
+      <text x="91" y="18" font-size="11" fill="#fdcb6e" font-family="sans-serif" font-weight="bold">B</text>
+    </svg>
+    <div style="font-size:11px;color:rgba(255,255,255,0.6)">Flèches des 2 côtés</div>
+  </div>
+</div>
+
 <h3>Points alignés</h3>
 <ul>
-<li>Des points sont <span class="key-term">alignés</span> s'ils sont sur une même droite.</li>
-<li>C ∈ (d) : C <strong>appartient</strong> à la droite (d).</li>
-<li>D ∉ (d) : D <strong>n'appartient pas</strong> à la droite (d).</li>
+<li>A, B, C sont <span class="key-term">alignés</span> s'ils sont sur une même droite.</li>
+<li><strong>C ∈ (d)</strong> : C appartient à la droite (d). &nbsp; <strong>D ∉ (d)</strong> : D n'appartient pas à (d).</li>
 </ul>
-<h3>Partie 3 — Positions de deux droites</h3>
-<table style="width:100%;border-collapse:collapse;font-size:12px;margin:8px 0">
-<tr style="background:rgba(0,184,148,0.3)"><th style="padding:5px">Position</th><th style="padding:5px">Définition</th><th style="padding:5px">Notation</th></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>Parallèles</strong></td><td style="padding:5px">Ne se coupent jamais</td><td style="padding:5px">(d) // (d')</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><td style="padding:5px"><strong>Sécantes</strong></td><td style="padding:5px">Se coupent en un point</td><td style="padding:5px">—</td></tr>
-<tr><td style="padding:5px"><strong>Perpendiculaires</strong></td><td style="padding:5px">Se coupent à angle droit</td><td style="padding:5px">(d) ⊥ (d')</td></tr>
-</table>
-<h3>Partie 4 — Construction</h3>
-<ul>
-<li><strong>Droite perpendiculaire</strong> : on utilise l'équerre. On pose un côté sur la droite (d) et on fait passer l'autre côté par le point.</li>
-<li><strong>Droite parallèle</strong> : on utilise l'équerre <em>et</em> la règle. On fait glisser l'équerre le long de la règle jusqu'au point A.</li>
-</ul>`,
+
+<div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px;margin:8px 0;text-align:center">
+  <div style="font-size:11px;font-weight:700;color:#a29bfe;margin-bottom:6px">POINTS ALIGNÉS vs NON ALIGNÉS</div>
+  <svg viewBox="0 0 280 70" width="100%" style="max-height:65px">
+    <defs><marker id="arr2a" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#a29bfe"/></marker>
+    <marker id="arr2b" markerWidth="5" markerHeight="5" refX="2" refY="2.5" orient="auto-start-reverse"><path d="M0,0 L5,2.5 L0,5 Z" fill="#a29bfe"/></marker></defs>
+    <!-- gauche : alignés -->
+    <line x1="5" y1="35" x2="125" y2="35" stroke="#a29bfe" stroke-width="1.5" marker-end="url(#arr2a)" marker-start="url(#arr2b)"/>
+    <circle cx="30" cy="35" r="3" fill="#00b894"/><text x="26" y="27" font-size="10" fill="#00b894" font-family="sans-serif" font-weight="bold">A</text>
+    <circle cx="65" cy="35" r="3" fill="#00b894"/><text x="61" y="27" font-size="10" fill="#00b894" font-family="sans-serif" font-weight="bold">B</text>
+    <circle cx="100" cy="35" r="3" fill="#00b894"/><text x="96" y="27" font-size="10" fill="#00b894" font-family="sans-serif" font-weight="bold">C</text>
+    <text x="20" y="58" font-size="10" fill="rgba(255,255,255,0.5)" font-family="sans-serif">A, B, C alignés ✓</text>
+    <!-- droite : non alignés -->
+    <line x1="150" y1="35" x2="275" y2="35" stroke="#a29bfe" stroke-width="1.5" marker-end="url(#arr2a)" marker-start="url(#arr2b)"/>
+    <circle cx="175" cy="35" r="3" fill="#00b894"/><text x="171" y="27" font-size="10" fill="#00b894" font-family="sans-serif" font-weight="bold">A</text>
+    <circle cx="220" cy="35" r="3" fill="#00b894"/><text x="216" y="27" font-size="10" fill="#00b894" font-family="sans-serif" font-weight="bold">B</text>
+    <circle cx="250" cy="15" r="3" fill="#e94560"/><text x="254" y="13" font-size="10" fill="#e94560" font-family="sans-serif" font-weight="bold">D</text>
+    <text x="160" y="58" font-size="10" fill="rgba(255,255,255,0.5)" font-family="sans-serif">D ∉ droite ✗</text>
+  </svg>
+</div>
+
+<h3>Partie 2 — Les 3 positions de deux droites</h3>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin:10px 0">
+
+  <div style="flex:1;min-width:130px;background:rgba(253,203,110,0.1);border:1px solid rgba(253,203,110,0.35);border-radius:10px;padding:10px;text-align:center">
+    <div style="font-size:11px;font-weight:700;color:#fdcb6e;margin-bottom:4px">PARALLÈLES</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:6px">(d) // (d') — ne se coupent jamais</div>
+    <svg viewBox="0 0 120 70" width="100%" style="max-height:60px">
+      <defs><marker id="pa" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#fdcb6e"/></marker>
+      <marker id="pb" markerWidth="5" markerHeight="5" refX="2" refY="2.5" orient="auto-start-reverse"><path d="M0,0 L5,2.5 L0,5 Z" fill="#fdcb6e"/></marker></defs>
+      <line x1="5" y1="22" x2="115" y2="22" stroke="#fdcb6e" stroke-width="2" marker-end="url(#pa)" marker-start="url(#pb)"/>
+      <text x="90" y="17" font-size="10" fill="#fdcb6e" font-family="sans-serif">(d)</text>
+      <!-- petites flèches de parallélisme -->
+      <path d="M54,18 L60,22 L54,26" stroke="#fdcb6e" stroke-width="1.5" fill="none"/>
+      <line x1="5" y1="48" x2="115" y2="48" stroke="#fdcb6e" stroke-width="2" marker-end="url(#pa)" marker-start="url(#pb)"/>
+      <text x="90" y="43" font-size="10" fill="#fdcb6e" font-family="sans-serif">(d')</text>
+      <path d="M54,44 L60,48 L54,52" stroke="#fdcb6e" stroke-width="1.5" fill="none"/>
+    </svg>
+  </div>
+
+  <div style="flex:1;min-width:130px;background:rgba(233,69,96,0.1);border:1px solid rgba(233,69,96,0.35);border-radius:10px;padding:10px;text-align:center">
+    <div style="font-size:11px;font-weight:700;color:#e94560;margin-bottom:4px">SÉCANTES</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:6px">Se coupent en un point</div>
+    <svg viewBox="0 0 120 70" width="100%" style="max-height:60px">
+      <defs><marker id="sa" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#e94560"/></marker>
+      <marker id="sb" markerWidth="5" markerHeight="5" refX="2" refY="2.5" orient="auto-start-reverse"><path d="M0,0 L5,2.5 L0,5 Z" fill="#e94560"/></marker></defs>
+      <line x1="5" y1="55" x2="115" y2="10" stroke="#e94560" stroke-width="2" marker-end="url(#sa)" marker-start="url(#sb)"/>
+      <line x1="5" y1="15" x2="115" y2="55" stroke="#e94560" stroke-width="2" marker-end="url(#sa)" marker-start="url(#sb)"/>
+      <circle cx="60" cy="34" r="4" fill="#fdcb6e"/>
+      <text x="65" y="30" font-size="10" fill="#fdcb6e" font-family="sans-serif" font-weight="bold">I</text>
+    </svg>
+  </div>
+
+  <div style="flex:1;min-width:130px;background:rgba(0,184,148,0.1);border:1px solid rgba(0,184,148,0.35);border-radius:10px;padding:10px;text-align:center">
+    <div style="font-size:11px;font-weight:700;color:#00b894;margin-bottom:4px">PERPENDICULAIRES</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:6px">(d) ⊥ (d') — angle droit</div>
+    <svg viewBox="0 0 120 70" width="100%" style="max-height:60px">
+      <defs><marker id="ppa" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#00b894"/></marker>
+      <marker id="ppb" markerWidth="5" markerHeight="5" refX="2" refY="2.5" orient="auto-start-reverse"><path d="M0,0 L5,2.5 L0,5 Z" fill="#00b894"/></marker></defs>
+      <line x1="5" y1="35" x2="115" y2="35" stroke="#00b894" stroke-width="2" marker-end="url(#ppa)" marker-start="url(#ppb)"/>
+      <line x1="60" y1="5" x2="60" y2="65" stroke="#00b894" stroke-width="2" marker-end="url(#ppa)" marker-start="url(#ppb)"/>
+      <!-- carré angle droit -->
+      <rect x="60" y="27" width="8" height="8" fill="none" stroke="#fdcb6e" stroke-width="1.5"/>
+    </svg>
+  </div>
+</div>
+
+<h3>Partie 3 — Construction (à l'équerre)</h3>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin:10px 0">
+  <div style="flex:1;min-width:140px;background:rgba(108,92,231,0.1);border:1px solid rgba(108,92,231,0.35);border-radius:10px;padding:10px">
+    <div style="font-size:11px;font-weight:700;color:#a29bfe;margin-bottom:6px;text-align:center">TRACER UNE PERPENDICULAIRE</div>
+    <svg viewBox="0 0 160 90" width="100%" style="max-height:80px">
+      <defs><marker id="cpa" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#a29bfe"/></marker>
+      <marker id="cpb" markerWidth="5" markerHeight="5" refX="2" refY="2.5" orient="auto-start-reverse"><path d="M0,0 L5,2.5 L0,5 Z" fill="#a29bfe"/></marker></defs>
+      <!-- droite de base -->
+      <line x1="5" y1="60" x2="155" y2="60" stroke="#a29bfe" stroke-width="2" marker-end="url(#cpa)" marker-start="url(#cpb)"/>
+      <!-- perpendiculaire -->
+      <line x1="80" y1="10" x2="80" y2="78" stroke="#fdcb6e" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#cpa)"/>
+      <!-- carré angle droit -->
+      <rect x="80" y="52" width="8" height="8" fill="none" stroke="#fdcb6e" stroke-width="1.5"/>
+      <!-- point A -->
+      <circle cx="80" cy="60" r="3" fill="#fdcb6e"/>
+      <text x="84" y="56" font-size="10" fill="#fdcb6e" font-family="sans-serif" font-weight="bold">A</text>
+      <!-- équerre simplifiée -->
+      <polygon points="55,60 80,60 55,30" fill="rgba(0,184,148,0.15)" stroke="#00b894" stroke-width="1"/>
+      <text x="30" y="80" font-size="9" fill="rgba(255,255,255,0.4)" font-family="sans-serif">équerre</text>
+    </svg>
+    <ul style="font-size:11px;margin:4px 0;padding-left:14px;color:rgba(255,255,255,0.8)">
+      <li>Poser l'équerre sur (d)</li>
+      <li>Faire passer le côté par A</li>
+      <li>Tracer la droite ← résultat en jaune</li>
+    </ul>
+  </div>
+
+  <div style="flex:1;min-width:140px;background:rgba(108,92,231,0.1);border:1px solid rgba(108,92,231,0.35);border-radius:10px;padding:10px">
+    <div style="font-size:11px;font-weight:700;color:#a29bfe;margin-bottom:6px;text-align:center">TRACER UNE PARALLÈLE</div>
+    <svg viewBox="0 0 160 90" width="100%" style="max-height:80px">
+      <defs><marker id="cpa2" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#a29bfe"/></marker>
+      <marker id="cpb2" markerWidth="5" markerHeight="5" refX="2" refY="2.5" orient="auto-start-reverse"><path d="M0,0 L5,2.5 L0,5 Z" fill="#a29bfe"/></marker></defs>
+      <!-- droite de référence -->
+      <line x1="5" y1="65" x2="155" y2="65" stroke="#a29bfe" stroke-width="2" marker-end="url(#cpa2)" marker-start="url(#cpb2)"/>
+      <text x="130" y="60" font-size="10" fill="#a29bfe" font-family="sans-serif">(d)</text>
+      <!-- parallèle résultante -->
+      <line x1="5" y1="30" x2="155" y2="30" stroke="#fdcb6e" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#cpa2)" marker-start="url(#cpb2)"/>
+      <text x="130" y="25" font-size="10" fill="#fdcb6e" font-family="sans-serif">(d')</text>
+      <!-- point A -->
+      <circle cx="80" cy="30" r="3" fill="#fdcb6e"/>
+      <text x="84" y="26" font-size="10" fill="#fdcb6e" font-family="sans-serif" font-weight="bold">A</text>
+      <!-- flèches de parallélisme -->
+      <path d="M68,26 L74,30 L68,34" stroke="#fdcb6e" stroke-width="1.5" fill="none"/>
+      <path d="M68,61 L74,65 L68,69" stroke="#a29bfe" stroke-width="1.5" fill="none"/>
+      <!-- règle simplifiée -->
+      <rect x="5" y="62" width="150" height="6" fill="rgba(0,184,148,0.1)" stroke="#00b894" stroke-width="0.8" rx="1"/>
+      <text x="30" y="82" font-size="9" fill="rgba(255,255,255,0.4)" font-family="sans-serif">règle + équerre</text>
+    </svg>
+    <ul style="font-size:11px;margin:4px 0;padding-left:14px;color:rgba(255,255,255,0.8)">
+      <li>Poser la règle sur (d)</li>
+      <li>Faire glisser l'équerre jusqu'à A</li>
+      <li>Tracer ← résultat en jaune</li>
+    </ul>
+  </div>
+</div>
+
+<div style="background:rgba(253,203,110,0.1);border-left:3px solid #fdcb6e;padding:8px 10px;border-radius:0 8px 8px 0;font-size:12px;margin-top:4px">
+  💡 <strong>Rappel notation :</strong> &nbsp; (d) // (d') = parallèles &nbsp;|&nbsp; (d) ⊥ (d') = perpendiculaires &nbsp;|&nbsp; ∈ = appartient &nbsp;|&nbsp; ∉ = n'appartient pas
+</div>`,
         mindmap: {
           center: "Droites",
           branches: [
