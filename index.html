@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
-<meta name="app-version" content="20261107-1210">
+<meta name="app-version" content="20261107-1220">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -5885,36 +5885,64 @@ const DEVOIRS = [
     dateLabel: "lundi 9 nov.",
     subject: "francais",
     title: "Faire les exercices sur les prépositions",
-    note: "Faire les exercices sur les prépositions (exercices 6 à 9 de la fiche adverbes/prépositions)",
+    note: "Faire les exercices 1 à 4 de la fiche prépositions (fiche nature des mots invariables n°6)",
     chapters: ["nature-des-mots"],
     aide: {
-      instructions: "Fais les exercices sur les prépositions de ta fiche. Les exercices sont déjà dans le devoir 'Exercices adverbes et prépositions' — retrouve-les là-bas pour les indices.",
-      itemLabel: "À faire",
+      instructions: "Fais les exercices dans l'ordre. Pour chaque exercice, relis d'abord le « Je retiens » en haut de la fiche prépositions.",
+      itemLabel: "Exercice",
       items: [
         {
-          text: "Exercice 6 — Entourer les prépositions dans un texte",
+          text: "Exercice 1 — Entourer les prépositions dans le texte et souligner les groupes prépositionnels qu'elles forment",
           tracks: [
             {
-              id: "prep-entourer-2",
-              btnLabel: "Rappel : liste des prépositions courantes",
+              id: "prep-ex1-entourer",
+              btnLabel: "Rappel : c'est quoi une préposition ?",
               hints: [
+                "Une préposition est un mot invariable placé devant un nom, un groupe nominal, un pronom ou un verbe à l'infinitif.",
                 "Prépositions courantes : à, de, dans, en, sur, sous, par, pour, avec, sans, vers, entre, chez, contre, jusqu'à.",
-                "Une préposition est un mot invariable qui introduit un groupe nominal (GP = préposition + GN).",
-                "Astuce : teste chaque mot avec 'est-ce que ce mot peut être remplacé par « à/de/dans/sur… » ?' → si oui, c'est une préposition."
+                "Un groupe prépositionnel (GP) = préposition + ce qui suit. Ex : 'sur le bord' → 'sur' est la préposition, 'le bord' est le GN."
               ]
             }
           ]
         },
         {
-          text: "Exercices 7, 8, 9 — Associer GN + GP, compléter des GN et des phrases avec les prépositions manquantes",
+          text: "Exercice 2 — Associer chaque groupe nominal au bon groupe prépositionnel (et entourer les prépositions)",
           tracks: [
             {
-              id: "prep-completer-2",
+              id: "prep-ex2-associer",
+              btnLabel: "Comment trouver le bon GP ?",
+              hints: [
+                "Lis chaque groupe nominal et chaque groupe prépositionnel à voix haute, en essayant différentes combinaisons.",
+                "Cherche le sens logique : 'un gâteau au chocolat', 'une soupe aux asperges', 'un vêtement de pluie'…",
+                "Une fois une paire trouvée, élimine-la — ça réduit les choix pour les suivants."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Exercice 3 — Compléter chaque groupe nominal par un groupe nominal prépositionnel (de ton choix)",
+          tracks: [
+            {
+              id: "prep-ex3-completer-gn",
+              btnLabel: "Exemples pour t'aider",
+              hints: [
+                "Un GP complète un GN en précisant l'appartenance, la matière, le lieu ou l'origine.",
+                "Ex : 'un port de pêche', 'les commerçants du marché', 'un sentier de forêt', 'les parfums de fleurs'.",
+                "Choisis une préposition adaptée (de, à, en, avec…) puis ajoute un GN qui a du sens."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Exercice 4 — Compléter les phrases avec des prépositions, puis souligner les groupes prépositionnels",
+          tracks: [
+            {
+              id: "prep-ex4-completer-phrases",
               btnLabel: "Choisir la bonne préposition",
               hints: [
-                "Le sens de la phrase guide le choix : lieu (dans, sur, sous), direction (vers, jusqu'à), appartenance (de), manière (avec, sans).",
-                "Attention aux contractions : à + le = au / à + les = aux / de + le = du / de + les = des.",
-                "Si tu hésites, essaie plusieurs prépositions à voix haute et garde celle qui sonne juste."
+                "Certains verbes appellent une préposition précise : 's'empresser de', 'rêver de', 'profiter de', 'tirer au sort'.",
+                "Pour le lieu, utilise : dans, sous, sur, entre, chez. Pour la direction : vers, jusqu'à, de… à.",
+                "Attention aux contractions : à + le = au, à + les = aux, de + le = du, de + les = des."
               ]
             }
           ]
