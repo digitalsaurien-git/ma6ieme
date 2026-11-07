@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
-<meta name="app-version" content="20261107-1220">
+<meta name="app-version" content="20261107-1230">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -7110,6 +7110,8 @@ function buildRevisionSessions(devoir) {
     const ch = subj.chapters.find(c => c.id === chId);
     if (ch && ch.quiz) totalPool.push(...ch.quiz);
   });
+  // Séances : 10q si pool < 15, sinon 20q
+  // Le test final aura TOUJOURS plus : séances=10 → test=20, séances=20 → test=tout le pool
   const questionsPerSession = totalPool.length >= 15 ? 20 : 10;
 
   const sessions = Array.from({ length: n }, (_, i) => ({ questions: [], chapterTitles: [], label: sessionLabels[i] }));
@@ -7133,7 +7135,10 @@ function buildRevisionSessions(devoir) {
   return sessions;
 }
 
-// Construit le pool pour le test d'évaluation — 20 questions si beaucoup à savoir, 10 sinon
+// Construit le pool pour le test d'évaluation
+// Le test final doit TOUJOURS avoir plus de questions que les séances :
+//   séances = 10q (pool < 15)  → test = min(pool, 20)
+//   séances = 20q (pool ≥ 15)  → test = tout le pool (sans plafond artificiel)
 function buildEvalTestQuestions(devoir) {
   const subj = DATA[devoir.subject];
   const all = [];
@@ -7141,7 +7146,9 @@ function buildEvalTestQuestions(devoir) {
     const ch = subj.chapters.find(c => c.id === chId);
     if (ch && ch.quiz) all.push(...ch.quiz);
   });
-  const limit = all.length >= 15 ? 20 : 10;
+  const questionsPerSession = all.length >= 15 ? 20 : 10;
+  // test final = au moins questionsPerSession+5, et tout le pool si possible
+  const limit = questionsPerSession === 10 ? 20 : all.length;
   return shuffleArr(all).slice(0, limit);
 }
 
