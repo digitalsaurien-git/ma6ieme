@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
-<meta name="app-version" content="20261107-1130">
+<meta name="app-version" content="20261107-1135">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -466,6 +466,8 @@ body {
   font-size: 11px; font-weight: 700;
   padding: 3px 9px; border-radius: 20px;
   white-space: nowrap; letter-spacing: 0.01em;
+  background: rgba(253,203,110,0.18); color: var(--yellow);
+  border: 1px solid rgba(253,203,110,0.35);
 }
 .devoir-chip {
   background: rgba(255,255,255,0.08);
@@ -6668,7 +6670,7 @@ function buildDevoirCardHtml(d, todayStr, opts = {}) {
     return `<div class="devoir-chip" data-subject="${d.subject}" data-chapter="${chId}">${subj.emoji} ${ch.title}</div>`;
   }).join('');
 
-  const subjLabel = `<span class="devoir-subject-label" style="background:${subj.color}22;color:${subj.color};border:1px solid ${subj.color}44;">${subj.emoji} ${subj.name}</span>`;
+  const subjLabel = `<span class="devoir-subject-label">${subj.emoji} ${subj.name}</span>`;
 
   if (inArchive) {
     const reviseBtn = d.sessionLabels
