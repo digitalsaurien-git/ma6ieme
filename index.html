@@ -6840,15 +6840,15 @@ function buildDevoirCardHtml(d, todayStr, opts = {}) {
       </div>
       <div class="devoir-note">${d.note}</div>
       <div class="devoir-chips">${chips}</div>
-      <div class="archive-actions">${reviseBtn}${aideBtn}</div>
+      <div class="archive-actions">${aideBtn}${reviseBtn}</div>
       <button class="archive-undo-btn" data-undo-devoir="${d.id}">↩ Marquer comme non terminé</button>
     </div>`;
   } else {
     const reviseBtn = d.sessionLabels
-      ? `<button class="devoir-revise-btn" data-devoir="${d.id}">🎯 Réviser en ${d.sessionLabels.length} séances</button>`
+      ? `<button class="devoir-revise-btn" data-devoir="${d.id}" style="margin-top:${d.aide ? '8px' : '12px'}">🎯 Réviser en ${d.sessionLabels.length} séances</button>`
       : '';
     const aideBtn = d.aide
-      ? `<button class="devoir-revise-btn" data-aide-devoir="${d.id}" style="background:var(--purple);color:#fff;margin-top:${d.sessionLabels ? '8px' : '12px'}">💡 Aide pas à pas pour ce devoir</button>`
+      ? `<button class="devoir-revise-btn" data-aide-devoir="${d.id}" style="background:var(--purple);color:#fff;margin-top:12px">💡 Aide pas à pas pour ce devoir</button>`
       : '';
     return `<div class="devoir-card">
       <div class="devoir-head">
@@ -6858,8 +6858,8 @@ function buildDevoirCardHtml(d, todayStr, opts = {}) {
       </div>
       <div class="devoir-note">${d.note}</div>
       <div class="devoir-chips">${chips}</div>
-      ${reviseBtn}
       ${aideBtn}
+      ${reviseBtn}
       <button class="devoir-done-btn" data-done-devoir="${d.id}">☐ Marquer ce devoir comme fait</button>
     </div>`;
   }
