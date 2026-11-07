@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
-<meta name="app-version" content="20261107-1200">
+<meta name="app-version" content="20261107-1210">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -6825,9 +6825,10 @@ function buildDevoirCardHtml(d, todayStr, opts = {}) {
 
   const subjLabel = `<span class="devoir-subject-label">${subj.emoji} ${subj.name}</span>`;
 
+  const sessionCount = d.sessionLabels ? d.sessionLabels.filter(l => !l.toLowerCase().includes('test final')).length : 0;
   if (inArchive) {
-    const reviseBtn = d.sessionLabels
-      ? `<button class="archive-action-btn" data-devoir="${d.id}" style="background:var(--yellow);color:#1a1a2e;">🎯 Réviser en ${d.sessionLabels.length} séances</button>`
+    const reviseBtn = sessionCount > 0
+      ? `<button class="archive-action-btn" data-devoir="${d.id}" style="background:var(--yellow);color:#1a1a2e;">🎯 Réviser en ${sessionCount} séances</button>`
       : '';
     const aideBtn = d.aide
       ? `<button class="archive-action-btn" data-aide-devoir="${d.id}" style="background:var(--purple);color:#fff;">💡 Aide pas à pas</button>`
@@ -6844,8 +6845,8 @@ function buildDevoirCardHtml(d, todayStr, opts = {}) {
       <button class="archive-undo-btn" data-undo-devoir="${d.id}">↩ Marquer comme non terminé</button>
     </div>`;
   } else {
-    const reviseBtn = d.sessionLabels
-      ? `<button class="devoir-revise-btn" data-devoir="${d.id}" style="margin-top:${d.aide ? '8px' : '12px'}">🎯 Réviser en ${d.sessionLabels.length} séances</button>`
+    const reviseBtn = sessionCount > 0
+      ? `<button class="devoir-revise-btn" data-devoir="${d.id}" style="margin-top:${d.aide ? '8px' : '12px'}">🎯 Réviser en ${sessionCount} séances</button>`
       : '';
     const aideBtn = d.aide
       ? `<button class="devoir-revise-btn" data-aide-devoir="${d.id}" style="background:var(--purple);color:#fff;margin-top:12px">💡 Aide pas à pas pour ce devoir</button>`
@@ -7068,13 +7069,27 @@ function toggleDevoirDone(devoirId) {
 // n'est laissée de côté même si une seule séance est faite.
 function buildRevisionSessions(devoir) {
   const subj = DATA[devoir.subject];
-  const n = devoir.sessionLabels.length;
-  const sessions = Array.from({ length: n }, () => ({ questions: [], chapterTitles: [] }));
+  // sessionLabels peut contenir la séance "Test final" — on ne crée des séances
+  // que pour les labels qui ne sont PAS le test final
+  const sessionLabelsFull = devoir.sessionLabels || [];
+  const sessionLabels = sessionLabelsFull.filter(l => !l.toLowerCase().includes('test final'));
+  const n = sessionLabels.length;
+  if (n === 0) return [];
+
+  // Calculer le pool total pour choisir le plafond par séance
+  let totalPool = [];
+  devoir.chapters.forEach(chId => {
+    const ch = subj.chapters.find(c => c.id === chId);
+    if (ch && ch.quiz) totalPool.push(...ch.quiz);
+  });
+  const questionsPerSession = totalPool.length >= 15 ? 20 : 10;
+
+  const sessions = Array.from({ length: n }, (_, i) => ({ questions: [], chapterTitles: [], label: sessionLabels[i] }));
 
   devoir.chapters.forEach(chId => {
     const ch = subj.chapters.find(c => c.id === chId);
     if (!ch) return;
-    const pool = shuffleArr(ch.quiz);
+    const pool = shuffleArr([...ch.quiz]);
     const chunkSize = Math.ceil(pool.length / n);
     for (let i = 0; i < n; i++) {
       const slice = pool.slice(i * chunkSize, (i + 1) * chunkSize);
@@ -7083,11 +7098,14 @@ function buildRevisionSessions(devoir) {
     }
   });
 
-  sessions.forEach(s => { s.questions = shuffleArr(s.questions); });
+  // Plafonner chaque séance
+  sessions.forEach(s => {
+    s.questions = shuffleArr(s.questions).slice(0, questionsPerSession);
+  });
   return sessions;
 }
 
-// Construit le pool complet pour le test d'évaluation (toutes les questions du/des chapitres)
+// Construit le pool pour le test d'évaluation — 20 questions si beaucoup à savoir, 10 sinon
 function buildEvalTestQuestions(devoir) {
   const subj = DATA[devoir.subject];
   const all = [];
@@ -7095,7 +7113,8 @@ function buildEvalTestQuestions(devoir) {
     const ch = subj.chapters.find(c => c.id === chId);
     if (ch && ch.quiz) all.push(...ch.quiz);
   });
-  return shuffleArr(all);
+  const limit = all.length >= 15 ? 20 : 10;
+  return shuffleArr(all).slice(0, limit);
 }
 
 function isEvalDevoir(devoir) {
@@ -7135,7 +7154,7 @@ function openRevisionSessions(devoirId, isBack) {
     const done = isSessionDone(devoir.id, i);
     return `<div class="revision-card ${done ? 'done' : ''}">
       <div class="rev-head">
-        <span class="rev-label">${devoir.sessionLabels[i]}</span>
+        <span class="rev-label">${s.label}</span>
         ${done ? '<span class="rev-done-badge">✓ Fait</span>' : ''}
       </div>
       <div class="rev-sub">${s.questions.length} questions</div>
@@ -7190,7 +7209,7 @@ function startRevisionSession(devoirId, sessionIndex) {
     current: 0,
     score: 0,
     results: [],
-    revisionMeta: { devoirId, sessionIndex, label: devoir.sessionLabels[sessionIndex] }
+    revisionMeta: { devoirId, sessionIndex, label: session.label }
   };
   showQuizQuestion();
   showScreen('quiz');
