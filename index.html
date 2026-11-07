@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
-<meta name="app-version" content="20261107-1530">
+<meta name="app-version" content="20261107-1540">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -182,7 +182,7 @@ body {
   background: var(--green); color: #fff; font-weight: 800;
   font-size: 11px; padding: 3px 9px; border-radius: 20px; white-space: nowrap;
 }
-.archive-devoir-card .devoir-title { font-size: 15px; font-weight: 800; flex: 1; }
+.archive-devoir-card .devoir-title { font-size: 15px; font-weight: 800; margin-top: 8px; }
 .archive-devoir-card .devoir-note { font-size: 13px; color: var(--text2); margin-bottom: 10px; }
 .archive-devoir-card .devoir-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .archive-devoir-card .archive-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
@@ -453,13 +453,13 @@ body {
   cursor: default;
 }
 .devoir-card .devoir-head {
-  display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
 }
 .devoir-card .devoir-badge {
   background: var(--yellow); color: #1a1a2e; font-weight: 800;
   font-size: 11px; padding: 3px 9px; border-radius: 20px; white-space: nowrap;
 }
-.devoir-card .devoir-title { font-size: 16px; font-weight: 800; flex: 1; }
+.devoir-card .devoir-title { font-size: 16px; font-weight: 800; margin-top: 8px; }
 .devoir-card .devoir-note { font-size: 13px; color: var(--text2); margin-bottom: 10px; }
 .devoir-card .devoir-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .devoir-subject-label {
@@ -6865,8 +6865,8 @@ function buildDevoirCardHtml(d, todayStr, opts = {}) {
       <div class="devoir-head">
         <span class="devoir-badge">✅ ${badge} · ${d.dateLabel}</span>
         ${subjLabel}
-        <span class="devoir-title">${d.title}</span>
       </div>
+      <div class="devoir-title">${d.title}</div>
       <div class="devoir-note">${d.note}</div>
       <div class="devoir-chips">${chips}</div>
       <div class="archive-actions">${aideBtn}${reviseBtn}</div>
@@ -6883,8 +6883,8 @@ function buildDevoirCardHtml(d, todayStr, opts = {}) {
       <div class="devoir-head">
         <span class="devoir-badge">${badge} · ${d.dateLabel}</span>
         ${subjLabel}
-        <span class="devoir-title">${d.title}</span>
       </div>
+      <div class="devoir-title">${d.title}</div>
       <div class="devoir-note">${d.note}</div>
       <div class="devoir-chips">${chips}</div>
       ${aideBtn}
