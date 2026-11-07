@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
-<meta name="app-version" content="20261106-2200">
+<meta name="app-version" content="20261107-1130">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -462,6 +462,11 @@ body {
 .devoir-card .devoir-title { font-size: 16px; font-weight: 800; flex: 1; }
 .devoir-card .devoir-note { font-size: 13px; color: var(--text2); margin-bottom: 10px; }
 .devoir-card .devoir-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.devoir-subject-label {
+  font-size: 11px; font-weight: 700;
+  padding: 3px 9px; border-radius: 20px;
+  white-space: nowrap; letter-spacing: 0.01em;
+}
 .devoir-chip {
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(253,203,110,0.4);
@@ -5383,6 +5388,63 @@ const FILE_ICONS = { pdf: "📄", image: "🖼️", doc: "📝" };
 // ══════════════════════════════════════════════════
 const DEVOIRS = [
   {
+    id: "controle-maths-geo-nov2026",
+    date: "2026-11-13",
+    dateLabel: "vendredi 13 nov.",
+    subject: "maths",
+    title: "Contrôle — Éléments de géométrie et droites",
+    note: "Contrôle sur : éléments de géométrie + droites perpendiculaires et droites parallèles",
+    chapters: ["droites"],
+    aide: {
+      instructions: "Le contrôle porte sur les éléments de géométrie (point, droite, segment, demi-droite) et les droites perpendiculaires/parallèles. Utilise le quiz et les flashcards du chapitre pour réviser.",
+      itemLabel: "À réviser",
+      items: [
+        {
+          text: "Éléments de géométrie : point, droite, segment, demi-droite, longueur, milieu",
+          tracks: [
+            {
+              id: "geo-elements-rappel",
+              btnLabel: "Rappel — éléments de base",
+              hints: [
+                "Un point est un emplacement dans l'espace, noté par une lettre majuscule. Une droite est infinie dans les deux sens, notée (AB) ou (d).",
+                "Un segment [AB] a deux extrémités A et B. Sa longueur est la distance entre A et B. Une demi-droite [AB) part de A et va dans le sens de B, à l'infini.",
+                "Le milieu M d'un segment [AB] est le point qui est à égale distance de A et de B : MA = MB = AB ÷ 2."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Droites perpendiculaires : deux droites qui se croisent en formant un angle droit (90°)",
+          tracks: [
+            {
+              id: "geo-perpendiculaires",
+              btnLabel: "Rappel — droites perpendiculaires",
+              hints: [
+                "Deux droites sont perpendiculaires quand elles se coupent en formant un angle droit (90°). On note (d) ⊥ (d').",
+                "On repère l'angle droit avec un petit carré dans la figure. Pour vérifier, on utilise l'équerre.",
+                "Méthode au brouillon : trace une droite, place l'équerre dessus, trace la perpendiculaire le long du bord de l'équerre."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Droites parallèles : deux droites qui ne se croisent jamais et sont dans le même plan",
+          tracks: [
+            {
+              id: "geo-paralleles",
+              btnLabel: "Rappel — droites parallèles",
+              hints: [
+                "Deux droites sont parallèles quand elles ne se coupent jamais (elles ont la même direction). On note (d) // (d').",
+                "Pour tracer des droites parallèles : utilise l'équerre et la règle — fais glisser l'équerre le long de la règle.",
+                "Propriété importante : si deux droites sont perpendiculaires à une même droite, alors elles sont parallèles entre elles."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
     id: "eval-physchimie-picto-nov2026",
     date: "2026-11-12",
     dateLabel: "jeudi 12 nov.",
@@ -5612,6 +5674,49 @@ const DEVOIRS = [
                 "Patient = patient / Calm = calme / Adorable = adorable / Affectionate = affectueux / Protective = protecteur.",
                 "Beautiful = beau/belle / Provocative = provocateur / Nice = gentil(le) / Arrogant = arrogant.",
                 "Pour les retenir : relis l'exercice 11 (écrire 2 phrases sur ta personnalité avec ces adjectifs)."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    id: "dm-anglais-exercices-unit1-nov2026",
+    date: "2026-11-09",
+    dateLabel: "lundi 9 nov.",
+    subject: "anglais",
+    title: "Exercices 10 et 12 — Entraînement évaluation Unit 1",
+    note: "Faire les exercices 10 et 12 pour s'entraîner à l'évaluation (disponibles dans les ressources du cours). Le corrigé est également disponible dans les ressources.",
+    chapters: ["we-love-animals"],
+    aide: {
+      instructions: "Fais les exercices 10 et 12 de la fiche Unit 1. Ces exercices sont dans les ressources du cours. Le corrigé est aussi disponible pour vérifier tes réponses.",
+      itemLabel: "À faire",
+      items: [
+        {
+          text: "Exercice 10 — Entraînement sur les notions de l'évaluation (numbers, a/an, animals, BE, adjectifs)",
+          tracks: [
+            {
+              id: "ang-ex10-methode",
+              btnLabel: "Méthode pour bien faire l'exercice",
+              hints: [
+                "Lis bien la consigne : certains exercices demandent de compléter, d'autres d'identifier ou de transformer.",
+                "Pour BE au présent : vérifie toujours le sujet (I → am, he/she/it → is, you/we/they → are).",
+                "Pour a/an : regarde la première lettre du mot QUI SUIT — voyelle → an, consonne → a."
+              ]
+            }
+          ]
+        },
+        {
+          text: "Exercice 12 — Deuxième entraînement pour l'évaluation finale Unit 1",
+          tracks: [
+            {
+              id: "ang-ex12-methode",
+              btnLabel: "Conseils pour l'exercice 12",
+              hints: [
+                "Après avoir fini, compare avec le corrigé des ressources et note ce que tu n'as pas réussi.",
+                "Pour les adjectifs de personnalité : patient, calm, adorable, affectionate, protective, beautiful, provocative, nice, arrogant.",
+                "Pour les animaux : relis la liste shark, tiger, wolf, lion, gorilla, panther, sloth, orangutan, bear, snake et leurs traductions."
               ]
             }
           ]
@@ -6563,6 +6668,8 @@ function buildDevoirCardHtml(d, todayStr, opts = {}) {
     return `<div class="devoir-chip" data-subject="${d.subject}" data-chapter="${chId}">${subj.emoji} ${ch.title}</div>`;
   }).join('');
 
+  const subjLabel = `<span class="devoir-subject-label" style="background:${subj.color}22;color:${subj.color};border:1px solid ${subj.color}44;">${subj.emoji} ${subj.name}</span>`;
+
   if (inArchive) {
     const reviseBtn = d.sessionLabels
       ? `<button class="archive-action-btn" data-devoir="${d.id}" style="background:var(--yellow);color:#1a1a2e;">🎯 Réviser en ${d.sessionLabels.length} séances</button>`
@@ -6573,6 +6680,7 @@ function buildDevoirCardHtml(d, todayStr, opts = {}) {
     return `<div class="archive-devoir-card">
       <div class="devoir-head">
         <span class="devoir-badge">✅ ${badge} · ${d.dateLabel}</span>
+        ${subjLabel}
         <span class="devoir-title">${d.title}</span>
       </div>
       <div class="devoir-note">${d.note}</div>
@@ -6590,6 +6698,7 @@ function buildDevoirCardHtml(d, todayStr, opts = {}) {
     return `<div class="devoir-card">
       <div class="devoir-head">
         <span class="devoir-badge">${badge} · ${d.dateLabel}</span>
+        ${subjLabel}
         <span class="devoir-title">${d.title}</span>
       </div>
       <div class="devoir-note">${d.note}</div>
