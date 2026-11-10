@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
-<meta name="app-version" content="20261110-1900">
+<meta name="app-version" content="20261110-1910">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -9883,7 +9883,7 @@ function closeResourcesIfBg(e) {
 // ══════════════════════════════════════════════════
 //  INIT
 // ══════════════════════════════════════════════════
-updateDevoirsBadge();
+updateDevoirsBtns();
 
 // Affiche le numéro de version dans le header
 (function showVersion() {
@@ -9904,7 +9904,9 @@ updateDevoirsBadge();
 
   // Fonction qui fait le vrai check réseau
   function doCheck() {
-    fetch(location.href + '?v=' + Date.now(), {
+    // Jamais pendant une activité (quiz, fiches, aide…) : seulement sur l'écran d'accueil
+    if (!document.getElementById('screen-subjects')?.classList.contains('active')) return;
+    fetch(location.origin + location.pathname + '?v=' + Date.now(), {
       cache: 'no-store',
       headers: { 'Cache-Control': 'no-cache' }
     })
@@ -9912,8 +9914,16 @@ updateDevoirsBadge();
     .then(html => {
       const m = html.match(/<meta name="app-version" content="([^"]+)"/);
       if (m && m[1] && m[1] !== currentVersion) {
+        // Un seul rechargement par nouvelle version (évite toute boucle si le cache sert encore l'ancienne page)
+        let dejaTente = false;
+        try {
+          dejaTente = sessionStorage.getItem('majTentee') === m[1];
+          sessionStorage.setItem('majTentee', m[1]);
+        } catch (e) { dejaTente = true; }
+        if (dejaTente) return;
+        if (!document.getElementById('screen-subjects')?.classList.contains('active')) return;
         // Nouvelle version détectée → recharge propre
-        location.reload(true);
+        location.reload();
       }
     })
     .catch(() => {}); // Pas de réseau → pas grave, on garde le cache
