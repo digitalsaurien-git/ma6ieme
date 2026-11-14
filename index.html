@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
-<meta name="app-version" content="20261114-1200">
+<meta name="app-version" content="20261114-1215">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -11193,7 +11193,7 @@ updateDevoirsBtns();
     '<button type="button" class="zoom-close" id="zoomClose">✕</button></div><div id="zoomStage"></div>';
   document.body.appendChild(box);
   const stage = box.querySelector('#zoomStage');
-  let s = 1, tx = 0, ty = 0;
+  let s = 1, tx = 0, ty = 0, base = { w: 0, h: 0 };
   const ptrs = new Map();
   let pinch = null, pan = null, lastTap = 0, tapStart = null;
 
@@ -11201,7 +11201,8 @@ updateDevoirsBtns();
   function clampT() {
     const c = content(); if (!c) return;
     const vw = box.clientWidth, vh = box.clientHeight;
-    const mx = Math.max(0, (c.offsetWidth * s - vw) / 2 + 40), my = Math.max(0, (c.offsetHeight * s - vh) / 2 + 40);
+    const bw = base.w || c.offsetWidth || 0, bh = base.h || c.offsetHeight || 0;
+    const mx = Math.max(0, (bw * s - vw) / 2 + 40), my = Math.max(0, (bh * s - vh) / 2 + 40);
     tx = Math.min(mx, Math.max(-mx, tx)); ty = Math.min(my, Math.max(-my, ty));
   }
   function apply() { clampT(); stage.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + s + ')'; }
@@ -11231,8 +11232,10 @@ updateDevoirsBtns();
       c.style.cssText = 'width:100vw;height:auto;max-height:100vh;max-height:100dvh;display:block;';
     }
     stage.appendChild(c);
-    s = 1; tx = 0; ty = 0; apply();
     box.classList.add('show');
+    s = 1; tx = 0; ty = 0; stage.style.transform = 'none';
+    const r = c.getBoundingClientRect(); base = { w: r.width, h: r.height };
+    apply();
   }
   function close() { box.classList.remove('show'); stage.innerHTML = ''; ptrs.clear(); pinch = null; pan = null; }
   window.closeZoomBox = close;
