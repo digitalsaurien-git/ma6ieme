@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
-<meta name="app-version" content="20261120-1800">
+<meta name="app-version" content="20261121-1030">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -10153,6 +10153,54 @@ const FILE_ICONS = { pdf: "📄", image: "🖼️", doc: "📝" };
 //  chapters = liste d'id de chapitres (DATA[subject].chapters)
 // ══════════════════════════════════════════════════
 const DEVOIRS = [
+  {
+    "id": "dm-francais-dictee2-nov2026",
+    "date": "2026-11-27",
+    "dateLabel": "vendredi 27 nov.",
+    "subject": "francais",
+    "title": "Dictée 2 : réviser les mots",
+    "note": "Dictée 2 : réviser les mots.",
+    "chapters": [
+      "dictee-2"
+    ],
+    "sessionLabels": [
+      "Séance 1 — Samedi",
+      "Séance 2 — Dimanche",
+      "Séance 3 — Mardi"
+    ],
+    "aide": {
+      "instructions": "La dictée reprend les mots de la fiche « Préparation de la dictée 2 ». Apprends-les un peu chaque jour, puis entraîne-toi dans le mode ✍️ Dictée : on te donne un indice, tu écris le mot sans faute.",
+      "itemLabel": "Étape",
+      "items": [
+        {
+          "text": "Apprendre les mots de la fiche (noms, adjectifs, verbes, mots invariables).",
+          "tracks": [
+            {
+              "id": "dic2-mots",
+              "btnLabel": "les mots et leurs astuces",
+              "hints": [
+                "Noms : demeure, héros, statue, regard, reflet, sang, naissance, bouclier.\nAdjectifs : prudent, étroit, ailé, pétrifié.\nVerbes : atteindre, connaître, survoler, rejoindre, craindre, subir.\nMots invariables : donc, puis, chez, même.",
+                "Astuces : héros garde un « s » muet · sang → sanglant · naissance → naître · connaître prend un î · atteindre, rejoindre, craindre : je crains, il rejoint · survoler = sur + voler."
+              ]
+            }
+          ]
+        },
+        {
+          "text": "S'entraîner à écrire les mots sans faute.",
+          "tracks": [
+            {
+              "id": "dic2-train",
+              "btnLabel": "s'entraîner",
+              "hints": [
+                "Ouvre le chapitre « Dictée 2 — Persée » et lance le mode ✍️ Dictée. Les mots sont tirés au hasard à chaque partie : rejoue jusqu'à ne plus faire de faute.",
+                "Pour les mots ratés, écris-les 3 fois à la main, puis cache-les et réécris-les de mémoire."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
   {
     "id": "eval-francais-grammaire-nov2026",
     "date": "2026-11-25",
