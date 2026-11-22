@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
-<meta name="app-version" content="20261122-1200">
+<meta name="app-version" content="20261122-1230">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -11671,7 +11671,7 @@ const ENCOURAGE_WRONG = [
 
 function startQuiz(ch) {
   const questions = [...ch.quiz].sort(() => Math.random() - 0.5);
-  quizState = { questions, current: 0, score: 0, results: [] };
+  quizState = { questions, current: 0, score: 0, results: [], recallChapters: [ch] };
   showQuizQuestion();
   showScreen('quiz');
 }
@@ -11941,9 +11941,45 @@ function bossNext() {
   showBossQuestion();
 }
 
+
+// ── Rappel visuel avant le quiz : on montre 5 secondes les images du cours (une fois par chapitre et par ouverture)
+const recallSeen = new Set();
+function findChaptersByIds(ids) {
+  const out = [];
+  ids.forEach(id => { for (const k of Object.keys(DATA)) { const c = DATA[k].chapters.find(x => x.id === id); if (c) { out.push(c); break; } } });
+  return out;
+}
+function recallImages(chs) {
+  const imgs = [];
+  (chs || []).forEach(ch => {
+    const re = /<img[^>]+src="([^"]+)"[^>]*>/g; let m; const html = ch.summary || '';
+    while ((m = re.exec(html)) && imgs.length < 3) { if (!imgs.some(i => i.src === m[1])) imgs.push({ src: m[1], title: ch.title }); }
+  });
+  return imgs;
+}
+function recallGo() { quizState.recallDone = true; showQuizQuestion(); }
+function showRecallIfNeeded(container) {
+  if (quizState.current !== 0 || quizState.recallDone || quizState.score !== 0) return false;
+  const chs = quizState.recallChapters || [];
+  const key = chs.map(c => c.id).join('|');
+  if (!key || recallSeen.has(key)) return false;
+  const imgs = recallImages(chs);
+  if (!imgs.length) return false;
+  recallSeen.add(key);
+  container.innerHTML = `<div style="padding:6px 0 10px">
+    <div style="font-size:22px;font-weight:800;margin-bottom:6px">👀 Regarde bien</div>
+    <div style="font-size:15px;opacity:.85;margin-bottom:10px">Prends 5 secondes pour regarder ces images. Ensuite, on commence les questions.</div>
+    <div style="height:8px;border-radius:6px;background:rgba(255,255,255,.12);overflow:hidden;margin-bottom:10px"><div id="recallBar" style="height:100%;width:100%;background:var(--yellow);transition:width 5s linear"></div></div>
+    ${imgs.map(i => `<img alt="${i.title}" src="${i.src}" style="display:block;width:100%;max-width:420px;margin:8px auto;border-radius:10px;border:1px solid rgba(255,255,255,.15)">`).join('')}
+    <button class="quiz-restart" onclick="recallGo()">Je suis prêt ✅</button></div>`;
+  setTimeout(() => { const b = document.getElementById('recallBar'); if (b) b.style.width = '0%'; }, 50);
+  return true;
+}
+
 function showQuizQuestion() {
   const { questions, current, score } = quizState;
   const container = document.getElementById('quizContainer');
+  if (showRecallIfNeeded(container)) return;
 
   if (current >= questions.length) {
     const pct = Math.round((score / questions.length) * 100);
@@ -15413,7 +15449,8 @@ function startRevisionSession(devoirId, sessionIndex) {
     current: 0,
     score: 0,
     results: [],
-    revisionMeta: { devoirId, sessionIndex, label: session.label }
+    revisionMeta: { devoirId, sessionIndex, label: session.label },
+    recallChapters: findChaptersByIds(devoir.chapters || [])
   };
   showQuizQuestion();
   showScreen('quiz');
@@ -15430,7 +15467,8 @@ function startEvalTest(devoirId) {
     current: 0,
     score: 0,
     results: [],
-    evalTestMeta: { devoirId, label: '🧪 Test d\'évaluation' }
+    evalTestMeta: { devoirId, label: '🧪 Test d\'évaluation' },
+    recallChapters: findChaptersByIds(devoir.chapters || [])
   };
   showQuizQuestion();
   showScreen('quiz');
