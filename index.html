@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1a2e">
-<meta name="app-version" content="20261126-1700">
+<meta name="app-version" content="20261126-1800">
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVsd2FuIC0gTWVzIENvdXJzIiwic2hvcnRfbmFtZSI6Ik1lcyBDb3VycyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTJlIiwidGhlbWVfY29sb3IiOiIjMWExYTJlIn0=">
 <title>Melwan - Mes Cours</title>
 <style>
@@ -554,6 +554,11 @@ body {
 }
 .aide-hint-box div { margin-bottom: 6px; }
 .aide-hint-box div:last-child { margin-bottom: 0; }
+.aide-hint-box { line-height: 1.75; }
+.aide-hint-box .hint-item { margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px dashed rgba(255,255,255,0.18); }
+.aide-hint-box .hint-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.aide-hint-box .hint-head { margin-bottom: 8px; }
+.aide-hint-box .hint-body { margin-bottom: 0; }
 .aide-hint-btn {
   background: rgba(253,203,110,0.2);
   border: 1.5px solid var(--yellow);
@@ -14010,8 +14015,8 @@ const DEVOIRS = [
               "id": "dic2-mots",
               "btnLabel": "les mots et leurs astuces",
               "hints": [
-                "Noms : demeure, héros, statue, regard, reflet, sang, naissance, bouclier.\nAdjectifs : prudent, étroit, ailé, pétrifié.\nVerbes : atteindre, connaître, survoler, rejoindre, craindre, subir.\nMots invariables : donc, puis, chez, même.",
-                "Astuces : héros garde un « s » muet · sang → sanglant · naissance → naître · connaître prend un î · atteindre, rejoindre, craindre : je crains, il rejoint · survoler = sur + voler."
+                "<strong>Noms</strong> :\ndemeure, héros, statue, regard, reflet, sang, naissance, bouclier\n\n<strong>Adjectifs</strong> :\nprudent, étroit, ailé, pétrifié\n\n<strong>Verbes</strong> :\natteindre, connaître, survoler, rejoindre, craindre, subir\n\n<strong>Mots invariables</strong> :\ndonc, puis, chez, même",
+                "<strong>Astuces</strong> :\n\n• <strong>héros</strong> : garde un « s » muet\n• <strong>sang</strong> → sanglant\n• <strong>naissance</strong> → naître\n• <strong>connaître</strong> : prend un î\n• <strong>atteindre, rejoindre, craindre</strong> : je crains, il rejoint\n• <strong>survoler</strong> = sur + voler"
               ]
             }
           ]
@@ -16859,12 +16864,17 @@ function viewChapterSummary(devoirId, subjectId, chapterId) {
   startSummary(ch);
 }
 
+// Aère les indices : retours à la ligne respectés, un élément par ligne quand ils sont séparés par « · ».
+function fmtHint(h) {
+  return String(h).split(/(<[^>]*>)/).map(p => (p.startsWith('<') || /^\s*$/.test(p)) ? p : p.replace(/\n/g, '<br>').replace(/ · /g, '<br>')).join('');
+}
+
 // Construit le bloc HTML d'une piste d'indices (A ou B) pour une phrase.
 function renderHintTrack(itemIndex, track, label, hints) {
   const state = aideHintState[itemIndex] || {};
   const revealed = state[track] || 0;
   const hintsHtml = revealed > 0
-    ? `<div class="aide-hint-box">${hints.slice(0, revealed).map((h, hi) => `<div>💡 <strong>Indice ${hi + 1}.</strong> ${h}</div>`).join('')}</div>`
+    ? `<div class="aide-hint-box">${hints.slice(0, revealed).map((h, hi) => `<div class="hint-item"><div class="hint-head">💡 <strong>Indice ${hi + 1}</strong></div><div class="hint-body">${fmtHint(h)}</div></div>`).join('')}</div>`
     : '';
   const allSpent = revealed >= hints.length;
   const btnLabel = revealed === 0 ? `💡 Indice (${label})` : (allSpent ? '✓ Tous les indices donnés' : `💡 Indice suivant (${revealed}/${hints.length})`);
